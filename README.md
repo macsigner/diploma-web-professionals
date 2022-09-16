@@ -25,6 +25,14 @@ Diplomarbeit 2022 Web Frontend Developer
 
 ## Zusammenfassung und Ausblick, persönliche Anmerkungen
 
+Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
+– hauptsächlich im Hinblick auf Javascript – nicht auf Bibliotheken und
+Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
+Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin
+ich für den grössten Teil der Implementation des Lintings verantwortlich, da es
+allerdings nicht im Zuge der Diplomarbeit zustande gekommen ist, deklariere ich
+es hiermit als _halb halb_.
+
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
 [//]: # (todo: update source information regularly)
