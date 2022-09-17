@@ -15,6 +15,16 @@ Diplomarbeit 2022 Web Frontend Developer
 
 ## Zeitplan / Meilensteine
 
+### Vorbereitungen Planung
+
+Als erstes erfolgt die Durchsicht der Vorlage. Dabei gehe ich Kopf die einzelnen
+Elemente, Seiten sowie Inhalte durch und überlege mir wie der Aufbau – auch
+Serverseitig – vonstattengehen soll, damit ich vorgängig vordefinierte Ziele und
+Aufwandseinschätzungen festlegen kann.\
+Da die Daten der Immobilien über GraphQL geladen werden und diese Daten
+bereits extern verfügbar sind, lasse ich die Erstellung eines Backends vorerst
+aussen vor.
+
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
 [//]: # (todo: add section about usage)
