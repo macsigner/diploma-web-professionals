@@ -27,6 +27,33 @@ aussen vor.
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
+### Versionierungsnachrichten
+
+Die Commits sind in Englisch und nach folgenden Schema angelegt:
+
+```
+<type>: <description>
+```
+
+`<type>`
+
+| Typ    | Bedeutung                                            |
+|--------|------------------------------------------------------|
+| feat   | Hinzufügen neuer Funktionen                          |
+| fix    | Reparatur von Bugs im Code                           |
+| hotfix | __Nicht nachhaltig__ behobener Bug. Zukünftiges Todo |
+| clan   | Aufräumarbeiten im Code. Refaktorierung, Einrückung. |
+
+`<description>`
+
+Der Beschrieb erfolgt immer mit Verb im Imperativ und dem erledigten Task.
+
+```
+fix inequality in society
+remove world hunger
+apply anarchism in the UK
+```
+
 [//]: # (todo: add section about usage)
 
 ## Technische Dokumentation bei Eigenleistungen
