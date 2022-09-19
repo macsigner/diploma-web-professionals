@@ -103,6 +103,15 @@ Unteraufgaben mit einer Dauer unter _3h_.
         - [ ] Modal
     - [ ] Kontakt _1h_
     - Reserve _4h_
+- [ ] Schlusstests
+    - [ ] Chrome _1h_
+    - [ ] Firefox _1h_
+    - [ ] Safari _1h_
+- [ ] Fixing 1st _8h_
+- [ ] Benutzertest _Nur Funktionalität, kein UX_
+  - [ ] Benutzer _2h_
+- [ ] Fixing 2nd _2h_
+- [ ] Dokuupdate _4h_
 
 ### Meilensteine
 
@@ -113,7 +122,7 @@ Unteraufgaben mit einer Dauer unter _3h_.
 | Aufbau HTML-Templates             | 10h       | 08.10.2022 |                  |         |
 | Javascriptfunktionalität          | 15h       | 17.10.2022 |                  |         |
 | Frontendstyling                   | 31h       | 07.11.2022 |                  |         |
-| Testing / Fixing (Crossbrowser)   | 12h       | 14.11.2022 |                  |         |
+| Testing / Fixing (Crossbrowser)   | 11h       | 14.11.2022 |                  |         |
 | Testing "User" / Fixing           | 4h        | 21.11.2022 |                  |         |
 | Letzte Anpassungen an der Doku    | 4h        | 21.11.2022 |                  |         |
 | Abgabe Diplomarbeit               | 1h        | 27.11.2022 |                  |         |
