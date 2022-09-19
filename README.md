@@ -104,6 +104,20 @@ Unteraufgaben mit einer Dauer unter _3h_.
     - [ ] Kontakt _1h_
     - Reserve _4h_
 
+### Meilensteine
+
+| Meilenstein                       | Geschätzt | Termin     | Abgeschlossen am | Aufwand |
+|-----------------------------------|-----------|------------|------------------|---------|
+| Grundsetup Webpack                | 13h       | 26.09.2022 |                  |         |
+| Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 |                  |         |
+| Aufbau HTML-Templates             | 10h       | 08.10.2022 |                  |         |
+| Javascriptfunktionalität          | 15h       | 17.10.2022 |                  |         |
+| Frontendstyling                   | 31h       | 07.11.2022 |                  |         |
+| Testing / Fixing (Crossbrowser)   | 12h       | 14.11.2022 |                  |         |
+| Testing "User" / Fixing           | 4h        | 21.11.2022 |                  |         |
+| Letzte Anpassungen an der Doku    | 4h        | 21.11.2022 |                  |         |
+| Abgabe Diplomarbeit               | 1h        | 27.11.2022 |                  |         |
+
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
 ### Versionierungsnachrichten
