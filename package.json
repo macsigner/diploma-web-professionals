@@ -1,0 +1,37 @@
+{
+    "name": "home-house",
+    "version": "1.0.0",
+    "description": "Diplomarbeit 2022 Web Frontend Developer",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/macsigner/diploma-web-professionals.git"
+    },
+    "keywords": [],
+    "author": "Mac Signer",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/macsigner/diploma-web-professionals/issues"
+    },
+    "homepage": "https://github.com/macsigner/diploma-web-professionals#readme",
+    "devDependencies": {
+        "clean-webpack-plugin": "^4.0.0",
+        "copy-webpack-plugin": "^11.0.0",
+        "css-loader": "^6.7.1",
+        "html-loader": "^4.1.0",
+        "html-webpack-plugin": "^5.5.0",
+        "mini-css-extract-plugin": "^2.6.1",
+        "nodemon": "^2.0.20",
+        "sass": "^1.54.9",
+        "sass-loader": "^13.0.2",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.11.1",
+        "webpack-merge": "^5.8.0"
+    }
+}
