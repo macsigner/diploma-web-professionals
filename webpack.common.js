@@ -1,7 +1,15 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import glob from 'glob';
+import * as path from 'path';
+import projectFiles from './node-scripts/project-files.js';
 
-const pages = ['index', 'aktuelles', 'kontakt', 'objekt', 'newsdetail'];
+const pages = projectFiles.getPages();
+
+console.log('===');
+console.log(pages);
+console.log('===');
+
 
 export default {
     entry: Object.assign({
@@ -29,6 +37,7 @@ export default {
         new CleanWebpackPlugin(),
     ].concat(
         pages.map(page => {
+            console.log(page);
             return new HtmlWebpackPlugin({
                 inject: true,
                 template: `./src/pages/${page}.html`,
