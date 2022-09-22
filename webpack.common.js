@@ -2,14 +2,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import glob from 'glob';
 import * as path from 'path';
-import projectFiles from './node-scripts/project-files.js';
+import PageCollection from './node-scripts/page-collection.js';
 
-const pages = projectFiles.getPages();
-
-console.log('===');
-console.log(pages);
-console.log('===');
-
+const pages = new PageCollection('src/pages/**/*.html');
 
 export default {
     entry: Object.assign({
