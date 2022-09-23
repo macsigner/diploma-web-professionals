@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import PageCollection from './node-scripts/page-collection.js';
 
 const pages = new PageCollection('src/pages/**/*.html');
@@ -31,11 +32,12 @@ export default {
             {
                 test: /\.(svg|png|jpg|gif)$/,
                 type: 'asset/resource',
-            }
-        ]
+            },
+        ],
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new ESLintWebpackPlugin(),
     ].concat(
         pages.getPageObjects().map(page => {
             let chunks = ['app'];
@@ -45,7 +47,7 @@ export default {
                 chunks.push(chunkName);
             }
 
-            let filename = `${page.file.name}.html`
+            let filename = `${page.file.name}.html`;
 
             if (page.parentDirectoryPath) {
                 filename = `${page.parentDirectoryPath}/${filename}`.substring(1);
@@ -58,5 +60,5 @@ export default {
                 chunks,
             });
         })
-    )
-}
+    ),
+};
