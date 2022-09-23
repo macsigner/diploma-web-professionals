@@ -1,7 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {CleanWebpackPlugin} from 'clean-webpack-plugin';
-import glob from 'glob';
-import * as path from 'path';
 import PageCollection from './node-scripts/page-collection.js';
 
 const pages = new PageCollection('src/pages/**/*.html');
