@@ -1,22 +1,27 @@
 import * as path from 'path';
-import {fileURLToPath} from 'url';
-import * as fs from 'fs';
 import glob from 'glob';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 /**
- * Handle file collections.
+ * Page collection.
  */
 class PageCollection {
+    /**
+     * Construct.
+     * @param globExpression
+     * @param options
+     */
     constructor(globExpression, options = {
-        pageRoot: 'src/pages'
+        pageRoot: 'src/pages',
     }) {
         this._settings = options;
         this.pages = this.getPages(globExpression);
     }
 
+    /**
+     * Get nested pages as object.
+     * @param globExpression
+     * @returns {{}}
+     */
     getPages(globExpression) {
         const files = glob.sync(globExpression);
         const filePaths = files.map((filePath) => this._parsePath(filePath));
@@ -29,6 +34,12 @@ class PageCollection {
         return pageCollection;
     }
 
+    /**
+     * Create page object from path.
+     * @param filePath
+     * @returns {{file: ParsedPath, url: *, parents: string[]}}
+     * @private
+     */
     _parsePath(filePath) {
         let dir = path.dirname(filePath);
         dir = dir.replace(`${this._settings.pageRoot}`, '');
@@ -42,9 +53,16 @@ class PageCollection {
             url,
             file,
             parents: directoryArray,
-        }
+        };
     }
 
+    /**
+     * Apply tree structure to object from page object.
+     * @param item
+     * @param obj
+     * @returns {{}}
+     * @private
+     */
     _applyTreeStructure(item, obj = {}) {
         if (!obj.pages) {
             obj.pages = {};
