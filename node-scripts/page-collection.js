@@ -14,7 +14,8 @@ class PageCollection {
         pageRoot: 'src/pages',
     }) {
         this._settings = options;
-        this.pages = this.getPages(globExpression);
+        this._globExpression = globExpression;
+        this.getPages();
     }
 
     /**
@@ -22,16 +23,34 @@ class PageCollection {
      * @param globExpression
      * @returns {{}}
      */
-    getPages(globExpression) {
-        const files = glob.sync(globExpression);
-        const filePaths = files.map((filePath) => this._parsePath(filePath));
+    getPages() {
+        if (this.pages) {
+            return this.pages;
+        }
+
+        const filePaths = this.getPageObjects();
 
         let pageCollection = {};
         for (let page of filePaths) {
-            pageCollection = this._applyTreeStructure(page, pageCollection);
+            this.pages = this._applyTreeStructure(page, pageCollection);
         }
 
-        return pageCollection;
+        return this.pages;
+    }
+
+    /**
+     * Get page objects as flat array.
+     * @returns {{file: ParsedPath, url: *, parents: string[]}[]}
+     */
+    getPageObjects() {
+        if (this.pageObjects) {
+            return this.pageObjects;
+        }
+
+        const files = glob.sync(this._globExpression);
+        this.pageObjects = files.map((filePath) => this._parsePath(filePath));
+
+        return this.pageObjects;
     }
 
     /**
@@ -53,6 +72,7 @@ class PageCollection {
             url,
             file,
             parents: directoryArray,
+            parentDirectoryPath: dir,
         };
     }
 
