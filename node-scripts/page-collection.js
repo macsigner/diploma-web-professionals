@@ -88,6 +88,7 @@ class PageCollection {
             obj.pages = {};
         }
 
+        // Todo: Shorten if block. Assign key and new object.
         if (item.parents.length === 0 || (item.parents.length === 1 && item.parents[0] === item.file.name)) {
             delete item.parents;
 
