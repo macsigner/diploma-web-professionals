@@ -168,9 +168,9 @@ Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
 – hauptsächlich im Hinblick auf Javascript – nicht auf Bibliotheken und
 Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
 Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin
-ich für den grössten Teil der Implementation des Lintings verantwortlich, da es
-allerdings nicht im Zuge der Diplomarbeit zustande gekommen ist, deklariere ich
-es hiermit als _halb halb_.
+ich für den grössten Teil der Implementation des Lintings (primär Stylelinting)
+verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit zustande
+gekommen ist, deklariere ich es hiermit als _halb halb_.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
@@ -178,7 +178,21 @@ es hiermit als _halb halb_.
 
 ### Fix
 
-[Fehler: `__dirname is not defined in ES module scope`][dirname not in es scope]
+#### Node
+
+[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]
+Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
+auf `"type": "module"`.
+
+[Feler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
+Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im
+_eslintrc.json_ auf `"ecmaVersion": 11` nötig. In diesem Projekt nicht weiter
+von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste setzen.\
+Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem
+Grund auf einer älteren Version basierenen müssen, wäre der Import über eine
+externe Datei – welche auf der Ignoreliste ist –
+gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch
+überlegenswert.
 
 ## Eidesstattliche Erklärung
 
@@ -189,4 +203,6 @@ als solche kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen
 Prüfungsgremium in gleicher oder vergleichbarer Form vorgelegt. Sie wurde bisher
 auch nicht veröffentlicht.
 
-[dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+[node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+
+[eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
