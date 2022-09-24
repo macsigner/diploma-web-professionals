@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import PageCollection from './node-scripts/page-collection.js';
 
-const pages = new PageCollection('src/pages/**/*.html');
+const pages = new PageCollection('src/pages/**/*.twig');
 const additionalScriptFiles = pages.getPageObjects().reduce((config, page) => {
     let jsFilePath = `./src/js/pages${page.parentDirectoryPath}/${page.file.name}.js`;
 
@@ -24,9 +24,10 @@ export default {
     module: {
         rules: [
             {
-                test: /\.html$/i,
+                test: /\.twig$/i,
                 use: [
-                    'html-loader',
+                    'raw-loader',
+                    'twig-html-loader',
                 ],
             },
             {
@@ -55,7 +56,7 @@ export default {
 
             return new HtmlWebpackPlugin({
                 inject: true,
-                template: `./src/pages${page.parentDirectoryPath}/${page.file.name}.html`,
+                template: `./src/pages${page.parentDirectoryPath}/${page.file.name}.twig`,
                 filename,
                 chunks,
             });
