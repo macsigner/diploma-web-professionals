@@ -6,7 +6,10 @@
     "scripts": {
         "start": "webpack-dev-server --open --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js",
-        "debug": "nodemon ./node_modules/ndb/ndb.js"
+        "debug": "nodemon ./node_modules/ndb/ndb.js",
+        "lint:js": "eslint 'src/js/**/*.js' 'node-scripts/**/*.js' './*.js'",
+        "lint:js:fix": "eslint --fix 'src/js/**/*.js' 'node-scripts/**/*.js' './*.js'",
+        "lint": "npm run lint:js:fix"
     },
     "repository": {
         "type": "git",
@@ -23,6 +26,9 @@
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.1",
+        "eslint": "^7.32.0",
+        "eslint-loader": "^4.0.2",
+        "eslint-webpack-plugin": "^3.2.0",
         "glob": "^8.0.3",
         "html-loader": "^4.1.0",
         "html-webpack-plugin": "^5.5.0",

@@ -1,6 +1,6 @@
 import * as path from 'path';
-import {fileURLToPath} from 'url';
-import {merge} from 'webpack-merge';
+import { fileURLToPath } from 'url';
+import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,8 +21,8 @@ export default merge(common, {
                     'style-loader',
                     'css-loader',
                     'sass-loader',
-                ]
-            }
-        ]
-    }
+                ],
+            },
+        ],
+    },
 });
