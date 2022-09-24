@@ -32,13 +32,13 @@ kleinste Zeiteinheit. Zeiten mit Dauer über __3h__ sind runtergebrochen auf
 Unteraufgaben mit einer Dauer unter _3h_.
 
 - [ ] Grundsetup Webpack
-    - [ ] Einrichtung gemäss bisheriger Struktur vom Kurs _1h_
+    - [x] Einrichtung gemäss bisheriger Struktur vom Kurs _1h_
     - [ ] Integration Templates gemäss Beispielen von Pascal _1h_
     - [ ] Einbau Rekursion in Templates _3h_
     - [ ] Logik Skripte
         - [ ] Standardskripte für alle Seiten. Eg. Grundfunktionalität wie
           Navi _1h_
-        - [ ] Seitenspezifische Skripte. Eg. Ansichten, Home, Kontakt _1h_
+        - [x] Seitenspezifische Skripte. Eg. Ansichten, Home, Kontakt _1h_
     - Nachkonfiguration / Reserve Webpack _4h_
 - [ ] Dateistrukturierung
     - [ ] Grundsetup
