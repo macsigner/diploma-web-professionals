@@ -2,10 +2,11 @@
     "name": "home-house",
     "version": "1.0.0",
     "description": "Diplomarbeit 2022 Web Frontend Developer",
-    "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "webpack-dev-server --open --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js",
+        "debug": "nodemon ./node_modules/ndb/ndb.js"
     },
     "repository": {
         "type": "git",
@@ -22,9 +23,11 @@
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.1",
+        "glob": "^8.0.3",
         "html-loader": "^4.1.0",
         "html-webpack-plugin": "^5.5.0",
         "mini-css-extract-plugin": "^2.6.1",
+        "ndb": "^1.1.5",
         "nodemon": "^2.0.20",
         "sass": "^1.54.9",
         "sass-loader": "^13.0.2",

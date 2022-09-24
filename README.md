@@ -109,7 +109,7 @@ Unteraufgaben mit einer Dauer unter _3h_.
     - [ ] Safari _1h_
 - [ ] Fixing 1st _8h_
 - [ ] Benutzertest _Nur Funktionalität, kein UX_
-  - [ ] Benutzer _2h_
+    - [ ] Benutzer _2h_
 - [ ] Fixing 2nd _2h_
 - [ ] Dokuupdate _4h_
 
@@ -176,6 +176,10 @@ es hiermit als _halb halb_.
 
 [//]: # (todo: update source information regularly)
 
+### Fix
+
+[Fehler: `__dirname is not defined in ES module scope`][dirname not in es scope]
+
 ## Eidesstattliche Erklärung
 
 Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst /
@@ -184,3 +188,5 @@ benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken
 als solche kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen
 Prüfungsgremium in gleicher oder vergleichbarer Form vorgelegt. Sie wurde bisher
 auch nicht veröffentlicht.
+
+[dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
