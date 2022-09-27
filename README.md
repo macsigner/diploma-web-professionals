@@ -31,13 +31,14 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als
 kleinste Zeiteinheit. Zeiten mit Dauer über __3h__ sind runtergebrochen auf
 Unteraufgaben mit einer Dauer unter _3h_.
 
-- [ ] Grundsetup Webpack
+- [x] Grundsetup Webpack
     - [x] Einrichtung gemäss bisheriger Struktur vom Kurs _1h_
-    - [ ] Integration Templates gemäss Beispielen von Pascal _1h_
-    - [ ] Einbau Rekursion in Templates _3h_
-    - [ ] Logik Skripte
-        - [ ] Standardskripte für alle Seiten. Eg. Grundfunktionalität wie
-          Navi _1h_
+    - [x] ~~Integration Templates gemäss Beispielen von Pascal _1h_~~\
+      Integration Twig
+    - [x] ~~Einbau Rekursion in Templates _3h_~~\
+      Integration Seitenstruktur Twig
+    - [x] Logik Skripte
+        - [x] Standardskripte für alle Seiten. Eg. Grundfunktionalität wie Navi _1h_
         - [x] Seitenspezifische Skripte. Eg. Ansichten, Home, Kontakt _1h_
     - Nachkonfiguration / Reserve Webpack _4h_
 - [ ] Dateistrukturierung
@@ -117,7 +118,7 @@ Unteraufgaben mit einer Dauer unter _3h_.
 
 | Meilenstein                       | Geschätzt | Termin     | Abgeschlossen am | Aufwand |
 |-----------------------------------|-----------|------------|------------------|---------|
-| Grundsetup Webpack                | 13h       | 26.09.2022 |                  |         |
+| Grundsetup Webpack                | 13h       | 26.09.2022 | 27.09.2022       | ca. 16h |
 | Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 |                  |         |
 | Aufbau HTML-Templates             | 10h       | 08.10.2022 |                  |         |
 | Javascriptfunktionalität          | 15h       | 17.10.2022 |                  |         |
