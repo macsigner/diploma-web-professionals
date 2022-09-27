@@ -37,13 +37,10 @@ export default {
                         loader: 'twig-html-loader',
                         options: {
                             data: (context) => {
-                                let pageObject = pages.getPageObjectFromPath(context.resourcePath);
+                                let pageObject = pages.getPageObjectFromPath(context.resourcePath) || {};
+                                pageObject.pages = pages.getPages().pages;
 
-                                if (pageObject) {
-                                    return pageObject;
-                                } else {
-                                    return {};
-                                }
+                                return pageObject;
                             },
                         },
                     },

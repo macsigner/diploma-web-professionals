@@ -71,11 +71,11 @@ class PageCollection {
 
     getPageObjectFromPath(filePath) {
         let rootPath = path.resolve(this._settings.pageRoot);
-        rootPath = filePath.replace(rootPath + '/');
+        rootPath = filePath.replace(rootPath + '/', '');
 
-        // Todo: write find by method.
+        let pageObj = Array.from(this.pageObjects).find(obj => obj.filePath === filePath);
 
-        return {};
+        return pageObj;
     }
 
     _getPageData(obj) {
@@ -107,6 +107,7 @@ class PageCollection {
         directoryArray.shift();
         let file = path.parse(filePath);
         let url = filePath.replace(this._settings.pageRoot, '');
+        filePath = path.resolve(filePath);
 
         return {
             url,
