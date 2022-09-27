@@ -6,6 +6,7 @@
     "scripts": {
         "start": "webpack-dev-server --open --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js",
+        "build:dev": "webpack --config webpack.dev.js",
         "debug": "nodemon ./node_modules/ndb/ndb.js",
         "lint:js": "eslint 'src/js/**/*.js' 'node-scripts/**/*.js' './*.js'",
         "lint:js:fix": "eslint --fix 'src/js/**/*.js' 'node-scripts/**/*.js' './*.js'",

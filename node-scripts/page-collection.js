@@ -1,5 +1,11 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import glob from 'glob';
+import {fileURLToPath} from 'url';
+
+// Todo: import __filename and __dirname from node-scripts/
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Page collection.
@@ -48,9 +54,43 @@ class PageCollection {
         }
 
         const files = glob.sync(this._globExpression);
-        this.pageObjects = files.map((filePath) => this._parsePath(filePath));
+        this.pageObjects = files.map((filePath) => {
+            let obj = this._parsePath(filePath);
+            let dataObject = this._getPageData(obj);
+
+            if (dataObject) {
+                obj.data = dataObject.data;
+                obj.dataFile = dataObject.dataFile;
+            }
+
+            return obj;
+        });
 
         return this.pageObjects;
+    }
+
+    getPageObjectFromPath(filePath) {
+        let rootPath = path.resolve(this._settings.pageRoot);
+        rootPath = filePath.replace(rootPath + '/');
+
+        // Todo: write find by method.
+
+        return {};
+    }
+
+    _getPageData(obj) {
+        let filePath = `${obj.file.dir}/${obj.file.name}.json`
+        if (!fs.existsSync(filePath)) {
+            return;
+        }
+
+        let buffer = fs.readFileSync(filePath);
+        let jsonData = JSON.parse(buffer);
+
+        return {
+            dataFile: filePath,
+            data: jsonData,
+        };
     }
 
     /**
@@ -71,6 +111,7 @@ class PageCollection {
         return {
             url,
             file,
+            filePath,
             parents: directoryArray,
             parentDirectoryPath: dir,
         };
