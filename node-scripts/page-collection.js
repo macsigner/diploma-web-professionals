@@ -64,17 +64,26 @@ class PageCollection {
         return this.pageObjects;
     }
 
+    // Todo: Refactor to include "find" in method name.
+    /**
+     * Find page object by path.
+     * @param filePath
+     * @returns {{file: ParsedPath, url: *, parents: string[]}}
+     */
     getPageObjectFromPath(filePath) {
-        let rootPath = path.resolve(this._settings.pageRoot);
-        rootPath = filePath.replace(rootPath + '/', '');
-
         let pageObj = Array.from(this.pageObjects).find(obj => obj.filePath === filePath);
 
         return pageObj;
     }
 
+    /**
+     * Get page data by page object.
+     * @param obj
+     * @returns {{data: any, dataFile: string}}
+     * @private
+     */
     _getPageData(obj) {
-        let filePath = `${obj.file.dir}/${obj.file.name}.json`
+        let filePath = `${obj.file.dir}/${obj.file.name}.json`;
         if (!fs.existsSync(filePath)) {
             return;
         }
