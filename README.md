@@ -146,6 +146,7 @@ Die Commits sind in Englisch und nach folgenden Schema angelegt:
 | fix    | Reparatur von Bugs im Code                           |
 | hotfix | __Nicht nachhaltig__ behobener Bug. Zukünftiges Todo |
 | clean  | Aufräumarbeiten im Code. Refaktorierung, Einrückung. |
+| doc    | Reine Dokumentationsarbeiten                         |
 
 `<description>`
 
