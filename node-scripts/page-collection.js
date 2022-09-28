@@ -1,11 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import glob from 'glob';
-import {fileURLToPath} from 'url';
-
-// Todo: import __filename and __dirname from node-scripts/
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 /**
  * Page collection.

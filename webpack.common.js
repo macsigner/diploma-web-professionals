@@ -1,14 +1,8 @@
 import * as fs from 'fs';
-import * as path from 'path';
-import {fileURLToPath} from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import PageCollection from './node-scripts/page-collection.js';
-
-// Todo: import __filename and __dirname from node-scripts/
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const pages = new PageCollection('src/pages/**/*.twig');
 const additionalScriptFiles = pages.getPageObjects().reduce((config, page) => {
