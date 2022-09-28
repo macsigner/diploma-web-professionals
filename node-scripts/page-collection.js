@@ -16,6 +16,7 @@ class PageCollection {
     }) {
         this._settings = options;
         this._globExpression = globExpression;
+        this._urls = new Set();
         this.getPages();
     }
 
@@ -57,6 +58,8 @@ class PageCollection {
                 obj.data = dataObject.data;
                 obj.dataFile = dataObject.dataFile;
             }
+
+            obj.url = this._createUniqueUrl(obj);
 
             return obj;
         });
@@ -116,7 +119,7 @@ class PageCollection {
         return {
             url,
             file,
-            filePath,
+            sourceFile: path.resolve(filePath),
             parents: directoryArray,
             parentDirectoryPath: dir,
         };
@@ -156,6 +159,37 @@ class PageCollection {
         }
 
         return obj;
+    }
+
+    /**
+     * Create unique url from page object.
+     * @param obj
+     * @returns {string}
+     * @private
+     */
+    _createUniqueUrl(obj) {
+        let filePath = obj.sourceFile;
+        let file = path.parse(filePath);
+        let arrFolders = file.dir.replace(path.resolve(this._settings.pageRoot), '')
+            .replace(/^[/?]/, '')
+            .split('/');
+
+        let filePrefix = /^([_]?[0-9]*)_/;
+        let urlPath = arrFolders
+            .reduce((prev, current) => prev + '/' + current.replace(filePrefix, ''));
+
+        urlPath = '/' + (urlPath ? (urlPath + '/') : '');
+        let cleanFilename = file.name.replace(filePrefix, '');
+        let url = `${urlPath}${cleanFilename}.html`;
+
+        let i = 1;
+        while (this._urls.has(url)) {
+            url = `${urlPath}${cleanFilename}-${i++}.html`;
+        }
+
+        this._urls.add(url);
+
+        return url;
     }
 }
 
