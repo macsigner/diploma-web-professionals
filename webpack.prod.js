@@ -1,8 +1,8 @@
 import * as path from 'path';
-import { fileURLToPath } from 'url';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { fileURLToPath } from 'url';
 
 // Todo: what is this import for and how is it not mixed up with the ones on top?
 const __filename = fileURLToPath(import.meta.url);

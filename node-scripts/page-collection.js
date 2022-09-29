@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import glob from 'glob';
 
@@ -15,6 +16,7 @@ class PageCollection {
     }) {
         this._settings = options;
         this._globExpression = globExpression;
+        this._urls = new Set();
         this.getPages();
     }
 
@@ -48,9 +50,54 @@ class PageCollection {
         }
 
         const files = glob.sync(this._globExpression);
-        this.pageObjects = files.map((filePath) => this._parsePath(filePath));
+        this.pageObjects = files.map((filePath) => {
+            let obj = this._parsePath(filePath);
+            let dataObject = this._getPageData(obj);
+
+            if (dataObject) {
+                obj.data = dataObject.data;
+                obj.dataFile = dataObject.dataFile;
+            }
+
+            obj.url = this._createUniqueUrl(obj);
+
+            return obj;
+        });
 
         return this.pageObjects;
+    }
+
+    // Todo: Refactor to include "find" in method name.
+    /**
+     * Find page object by path.
+     * @param filePath
+     * @returns {{file: ParsedPath, url: *, parents: string[]}}
+     */
+    getPageObjectFromPath(filePath) {
+        let pageObj = Array.from(this.pageObjects).find(obj => obj.filePath === filePath);
+
+        return pageObj;
+    }
+
+    /**
+     * Get page data by page object.
+     * @param obj
+     * @returns {{data: any, dataFile: string}}
+     * @private
+     */
+    _getPageData(obj) {
+        let filePath = `${obj.file.dir}/${obj.file.name}.json`;
+        if (!fs.existsSync(filePath)) {
+            return;
+        }
+
+        let buffer = fs.readFileSync(filePath);
+        let jsonData = JSON.parse(buffer);
+
+        return {
+            dataFile: filePath,
+            data: jsonData,
+        };
     }
 
     /**
@@ -67,10 +114,12 @@ class PageCollection {
         directoryArray.shift();
         let file = path.parse(filePath);
         let url = filePath.replace(this._settings.pageRoot, '');
+        filePath = path.resolve(filePath);
 
         return {
             url,
             file,
+            sourceFile: path.resolve(filePath),
             parents: directoryArray,
             parentDirectoryPath: dir,
         };
@@ -88,6 +137,7 @@ class PageCollection {
             obj.pages = {};
         }
 
+        // Todo: Shorten if block. Assign key and new object.
         if (item.parents.length === 0 || (item.parents.length === 1 && item.parents[0] === item.file.name)) {
             delete item.parents;
 
@@ -109,6 +159,37 @@ class PageCollection {
         }
 
         return obj;
+    }
+
+    /**
+     * Create unique url from page object.
+     * @param obj
+     * @returns {string}
+     * @private
+     */
+    _createUniqueUrl(obj) {
+        let filePath = obj.sourceFile;
+        let file = path.parse(filePath);
+        let arrFolders = file.dir.replace(path.resolve(this._settings.pageRoot), '')
+            .replace(/^[/?]/, '')
+            .split('/');
+
+        let filePrefix = /^([_]?[0-9]*)_/;
+        let urlPath = arrFolders
+            .reduce((prev, current) => prev + '/' + current.replace(filePrefix, ''));
+
+        urlPath = '/' + (urlPath ? (urlPath + '/') : '');
+        let cleanFilename = file.name.replace(filePrefix, '');
+        let url = `${urlPath}${cleanFilename}.html`;
+
+        let i = 1;
+        while (this._urls.has(url)) {
+            url = `${urlPath}${cleanFilename}-${i++}.html`;
+        }
+
+        this._urls.add(url);
+
+        return url;
     }
 }
 
