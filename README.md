@@ -7,6 +7,53 @@ Diplomarbeit 2022 Web Frontend Developer
 
 ## Setup Guide
 
+### Grundinstallation
+
+```shell
+npm install
+```
+
+### Nodeskripte
+
+| Befehl          | Auswirkung                                               |
+|-----------------|----------------------------------------------------------|
+| `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien |
+| `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_     |
+| `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_      |
+| `debug`         | Startet ndb via nodemon                                  |
+| `lint:js`       | Linting der Javascriptdateien                            |
+| `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur              |
+| `lint:scss`     | Linting der Stylesheets                                  |
+| `lint:scss:fix` | Linting der Stylesheets mit Korrektur                    |
+| `lint`          | Linting der Javascript und Stylesheets mit Korrektur     |
+
+### Seitenstruktur
+
+Neue Seiten können unter _src/pages/_ angelegt werden. Es wird auch eine Baumstruktur der Seiten als Objekt mitgegeben.\
+Um die Seiten in eine bestimmte Reihenfolge zu bringen, kann ein Prefix im Dateinamen hinzugefügt werden. Die Seite kann
+mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Daten werden mit einer _JSON_-Datei
+eingebunden. Die Prefixe werden für die URLs entfernt.
+
+Aufbau gemäss Ansicht:
+```
+├── 010_aktuelles.twig
+├── 020_kontakt.twig
+├── 030_objekt.twig
+├── _index.json
+├── _index.twig
+├── _newsdetail.twig
+├── moresub
+│       └── another.twig
+└── sub
+    ├── sub.twig
+    └── subsub
+        └── subsub.twig
+```
+
+[//]: # (todo: does the order of files being read depend on the host?)
+
+[//]: # (todo: implement hidden pages via underline as prefix in filename)
+
 [//]: # (todo: write setup as soon there is one and update comment)
 
 ## URL der lauffähigen Version
@@ -145,7 +192,7 @@ Die Commits sind in Englisch und nach folgenden Schema angelegt:
 | feat   | Hinzufügen neuer Funktionen                          |
 | fix    | Reparatur von Bugs im Code                           |
 | hotfix | __Nicht nachhaltig__ behobener Bug. Zukünftiges Todo |
-| clean  | Aufräumarbeiten im Code. Refaktorierung, Einrückung. |
+| clean  | Aufräumarbeiten im Code. Refaktorierung, Einrückung  |
 | doc    | Reine Dokumentationsarbeiten                         |
 
 `<description>`
