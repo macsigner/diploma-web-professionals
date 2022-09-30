@@ -177,6 +177,29 @@ Unteraufgaben mit einer Dauer unter _3h_.
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
+### [Webpack](https://webpack.js.org/)
+
+Einsatz aufgrund des Kurses, also primär als Lernmethode vorhanden. Wenn ich mir was aus den Fingern saugen müsste:
+
+- Ermöglicht Cachebusting ohne manuelles Eingreiffen
+- Dateien (hauptsächlich Bilddateien) können beim Durchjagen optimiert werden
+- Ausführliche\* Doku
+- Weite Verbreitung ermöglicht eine einfachere Hilfestellung
+
+*Die Doku ist zwar recht Ausführlich aber – teilweise – höllisch schwer verständlich.
+
+### [NDB](https://github.com/GoogleChromeLabs/ndb#readme)
+
+Da das Debugging der Nodeskripte recht mühsam war, begab ich mich auf die Suche nach einem Debugger, bei dem ich
+Haltepunkte setzen kann. analog Xdebug. Hauptgrund für den Einsatz von NDB ist die Familiarität mit den Entwicklertools
+von Chrome.
+
+### [twig-html-loader](https://github.com/radiocity/twig-html-loader#readme)
+
+Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
+voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
+Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch
+
 ### Versionierungsnachrichten
 
 Die Commits sind in Englisch und nach folgenden Schema angelegt:
@@ -233,7 +256,7 @@ gekommen ist, deklariere ich es hiermit als _halb halb_.
 Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
 auf `"type": "module"`.
 
-[Feler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
+[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
 Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im
 _eslintrc.json_ auf `"ecmaVersion": 11` nötig. In diesem Projekt nicht weiter
 von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste setzen.\
