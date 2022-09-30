@@ -35,6 +35,7 @@ mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Da
 eingebunden. Die Prefixe werden für die URLs entfernt.
 
 Aufbau gemäss Ansicht:
+
 ```
 ├── 010_aktuelles.twig
 ├── 020_kontakt.twig
@@ -64,19 +65,16 @@ Aufbau gemäss Ansicht:
 
 ### Vorbereitungen Planung
 
-Als erstes erfolgt die Durchsicht der Vorlage. Dabei gehe ich Kopf die einzelnen
-Elemente, Seiten sowie Inhalte durch und überlege mir wie der Aufbau – auch
-Serverseitig – vonstattengehen soll, damit ich vorgängig vordefinierte Ziele und
+Als erstes erfolgt die Durchsicht der Vorlage. Dabei gehe ich Kopf die einzelnen Elemente, Seiten sowie Inhalte durch
+und überlege mir wie der Aufbau – auch Serverseitig – vonstattengehen soll, damit ich vorgängig vordefinierte Ziele und
 Aufwandseinschätzungen festlegen kann.\
-Da die Daten der Immobilien über GraphQL geladen werden und diese Daten
-bereits extern verfügbar sind, lasse ich die Erstellung eines Backends vorerst
-aussen vor.
+Da die Daten der Immobilien über GraphQL geladen werden und diese Daten bereits extern verfügbar sind, lasse ich die
+Erstellung eines Backends vorerst aussen vor.
 
 ### Zeitplanung
 
-__Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als
-kleinste Zeiteinheit. Zeiten mit Dauer über __3h__ sind runtergebrochen auf
-Unteraufgaben mit einer Dauer unter _3h_.
+__Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als kleinste Zeiteinheit. Zeiten mit Dauer
+über __3h__ sind runtergebrochen auf Unteraufgaben mit einer Dauer unter _3h_.
 
 - [x] Grundsetup Webpack
     - [x] Einrichtung gemäss bisheriger Struktur vom Kurs _1h_
@@ -236,13 +234,11 @@ apply anarchism in the UK
 
 ## Zusammenfassung und Ausblick, persönliche Anmerkungen
 
-Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
-– hauptsächlich im Hinblick auf Javascript – nicht auf Bibliotheken und
-Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
-Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin
-ich für den grössten Teil der Implementation des Lintings (primär Stylelinting)
-verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit zustande
-gekommen ist, deklariere ich es hiermit als _halb halb_.
+Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich – hauptsächlich im Hinblick auf
+Javascript – nicht auf Bibliotheken und Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
+Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin ich für den grössten Teil der
+Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
+zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
@@ -257,23 +253,18 @@ Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
 auf `"type": "module"`.
 
 [Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
-Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im
-_eslintrc.json_ auf `"ecmaVersion": 11` nötig. In diesem Projekt nicht weiter
-von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste setzen.\
-Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem
-Grund auf einer älteren Version basierenen müssen, wäre der Import über eine
-externe Datei – welche auf der Ignoreliste ist –
-gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch
-überlegenswert.
+Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im_eslintrc.json_ auf `"ecmaVersion": 11`
+nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
+setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
+basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
+gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegenswert.
 
 ## Eidesstattliche Erklärung
 
-Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst /
-programmiert und keine anderen als die angegebenen Quellen und Hilfsmittel
-benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken
-als solche kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen
-Prüfungsgremium in gleicher oder vergleichbarer Form vorgelegt. Sie wurde bisher
-auch nicht veröffentlicht.
+Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst / programmiert und keine anderen als die angegebenen
+Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken als solche
+kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
+vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
 [node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
