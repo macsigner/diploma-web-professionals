@@ -1,0 +1,357 @@
+/**
+ * mixin-fonts bem module
+ */
+
+@mixin font-desktop-main {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+// Title Home, Aktuelles, Kontakt, Newsdetail
+@mixin font-desktop-h1 {
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+// Title Objekt
+// Section title Home, Objekt
+@mixin font-desktop-h2 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+// Title Modal
+@mixin font-desktop-h3 {
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 42px;
+}
+
+// Field filter
+@mixin font-desktop-form-field {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+// Label filter
+@mixin font-desktop-form-label {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-desktop-form-label-filter {
+    @include font-form-label;
+
+    font-weight: 700;
+}
+
+@mixin font-desktop-form-checkbox-label {
+    @include font-form-label-filter;
+}
+
+// Switch filter
+@mixin font-desktop-form-checkbox-switch {
+    @include font-form-label;
+}
+
+// Switch filter
+@mixin font-desktop-form-radio-switch {
+    @include font-form-label;
+}
+
+@mixin font-desktop-button {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-desktop-table {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-desktop-table-head {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-desktop-image-tile {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-desktop-image-tile-title {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-desktop-image-teaser {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-desktop-image-teaser-meta-title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-desktop-detail {
+    @include font-main;
+}
+
+@mixin font-desktop-detail-title {
+    @include font-main;
+
+    font-weight: 700;
+}
+
+@mixin font-desktop-news-detail {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-desktop-news-detail-title {
+    @include font-h1;
+}
+
+@mixin font-desktop-news-detail-meta {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+// Link back, more
+@mixin font-desktop-more {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-desktop-main-nav {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+@mixin font-desktop-footer {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-desktop-footer-nav {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-desktop-footer-meta {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-mobile-main {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+// Title Formular
+@mixin font-mobile-h1 {
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+}
+
+// Title Kontakt, Aktuelles
+@mixin font-mobile-h2 {
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+// Title Objekt, News
+@mixin font-mobile-h3 {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-mobile-section-title {
+    @include font-mobile-h2;
+}
+
+@mixin font-mobile-hero {
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 33px;
+}
+
+@mixin font-mobile-label {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-mobile-label-filter {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-mobile-field {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-mobile-checkbox-switch {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-mobile-checkbox-label {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-mobile-button {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-table {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-table-header {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+@mixin font-mobile-image-tile {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-mobile-image-tile-title {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-mobile-image-teaser {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-mobile-image-teaser-meta {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-mobile-news-detail {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+@mixin font-mobile-news-detail-title {
+    @include font-mobile-h3;
+}
+
+@mixin font-mobile-detail {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+@mixin font-mobile-detail-title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+@mixin font-mobile-modal-title {
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+}
+
+@mixin font-contact-mobile {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-mobile-footer {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}

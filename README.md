@@ -88,8 +88,8 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - Nachkonfiguration / Reserve Webpack _4h_
 - [ ] Dateistrukturierung
     - [ ] Grundsetup
-        - [ ] SCSS Grundaufbau. Eg. Reset, Variablendatei _1h_
-        - [ ] Javascript Grundaufbau. Eg. Tools _1h_
+        - [x] SCSS Grundaufbau. Eg. Reset, Variablendatei _1h_
+        - [x] Javascript Grundaufbau. Eg. Tools _1h_
         - [ ] HTML
             - [ ] Header _2h_
             - [ ] Footer _1h_
