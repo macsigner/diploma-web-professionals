@@ -18,7 +18,6 @@ export default merge(common, {
     module: {
         rules: [
             {
-
                 test: /\.scss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,

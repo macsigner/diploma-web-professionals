@@ -198,6 +198,13 @@ Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (
 voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
 Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch
 
+### [normalise.css](https://github.com/necolas/normalize.css)
+
+Normalisierung der Stile in den verschiedenen Browsern. Alternativ wäre auch ein Reset in Frage gekommen. Vorteil bei
+diesem, ist auch das fehlende Stile schneller ersichtlich sind. Persönlich ist mir eine Normalisierung lieber, da so die
+Titel noch als solche angezeigt werden und ersichtlich sind. In dieser Hinsicht gebe ich der visuellen Semantik den
+Vorzug.
+
 ### Versionierungsnachrichten
 
 Die Commits sind in Englisch und nach folgenden Schema angelegt:
