@@ -7,6 +7,54 @@ Diplomarbeit 2022 Web Frontend Developer
 
 ## Setup Guide
 
+### Grundinstallation
+
+```shell
+npm install
+```
+
+### Nodeskripte
+
+| Befehl          | Auswirkung                                               |
+|-----------------|----------------------------------------------------------|
+| `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien |
+| `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_     |
+| `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_      |
+| `debug`         | Startet ndb via nodemon                                  |
+| `lint:js`       | Linting der Javascriptdateien                            |
+| `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur              |
+| `lint:scss`     | Linting der Stylesheets                                  |
+| `lint:scss:fix` | Linting der Stylesheets mit Korrektur                    |
+| `lint`          | Linting der Javascript und Stylesheets mit Korrektur     |
+
+### Seitenstruktur
+
+Neue Seiten können unter _src/pages/_ angelegt werden. Es wird auch eine Baumstruktur der Seiten als Objekt mitgegeben.\
+Um die Seiten in eine bestimmte Reihenfolge zu bringen, kann ein Prefix im Dateinamen hinzugefügt werden. Die Seite kann
+mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Daten werden mit einer _JSON_-Datei
+eingebunden. Die Prefixe werden für die URLs entfernt.
+
+Aufbau gemäss Ansicht:
+
+```
+├── 010_aktuelles.twig
+├── 020_kontakt.twig
+├── 030_objekt.twig
+├── _index.json
+├── _index.twig
+├── _newsdetail.twig
+├── moresub
+│       └── another.twig
+└── sub
+    ├── sub.twig
+    └── subsub
+        └── subsub.twig
+```
+
+[//]: # (todo: does the order of files being read depend on the host?)
+
+[//]: # (todo: implement hidden pages via underline as prefix in filename)
+
 [//]: # (todo: write setup as soon there is one and update comment)
 
 ## URL der lauffähigen Version
@@ -17,19 +65,16 @@ Diplomarbeit 2022 Web Frontend Developer
 
 ### Vorbereitungen Planung
 
-Als erstes erfolgt die Durchsicht der Vorlage. Dabei gehe ich Kopf die einzelnen
-Elemente, Seiten sowie Inhalte durch und überlege mir wie der Aufbau – auch
-Serverseitig – vonstattengehen soll, damit ich vorgängig vordefinierte Ziele und
+Als erstes erfolgt die Durchsicht der Vorlage. Dabei gehe ich Kopf die einzelnen Elemente, Seiten sowie Inhalte durch
+und überlege mir wie der Aufbau – auch Serverseitig – vonstattengehen soll, damit ich vorgängig vordefinierte Ziele und
 Aufwandseinschätzungen festlegen kann.\
-Da die Daten der Immobilien über GraphQL geladen werden und diese Daten
-bereits extern verfügbar sind, lasse ich die Erstellung eines Backends vorerst
-aussen vor.
+Da die Daten der Immobilien über GraphQL geladen werden und diese Daten bereits extern verfügbar sind, lasse ich die
+Erstellung eines Backends vorerst aussen vor.
 
 ### Zeitplanung
 
-__Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als
-kleinste Zeiteinheit. Zeiten mit Dauer über __3h__ sind runtergebrochen auf
-Unteraufgaben mit einer Dauer unter _3h_.
+__Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als kleinste Zeiteinheit. Zeiten mit Dauer
+über __3h__ sind runtergebrochen auf Unteraufgaben mit einer Dauer unter _3h_.
 
 - [x] Grundsetup Webpack
     - [x] Einrichtung gemäss bisheriger Struktur vom Kurs _1h_
@@ -130,6 +175,29 @@ Unteraufgaben mit einer Dauer unter _3h_.
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
+### [Webpack](https://webpack.js.org/)
+
+Einsatz aufgrund des Kurses, also primär als Lernmethode vorhanden. Wenn ich mir was aus den Fingern saugen müsste:
+
+- Ermöglicht Cachebusting ohne manuelles Eingreiffen
+- Dateien (hauptsächlich Bilddateien) können beim Durchjagen optimiert werden
+- Ausführliche\* Doku
+- Weite Verbreitung ermöglicht eine einfachere Hilfestellung
+
+*Die Doku ist zwar recht Ausführlich aber – teilweise – höllisch schwer verständlich.
+
+### [NDB](https://github.com/GoogleChromeLabs/ndb#readme)
+
+Da das Debugging der Nodeskripte recht mühsam war, begab ich mich auf die Suche nach einem Debugger, bei dem ich
+Haltepunkte setzen kann. analog Xdebug. Hauptgrund für den Einsatz von NDB ist die Familiarität mit den Entwicklertools
+von Chrome.
+
+### [twig-html-loader](https://github.com/radiocity/twig-html-loader#readme)
+
+Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
+voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
+Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch
+
 ### Versionierungsnachrichten
 
 Die Commits sind in Englisch und nach folgenden Schema angelegt:
@@ -145,7 +213,7 @@ Die Commits sind in Englisch und nach folgenden Schema angelegt:
 | feat   | Hinzufügen neuer Funktionen                          |
 | fix    | Reparatur von Bugs im Code                           |
 | hotfix | __Nicht nachhaltig__ behobener Bug. Zukünftiges Todo |
-| clean  | Aufräumarbeiten im Code. Refaktorierung, Einrückung. |
+| clean  | Aufräumarbeiten im Code. Refaktorierung, Einrückung  |
 | doc    | Reine Dokumentationsarbeiten                         |
 
 `<description>`
@@ -166,13 +234,11 @@ apply anarchism in the UK
 
 ## Zusammenfassung und Ausblick, persönliche Anmerkungen
 
-Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
-– hauptsächlich im Hinblick auf Javascript – nicht auf Bibliotheken und
-Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
-Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin
-ich für den grössten Teil der Implementation des Lintings (primär Stylelinting)
-verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit zustande
-gekommen ist, deklariere ich es hiermit als _halb halb_.
+Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich – hauptsächlich im Hinblick auf
+Javascript – nicht auf Bibliotheken und Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
+Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin ich für den grössten Teil der
+Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
+zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
@@ -186,24 +252,19 @@ gekommen ist, deklariere ich es hiermit als _halb halb_.
 Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
 auf `"type": "module"`.
 
-[Feler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
-Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im
-_eslintrc.json_ auf `"ecmaVersion": 11` nötig. In diesem Projekt nicht weiter
-von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste setzen.\
-Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem
-Grund auf einer älteren Version basierenen müssen, wäre der Import über eine
-externe Datei – welche auf der Ignoreliste ist –
-gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch
-überlegenswert.
+[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
+Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im_eslintrc.json_ auf `"ecmaVersion": 11`
+nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
+setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
+basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
+gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegenswert.
 
 ## Eidesstattliche Erklärung
 
-Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst /
-programmiert und keine anderen als die angegebenen Quellen und Hilfsmittel
-benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken
-als solche kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen
-Prüfungsgremium in gleicher oder vergleichbarer Form vorgelegt. Sie wurde bisher
-auch nicht veröffentlicht.
+Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst / programmiert und keine anderen als die angegebenen
+Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken als solche
+kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
+vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
 [node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
