@@ -1,0 +1,8 @@
+/**
+ * Settings variables.
+ */
+@use 'sass:math';
+
+/* breakpoints */
+$breakpoint-tablet-up: math.div(60em, 1.6);
+$breakpoint-desktop-small-up: math.div(90m, 1.6);

@@ -1,0 +1,15 @@
+/**
+ * base bem module
+ */
+
+.base-width {
+    --base-width-content-margin: var(--content-margin);
+    --base-width-max-content-width: var(--max-content-width);
+
+    width: calc(100% - (2 * var(--content-margin)));
+    max-width: var(--max-content-width);
+
+    &--no-content-margin {
+        --base-width-content-margin: 0;
+    }
+}
