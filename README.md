@@ -248,16 +248,19 @@ zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
 #### Node
 
-[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]
+[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]\
 Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
 auf `"type": "module"`.
 
-[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
+[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]\
 Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im_eslintrc.json_ auf `"ecmaVersion": 11`
 nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
 setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
 basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
 gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegenswert.
+
+[Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][webpack :: chunk load error]\
+Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow](https://stackoverflow.com/a/66197410)
 
 ## Eidesstattliche Erklärung
 
@@ -269,3 +272,5 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 [node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
 [eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
+
+[webpack :: chunk load error]: https://stackoverflow.com/a/65541635
