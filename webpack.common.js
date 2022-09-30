@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
+import StylelintWebpackPlugin from 'stylelint-webpack-plugin';
 import PageCollection from './node-scripts/page-collection.js';
 import { fileURLToPath } from 'url';
 
@@ -17,7 +18,6 @@ const additionalScriptFiles = pages.getPageObjects().reduce((config, page) => {
         let chunkName = `chunk${page.url}`;
 
         config[chunkName] = jsFilePath;
-        console.log(config);
     }
 
     return config;
@@ -55,6 +55,10 @@ export default {
     plugins: [
         new CleanWebpackPlugin(),
         new ESLintWebpackPlugin(),
+        new StylelintWebpackPlugin({
+            'configFile': '.stylelintrc',
+            'context': 'src/scss',
+        }),
     ].concat(
         pages.getPageObjects().map(page => {
             let chunks = ['app'];
