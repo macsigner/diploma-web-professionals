@@ -12,6 +12,23 @@ const delegate = (selector, fn) => {
     };
 };
 
+/**
+ * Debounce function.
+ * @param fn
+ * @param delay
+ * @returns {(function(): void)|*}
+ */
+const debounce = (fn, delay = 300) => {
+    let timout;
+
+    return () => {
+        clearTimeout(timout);
+
+        setTimeout(fn, delay);
+    };
+};
+
 export {
     delegate,
+    debounce,
 };
