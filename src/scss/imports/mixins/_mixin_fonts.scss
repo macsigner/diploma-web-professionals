@@ -2,373 +2,373 @@
  * mixin-fonts bem module
  */
 
-@mixin font-block-02-desktop {
-    font-size: 56px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 80px;
-}
-
-@mixin font-block-03-desktop {
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 80px;
-}
-
-@mixin font-block-04-desktop {
-    font-size: 33px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 42px;
-}
-
-@mixin font-block-08-desktop {
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 30px;
-}
-
-@mixin font-block-15-mobile {
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 32px;
-}
-
-@mixin font-block-16-mobile {
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 80px;
-}
-
-@mixin font-block-06-desktop {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 27px;
-}
-
-@mixin font-block-06-mobile {
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 27px;
-}
-
-@mixin font-block-17-mobile {
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 33px;
-}
-
-@mixin font-block-09-desktop {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-}
-
-@mixin font-block-20-mobile {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 30px;
-}
-
-@mixin font-block-01-desktop {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-}
-
 @mixin font-block-01-mobile {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-}
-
-@mixin font-block-11-desktop {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-}
-
-@mixin font-block-11-mobile {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-}
-
-@mixin font-block-14-mobile {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 25px;
-}
-
-@mixin font-block-21-mobile {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 28px;
 }
 
+@mixin font-block-02-mobile {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+@mixin font-block-03-mobile {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-block-04-mobile {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-block-05-mobile {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-block-06-mobile {
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 33px;
+}
+
+@mixin font-block-07-mobile {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+@mixin font-block-08-mobile {
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-block-09-mobile {
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+}
+
+@mixin font-block-01-desktop {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-block-02-desktop {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-block-03-desktop {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+@mixin font-block-04-desktop {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+@mixin font-block-05-desktop {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+@mixin font-block-06-desktop {
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 42px;
+}
+
+@mixin font-block-07-desktop {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
+@mixin font-block-08-desktop {
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80px;
+}
+
 @mixin font-desktop-main {
     font-family: Montserrat, Arial, sans-serif;
 
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 }
 
 // Title Home, Aktuelles, Kontakt, Newsdetail
 @mixin font-desktop-h1 {
-    @include font-block-02-desktop;
+    @include font-block-08-desktop;
 }
 
 // Title Objekt
 // Section title Home, Objekt
 @mixin font-desktop-h2 {
-    @include font-block-03-desktop;
+    @include font-block-07-desktop;
 }
 
 // Title Modal
 @mixin font-desktop-h3 {
-    @include font-block-04-desktop;
+    @include font-block-06-desktop;
 }
 
 // Field filter
 @mixin font-desktop-form-field {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 }
 
 // Label filter
 @mixin font-desktop-form-label {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 }
 
 @mixin font-desktop-form-label-filter {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-form-checkbox-label {
-    @include font-desktop-form-label-filter;
+    @include font-block-04-desktop;
 }
 
 // Switch filter
 @mixin font-desktop-form-checkbox-switch {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 }
 
 // Switch filter
 @mixin font-desktop-form-radio-switch {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 }
 
 @mixin font-desktop-button {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-table {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 }
 
 @mixin font-desktop-table-head {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-image-tile {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 }
 
 @mixin font-desktop-image-tile-title {
-    @include font-block-08-desktop;
+    @include font-block-05-desktop;
 }
 
 @mixin font-desktop-image-teaser {
-    @include font-block-09;
+    @include font-block-03-desktop;
 }
 
 @mixin font-desktop-image-teaser-meta-title {
-    @include font-block-11-desktop;
+    @include font-block-01-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-detail {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 }
 
 @mixin font-desktop-detail-title {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-news-detail {
-    @include font-block-11-desktop;
+    @include font-block-01-desktop;
 }
 
 @mixin font-desktop-news-detail-title {
-    @include font-desktop-h1;
+    @include font-block-08-desktop;
 }
 
 @mixin font-desktop-news-detail-meta {
-    @include font-block-11-desktop;
+    @include font-block-01-desktop;
 }
 
 // Link back, more
 @mixin font-desktop-more {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-main-nav {
-    @include font-block-06-desktop;
+    @include font-block-04-desktop;
 
     font-weight: 500;
 }
 
 @mixin font-desktop-footer {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 }
 
 @mixin font-desktop-footer-nav {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 
     font-weight: 700;
 }
 
 @mixin font-desktop-footer-meta {
-    @include font-block-01-desktop;
+    @include font-block-02-desktop;
 }
 
 @mixin font-mobile-main {
-    @include font-block-14-mobile;
+    @include font-block-02-mobile;
 }
 
 // Title Formular
 @mixin font-mobile-h1 {
-    @include font-block-15-mobile;
+    @include font-block-09-mobile;
 }
 
 // Title Kontakt, Aktuelles
 @mixin font-mobile-h2 {
-    @include font-block-16-mobile;
+    @include font-block-08-mobile;
 }
 
 // Title Objekt, News
 @mixin font-mobile-h3 {
-    @include font-block-06-mobile;
+    @include font-block-07-mobile;
 }
 
 @mixin font-mobile-section-title {
-    @include font-block-16-mobile;
+    @include font-block-08-mobile;
 }
 
 @mixin font-mobile-hero {
-    @include font-block-17-mobile;
+    @include font-block-06-mobile;
 }
 
 @mixin font-mobile-label {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 }
 
 @mixin font-mobile-label-filter {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-field {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 }
 
 @mixin font-mobile-checkbox-switch {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-checkbox-label {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-button {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-table {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 }
 
 @mixin font-mobile-table-header {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-image-tile {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 }
 
 @mixin font-mobile-image-tile-title {
-    @include font-block-20-mobile;
+    @include font-block-05-mobile;
 }
 
 @mixin font-mobile-image-teaser {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-image-teaser-meta {
-    @include font-block-11-mobile;
+    @include font-block-03-mobile;
 }
 
 @mixin font-mobile-news-detail {
-    @include font-block-14-mobile;
+    @include font-block-02-mobile;
 }
 
 @mixin font-mobile-news-detail-title {
-    @include font-mobile-h3;
+    @include font-block-07-mobile;
 }
 
 @mixin font-mobile-detail {
-    @include font-block-21-mobile;
+    @include font-block-01-mobile;
 }
 
 @mixin font-mobile-detail-title {
-    @include font-block-21;
+    @include font-block-01-mobile;
 
     font-weight: 700;
 }
 
 @mixin font-mobile-modal-title {
-    @include font-block-15-mobile;
+    @include font-block-09-mobile;
 }
 
 @mixin font-mobile-contact-mobile {
-    @include font-block-01-mobile;
+    @include font-block-04-mobile;
 }
 
 @mixin font-mobile-footer {
-    @include font-block-01-mobile;
+    @include font-block-04-mobile;
 }
