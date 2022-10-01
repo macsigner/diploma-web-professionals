@@ -23,6 +23,20 @@ $font-size-140-desktop: 3.3rem;
 $font-size-150-desktop: 4rem;
 $font-size-160-desktop: 5.6rem;
 
+/* Colors */
+$color-black: #000;
+$color-white: #FFF;
+$color-white-transparent: rgba($color-white, .4);
+$color-green: #92B9AF;
+$color-green-light: #E5EEEC;
+$color-grey: #878787;
+
+/* Color scheme */
+$color-primary: $color-green;
+$color-primary-transparent: rgba($color-primary, .85);
+$color-accent: $color-green-light;
+$color-action-bg: $color-grey;
+
 /* breakpoints */
 $breakpoint-tablet-up: math.div(60em, 1.6);
 $breakpoint-desktop-small-up: math.div(90em, 1.6);

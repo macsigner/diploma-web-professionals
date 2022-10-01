@@ -123,8 +123,6 @@
 }
 
 @mixin font-desktop-main {
-    font-family: Montserrat, Arial, sans-serif;
-
     @include font-block-02-desktop;
 }
 
@@ -258,6 +256,8 @@
 }
 
 @mixin font-mobile-main {
+    font-family: Montserrat, Arial, sans-serif;
+
     @include font-block-02-mobile;
 }
 
