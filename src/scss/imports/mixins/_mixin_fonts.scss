@@ -4,63 +4,63 @@
 @use 'sass:math';
 
 @mixin font-block-01-mobile {
-    font-size: 16px;
+    font-size: $font-size-100-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(28, 16);
 }
 
 @mixin font-block-02-mobile {
-    font-size: 16px;
+    font-size: $font-size-100-mobile;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     line-height: math.div(25, 16);
 }
 
 @mixin font-block-03-mobile {
-    font-size: 16px;
+    font-size: $font-size-100-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(30, 16);
 }
 
 @mixin font-block-04-mobile {
-    font-size: 18px;
+    font-size: $font-size-110-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(30, 18);
 }
 
 @mixin font-block-05-mobile {
-    font-size: 20px;
+    font-size: $font-size-120-mobile;
     font-style: normal;
     font-weight: 700;
     line-height: 1.2;
 }
 
 @mixin font-block-06-mobile {
-    font-size: 21px;
+    font-size: $font-size-130-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(33, 21);
 }
 
 @mixin font-block-07-mobile {
-    font-size: 22px;
+    font-size: $font-size-140-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(27, 22);
 }
 
 @mixin font-block-08-mobile {
-    font-size: 25px;
+    font-size: $font-size-150-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: 1.2;
 }
 
 @mixin font-block-09-mobile {
-    font-size: 26px;
+    font-size: $font-size-160-mobile;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(32, 26);
