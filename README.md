@@ -247,6 +247,12 @@ Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin
 Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
 zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
+### Abweichungen von der Vorlage
+
+- __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
+  ein ähnlicher Font – gleiche Schriftgrösse, gleiche Familie – mit akzeptablem Zeilenabstand _(Titel 1.1 bis 1.3,
+  Laufschrift 1.3 bis 1.8_ vorhanden war, habe ich diesen übernommen.
+
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
 [//]: # (todo: update source information regularly)
