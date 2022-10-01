@@ -251,7 +251,10 @@ zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
 - __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
   ein ähnlicher Font – gleiche Schriftgrösse, gleiche Familie – mit akzeptablem Zeilenabstand _(Titel 1.1 bis 1.3,
-  Laufschrift 1.3 bis 1.8_ vorhanden war, habe ich diesen übernommen.
+  Laufschrift 1.3 bis 1.8_ vorhanden war, habe ich diesen übernommen.\
+  Angaben ohne Einheiten wegen
+  der [Vererbung](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values)
+  .
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 

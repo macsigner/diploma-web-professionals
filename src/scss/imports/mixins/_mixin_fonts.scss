@@ -1,124 +1,125 @@
 /**
  * mixin-fonts bem module
  */
+@use 'sass:math';
 
 @mixin font-block-01-mobile {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 28px;
+    line-height: math.div(28, 16);
 }
 
 @mixin font-block-02-mobile {
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 25px;
+    line-height: math.div(25, 16);
 }
 
 @mixin font-block-03-mobile {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 30px;
+    line-height: math.div(30, 16);
 }
 
 @mixin font-block-04-mobile {
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 30px;
+    line-height: math.div(30, 18);
 }
 
 @mixin font-block-05-mobile {
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    line-height: 30px;
+    line-height: 1.2;
 }
 
 @mixin font-block-06-mobile {
     font-size: 21px;
     font-style: normal;
     font-weight: 400;
-    line-height: 33px;
+    line-height: math.div(33, 21);
 }
 
 @mixin font-block-07-mobile {
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height: 27px;
+    line-height: math.div(27, 22);
 }
 
 @mixin font-block-08-mobile {
     font-size: 25px;
     font-style: normal;
     font-weight: 400;
-    line-height: 80px;
+    line-height: 1.2;
 }
 
 @mixin font-block-09-mobile {
     font-size: 26px;
     font-style: normal;
     font-weight: 400;
-    line-height: 32px;
+    line-height: math.div(32, 26);
 }
 
 @mixin font-block-01-desktop {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 30px;
+    line-height: math.div(30, 16);
 }
 
 @mixin font-block-02-desktop {
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 30px;
+    line-height: math.div(30, 18);
 }
 
 @mixin font-block-03-desktop {
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 30px;
+    line-height: math.div(30, 20);
 }
 
 @mixin font-block-04-desktop {
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
-    line-height: 27px;
+    line-height: math.div(27, 22);
 }
 
 @mixin font-block-05-desktop {
     font-size: 28px;
     font-style: normal;
     font-weight: 700;
-    line-height: 30px;
+    line-height: math.div(30, 28);
 }
 
 @mixin font-block-06-desktop {
     font-size: 33px;
     font-style: normal;
     font-weight: 400;
-    line-height: 42px;
+    line-height: math.div(42, 33);
 }
 
 @mixin font-block-07-desktop {
     font-size: 40px;
     font-style: normal;
     font-weight: 400;
-    line-height: 80px;
+    line-height: 1.2;
 }
 
 @mixin font-block-08-desktop {
     font-size: 56px;
     font-style: normal;
     font-weight: 400;
-    line-height: 80px;
+    line-height: math.div(80, 56);
 }
 
 @mixin font-desktop-main {
