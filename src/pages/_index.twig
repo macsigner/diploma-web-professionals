@@ -1,9 +1,19 @@
-<!doctype html>
-<html lang="de">
-<head>
-    {% include '../templates/head.twig' %}
-</head>
-<body>
-<h1>Home</h1>
-</body>
-</html>
+{% extends '../templates/base.twig' %}
+
+{% block main %}
+
+    <header>
+        <img src="/src/assets/images/home/header_image.jpeg" alt="">
+
+        <h1>Die optimale Balance zwischen Ästhetik und Funktionalität</h1>
+    </header>
+
+    <h2>Immobilien</h2>
+
+    <form>
+        <select name="objectType" id="objectType">
+            <option value=""></option>
+        </select>
+    </form>
+
+{% endblock %}
