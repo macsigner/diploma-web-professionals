@@ -1,19 +1,66 @@
-{% extends '../templates/base.twig' %}
+{% extends 'layouts::base.twig' %}
 
 {% block main %}
 
     <header>
-        <img src="/src/assets/images/home/header_image.jpeg" alt="">
+        <img src="/src/assets/images/home/header_image.jpeg" alt="Aussenansicht Immobilie im Neubrutalstil">
 
         <h1>Die optimale Balance zwischen Ästhetik und Funktionalität</h1>
     </header>
 
-    <h2>Immobilien</h2>
+    <section>
+        <h2>Immobilien</h2>
 
-    <form>
-        <select name="objectType" id="objectType">
-            <option value=""></option>
-        </select>
-    </form>
+        <form>
+            <label for="objectType">Was</label>
+            <select name="objectType" id="objectType">
+                <option value="" selected>Alle Objekte</option>
+                <option value="house">Haus</option>
+                <option value="apartment">Wohnung</option>
+            </select>
+            <label for="objectLocation">Wo</label>
+            <select name="objectLocation" id="objectLocation">
+                <option value="" selected>Alle Orte</option>
+                <option value="9050-appenzell">Appenzell</option>
+                <option value="9000-stgallen">St.Gallen</option>
+            </select>
+            <select name="sortingOrder" id="sortingOrder">
+                <option value="" selected>Auswählen</option>
+                <option value="priceAsc">Preis aufsteigend</option>
+                <option value="priceDesc">Preis aufsteigend</option>
+                <option value="dateAsc">Datum aufsteigend</option>
+                <option value="dateDesc">Datum aufsteigend</option>
+            </select>
+            <fieldset>
+                <legend class="invisible">Filter Kaufen/Mieten</legend>
+                <input type="radio" name="purchaseOption" id="objectTypeRent" value="rent">
+                <input type="radio" name="purchaseOption" id="objectTypeBuy" value="buy">
+                <span>
+                <label for="objectTypeRent">Mieten</label>
+                <span></span>
+                <label for="objectTypeBuy">Kaufen</label>
+            </span>
+            </fieldset>
+            <fieldset>
+                <legend>Ansicht:</legend>
+                <label>
+                    <span class="invisible">Kachelansicht</span>
+                    <input type="radio" name="objectListingLayout" value="layoutTiles">
+                </label>
+                <label>
+                    <span class="invisible">Listenansicht</span>
+                    <input type="radio" name="objectListingLayout" value="layoutList">
+                </label>
+            </fieldset>
+            <button>Suchen</button>
+        </form>
+        <hr>
+
+        <div>
+            {% include '@components/object-listing.twig' %}
+
+            <button type="button">Mehr laden</button>
+        </div>
+    </section>
 
 {% endblock %}

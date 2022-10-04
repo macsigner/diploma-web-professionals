@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import StylelintWebpackPlugin from 'stylelint-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import PageCollection from './node-scripts/page-collection.js';
 import { fileURLToPath } from 'url';
 
@@ -42,12 +43,16 @@ export default {
 
                                 return pageObject;
                             },
+                            namespaces: {
+                                layouts: path.resolve(__dirname, './src/templates/layouts'),
+                                components: path.resolve(__dirname, './src/templates/components'),
+                            }
                         },
                     },
                 ],
             },
             {
-                test: /\.(svg|png|jpg|gif)$/,
+                test: /\.(svg|png|jpg|jpeg|gif)$/,
                 type: 'asset/resource',
             },
         ],
@@ -58,6 +63,11 @@ export default {
         new StylelintWebpackPlugin({
             'configFile': '.stylelintrc',
             'context': 'src/scss',
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/assets/images", to: "assets/images" },
+            ],
         }),
     ].concat(
         pages.getPageObjects().map(page => {

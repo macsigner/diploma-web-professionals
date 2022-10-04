@@ -96,7 +96,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
             - [ ] Inhaltsbereich _1h_
         - [ ] Zusammenstellung der Assets
             - [ ] Icons/SVGs _2h_
-            - [ ] Bildwelten _2h_
+            - [x] Bildwelten _2h_
     - Reserve _2h_
 - [ ] Aufbau HTML-Templates
     - [ ] Home _3h_
