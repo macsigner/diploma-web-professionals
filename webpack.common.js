@@ -4,7 +4,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import StylelintWebpackPlugin from 'stylelint-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
 import PageCollection from './node-scripts/page-collection.js';
 import { fileURLToPath } from 'url';
 
@@ -33,13 +32,18 @@ export default {
             {
                 test: /\.twig$/i,
                 use: [
-                    'raw-loader',
+                    'html-loader',
                     {
                         loader: 'twig-html-loader',
                         options: {
                             data: (context) => {
                                 let pageObject = pages.getPageObjectFromPath(context.resourcePath) || {};
                                 pageObject.pages = pages.getPages().pages;
+
+                                if (pageObject.dataFile) {
+                                    console.log(pageObject.dataFile);
+                                    context.addDependency(pageObject.dataFile);
+                                }
 
                                 return pageObject;
                             },
@@ -63,11 +67,6 @@ export default {
         new StylelintWebpackPlugin({
             'configFile': '.stylelintrc',
             'context': 'src/scss',
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: "src/assets/images", to: "assets/images" },
-            ],
         }),
     ].concat(
         pages.getPageObjects().map(page => {
