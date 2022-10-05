@@ -13,6 +13,7 @@ class PageCollection {
      */
     constructor(globExpression, options = {
         pageRoot: 'src/pages',
+        filePrefix: /^([_]?[0-9]*)_/,
     }) {
         this._settings = options;
         this._globExpression = globExpression;
@@ -54,10 +55,15 @@ class PageCollection {
             let obj = this._parsePath(filePath);
             let dataObject = this._getPageData(obj);
 
+            obj.data = {};
+
             if (dataObject) {
                 obj.data = dataObject.data;
                 obj.dataFile = dataObject.dataFile;
+
             }
+
+            obj.title = this.getPageTitleFromObject(obj);
 
             obj.url = this._createUniqueUrl(obj);
 
@@ -77,6 +83,24 @@ class PageCollection {
         let pageObj = Array.from(this.pageObjects).find(obj => obj.filePath === filePath);
 
         return pageObj;
+    }
+
+    /**
+     * Get page title from page object.
+     * @param obj
+     * @returns {string|string}
+     */
+    getPageTitleFromObject(obj) {
+        if (obj.data.title) {
+            return obj.data.title;
+        }
+
+        let filename = obj.file.name.replace(this._settings.filePrefix, '');
+
+        filename = filename.split('_').join(' ');
+        filename = filename[0].toUpperCase() + filename.substring(1);
+
+        return filename;
     }
 
     /**
@@ -174,12 +198,11 @@ class PageCollection {
             .replace(/^[/?]/, '')
             .split('/');
 
-        let filePrefix = /^([_]?[0-9]*)_/;
         let urlPath = arrFolders
-            .reduce((prev, current) => prev + '/' + current.replace(filePrefix, ''));
+            .reduce((prev, current) => prev + '/' + current.replace(this._settings.filePrefix, ''));
 
         urlPath = '/' + (urlPath ? (urlPath + '/') : '');
-        let cleanFilename = file.name.replace(filePrefix, '');
+        let cleanFilename = file.name.replace(this._settings.filePrefix, '');
         let url = `${urlPath}${cleanFilename}.html`;
 
         let i = 1;
