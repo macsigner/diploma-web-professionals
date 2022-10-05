@@ -80,7 +80,9 @@ class PageCollection {
      * @returns {{file: ParsedPath, url: *, parents: string[]}}
      */
     getPageObjectFromPath(filePath) {
-        let pageObj = Array.from(this.pageObjects).find(obj => obj.filePath === filePath);
+        let pageObj = Array.from(this.pageObjects).find(obj => {
+            return obj.sourceFile === filePath
+        });
 
         return pageObj;
     }

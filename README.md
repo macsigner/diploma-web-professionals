@@ -260,16 +260,21 @@ zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
 [//]: # (todo: update source information regularly)
 
+### Erweiterung
+
+#### Node
+[Ersten Buchstaben in Grossschreibung konvertieren][node :: uppercase first letter of string]\
+Genutzt in der _PageCollection_ um aus dem Dateinamen eine art Seitentitel zu generieren.
+
 ### Fix
 
 #### Node
 
 [Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]\
-Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
-auf `"type": "module"`.
+Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau auf `"type": "module"`.
 
 [Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]\
-Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im_eslintrc.json_ auf `"ecmaVersion": 11`
+Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im _eslintrc.json_ auf `"ecmaVersion": 11`
 nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
 setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
 basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
@@ -287,6 +292,9 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
 [node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
+[node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+
 [eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
 
 [webpack :: chunk load error]: https://stackoverflow.com/a/65541635
+

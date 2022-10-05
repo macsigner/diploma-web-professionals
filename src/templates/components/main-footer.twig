@@ -1,0 +1,22 @@
+<div>
+    <figure>
+        <img src="/src/assets/images/_brand/logo_home_house_footer.svg" width="175" height="136" alt="Logo Home House">
+    </figure>
+    <div>
+        <p>Home & House <br>
+            Fabrikstrasse 24 <br>
+            9472 Grabs <br>
+            Schweiz</p>
+
+        <p><a href="tel:+41817400000">081 740 00 00</a><br>
+            <a href="mailto:info@homehouse.ch">info@homehouse.ch</a></p>
+    </div>
+    <div>
+        {% include '@components/navigations/navigation-footer.twig' with {'navItems': pages} %}
+        <ul>
+            <li><a href="/impressum.html">Impressum</a></li>
+            <li><a href="/datenschutz.html">Datenschutz</a></li>
+            <li><a href="mailto:info@homehouse.ch">info@homehouse.ch</a></li>
+        </ul>
+    </div>
+</div>

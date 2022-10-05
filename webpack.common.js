@@ -41,7 +41,6 @@ export default {
                                 pageObject.pages = pages.getPages().pages;
 
                                 if (pageObject.dataFile) {
-                                    console.log(pageObject.dataFile);
                                     context.addDependency(pageObject.dataFile);
                                 }
 

@@ -4,8 +4,9 @@
     {% include '@components/head.twig' %}
 </head>
 <body>
+
 {% block mainNav %}
-    {% include '@components/head.twig' %}
+    {% include '@components/nav-bar.twig' %}
 {% endblock %}
 
 <main>
@@ -14,6 +15,7 @@
 </main>
 
 {% block mainFooter %}
+    {% include '@components/main-footer.twig' %}
 {% endblock %}
 </body>
 </html>
