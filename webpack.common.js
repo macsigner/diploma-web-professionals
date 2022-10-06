@@ -49,7 +49,7 @@ export default {
                             namespaces: {
                                 layouts: path.resolve(__dirname, './src/templates/layouts'),
                                 components: path.resolve(__dirname, './src/templates/components'),
-                            }
+                            },
                         },
                     },
                 ],

@@ -42,6 +42,35 @@ class PageCollection {
     }
 
     /**
+     * Find specified path in subpages.
+     * @param filePath
+     * @param collection
+     * @returns {*}
+     */
+    findInPageObjectsFromPath(filePath, collection = this.pages) {
+        let obj;
+        for (let key of Object.keys(collection)) {
+            if (collection[key].sourceFile === filePath) {
+                obj = collection[key].pages;
+
+                if (obj) {
+                    break;
+                }
+            }
+
+            if (collection.pages) {
+                obj = this.findInPageObjectsFromPath(filePath, collection.pages);
+
+                if (obj) {
+                    break;
+                }
+            }
+        }
+
+        return obj;
+    }
+
+    /**
      * Get page objects as flat array.
      * @returns {{file: ParsedPath, url: *, parents: string[]}[]}
      */
@@ -60,7 +89,6 @@ class PageCollection {
             if (dataObject) {
                 obj.data = dataObject.data;
                 obj.dataFile = dataObject.dataFile;
-
             }
 
             obj.title = this.getPageTitleFromObject(obj);
@@ -81,8 +109,10 @@ class PageCollection {
      */
     getPageObjectFromPath(filePath) {
         let pageObj = Array.from(this.pageObjects).find(obj => {
-            return obj.sourceFile === filePath
+            return obj.sourceFile === filePath;
         });
+
+        pageObj.subpages = this.findInPageObjectsFromPath(filePath);
 
         return pageObj;
     }
@@ -119,6 +149,7 @@ class PageCollection {
 
         let buffer = fs.readFileSync(filePath);
         let jsonData = JSON.parse(buffer);
+        jsonData = this._parseSpecialJsonFields(jsonData);
 
         return {
             dataFile: filePath,
@@ -215,6 +246,29 @@ class PageCollection {
         this._urls.add(url);
 
         return url;
+    }
+
+    /**
+     * Parse fields from json data if necessary.
+     * @param obj
+     * @returns {{date}|*}
+     * @private
+     */
+    _parseSpecialJsonFields(obj) {
+        if (obj.date) {
+            let date = new Date(obj.date);
+            obj.date = {
+                datetime: date.toJSON(),
+                locale: date.toLocaleDateString('de-CH', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                }
+                ),
+            };
+        }
+
+        return obj;
     }
 }
 

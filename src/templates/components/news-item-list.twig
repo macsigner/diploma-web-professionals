@@ -1,0 +1,16 @@
+<article>
+    <header>
+
+        {% if item.data.image %}
+            {% include '@components/image.twig' with item %}
+        {% endif %}
+
+        <h2>{{ item.data.teaserTitle ? item.data.teaserTitle : item.title }}</h2>
+        <time datetime="{{ item.data.date.datetime }}">{{ item.data.date.locale }}</time>
+    </header>
+
+    <div>{{ item.data.teaser }}</div>
+
+    <a href="{{ item.url }}">weiter</a>
+</article>
+
