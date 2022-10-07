@@ -87,13 +87,14 @@ class PageCollection {
             obj.data = {};
 
             if (dataObject) {
+                Object.assign(obj.data, dataObject.data);
                 obj.data = dataObject.data;
                 obj.dataFile = dataObject.dataFile;
             }
 
             obj.title = this.getPageTitleFromObject(obj);
-
             obj.url = this._createUniqueUrl(obj);
+            obj.public = obj.file.name[0] !== '_';
 
             return obj;
         });
