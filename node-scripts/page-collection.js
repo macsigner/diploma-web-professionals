@@ -127,7 +127,7 @@ class PageCollection {
             return obj.data.title;
         }
 
-        let filename = obj.file.name.replace(this._settings.filePrefix, '');
+        let filename = this._removePrefixFromPartial(obj.file.name);
 
         filename = filename.split('_').join(' ');
         filename = filename[0].toUpperCase() + filename.substring(1);
@@ -232,10 +232,12 @@ class PageCollection {
             .split('/');
 
         let urlPath = arrFolders
-            .reduce((prev, current) => prev + '/' + current.replace(this._settings.filePrefix, ''));
+            .reduce((prev, current) => {
+                return prev + '/' + this._removePrefixFromPartial(current);
+            }, '');
 
-        urlPath = '/' + (urlPath ? (urlPath + '/') : '');
-        let cleanFilename = file.name.replace(this._settings.filePrefix, '');
+        urlPath = urlPath.length > 1 ? urlPath + '/' : '/';
+        let cleanFilename = this._removePrefixFromPartial(file.name);
         let url = `${urlPath}${cleanFilename}.html`;
 
         let i = 1;
@@ -246,6 +248,16 @@ class PageCollection {
         this._urls.add(url);
 
         return url;
+    }
+
+    /**
+     * Remove prefix from string for clean urls.
+     * @param str
+     * @returns {*}
+     * @private
+     */
+    _removePrefixFromPartial(str) {
+        return str.replace(this._settings.filePrefix, '');
     }
 
     /**
