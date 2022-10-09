@@ -175,6 +175,10 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
+### [Deepl](https://www.deepl.com/translator)
+
+Übersetzungstool zum Vermeiden von [falschen Freunden](https://de.wikipedia.org/wiki/Falscher_Freund).
+
 ### [Webpack](https://webpack.js.org/)
 
 Einsatz aufgrund des Kurses, also primär als Lernmethode vorhanden. Wenn ich mir was aus den Fingern saugen müsste:
@@ -283,12 +287,17 @@ gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegensw
 [Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][webpack :: chunk load error]\
 Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow](https://stackoverflow.com/a/66197410)
 
+#### HTML
+
+[Regulärer Ausdruck Telefonnummber][html :: regex phone number]
+
 ## Eidesstattliche Erklärung
 
 Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst / programmiert und keine anderen als die angegebenen
 Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt übernommenen Gedanken als solche
 kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
 vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
+
 
 [node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
@@ -298,3 +307,4 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
 [webpack :: chunk load error]: https://stackoverflow.com/a/65541635
 
+[html :: regex phone number]: https://ihateregex.io/expr/phone/
