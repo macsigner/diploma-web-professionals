@@ -1,0 +1,25 @@
+<article>
+
+    {% if item.data.image %}
+
+        <header>
+            <figure>
+
+                {% include '@components/image.twig' with {image: item.data.image} %}
+
+            </figure>
+        </header>
+
+    {% endif %}
+
+    <div>
+        <p>Zu verkaufen ab {{ item.data.availability }}</p>
+        <h3><a href="{{ item.url }}">{{ item.title }}</a></h3>
+        <dl>
+            <dt>Fläche</dt>
+            <dd>{{ item.data.area }}</dd>
+            <dt>Preis:</dt>
+            <dd>{{ item.data.price }}</dd>
+        </dl>
+    </div>
+</article>

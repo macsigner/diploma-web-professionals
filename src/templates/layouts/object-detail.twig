@@ -1,0 +1,60 @@
+{% extends 'layouts::base.twig' %}
+
+{% block main %}
+
+    <header>
+        <h1>{{ title }}</h1>
+
+        {% if data.slides %}
+
+            <ul>
+
+                {% for slide in data.slides %}
+
+                    <li>
+
+                        {% include '@components/image.twig' with {image: slide}.image %}
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% endif %}
+        <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
+    </header>
+
+    <p><strong>Verfügbarkeit</strong> <br>
+        Ab {{ data.availability }}</p>
+
+    <p><strong>Location</strong> <br>
+        {{ data.location }}</p>
+
+    <p><strong>Preis</strong> <br>
+        {{ data.price }}</p>
+
+    <p><strong>Nutzfläche</strong> <br>
+        Fläche {{ data.area }}</p>
+
+    <div>
+        <h2>Beschreibung</h2>
+        {{ data.description }}
+    </div>
+
+    <div>
+        <a href="/kontakt.html">Jetzt anfragen!</a>
+    </div>
+
+    <div id="location-map">
+        <script type="application/json">{{ {
+                location: data.location,
+                title: title,
+            } | json_encode() }}</script>
+    </div>
+
+{% endblock %}
+
+{% block mainEnd %}
+    <a href="/.">Zurück</a>
+{% endblock %}

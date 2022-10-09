@@ -13,6 +13,7 @@ class PageCollection {
      */
     constructor(globExpression, options = {
         pageRoot: 'src/pages',
+        filePrefix: /^([_]?[0-9]*)_/,
     }) {
         this._settings = options;
         this._globExpression = globExpression;
@@ -41,6 +42,35 @@ class PageCollection {
     }
 
     /**
+     * Find specified path in subpages.
+     * @param filePath
+     * @param collection
+     * @returns {*}
+     */
+    findInPageObjectsFromPath(filePath, collection = this.pages) {
+        let obj;
+        for (let key of Object.keys(collection)) {
+            if (collection[key].sourceFile === filePath) {
+                obj = collection[key].pages;
+
+                if (obj) {
+                    break;
+                }
+            }
+
+            if (collection.pages) {
+                obj = this.findInPageObjectsFromPath(filePath, collection.pages);
+
+                if (obj) {
+                    break;
+                }
+            }
+        }
+
+        return obj;
+    }
+
+    /**
      * Get page objects as flat array.
      * @returns {{file: ParsedPath, url: *, parents: string[]}[]}
      */
@@ -54,12 +84,17 @@ class PageCollection {
             let obj = this._parsePath(filePath);
             let dataObject = this._getPageData(obj);
 
+            obj.data = {};
+
             if (dataObject) {
+                Object.assign(obj.data, dataObject.data);
                 obj.data = dataObject.data;
                 obj.dataFile = dataObject.dataFile;
             }
 
+            obj.title = this.getPageTitleFromObject(obj);
             obj.url = this._createUniqueUrl(obj);
+            obj.public = obj.file.name[0] !== '_';
 
             return obj;
         });
@@ -74,9 +109,31 @@ class PageCollection {
      * @returns {{file: ParsedPath, url: *, parents: string[]}}
      */
     getPageObjectFromPath(filePath) {
-        let pageObj = Array.from(this.pageObjects).find(obj => obj.filePath === filePath);
+        let pageObj = Array.from(this.pageObjects).find(obj => {
+            return obj.sourceFile === filePath;
+        });
+
+        pageObj.subpages = this.findInPageObjectsFromPath(filePath);
 
         return pageObj;
+    }
+
+    /**
+     * Get page title from page object.
+     * @param obj
+     * @returns {string|string}
+     */
+    getPageTitleFromObject(obj) {
+        if (obj.data.title) {
+            return obj.data.title;
+        }
+
+        let filename = this._removePrefixFromPartial(obj.file.name);
+
+        filename = filename.split('_').join(' ').split('-').join(' ');
+        filename = filename[0].toUpperCase() + filename.substring(1);
+
+        return filename;
     }
 
     /**
@@ -93,6 +150,7 @@ class PageCollection {
 
         let buffer = fs.readFileSync(filePath);
         let jsonData = JSON.parse(buffer);
+        jsonData = this._parseSpecialJsonFields(jsonData);
 
         return {
             dataFile: filePath,
@@ -174,12 +232,13 @@ class PageCollection {
             .replace(/^[/?]/, '')
             .split('/');
 
-        let filePrefix = /^([_]?[0-9]*)_/;
         let urlPath = arrFolders
-            .reduce((prev, current) => prev + '/' + current.replace(filePrefix, ''));
+            .reduce((prev, current) => {
+                return prev + '/' + this._removePrefixFromPartial(current);
+            }, '');
 
-        urlPath = '/' + (urlPath ? (urlPath + '/') : '');
-        let cleanFilename = file.name.replace(filePrefix, '');
+        urlPath = urlPath.length > 1 ? urlPath + '/' : '/';
+        let cleanFilename = this._removePrefixFromPartial(file.name);
         let url = `${urlPath}${cleanFilename}.html`;
 
         let i = 1;
@@ -190,6 +249,39 @@ class PageCollection {
         this._urls.add(url);
 
         return url;
+    }
+
+    /**
+     * Remove prefix from string for clean urls.
+     * @param str
+     * @returns {*}
+     * @private
+     */
+    _removePrefixFromPartial(str) {
+        return str.replace(this._settings.filePrefix, '');
+    }
+
+    /**
+     * Parse fields from json data if necessary.
+     * @param obj
+     * @returns {{date}|*}
+     * @private
+     */
+    _parseSpecialJsonFields(obj) {
+        if (obj.date) {
+            let date = new Date(obj.date);
+            obj.date = {
+                datetime: date.toJSON(),
+                locale: date.toLocaleDateString('de-CH', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                }
+                ),
+            };
+        }
+
+        return obj;
     }
 }
 

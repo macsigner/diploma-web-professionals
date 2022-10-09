@@ -1,0 +1,4 @@
+<figure>
+    <img src="{% if image.path %}{{ image.path }}{% else %}{{ image }}{% endif %}"
+         {% if image.alt %}alt="{{ image.alt }}"{% endif %}>
+</figure>

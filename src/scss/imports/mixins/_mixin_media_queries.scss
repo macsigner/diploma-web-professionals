@@ -1,0 +1,21 @@
+/**
+ * Mixins media queries.
+ */
+
+@mixin media-min-width($width) {
+    @media screen and (min-width: #{$width}) {
+        @content;
+    }
+}
+
+@mixin media-tablet() {
+    @include media-max-width($breakpoint-tablet-up) {
+        @content;
+    }
+}
+
+@mixin media-desktop-small() {
+    @include media-min-width($breakpoint-desktop-small-up) {
+        @content;
+    }
+}

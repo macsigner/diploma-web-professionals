@@ -1,0 +1,27 @@
+{% extends 'layouts::base.twig' %}
+
+{% block main %}
+
+    <header>
+        <img src="/src/assets/images/home/header_image.jpeg" alt="Aussenansicht Immobilie im Neubrutalstil">
+
+        <h1>Die optimale Balance zwischen Ästhetik und Funktionalität</h1>
+    </header>
+
+    <section>
+        <h2>Immobilien</h2>
+
+        {% include '@components/forms/form-object-filter.twig' %}
+
+        <hr>
+        <div>
+
+            {% for item in pages.030_objekt.pages %}
+                {% include '@components/object-item.twig' %}
+            {% endfor %}
+
+            <button type="button">Mehr laden</button>
+        </div>
+    </section>
+
+{% endblock %}

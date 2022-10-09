@@ -1,0 +1,7 @@
+<div>
+    {% block navBar %}
+    <img src="/src/assets/images/_brand/logo_home_house.svg" width="100" height="78" alt="Logo Home House">
+
+    {% include '@components/navigations/navigation-main.twig' with {'navItems': pages} %}
+    {% endblock %}
+</div>

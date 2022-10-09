@@ -1,0 +1,25 @@
+{
+    "title": "6-Zimmer Villa",
+    "image": {
+        "path": "/src/assets/images/objekt/objekt_03.jpeg"
+    },
+    "slides": [
+        {
+            "image": "/src/assets/images/objekt/slide_01.jpeg"
+        },
+        {
+            "image": "/src/assets/images/objekt/slide_02.jpeg"
+        },
+        {
+            "image": "/src/assets/images/objekt/slide_03.jpeg"
+        },
+        {
+            "image": "/src/assets/images/objekt/slide_04.jpeg"
+        }
+    ],
+    "availability": "sofort",
+    "location": "6900 Lugano, Schweiz",
+    "price": "CHF 3’200",
+    "area": "280m2",
+    "description": "An mystischer Lage in der Nähe des berühmten Sursee-Waldes verkaufen wir das vollständig renovierten Gebäude. Das Haus bietet mit den 13 attraktiven Räumen einem grosszügigen Umschwung am See eine nicht alltägliche und einzigartige Atmosphäre."
+}

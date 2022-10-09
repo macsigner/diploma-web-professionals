@@ -13,6 +13,9 @@ export default merge(common, {
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[name][ext]',
     },
+    optimization: {
+        runtimeChunk: 'single',
+    },
     module: {
         rules: [
             {

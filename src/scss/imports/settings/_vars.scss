@@ -1,0 +1,42 @@
+/**
+ * Settings variables.
+ */
+@use 'sass:math';
+
+/* Font sizes */
+// Mobile
+$font-size-100-mobile: 1.6rem;
+$font-size-110-mobile: 1.8rem;
+$font-size-120-mobile: 2rem;
+$font-size-130-mobile: 2.1rem;
+$font-size-140-mobile: 2.2rem;
+$font-size-150-mobile: 2.5rem;
+$font-size-160-mobile: 2.6rem;
+
+// Desktop
+$font-size-90-desktop: 1.6rem;
+$font-size-100-desktop: 1.8rem;
+$font-size-110-desktop: 2rem;
+$font-size-120-desktop: 2.2rem;
+$font-size-130-desktop: 2.8rem;
+$font-size-140-desktop: 3.3rem;
+$font-size-150-desktop: 4rem;
+$font-size-160-desktop: 5.6rem;
+
+/* Colors */
+$color-black: #000;
+$color-white: #FFF;
+$color-white-transparent: rgba($color-white, .4);
+$color-green: #92B9AF;
+$color-green-light: #E5EEEC;
+$color-grey: #878787;
+
+/* Color scheme */
+$color-primary: $color-green;
+$color-primary-transparent: rgba($color-primary, .85);
+$color-accent: $color-green-light;
+$color-action-bg: $color-grey;
+
+/* breakpoints */
+$breakpoint-tablet-up: math.div(60em, 1.6);
+$breakpoint-desktop-small-up: math.div(90em, 1.6);

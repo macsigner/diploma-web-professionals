@@ -88,15 +88,15 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - Nachkonfiguration / Reserve Webpack _4h_
 - [ ] Dateistrukturierung
     - [ ] Grundsetup
-        - [ ] SCSS Grundaufbau. Eg. Reset, Variablendatei _1h_
-        - [ ] Javascript Grundaufbau. Eg. Tools _1h_
+        - [x] SCSS Grundaufbau. Eg. Reset, Variablendatei _1h_
+        - [x] Javascript Grundaufbau. Eg. Tools _1h_
         - [ ] HTML
             - [ ] Header _2h_
             - [ ] Footer _1h_
             - [ ] Inhaltsbereich _1h_
         - [ ] Zusammenstellung der Assets
             - [ ] Icons/SVGs _2h_
-            - [ ] Bildwelten _2h_
+            - [x] Bildwelten _2h_
     - Reserve _2h_
 - [ ] Aufbau HTML-Templates
     - [ ] Home _3h_
@@ -175,6 +175,10 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
+### [Deepl](https://www.deepl.com/translator)
+
+Übersetzungstool zum Vermeiden von [falschen Freunden](https://de.wikipedia.org/wiki/Falscher_Freund).
+
 ### [Webpack](https://webpack.js.org/)
 
 Einsatz aufgrund des Kurses, also primär als Lernmethode vorhanden. Wenn ich mir was aus den Fingern saugen müsste:
@@ -197,6 +201,13 @@ von Chrome.
 Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
 voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
 Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch
+
+### [normalise.css](https://github.com/necolas/normalize.css)
+
+Normalisierung der Stile in den verschiedenen Browsern. Alternativ wäre auch ein Reset in Frage gekommen. Vorteil bei
+diesem, ist auch das fehlende Stile schneller ersichtlich sind. Persönlich ist mir eine Normalisierung lieber, da so die
+Titel noch als solche angezeigt werden und ersichtlich sind. In dieser Hinsicht gebe ich der visuellen Semantik den
+Vorzug.
 
 ### Versionierungsnachrichten
 
@@ -240,24 +251,45 @@ Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin
 Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
 zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
+### Abweichungen von der Vorlage
+
+- __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
+  ein ähnlicher Font – gleiche Schriftgrösse, gleiche Familie – mit akzeptablem Zeilenabstand _(Titel 1.1 bis 1.3,
+  Laufschrift 1.3 bis 1.8_ vorhanden war, habe ich diesen übernommen.\
+  Angaben ohne Einheiten wegen
+  der [Vererbung](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values)
+  .
+
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
 [//]: # (todo: update source information regularly)
+
+### Erweiterung
+
+#### Node
+[Ersten Buchstaben in Grossschreibung konvertieren][node :: uppercase first letter of string]\
+Genutzt in der _PageCollection_ um aus dem Dateinamen eine art Seitentitel zu generieren.
 
 ### Fix
 
 #### Node
 
-[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]
-Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau
-auf `"type": "module"`.
+[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]\
+Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau auf `"type": "module"`.
 
-[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]
-Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im_eslintrc.json_ auf `"ecmaVersion": 11`
+[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]\
+Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im _eslintrc.json_ auf `"ecmaVersion": 11`
 nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
 setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
 basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
 gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegenswert.
+
+[Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][webpack :: chunk load error]\
+Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow](https://stackoverflow.com/a/66197410)
+
+#### HTML
+
+[Regulärer Ausdruck Telefonnummber][html :: regex phone number]
 
 ## Eidesstattliche Erklärung
 
@@ -266,6 +298,13 @@ Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt
 kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
 vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
+
 [node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
+[node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+
 [eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
+
+[webpack :: chunk load error]: https://stackoverflow.com/a/65541635
+
+[html :: regex phone number]: https://ihateregex.io/expr/phone/

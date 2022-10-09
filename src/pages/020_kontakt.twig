@@ -1,12 +1,56 @@
-<!doctype html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kontakt</title>
-</head>
-<body>
-<h1>Kontakt</h1>
-</body>
-</html>
+{% extends 'layouts::base.twig' %}
+
+{% block main %}
+
+    <header>
+        <h1>Interesse am Objekt <br>
+        <strong>Bijou am See</strong></h1>
+    </header>
+
+    <form>
+        <div>
+            <label for="firstName">Vorname</label>
+            <input type="text" id="firstName">
+        </div>
+        <div>
+            <label for="lastName">Nachname</label>
+            <input type="text" id="lastName">
+        </div>
+        <div>
+            <label for="address">Adresse</label>
+            <input type="text" id="address">
+        </div>
+        <div>
+            <label for="zip">PLZ</label>
+            <input type="text" id="zip">
+        </div>
+        <div>
+            <label for="place">Ort</label>
+            <input type="text" id="place">
+        </div>
+        <div>
+            <label for="phoneNumber">Telefonnummer</label>
+            <input type="tel" id="phoneNumber" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+        </div>
+        <div>
+            <label for="email">E-Mail</label>
+            <input type="email" id="email">
+        </div>
+        <div>
+            <label for="message">Ihre Nachricht</label>
+            <input type="text" id="message">
+        </div>
+        <div>
+            <input type="checkbox" id="information">
+            <label for="information">Information</label>
+        </div>
+        <div>
+            <input type="checkbox" id="tour">
+            <label for="tour">Besichtigung</label>
+        </div>
+        <div>
+            <button>Senden</button>
+        </div>
+    </form>
+
+{% endblock %}

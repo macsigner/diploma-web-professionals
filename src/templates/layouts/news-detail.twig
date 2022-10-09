@@ -1,0 +1,20 @@
+{% extends 'layouts::base.twig' %}
+
+{% block main %}
+
+    <header>
+        {% if data.image %}
+            {% include '@components/image.twig' with {image: data} %}
+        {% endif %}
+
+        <h1>{{ title }}</h1>
+        <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
+    </header>
+
+    <div>{{ data.teaser }}</div>
+
+{% endblock %}
+
+{% block mainEnd %}
+    <a href="/aktuelles.html">Zurück</a>
+{% endblock %}

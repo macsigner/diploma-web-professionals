@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de">
+<head>
+    {% include '@components/head.twig' %}
+</head>
+<body>
+
+{% block mainNav %}
+    {% include '@components/nav-bar.twig' %}
+{% endblock %}
+
+<main>
+    {% block main %}
+    {% endblock %}
+
+    {% block mainEnd %}
+    {% endblock %}
+</main>
+
+{% block mainFooter %}
+    {% include '@components/main-footer.twig' %}
+{% endblock %}
+</body>
+</html>
