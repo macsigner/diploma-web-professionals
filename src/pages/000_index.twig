@@ -16,8 +16,8 @@
         <hr>
         <div>
 
-            {% for i in 1..8  %}
-                {% include '@components/object-listing.twig' %}
+            {% for item in pages.030_objekt.pages %}
+                {% include '@components/object-item.twig' %}
             {% endfor %}
 
             <button type="button">Mehr laden</button>

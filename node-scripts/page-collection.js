@@ -130,7 +130,7 @@ class PageCollection {
 
         let filename = this._removePrefixFromPartial(obj.file.name);
 
-        filename = filename.split('_').join(' ');
+        filename = filename.split('_').join(' ').split('-').join(' ');
         filename = filename[0].toUpperCase() + filename.substring(1);
 
         return filename;

@@ -4,7 +4,7 @@
 
     <header>
         {% if data.image %}
-            {% include '@components/image.twig' with {'item': _context} %}
+            {% include '@components/image.twig' with {image: data} %}
         {% endif %}
 
         <h1>{{ title }}</h1>

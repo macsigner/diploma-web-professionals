@@ -2,7 +2,7 @@
     <header>
 
         {% if item.data.image %}
-            {% include '@components/image.twig' with item %}
+            {% include '@components/image.twig' with {image: item} %}
         {% endif %}
 
         <h2>{{ item.data.teaserTitle ? item.data.teaserTitle : item.title }}</h2>
