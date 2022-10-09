@@ -90,12 +90,12 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - [ ] Grundsetup
         - [x] SCSS Grundaufbau. Eg. Reset, Variablendatei _1h_
         - [x] Javascript Grundaufbau. Eg. Tools _1h_
-        - [ ] HTML
-            - [ ] Header _2h_
-            - [ ] Footer _1h_
-            - [ ] Inhaltsbereich _1h_
-        - [ ] Zusammenstellung der Assets
-            - [ ] Icons/SVGs _2h_
+        - [x] HTML
+            - [x] Header _2h_
+            - [x] Footer _1h_
+            - [x] Inhaltsbereich _1h_
+        - [x] Zusammenstellung der Assets
+            - [ ] ~~Icons/SVGs _2h_~~
             - [x] Bildwelten _2h_
     - Reserve _2h_
 - [ ] Aufbau HTML-Templates
@@ -164,7 +164,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 | Meilenstein                       | Geschätzt | Termin     | Abgeschlossen am | Aufwand |
 |-----------------------------------|-----------|------------|------------------|---------|
 | Grundsetup Webpack                | 13h       | 26.09.2022 | 27.09.2022       | ca. 16h |
-| Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 |                  |         |
+| Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 | 02.10.2022       | ca. 12h |
 | Aufbau HTML-Templates             | 10h       | 08.10.2022 |                  |         |
 | Javascriptfunktionalität          | 15h       | 17.10.2022 |                  |         |
 | Frontendstyling                   | 31h       | 07.11.2022 |                  |         |
