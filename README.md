@@ -98,13 +98,13 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
             - [ ] ~~Icons/SVGs _2h_~~
             - [x] Bildwelten _2h_
     - Reserve _2h_
-- [ ] Aufbau HTML-Templates
-    - [ ] Home _3h_
-    - [ ] Aktueles _1h_
-    - [ ] Newsdetail _1h_
-    - [ ] Objektdetail _1h_
-    - [ ] Formular _1h_
-    - [ ] Kontakt _1h_
+- [x] Aufbau HTML-Templates
+    - [x] Home _3h_
+    - [x] Aktueles _1h_
+    - [x] Newsdetail _1h_
+    - [x] Objektdetail _1h_
+    - [x] Formular _1h_
+    - [x] Kontakt _1h_
     - Reserve _2h_
 - [ ] Javaskriptfunktionalität
     - [ ] Hauptnavigation _3h_
@@ -165,7 +165,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 |-----------------------------------|-----------|------------|------------------|---------|
 | Grundsetup Webpack                | 13h       | 26.09.2022 | 27.09.2022       | ca. 16h |
 | Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 | 02.10.2022       | ca. 12h |
-| Aufbau HTML-Templates             | 10h       | 08.10.2022 |                  |         |
+| Aufbau HTML-Templates             | 10h       | 08.10.2022 | 09.10.2022       | ca. 16h |
 | Javascriptfunktionalität          | 15h       | 17.10.2022 |                  |         |
 | Frontendstyling                   | 31h       | 07.11.2022 |                  |         |
 | Testing / Fixing (Crossbrowser)   | 11h       | 14.11.2022 |                  |         |
