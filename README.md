@@ -20,6 +20,8 @@ npm install
 | `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien |
 | `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_     |
 | `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_      |
+| `deploy`        | Build der Seiten und anschliessend des Skripts `ghpages` |
+| `ghpages`       | Erstellt den Branch ghpages und pusht diesen auf Github  |
 | `debug`         | Startet ndb via nodemon                                  |
 | `lint:js`       | Linting der Javascriptdateien                            |
 | `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur              |
@@ -59,7 +61,7 @@ Aufbau gemäss Ansicht:
 
 ## URL der lauffähigen Version
 
-[//]: # (todo: add url of first prototype)
+[dipl22mac.netlify.app](https://dipl22mac.netlify.app)
 
 ## Zeitplan / Meilensteine
 
@@ -200,7 +202,9 @@ von Chrome.
 
 Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
 voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
-Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch
+Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch Nunjucks in Frage
+gekommen.\
+_Nachtrag_: Zwischenzeitlich würde ich wohl eher Nunjucks einsetzen, da näher an Node.
 
 ### [normalise.css](https://github.com/necolas/normalize.css)
 
@@ -267,6 +271,7 @@ zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 ### Erweiterung
 
 #### Node
+
 [Ersten Buchstaben in Grossschreibung konvertieren][node :: uppercase first letter of string]\
 Genutzt in der _PageCollection_ um aus dem Dateinamen eine art Seitentitel zu generieren.
 
