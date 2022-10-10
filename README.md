@@ -118,7 +118,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
         - [ ] Paginierung _3h_
         - [ ] Sortierung _2h_
     - [ ] Modal
-        - [ ] Grundmodal _2h_
+        - [x] Grundmodal _2h_
         - [ ] Implementierung Kontakt, Formmodal _2h_ mit Objektauswahl
     - [ ] Formularversand _2h_
     - [ ] Google map
