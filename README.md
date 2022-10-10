@@ -109,7 +109,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 - [ ] Javaskriptfunktionalität
     - [x] Hauptnavigation _3h_
         - [ ] 2nd Level
-    - [ ] Scroll (Smooth?) _1h_
+    - [x] Scroll (Smooth?) _1h_
     - [ ] Filterung / Listenansicht
         - [ ] Switch ansichten _2h_
         - [ ] Filterung Objekte
