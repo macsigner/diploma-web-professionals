@@ -1,0 +1,43 @@
+{% extends 'layouts::base.twig' %}
+
+{% block main %}
+
+    <section class="base-width" style="min-height: 100vh">
+
+        <h1>Smooth scroll</h1>
+
+        <ul>
+            <li><a href="#section-main-navigation" data-smooth-scroll>Main navigation</a></li>
+            <li><a href="#section-modal" data-smooth-scroll>Modal</a></li>
+            <li><a href="#main-footer" data-smooth-scroll>Footer</a></li>
+        </ul>
+
+    </section>
+    <section class="base-width" id="section-main-navigation" style="min-height: 100vh">
+        <h1>Main navigation</h1>
+
+        <button data-main-navigation-toggle>Toggle main navigation</button>
+    </section>
+    <section class="base-width" id="section-modal" style="min-height: 100vh">
+        <h1>Modal</h1>
+
+        <a href="#modal-content" data-modal>Open modal with content below</a>
+
+        <div id="modal-content" style="outline: 1px solid red">
+            <h2>Lorem ipsum.</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, officia? Adipisci autem cupiditate
+                dicta dolorum, enim et exercitationem iste minima natus, praesentium quam quas reiciendis, rerum vel
+                vero. Eius!</p>
+            <p>Adipisci animi autem beatae consectetur consequatur delectus dolore ducimus eos eveniet facere, facilis
+                illo ipsum minima modi nam nobis obcaecati placeat quas quia quidem quo quos reprehenderit ullam vel
+                voluptatem?</p>
+            <p>Dolorem magnam, omnis! A alias assumenda autem cum fuga, laudantium, nemo nihil possimus quaerat quam
+                quasi reiciendis sit soluta tenetur voluptas. Beatae corporis deleniti quaerat recusandae repellat unde.
+                Amet, nam!</p>
+        </div>
+
+        <input type="text" id="modal-input-generated"><br>
+        <button id="modal-button-generated">Open modal with generated content</button>
+    </section>
+
+{% endblock %}
