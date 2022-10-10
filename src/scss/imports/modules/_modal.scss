@@ -1,0 +1,25 @@
+/****************************************************************************
+ *  MEDIA MOTION AG                                                         *
+ ****************************************************************************
+
+    Funktion      modal bem module
+
+*****************************************************************************/
+
+/*
+.modal
+
+Styleguide classes.modal
+*/
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: white;
+
+    &__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

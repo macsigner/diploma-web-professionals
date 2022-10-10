@@ -12,7 +12,11 @@
 @import 'imports/custom_reset';
 
 // Early modules
+@import 'imports/settings/custom_properties_main';
 @import 'imports/settings/settings_font_fasce';
 @import 'imports/base';
 @import 'imports/modules/nav_bar';
 @import 'imports/modules/navigation_area';
+
+// Late modules
+@import 'imports/modules/modal';
