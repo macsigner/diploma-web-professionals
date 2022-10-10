@@ -9,7 +9,7 @@
 }
 
 @mixin media-tablet() {
-    @include media-max-width($breakpoint-tablet-up) {
+    @include media-min-width($breakpoint-tablet-up) {
         @content;
     }
 }

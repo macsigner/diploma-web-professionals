@@ -86,8 +86,8 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
         - [x] Standardskripte für alle Seiten. Eg. Grundfunktionalität wie Navi _1h_
         - [x] Seitenspezifische Skripte. Eg. Ansichten, Home, Kontakt _1h_
     - Nachkonfiguration / Reserve Webpack _4h_
-- [ ] Dateistrukturierung
-    - [ ] Grundsetup
+- [x] Dateistrukturierung
+    - [x] Grundsetup
         - [x] SCSS Grundaufbau. Eg. Reset, Variablendatei _1h_
         - [x] Javascript Grundaufbau. Eg. Tools _1h_
         - [x] HTML
@@ -107,7 +107,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - [x] Kontakt _1h_
     - Reserve _2h_
 - [ ] Javaskriptfunktionalität
-    - [ ] Hauptnavigation _3h_
+    - [x] Hauptnavigation _3h_
         - [ ] 2nd Level
     - [ ] Scroll (Smooth?) _1h_
     - [ ] Filterung / Listenansicht
