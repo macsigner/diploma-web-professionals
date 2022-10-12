@@ -9,3 +9,5 @@ document.querySelector('#modal-button-generated').addEventListener('click', () =
 
     new Modal(title);
 });
+
+import '../inits/initMap.js';

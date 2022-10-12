@@ -9,6 +9,7 @@
         <ul>
             <li><a href="#section-main-navigation" data-smooth-scroll>Main navigation</a></li>
             <li><a href="#section-modal" data-smooth-scroll>Modal</a></li>
+            <li><a href="#section-map" data-smooth-scroll>Map</a></li>
             <li><a href="#main-footer" data-smooth-scroll>Footer</a></li>
         </ul>
 
@@ -38,6 +39,13 @@
 
         <input type="text" id="modal-input-generated"><br>
         <button id="modal-button-generated">Open modal with generated content</button>
+    </section>
+    <section class="base-width" id="section-map" style="min-height: 100vh">
+        <h1>Map</h1>
+
+        <div class="map">
+            <div data-map></div>
+        </div>
     </section>
 
 {% endblock %}
