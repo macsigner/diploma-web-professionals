@@ -55,14 +55,25 @@
 
         </div>
         <div data-real-estates>
-            <template>
-                <div>
+            <template data-template-name="tile">
+                <article>
                     <header>
                         <img data-template="image">
                         <h3 data-template="title"></h3>
-
                     </header>
-                </div>
+                    <div>
+                        <p data-template="date"></p>
+
+                        <p data-template="text"></p>
+                    </div>
+                </article>
+            </template>
+            <template data-template-name="tableRow">
+                <tr>
+                    <th data-template="title"></th>
+                    <td data-template="date"></td>
+                    <td data-template="text"></td>
+                </tr>
             </template>
         </div>
     </section>

@@ -11,15 +11,20 @@ class RealEstates {
      */
     constructor(el) {
         this.el = el;
+        this._settings = {
+            template: 'tile',
+        };
 
         this.client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
 
         this.loadData();
 
-        let item = document.createElement('template');
-        this.templates = {
-            tile: new Template(item),
-        };
+        this.templates = {};
+        let templates = this.el.querySelectorAll('template');
+
+        templates.forEach(el => {
+            this.templates[el.dataset.templateName] = new Template(el);
+        });
     }
 
     /**
@@ -41,7 +46,8 @@ class RealEstates {
             }
         `;
 
-        this.estates = await this.client.request(query);
+        let response = await this.client.request(query);
+        this.estates = response.estates;
 
         this.render();
     }
@@ -50,7 +56,13 @@ class RealEstates {
      * Render current estates.
      */
     render() {
-        console.log(this.estates);
+        this.el.innerHTML = '';
+
+        for (let estate of this.estates) {
+            let item = this.templates[this._settings.template].create(estate);
+
+            this.el.appendChild(item);
+        }
     }
 }
 
