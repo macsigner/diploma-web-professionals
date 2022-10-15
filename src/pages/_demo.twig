@@ -10,6 +10,7 @@
             <li><a href="#section-main-navigation" data-smooth-scroll>Main navigation</a></li>
             <li><a href="#section-modal" data-smooth-scroll>Modal</a></li>
             <li><a href="#section-map" data-smooth-scroll>Map</a></li>
+            <li><a href="#section-select" data-smooth-scroll>Custom select</a></li>
             <li><a href="#section-real-estates" data-smooth-scroll>Immobilien</a></li>
             <li><a href="#main-footer" data-smooth-scroll>Footer</a></li>
         </ul>
@@ -47,6 +48,30 @@
         <div class="map">
             <div data-map></div>
         </div>
+    </section>
+    <section class="base-width" id="section-select" style="min-height: 100vh">
+        <h1>Custom select</h1>
+
+        <label for="custom-select">Was</label>
+        <select name="select" id="custom-select" data-custom-select>
+            <option selected>Auswählen</option>
+            <option value="1">Preis aufsteigend</option>
+            <option value="2">Preis absteigend</option>
+            <option value="3">Datum aufsteigend</option>
+            <option value="4">Datum absteigend</option>
+            <optgroup label="Group 1">
+                <option value="sub1">Sub 1</option>
+                <option value="sub2">Sub 2</option>
+                <option value="sub3">Sub 3</option>
+                <option value="sub4">Sub 4</option>
+            </optgroup>
+            <optgroup label="Group 2">
+                <option value="sub5">Sub 5</option>
+                <option value="sub6">Sub 6</option>
+                <option value="sub7">Sub 7</option>
+                <option value="sub8">Sub 8</option>
+            </optgroup>
+        </select>
     </section>
     <section class="base-width" id="section-real-estates" style="min-height: 100vh">
         <h1>Immobilien</h1>
