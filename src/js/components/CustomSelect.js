@@ -1,3 +1,5 @@
+import * as Tools from '../tools.js';
+
 /**
  * Customizable select menu.
  */
@@ -7,7 +9,8 @@ class CustomSelect {
      * @param el
      */
     constructor(el) {
-        this.select = el;
+        this.el = el;
+        this.el.classList.add('custom-select-original');
 
         this.customSelect = document.createElement('dl');
         this.current = document.createElement('dt');
@@ -15,16 +18,79 @@ class CustomSelect {
         this.customSelect.appendChild(this.current);
         this.customSelect.appendChild(this.customOptions);
 
-        this.menu = this._createListFromItem(this.select);
+        this.menu = this._createListFromItem(this.el);
         this.customOptions.appendChild(this.menu);
 
-        this.customSelect.setAttribute('tabindex', this.select.tabIndex);
+        this.customSelect.setAttribute('tabindex', this.el.tabIndex);
 
-        if (this.select.nextElementSibling) {
-            this.select.parentNode.insertBefore(this.customSelect, this.select.nextElementSibling);
+        if (this.el.nextElementSibling) {
+            this.el.parentNode.insertBefore(this.customSelect, this.el.nextElementSibling);
         } else {
-            this.select.parentNode.appendChild(this.customSelect);
+            this.el.parentNode.appendChild(this.customSelect);
         }
+
+        // Focus on custom selection if focus is set on main select otherwise.
+        this.el.addEventListener('focus', () => {
+            this.customSelect.focus();
+        });
+
+        this.customSelect.addEventListener('focus', () => this.open());
+
+        this.customSelect.addEventListener('click', Tools.delegate(
+            '[data-value]',
+            (e) => {
+                this.select(e.target.closest('[data-value]').dataset.value);
+            }
+        ));
+
+        this.customSelect.addEventListener('change', () => {
+            this.el.value = this.getCurrentValue();
+
+            // Dispatch event for other listeners on select item itself.
+            this.el.dispatchEvent(new Event('change'));
+        });
+    }
+
+    /**
+     * Open options menu.
+     */
+    open() {
+        this.customSelect.classList.add('open');
+    }
+
+    /**
+     * Close options menu.
+     */
+    close() {
+        this.customSelect.classList.remove('open');
+    }
+
+    /**
+     * Select specified value.
+     * @param value
+     */
+    select(value) {
+        this._value = value;
+
+        this.customOptions.querySelector(`[data-value="${value}]"`);
+
+        this.customSelect.dispatchEvent(new CustomEvent('change',
+            {
+                detail: {
+                    CustomSelect: this,
+                },
+            }
+        ));
+
+        this.close();
+    }
+
+    /**
+     * Get current value.
+     * @returns {*}
+     */
+    getCurrentValue() {
+        return this._value;
     }
 
     /**
