@@ -20,7 +20,11 @@ class Template {
         let elements = Array.from(this.template.querySelectorAll('[data-template]'));
 
         let obj = elements.reduce((prev, current) => {
-            prev[current.dataset.template] = current;
+            if (!prev[current.dataset.template]) {
+                prev[current.dataset.template] = [];
+            }
+
+            prev[current.dataset.template].push(current);
 
             return prev;
         }, {});
@@ -34,19 +38,44 @@ class Template {
      * @returns {HTMLDivElement}
      */
     create(data) {
-        for (let key in Object.keys(this.insertNodes)) {
-            console.log(key);
-            for (let el in this.insertNodes[key]) {
-                console.log(el);
+        for (let key of Object.keys(this.insertNodes)) {
+            for (let el of this.insertNodes[key]) {
                 if (data[key]) {
-                    el.innerHTML = data[key];
-                } else if (!el.innerHTML) {
+                    this._applyDataToElement(el, data[key]);
+                } else {
                     el.remove();
                 }
             }
         }
 
         return this.template.cloneNode(true);
+    }
+
+    /**
+     * Apply data to element.
+     * @param el
+     * @param data
+     * @private
+     */
+    _applyDataToElement(el, data) {
+        switch (el.tagName.toLowerCase()) {
+            case 'img':
+                this._applyImageAttributes(el, data);
+                break;
+            default:
+                el.innerHTML = data;
+        }
+    }
+
+    /**
+     * Apply data to image.
+     * @param el
+     * @param data
+     * @private
+     */
+    _applyImageAttributes(el, data) {
+        el.src = data.image_path;
+        el.alt = data.title;
     }
 }
 

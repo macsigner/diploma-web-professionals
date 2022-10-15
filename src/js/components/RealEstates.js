@@ -41,7 +41,16 @@ class RealEstates {
                     zip,
                     city,
                     canton,
+                    country,
+                    availability,
+                    usable_area,
+                    estate_type
                     description,
+                    images {
+                        image_path,
+                        title,
+                        filename,
+                    }
                 }
             }
         `;
@@ -59,6 +68,8 @@ class RealEstates {
         this.el.innerHTML = '';
 
         for (let estate of this.estates) {
+            estate.image = estate.images[0];
+
             let item = this.templates[this._settings.template].create(estate);
 
             this.el.appendChild(item);
