@@ -1,17 +1,21 @@
-<form>
-    <label for="objectType">Was</label>
-    <select name="objectType" id="objectType">
+<form id="main-real-estate-filter" data-filter>
+    <label for="estate_type">Was</label>
+    <select name="filterTitle" id="filterTitle" data-filter-type="filterCallback">
         <option value="" selected>Alle Objekte</option>
-        <option value="house">Haus</option>
-        <option value="apartment">Wohnung</option>
+        <option value="haus">Haus</option>
+        <option value="wohnung">Wohnung</option>
+        <option value="villa">Villa</option>
+        <option value="bijou">Bijou</option>
+        <option value="penthouse">Penthouse</option>
     </select>
-    <label for="objectLocation">Wo</label>
-    <select name="objectLocation" id="objectLocation">
+    <label for="canton">Wo</label>
+    <select name="canton" id="canton">
         <option value="" selected>Alle Orte</option>
-        <option value="9050-appenzell">Appenzell</option>
-        <option value="9000-stgallen">St.Gallen</option>
+        <option value="appenzell">Appenzell</option>
+        <option value="st.gallen">St.Gallen</option>
     </select>
-    <select name="sortingOrder" id="sortingOrder">
+    <label for="sorting">Wo</label>
+    <select name="sorting" id="sortBy" data-filter-type="sort">
         <option value="" selected>Auswählen</option>
         <option value="priceAsc">Preis aufsteigend</option>
         <option value="priceDesc">Preis aufsteigend</option>
@@ -20,23 +24,23 @@
     </select>
     <fieldset>
         <legend class="invisible">Filter Kaufen/Mieten</legend>
-        <input type="radio" name="purchaseOption" id="objectTypeRent" value="rent">
-        <input type="radio" name="purchaseOption" id="objectTypeBuy" value="buy">
+        <input type="radio" name="estate_type" id="estateTypeRent" value="zu verkaufen" checked data-filter-type="filter">
+        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu vermieten" data-filter-type="filter">
         <span>
-                <label for="objectTypeRent">Mieten</label>
-                <span></span>
-                <label for="objectTypeBuy">Kaufen</label>
-            </span>
+            <label for="estateTypeRent">Mieten</label>
+            <span></span>
+            <label for="estateTypeBuy">Kaufen</label>
+        </span>
     </fieldset>
     <fieldset>
         <legend>Ansicht:</legend>
         <label>
             <span class="invisible">Kachelansicht</span>
-            <input type="radio" name="objectListingLayout" value="layoutTiles">
+            <input type="radio" name="layout" value="layoutTile" checked data-filter-type="template">
         </label>
         <label>
             <span class="invisible">Listenansicht</span>
-            <input type="radio" name="objectListingLayout" value="layoutList">
+            <input type="radio" name="layout" value="layoutList" data-filter-type="template">
         </label>
     </fieldset>
     <button>Suchen</button>

@@ -12,6 +12,8 @@ document.querySelector('#modal-button-generated').addEventListener('click', () =
 
 import '../inits/initMap.js';
 
+import '../inits/filterInit.js';
+
 import '../inits/realEstatesInit.js';
 
 import '../inits/customSelectInit.js';

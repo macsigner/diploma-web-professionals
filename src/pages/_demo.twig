@@ -77,10 +77,10 @@
         <h1>Immobilien</h1>
 
         <div>
-
+            {% include '@components/forms/form-object-filter.twig' %}
         </div>
-        <div data-real-estates>
-            <template data-template-name="tile">
+        <div data-real-estates data-real-estates-filter="#main-real-estate-filter">
+            <template data-template-name="layoutTile">
                 <article>
                     <hr>
                     <header>
@@ -93,7 +93,7 @@
                     </div>
                 </article>
             </template>
-            <template data-template-name="tableRow">
+            <template data-template-name="layoutList">
                 <tr>
                     <th data-template="title"></th>
                     <td data-template="date"></td>

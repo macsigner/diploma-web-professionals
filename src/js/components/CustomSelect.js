@@ -47,7 +47,9 @@ class CustomSelect {
             this.el.value = this.getCurrentValue();
 
             // Dispatch event for other listeners on select item itself.
-            this.el.dispatchEvent(new Event('change'));
+            this.el.dispatchEvent(new Event('change', {
+                bubbles: true,
+            }));
         });
     }
 
