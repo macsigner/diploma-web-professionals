@@ -76,18 +76,6 @@ class RealEstates {
             this._settings.template = e.detail.Filter.filters.template.layout;
         }
 
-        let callbacks = e.detail.Filter.filters.filterCallback;
-
-        if (callbacks) {
-            Object.keys(callbacks).reduce((prev, current) => {
-                if (this[current]) {
-                    this.estates = this.estates.filter((item) => this[current](item));
-                }
-
-                return this.estates;
-            }, this.estates);
-        }
-
         this.render();
     }
 
@@ -130,8 +118,21 @@ class RealEstates {
      */
     render() {
         this.el.innerHTML = '';
+        let estates = this.estates;
 
-        for (let estate of this.estates) {
+        let callbacks = this.filter ? this.filter.filterCallback : false;
+
+        if (callbacks) {
+            Object.keys(callbacks).reduce((prev, current) => {
+                if (this[current]) {
+                    estates = estates.filter((item) => this[current](item));
+                }
+
+                return estates;
+            }, estates);
+        }
+
+        for (let estate of estates) {
             if (!this._matchesFilter(estate)) {
                 continue;
             }
