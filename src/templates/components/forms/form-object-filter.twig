@@ -1,4 +1,4 @@
-<form id="main-real-estate-filter" data-filter>
+<form id="main-real-estate-filter" {% if applyFilter %}data-filter{% endif %}>
     <label for="estate_type">Was</label>
     <select name="filterTitle" id="filterTitle" data-filter-type="filterCallback">
         <option value="" selected>Alle Objekte</option>

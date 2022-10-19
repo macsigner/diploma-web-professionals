@@ -18,7 +18,39 @@ class Filter {
 
         let selectFields = this._form.querySelectorAll('select');
 
-        selectFields.forEach(el => new CustomSelect(el));
+        this.customSelects = new Set();
+
+        selectFields.forEach(el => this.customSelects.add(new CustomSelect(el)));
+    }
+
+    /**
+     * Update select options of specified key.
+     * @param key
+     * @param options
+     */
+    updateSelectOptions(key, options) {
+        let customSelect = this._getCustomSelectByKey(key);
+
+        customSelect.setOptions(options);
+    }
+
+    /**
+     * Get custom select object by specified key.
+     * @param key
+     * @private
+     */
+    _getCustomSelectByKey(key) {
+        let customSelect;
+
+        for (let entry of this.customSelects.values()) {
+            if (entry.getName() === key) {
+                customSelect = entry;
+
+                break;
+            }
+        }
+
+        return customSelect;
     }
 
     /**

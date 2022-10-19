@@ -1,5 +1,6 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import Template from './Template.js';
+import Filter from './Filter.js';
 
 /**
  * Handle real estates rendering.
@@ -57,9 +58,12 @@ class RealEstates {
             try {
                 filter = document.querySelector(filter);
 
+                this.filterForm = new Filter(filter);
+
                 filter.addEventListener('filter', e => this._filterListener(e));
-            } catch {
+            } catch (error) {
                 console.warn('Filter not found!');
+                console.log(error);
             }
         }
     }
@@ -110,7 +114,42 @@ class RealEstates {
         let response = await this.client.request(query);
         this.estates = response.estates;
 
+        if (this.filterForm) {
+            this._createOptionsEstates();
+        }
+
         this.render();
+    }
+
+    /**
+     * Create select options from collected estates.
+     * @private
+     */
+    _createOptionsEstates() {
+        let options = this.estates.reduce((prev, current) => {
+            prev.canton.add(current.canton);
+
+            return prev;
+        }, {
+            canton: new Set(),
+        });
+
+        options.canton = Array.from(options.canton).map(item => {
+            return {
+                inner: item,
+                attributes: {
+                    value: item,
+                },
+            };
+        });
+
+        let cantons = Array.from(options.canton);
+
+        cantons.unshift({
+            inner: 'Alle',
+        });
+
+        this.filterForm.updateSelectOptions('canton', cantons);
     }
 
     /**

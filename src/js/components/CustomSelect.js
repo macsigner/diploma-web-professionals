@@ -18,9 +18,7 @@ class CustomSelect {
         this.customSelect.appendChild(this.current);
         this.customSelect.appendChild(this.customOptions);
 
-        this.menu = this._createListFromItem(this.el);
-        this.customOptions.appendChild(this.menu);
-
+        this.selectOptions = this._createOptionsObjectFromElements(Array.from(el.children));
         this.customSelect.setAttribute('tabindex', this.el.tabIndex);
 
         if (this.el.nextElementSibling) {
@@ -51,6 +49,81 @@ class CustomSelect {
                 bubbles: true,
             }));
         });
+
+        this.render();
+    }
+
+    /**
+     * Render current select options.
+     */
+    render() {
+        let html = this._getSelectOptionMarkupFromObject(this.selectOptions);
+        let menuHtml = this._getMenuOptionsMarkupFromObject(this.selectOptions);
+
+        this.el.innerHTML = html;
+
+        this.customOptions.innerHTML = menuHtml;
+    }
+
+    /**
+     * Get selection option markup fron object.
+     * @param options
+     * @returns {string}
+     * @private
+     */
+    _getSelectOptionMarkupFromObject(options) {
+        let html = options.reduce((prev, current) => {
+            let optionHtml;
+            let attributes = current.attributes ? this._getAttributeString(current.attributes) : '';
+
+            if (typeof current.inner === 'string') {
+                optionHtml = `<option ${attributes}>${current.inner}</option>`;
+            } else {
+                optionHtml = `
+                            <optgroup ${attributes}>
+                                ${this._getSelectOptionMarkupFromObject(current.inner)}
+                            </optgroup>`;
+            }
+
+            return prev + optionHtml;
+        }, '');
+
+        return html;
+    }
+
+    /**
+     * Get menu items markup.
+     * @param options
+     * @returns {*}
+     * @private
+     */
+    _getMenuOptionsMarkupFromObject(options) {
+        let html = options.reduce((prev, current) => {
+            let menuHTML;
+            let attributes = current.attributes ? this._getAttributeString(current.attributes, 'data-') : '';
+
+            if (typeof current.inner === 'string') {
+                menuHTML = `<li ${attributes}>${current.inner}</li>`;
+            } else {
+                menuHTML = this._getSelectOptionMarkupFromObject(current.inner);
+            }
+
+            return prev + menuHTML;
+        }, '');
+
+        return `<ul>${html}</ul>`;
+    }
+
+    /**
+     * Get attributes as string.
+     * @param attributes
+     * @returns {string}
+     * @private
+     */
+    _getAttributeString(attributes, prefix = '') {
+        return Object.keys(attributes)
+            .reduce((prev, key) => ` ${prev} ${prefix}${key}="${attributes[key]}"`, '')
+            .trim();
     }
 
     /**
@@ -88,6 +161,16 @@ class CustomSelect {
     }
 
     /**
+     * Set options of select and update custo select.
+     * @param options
+     */
+    setOptions(options) {
+        this.selectOptions = options;
+
+        this.render();
+    }
+
+    /**
      * Get current value.
      * @returns {*}
      */
@@ -96,32 +179,46 @@ class CustomSelect {
     }
 
     /**
-     * Create unordered list from node.
-     * @param el
+     * Get name of current select field.
+     * @returns {*}
+     */
+    getName() {
+        return this.el.name || this.el.id;
+    }
+
+    /**
+     * Create initial options object from children.
+     *
+     * @param children
      * @returns {*}
      * @private
      */
-    _createListFromItem(el, indexPrefix = '') {
-        let children = Array.from(el.children);
-        let list = document.createElement('ul');
+    _createOptionsObjectFromElements(children) {
+        let obj = children.map((el) => this._createOptionsObjectFromSingleElement(el));
 
-        children.forEach((child, i) => {
-            let listItem = document.createElement('li');
-            listItem.dataset.index = indexPrefix + i;
+        return obj;
+    }
 
-            if (child.tagName.toLowerCase() === 'optgroup') {
-                listItem.innerHTML = child.label;
+    /**
+     * Create single item obtions object.
+     *
+     * @param el
+     * @returns {{attributes: *[], inner: *}}
+     * @private
+     */
+    _createOptionsObjectFromSingleElement(el) {
+        let inner = el.children.length ? this._createOptionsObjectFromElements(Array.from(el.children)) : el.innerHTML;
 
-                listItem.appendChild(this._createListFromItem(child, i + '-'));
-            } else {
-                listItem.dataset.value = child.value;
-                listItem.innerHTML = child.innerHTML;
-            }
+        let obj = {
+            inner,
+            attributes: el.getAttributeNames().reduce((prev, attr) => {
+                prev[attr] = el[attr];
 
-            list.appendChild(listItem);
-        });
+                return prev;
+            }, {}),
+        };
 
-        return list;
+        return obj;
     }
 }
 
