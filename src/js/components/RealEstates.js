@@ -147,6 +147,9 @@ class RealEstates {
 
         cantons.unshift({
             inner: 'Alle',
+            attributes: {
+                value: '',
+            },
         });
 
         this.filterForm.updateSelectOptions('canton', cantons);
@@ -196,10 +199,11 @@ class RealEstates {
         }
 
         let filter = this.filter.filter;
-
-        return Object.keys(filter).reduce((prev, current) => {
+        let matches = Object.keys(filter).reduce((prev, current) => {
             return prev && filter[current] === obj[current];
         }, true);
+
+        return matches;
     }
 }
 
