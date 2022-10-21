@@ -35,6 +35,26 @@ class Filter {
     }
 
     /**
+     * Get filter values.
+     * @returns {*}
+     */
+    getFilter() {
+        let formData = new FormData(this._form);
+
+        for (let entry of formData.entries()) {
+            let filterType = this._getInputFilterType(entry[0]);
+
+            if (filterType && !this.filters[filterType]) {
+                this.filters[filterType] = {};
+            }
+
+            this.filters[filterType][entry[0]] = entry[1];
+        }
+
+        return Tools.cleanEmptyStringsFromObject(this.filters);
+    }
+
+    /**
      * Get custom select object by specified key.
      * @param key
      * @private
@@ -61,19 +81,7 @@ class Filter {
     _formListener(e) {
         e.preventDefault();
 
-        let formData = new FormData(this._form);
-
-        for (let entry of formData.entries()) {
-            let filterType = this._getInputFilterType(entry[0]);
-
-            if (filterType && !this.filters[filterType]) {
-                this.filters[filterType] = {};
-            }
-
-            this.filters[filterType][entry[0]] = entry[1];
-        }
-
-        this.filters = Tools.cleanEmptyStringsFromObject(this.filters);
+        this.filters = this.getFilter();
 
         this._form.dispatchEvent(new CustomEvent('filter', {
             detail: {

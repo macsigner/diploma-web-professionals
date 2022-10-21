@@ -59,6 +59,7 @@ class RealEstates {
                 filter = document.querySelector(filter);
 
                 this.filterForm = new Filter(filter);
+                this.filter = this.filterForm.getFilter();
 
                 filter.addEventListener('filter', e => this._filterListener(e));
             } catch (error) {
