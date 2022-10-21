@@ -90,22 +90,27 @@ class RealEstates {
     async loadData() {
         let query = gql`
             {
+                refTypes {
+                    id
+                    title
+                }
                 estates {
-                    id,
-                    title,
-                    prize,
-                    zip,
-                    city,
-                    canton,
-                    country,
-                    availability,
-                    usable_area,
+                    id
+                    ref_type_id
+                    title
+                    prize
+                    zip
+                    city
+                    canton
+                    country
+                    availability
+                    usable_area
                     estate_type
-                    description,
+                    description
                     images {
-                        image_path,
-                        title,
-                        filename,
+                        image_path
+                        title
+                        filename
                     }
                 }
             }
@@ -115,7 +120,7 @@ class RealEstates {
         this.estates = response.estates;
 
         if (this.filterForm) {
-            this._createOptionsEstates();
+            this._createOptionsEstates(response);
         }
 
         this.render();
@@ -125,34 +130,44 @@ class RealEstates {
      * Create select options from collected estates.
      * @private
      */
-    _createOptionsEstates() {
-        let options = this.estates.reduce((prev, current) => {
-            prev.canton.add(current.canton);
+    _createOptionsEstates(obj) {
+        let cantonSet = new Set();
+        for (let item of obj.estates) {
+            cantonSet.add(item.canton);
+        }
 
-            return prev;
-        }, {
-            canton: new Set(),
-        });
+        let cantons = Array.from(cantonSet).map(item => this._getSelectOptionObjectFromItem(item));
+        cantons = Array.from(cantons);
 
-        options.canton = Array.from(options.canton).map(item => {
-            return {
-                inner: item,
-                attributes: {
-                    value: item,
-                },
-            };
-        });
+        let refTypes = Array.from(obj.refTypes).map(item => this._getSelectOptionObjectFromItem(item));
 
-        let cantons = Array.from(options.canton);
-
-        cantons.unshift({
+        let emptyAll = {
             inner: 'Alle',
             attributes: {
                 value: '',
             },
-        });
+        };
+
+        cantons.unshift(emptyAll);
+        refTypes.unshift(emptyAll);
 
         this.filterForm.updateSelectOptions('canton', cantons);
+        this.filterForm.updateSelectOptions('ref_type_id', refTypes);
+    }
+
+    /**
+     * Get formatted select option object from single item.
+     * @param item
+     * @returns {{attributes: {value: *}, inner}}
+     * @private
+     */
+    _getSelectOptionObjectFromItem(item) {
+        return {
+            inner: item.title ? item.title : item,
+            attributes: {
+                value: item.id ? item.id : item,
+            },
+        };
     }
 
     /**
@@ -199,8 +214,10 @@ class RealEstates {
         }
 
         let filter = this.filter.filter;
+
         let matches = Object.keys(filter).reduce((prev, current) => {
-            return prev && filter[current] === obj[current];
+            // eslint-disable-next-line eqeqeq
+            return prev && filter[current] == obj[current];
         }, true);
 
         return matches;

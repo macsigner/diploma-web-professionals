@@ -1,12 +1,7 @@
 <form id="main-real-estate-filter" {% if applyFilter %}data-filter{% endif %}>
     <label for="estate_type">Was</label>
-    <select name="filterTitle" id="filterTitle" data-filter-type="filterCallback">
+    <select name="ref_type_id" id="ref_type_id" data-filter-type="filter">
         <option value="" selected>Alle Objekte</option>
-        <option value="haus">Haus</option>
-        <option value="wohnung">Wohnung</option>
-        <option value="villa">Villa</option>
-        <option value="bijou">Bijou</option>
-        <option value="penthouse">Penthouse</option>
     </select>
     <label for="canton">Wo</label>
     <select name="canton" id="canton">
@@ -24,8 +19,8 @@
     </select>
     <fieldset>
         <legend class="invisible">Filter Kaufen/Mieten</legend>
-        <input type="radio" name="estate_type" id="estateTypeRent" value="zu verkaufen" checked data-filter-type="filter">
-        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu vermieten" data-filter-type="filter">
+        <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" checked data-filter-type="filter">
+        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu verkaufen" data-filter-type="filter">
         <span>
             <label for="estateTypeRent">Mieten</label>
             <span></span>
