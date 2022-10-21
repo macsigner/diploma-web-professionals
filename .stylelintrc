@@ -167,6 +167,7 @@
         "scss/operator-no-newline-before": true,
         "scss/operator-no-unspaced": true,
         "scss/at-else-if-parentheses-space-before": "always",
+        "scss/at-extend-no-missing-placeholder": "never",
         "scss/at-function-parentheses-space-before": "never",
         "scss/at-function-pattern": "^[a-z][a-z-A-Z0-9]*$",
         "scss/at-mixin-parentheses-space-before": "never",
