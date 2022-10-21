@@ -1,0 +1,27 @@
+/**
+ * slider bem module
+ */
+
+.slider {
+    overflow: hidden;
+
+    &__inner {
+        display: flex;
+    }
+
+    &__item {
+        position: relative;
+        flex: 0 0 100%;
+        margin-left: -100%;
+        transition: margin .3s;
+    }
+
+    &__item.current {
+        z-index: 10;
+    }
+
+    &__item.current,
+    &__item.current + &__item {
+        margin-left: 0;
+    }
+}

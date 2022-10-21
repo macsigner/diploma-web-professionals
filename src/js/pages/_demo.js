@@ -10,6 +10,8 @@ document.querySelector('#modal-button-generated').addEventListener('click', () =
     new Modal(title);
 });
 
+import '../inits/sliderInit.js';
+
 import '../inits/initMap.js';
 
 import '../inits/filterInit.js';

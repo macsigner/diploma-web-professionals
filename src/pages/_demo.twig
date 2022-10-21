@@ -11,6 +11,7 @@
             <li><a href="#section-modal" data-smooth-scroll>Modal</a></li>
             <li><a href="#section-map" data-smooth-scroll>Map</a></li>
             <li><a href="#section-select" data-smooth-scroll>Custom select</a></li>
+            <li><a href="#section-slider" data-smooth-scroll>Slider</a></li>
             <li><a href="#section-real-estates" data-smooth-scroll>Immobilien</a></li>
             <li><a href="#main-footer" data-smooth-scroll>Footer</a></li>
         </ul>
@@ -73,6 +74,30 @@
             </optgroup>
         </select>
     </section>
+    <section class="base-width" id="section-slider">
+        <h1>Slider</h1>
+
+        <div>
+            <ul data-slider>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_01.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_02.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_03.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_04.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+            </ul>
+        </div>
+    </section>
     <section class="base-width" id="section-real-estates">
         <h1>Immobilien</h1>
 
@@ -89,7 +114,8 @@
                     <div>
                         <p><span data-template="estate_type"></span> <span data-template="availability"></span></p>
                         <h3 data-template="title"></h3>
-                        <p>Fläche <span data-template="usable_area"></span>m<sup>2</sup>, Preis: CHF <span data-template="prize"></span></p>
+                        <p>Fläche <span data-template="usable_area"></span>m<sup>2</sup>, Preis: CHF
+                            <span data-template="prize"></span></p>
                     </div>
                 </article>
             </template>
