@@ -28,48 +28,11 @@ class Slider {
         });
 
         if (this._settings.addArrows) {
-            this.prevArrow = document.createElement('button');
-            this.prevArrow.innerHTML = this._settings.prevArrowContent;
-            this.prevArrow.addEventListener('click', () => this.prev());
-
-            this.nextArrow = document.createElement('button');
-            this.nextArrow.innerHTML = this._settings.nextArrowContent;
-            this.nextArrow.addEventListener('click', () => this.next());
-
-            this._wrapper.appendChild(this.prevArrow);
-            this._wrapper.appendChild(this.nextArrow);
-
-            this.el.addEventListener('afterGoTo', () => this._updateArrows());
+            this._appendArrows();
         }
 
         if (this._settings.addPreview) {
-            let previewContainer = document.createElement('ul');
-            previewContainer.classList.add('slider__preview');
-
-            this._wrapper.appendChild(previewContainer);
-
-            let htmlTemplate = document.createElement('template');
-            htmlTemplate.dataset.templateName = 'preview';
-            htmlTemplate.innerHTML = '<li class="slider__preview-item" data-index><img data-template="image"></li>';
-            let template = new Template(htmlTemplate);
-
-            this.slides.forEach((el, i) => {
-                let img = el.querySelector('img');
-
-                let preview = template.create({
-                    image: {
-                        title: img.alt ? img.alt : `Preview ${i}`,
-                        'image_path': img.src,
-                    },
-                });
-
-                previewContainer.appendChild(preview);
-            });
-
-            this.previewImages = Array.from(previewContainer.children);
-            this.previewImages.forEach((el, i) => el.dataset.index = i);
-
-            this.el.addEventListener('afterGoTo', (e) => this._updatePreviews(e));
+            this._appendPreviews();
         }
 
         this.goToSlide(0);
@@ -105,6 +68,25 @@ class Slider {
     }
 
     /**
+     * Append arrows to current slider.
+     * @private
+     */
+    _appendArrows() {
+        this.prevArrow = document.createElement('button');
+        this.prevArrow.innerHTML = this._settings.prevArrowContent;
+        this.prevArrow.addEventListener('click', () => this.prev());
+
+        this.nextArrow = document.createElement('button');
+        this.nextArrow.innerHTML = this._settings.nextArrowContent;
+        this.nextArrow.addEventListener('click', () => this.next());
+
+        this._wrapper.appendChild(this.prevArrow);
+        this._wrapper.appendChild(this.nextArrow);
+
+        this.el.addEventListener('afterGoTo', () => this._updateArrows());
+    }
+
+    /**
      * Update arrows visibility.
      * @private
      */
@@ -122,6 +104,40 @@ class Slider {
                 this.prevArrow.removeAttribute('disabled');
                 this.nextArrow.removeAttribute('disabled');
         }
+    }
+
+    /**
+     * Append and create preview images to current slider.
+     * @private
+     */
+    _appendPreviews() {
+        let previewContainer = document.createElement('ul');
+        previewContainer.classList.add('slider__preview');
+
+        this._wrapper.appendChild(previewContainer);
+
+        let htmlTemplate = document.createElement('template');
+        htmlTemplate.dataset.templateName = 'preview';
+        htmlTemplate.innerHTML = '<li class="slider__preview-item" data-index><img data-template="image"></li>';
+        let template = new Template(htmlTemplate);
+
+        this.slides.forEach((el, i) => {
+            let img = el.querySelector('img');
+
+            let preview = template.create({
+                image: {
+                    title: img.alt ? img.alt : `Preview ${i}`,
+                    'image_path': img.src,
+                },
+            });
+
+            previewContainer.appendChild(preview);
+        });
+
+        this.previewImages = Array.from(previewContainer.children);
+        this.previewImages.forEach((el, i) => el.dataset.index = i);
+
+        this.el.addEventListener('afterGoTo', (e) => this._updatePreviews(e));
     }
 
     /**
