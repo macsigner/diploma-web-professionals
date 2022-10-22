@@ -1,0 +1,31 @@
+/****************************************************************************
+ *  MEDIA MOTION AG                                                         *
+ ****************************************************************************
+
+    Funktion      map bem module
+
+*****************************************************************************/
+
+/*
+.map
+
+Styleguide classes.map
+*/
+@use 'sass:math';
+
+.map {
+    position: relative;
+
+    &::after {
+        content: '';
+        display: block;
+        padding-top: math.div(9, 16) * 100%;
+    }
+
+    > * {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        padding: 0;
+    }
+}

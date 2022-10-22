@@ -37,6 +37,9 @@ $color-primary-transparent: rgba($color-primary, .85);
 $color-accent: $color-green-light;
 $color-action-bg: $color-grey;
 
+/* settings */
+$gutter-width: 2rem;
+
 /* breakpoints */
 $breakpoint-tablet-up: math.div(60em, 1.6);
 $breakpoint-desktop-small-up: math.div(90em, 1.6);

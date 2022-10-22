@@ -5,9 +5,23 @@
 // Settings Libs / Vars
 @import 'imports/settings/vars';
 @import 'imports/mixins/mixin_fonts';
+@import 'imports/mixins/mixin_media_queries';
 
 // Libs / Externals
 @import 'normalize.css';
+@import 'imports/custom_reset';
 
 // Early modules
+@import 'imports/settings/custom_properties_main';
 @import 'imports/settings/settings_font_fasce';
+@import 'imports/base';
+@import 'imports/modules/nav_bar';
+@import 'imports/modules/navigation_area';
+@import 'imports/modules/aspect';
+
+// Default modules
+@import 'imports/modules/slider';
+@import 'imports/modules/map';
+
+// Late modules
+@import 'imports/modules/modal';

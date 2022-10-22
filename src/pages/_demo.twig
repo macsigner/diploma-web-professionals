@@ -1,0 +1,132 @@
+{% extends 'layouts::base.twig' %}
+
+{% block main %}
+
+    <section class="base-width">
+
+        <h1>Smooth scroll</h1>
+
+        <ul>
+            <li><a href="#section-main-navigation" data-smooth-scroll>Main navigation</a></li>
+            <li><a href="#section-modal" data-smooth-scroll>Modal</a></li>
+            <li><a href="#section-map" data-smooth-scroll>Map</a></li>
+            <li><a href="#section-select" data-smooth-scroll>Custom select</a></li>
+            <li><a href="#section-slider" data-smooth-scroll>Slider</a></li>
+            <li><a href="#section-real-estates" data-smooth-scroll>Immobilien</a></li>
+            <li><a href="#main-footer" data-smooth-scroll>Footer</a></li>
+        </ul>
+
+    </section>
+    <section class="base-width" id="section-main-navigation">
+        <h1>Main navigation</h1>
+
+        <button data-main-navigation-toggle>Toggle main navigation</button>
+    </section>
+    <section class="base-width" id="section-modal">
+        <h1>Modal</h1>
+
+        <a href="#modal-content" data-modal>Open modal with content below</a>
+
+        <div id="modal-content" style="outline: 1px solid red">
+            <h2>Lorem ipsum.</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, officia? Adipisci autem cupiditate
+                dicta dolorum, enim et exercitationem iste minima natus, praesentium quam quas reiciendis, rerum vel
+                vero. Eius!</p>
+            <p>Adipisci animi autem beatae consectetur consequatur delectus dolore ducimus eos eveniet facere, facilis
+                illo ipsum minima modi nam nobis obcaecati placeat quas quia quidem quo quos reprehenderit ullam vel
+                voluptatem?</p>
+            <p>Dolorem magnam, omnis! A alias assumenda autem cum fuga, laudantium, nemo nihil possimus quaerat quam
+                quasi reiciendis sit soluta tenetur voluptas. Beatae corporis deleniti quaerat recusandae repellat unde.
+                Amet, nam!</p>
+        </div>
+
+        <input type="text" id="modal-input-generated"><br>
+        <button id="modal-button-generated">Open modal with generated content</button>
+    </section>
+    <section class="base-width" id="section-map">
+        <h1>Map</h1>
+
+        <div class="map">
+            <div data-map></div>
+        </div>
+    </section>
+    <section class="base-width" id="section-select">
+        <h1>Custom select</h1>
+
+        <label for="custom-select">Was</label>
+        <select name="select" id="custom-select" data-custom-select>
+            <option selected>Auswählen</option>
+            <option value="1">Preis aufsteigend</option>
+            <option value="2">Preis absteigend</option>
+            <option value="3">Datum aufsteigend</option>
+            <option value="4">Datum absteigend</option>
+            <optgroup label="Group 1">
+                <option value="sub1">Sub 1</option>
+                <option value="sub2">Sub 2</option>
+                <option value="sub3">Sub 3</option>
+                <option value="sub4">Sub 4</option>
+            </optgroup>
+            <optgroup label="Group 2">
+                <option value="sub5">Sub 5</option>
+                <option value="sub6">Sub 6</option>
+                <option value="sub7">Sub 7</option>
+                <option value="sub8">Sub 8</option>
+            </optgroup>
+        </select>
+    </section>
+    <section class="base-width" id="section-slider">
+        <h1>Slider</h1>
+
+        <div>
+            <ul data-slider>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_01.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_02.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_03.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+                <li>
+                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_04.jpeg" alt="Some alt tag">
+                    </figure>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="base-width" id="section-real-estates">
+        <h1>Immobilien</h1>
+
+        <div>
+            {% include '@components/forms/form-object-filter.twig' %}
+        </div>
+        <div data-real-estates data-real-estates-filter="#main-real-estate-filter">
+            <template data-template-name="layoutTile">
+                <article>
+                    <hr>
+                    <header class="aspect">
+                        <img data-template="image">
+                    </header>
+                    <div>
+                        <p><span data-template="estate_type"></span> <span data-template="availability"></span></p>
+                        <h3 data-template="title"></h3>
+                        <p>Fläche <span data-template="usable_area"></span>m<sup>2</sup>, Preis: CHF
+                            <span data-template="prize"></span></p>
+                    </div>
+                </article>
+            </template>
+            <template data-template-name="layoutList">
+                <tr>
+                    <th data-template="title"></th>
+                    <td data-template="date"></td>
+                    <td data-template="text"></td>
+                </tr>
+            </template>
+        </div>
+    </section>
+
+{% endblock %}

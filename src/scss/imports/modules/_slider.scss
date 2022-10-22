@@ -1,0 +1,49 @@
+/**
+ * slider bem module
+ */
+
+.slider {
+    overflow: hidden;
+
+    &__inner {
+        display: flex;
+    }
+
+    &__item {
+        position: relative;
+        flex: 0 0 100%;
+        margin-left: -100%;
+        transition: margin .3s;
+    }
+
+    &__item.current {
+        z-index: 10;
+    }
+
+    &__item.current,
+    &__item.current + &__item {
+        margin-left: 0;
+    }
+
+    &__preview {
+        display: flex;
+    }
+
+    &__preview-item {
+        @extend .aspect;
+
+        flex: 0 1 20rem;
+    }
+
+    &__preview-item + &__preview-item {
+        margin-left: $gutter-width;
+    }
+
+    &__preview-item img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        cursor: pointer;
+    }
+}
