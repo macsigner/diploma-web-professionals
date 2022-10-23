@@ -113,20 +113,20 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
         - [ ] 2nd Level
     - [x] Scroll (Smooth?) _1h_
     - [ ] Filterung / Listenansicht
-        - [ ] Switch ansichten _2h_
-        - [ ] Filterung Objekte
-            - [ ] Grundfilter _3h_
-            - [ ] Filter Was, Wo, Sortierung, Art (kaufen, mieten) _3h_
+        - [x] Switch ansichten _2h_
+        - [x] Filterung Objekte
+            - [x] Grundfilter _3h_
+            - [x] Filter Was, Wo, Sortierung, Art (kaufen, mieten) _3h_
         - [ ] Paginierung _3h_
-        - [ ] Sortierung _2h_
+        - [x] Sortierung _2h_
     - [ ] Modal
         - [x] Grundmodal _2h_
         - [ ] Implementierung Kontakt, Formmodal _2h_ mit Objektauswahl
     - [ ] Formularversand _2h_
     - [ ] Google map
         - [ ] Vordesign von [Snazzymaps](https://snazzymaps.com/) _1h_
-        - [ ] Implementierung und Designanpassung mit neuem Pin _2h_
-    - [ ] Slider _2h_
+        - [x] Implementierung und Designanpassung mit neuem Pin _2h_
+    - [x] Slider _2h_
     - Reserve _4h_
 - [ ] Frontendstyling
     - [ ] Header _1h_
@@ -168,7 +168,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 | Grundsetup Webpack                | 13h       | 26.09.2022 | 27.09.2022       | ca. 16h |
 | Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 | 02.10.2022       | ca. 12h |
 | Aufbau HTML-Templates             | 10h       | 08.10.2022 | 09.10.2022       | ca. 16h |
-| Javascriptfunktionalität          | 15h       | 17.10.2022 |                  |         |
+| Javascriptfunktionalität          | 15h       | 17.10.2022 | 22.10.2022       | ca. 24h |
 | Frontendstyling                   | 31h       | 07.11.2022 |                  |         |
 | Testing / Fixing (Crossbrowser)   | 11h       | 14.11.2022 |                  |         |
 | Testing "User" / Fixing           | 4h        | 21.11.2022 |                  |         |
