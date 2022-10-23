@@ -5,8 +5,28 @@
 body {
     @include font-mobile-main;
 
+    background-color: $color-green-light;
+
     @include media-tablet {
         @include font-desktop-main;
+    }
+}
+
+h1,
+.h1 {
+    @include font-mobile-h1;
+
+    @include media-tablet {
+        @include font-desktop-h1;
+    }
+}
+
+h2,
+.h2 {
+    @include font-mobile-h2;
+
+    @include media-tablet {
+        @include font-desktop-h2;
     }
 }
 
