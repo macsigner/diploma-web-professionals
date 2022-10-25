@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/GoogleMap.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,80 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/GoogleMap.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* globals google */
 
+/**
+ * Init google map.
+ */
+class GoogleMap {
+    /**
+     * Construct.
+     * @param el
+     * @param options
+     */
+    constructor(el) {
+        this.el = el;
 
-    <h3> </h3>
+        if (window.google) {
+            this._init();
+        } else {
+            window.addEventListener('mapsReady', () => this._init());
+        }
+    }
 
+    /**
+     * Init map.
+     * @private
+     */
+    _init() {
+        this.geocoder = new google.maps.Geocoder();
 
+        this.map = this._createMap();
 
+        this.showAddress('Marktplatz Bohl, 9000 St.Gallen');
+    }
 
+    /**
+     * Show specified address in map.
+     * @param address
+     */
+    showAddress(address) {
+        this.geocoder.geocode({
+            address,
+        }, (result, status) => {
+            console.log(result, status);
+        });
+    }
 
+    /**
+     * Create map
+     * @returns {*}
+     * @private
+     */
+    _createMap() {
+        return new google.maps.Map(this.el, {
+            center: {
+                lat: 47.4236282,
+                lng: 9.2929987,
+            },
+            zoom: 12,
+        });
+    }
+}
 
-
-
-
-
-    
-
-
-
-
-
+export default GoogleMap;
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Slider.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Slider.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Template from './Template.js';
+
+/**
+ * Slider.
+ */
+class Slider {
+    /**
+     * Construct.
+     * @param el
+     * @param options
+     */
+    constructor(el, options = {
+        addArrows: true,
+        prevArrowContent: '&lt;span className="invisible">vorheriger Slide&lt;/span>',
+        nextArrowContent: '&lt;span class="invisible">nächster Slide&lt;/span>',
+        addPreview: true,
+    }) {
+        this.el = el;
+        this.el.classList.add('slider__inner');
+        this.slides = Array.from(el.children);
+        this._settings = options;
+        this._wrapper = document.createElement('div');
+        this._wrapper.classList.add('slider');
+        this.el.parentNode.insertBefore(this._wrapper, this.el);
+        this._wrapper.appendChild(this.el);
+        this.slides.forEach((el) => {
+            el.classList.add('slider__item');
+        });
+
+        if (this._settings.addArrows) {
+            this._appendArrows();
+        }
+
+        if (this._settings.addPreview) {
+            this._appendPreviews();
+        }
+
+        this.goToSlide(0);
+    }
+
+    /**
+     * Go to specified slide.
+     * @param index
+     */
+    goToSlide(index) {
+        this.index = index;
+
+        this.slides.forEach((slide, i) => {
+            // eslint-disable-next-line no-unused-expressions
+            i === index ? slide.classList.add('current') : slide.classList.remove('current');
+        });
+
+        this.el.dispatchEvent(new Event('afterGoTo'));
+    }
+
+    /**
+     * Go to previous slide.
+     */
+    prev() {
+        this.goToSlide(Math.max(0, this.index - 1));
+    }
+
+    /**
+     * Go to next slide.
+     */
+    next() {
+        this.goToSlide(Math.min(this.slides.length - 1, this.index + 1));
+    }
+
+    /**
+     * Append arrows to current slider.
+     * @private
+     */
+    _appendArrows() {
+        this.prevArrow = document.createElement('button');
+        this.prevArrow.innerHTML = this._settings.prevArrowContent;
+        this.prevArrow.addEventListener('click', () => this.prev());
+
+        this.nextArrow = document.createElement('button');
+        this.nextArrow.innerHTML = this._settings.nextArrowContent;
+        this.nextArrow.addEventListener('click', () => this.next());
+
+        this._wrapper.appendChild(this.prevArrow);
+        this._wrapper.appendChild(this.nextArrow);
+
+        this.el.addEventListener('afterGoTo', () => this._updateArrows());
+    }
+
+    /**
+     * Update arrows visibility.
+     * @private
+     */
+    _updateArrows() {
+        switch (this.index) {
+            case this.slides.length - 1:
+                this.prevArrow.removeAttribute('disabled');
+                this.nextArrow.disabled = true;
+                break;
+            case 0:
+                this.prevArrow.disabled = true;
+                this.nextArrow.removeAttribute('disabled');
+                break;
+            default:
+                this.prevArrow.removeAttribute('disabled');
+                this.nextArrow.removeAttribute('disabled');
+        }
+    }
+
+    /**
+     * Append and create preview images to current slider.
+     * @private
+     */
+    _appendPreviews() {
+        let previewContainer = document.createElement('ul');
+        previewContainer.classList.add('slider__preview');
+
+        this._wrapper.appendChild(previewContainer);
+
+        let htmlTemplate = document.createElement('template');
+        htmlTemplate.dataset.templateName = 'preview';
+        htmlTemplate.innerHTML = '&lt;li class="slider__preview-item" data-index>&lt;img data-template="image">&lt;/li>';
+        let template = new Template(htmlTemplate);
+
+        this.slides.forEach((el, i) => {
+            let img = el.querySelector('img');
+
+            let preview = template.create({
+                image: {
+                    title: img.alt ? img.alt : `Preview ${i}`,
+                    'image_path': img.src,
+                },
+            });
+
+            previewContainer.appendChild(preview);
+        });
+
+        this.previewImages = Array.from(previewContainer.children);
+        this.previewImages.forEach((el, i) => el.dataset.index = i);
+
+        this.el.addEventListener('afterGoTo', (e) => this._updatePreviews(e));
+    }
+
+    /**
+     * Update preview image classes.
+     * @private
+     */
+    _updatePreviews() {
+        this.previewImages.forEach(el => {
+            if (Number(el.dataset.index) === this.index) {
+                el.classList.add('current');
+            } else {
+                el.classList.remove('current');
+            }
+        });
+    }
+}
+
+export default Slider;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Global</h3><ul><li><a href="global.html#cleanEmptyStringsFromObject">cleanEmptyStringsFromObject</a></li><li><a href="global.html#debounce">debounce</a></li><li><a href="global.html#delegate">delegate</a></li><li><a href="global.html#sortBy">sortBy</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Tue Oct 25 2022 08:05:38 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

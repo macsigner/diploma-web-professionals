@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/MainNavigation.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,53 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/MainNavigation.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import * as Tools from '../tools.js';
 
+/**
+ * Handle the main navigation and triggers.
+ */
+class MainNavigation {
+    /**
+     * Construct.
+     */
+    constructor(navigationArea, options = {
+        toggleSelector: '[data-main-navigation-toggle]',
+    }) {
+        this.el = navigationArea;
+        this._settings = options;
 
-    <h3> </h3>
+        document.addEventListener(
+            'click',
+            Tools.delegate(this._settings.toggleSelector, this._toggleListener.bind(this))
+        );
+    }
 
+    /**
+     * Toggle states and css classes for main navigation visibility.
+     * @param e
+     * @private
+     */
+    _toggleListener() {
+        document.body.classList.toggle('main-navigation-area-is-open');
+        this.el.classList.toggle('is-open');
 
+        document.querySelectorAll(this._settings.toggleSelector).forEach(el => el.classList.toggle('is-active'));
+    }
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default MainNavigation;
+</code></pre>
+        </article>
+    </section>
 
 
 
