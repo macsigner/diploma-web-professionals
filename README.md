@@ -245,6 +245,13 @@ apply anarchism in the UK
 
 ## Technische Dokumentation bei Eigenleistungen
 
+### Javascriptdokumentation
+
+Die wichtigsten Module in der Beschreibung. Die JSDoc zu finden unter:
+
+[Frontend](https://dipl22mac-jsdoc-frontend.netlify.app/) \
+[Backend](https://dipl22mac-jsdoc-backend.netlify.app/)
+
 [//]: # (todo: write whatever i did myself and maybe update comment)
 
 ## Zusammenfassung und Ausblick, persönliche Anmerkungen

@@ -200,10 +200,9 @@ class CustomSelect {
     }
 
     /**
-     * Create single item obtions object.
-     *
+     * Create single item options object.
      * @param el
-     * @returns {{attributes: *[], inner: *}}
+     * @returns {{attributes: {}, inner: (String|Array)}}
      * @private
      */
     _createOptionsObjectFromSingleElement(el) {

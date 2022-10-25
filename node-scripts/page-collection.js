@@ -72,7 +72,7 @@ class PageCollection {
 
     /**
      * Get page objects as flat array.
-     * @returns {{file: ParsedPath, url: *, parents: string[]}[]}
+     * @returns {}
      */
     getPageObjects() {
         if (this.pageObjects) {
