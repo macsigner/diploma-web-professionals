@@ -8,6 +8,8 @@ body {
     @include media-tablet {
         @include font-desktop-main;
     }
+
+    background-color: var(--color-accent);
 }
 
 .base-width {

@@ -270,6 +270,8 @@ zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
   Angaben ohne Einheiten wegen
   der [Vererbung](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values)
   .
+- __Abstände zwischen den *label*- und *input*-Feldern:__ Da ich die Felder mit den Bezeichnungen optisch nur sehr ungut
+  zuteilen konnte, habe ich die Abstände etwas angepasst um die Trennung der Blöcke besser ersichtlich zu machen.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 

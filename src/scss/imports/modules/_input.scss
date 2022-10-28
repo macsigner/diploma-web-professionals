@@ -1,0 +1,47 @@
+/**
+ * input bem module
+ */
+
+.input {
+    position: relative;
+
+    & + & {
+        margin-top: 1.8rem;
+    }
+
+    &__field,
+    &__label {
+        display: block;
+    }
+
+    &__field {
+        @include font-desktop-form-field;
+
+        display: block;
+        width: 100%;
+        padding: 1.1rem 1.6rem .9rem;
+        border: none;
+        background-color: var(--color-input-bg);
+    }
+
+    &__field::placeholder {
+        color: inherit;
+    }
+
+    &__field:focus::placeholder {
+        color: rgba($color-black, .4);
+    }
+
+    &__field:focus {
+        background-color: var(--color-input-focus);
+        outline: 1px red;
+    }
+
+    &__label {
+        @include font-desktop-form-label;
+
+        vertical-align: middle;
+        margin-bottom: 1.2rem;
+        cursor: pointer;
+    }
+}
