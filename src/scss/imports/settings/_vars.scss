@@ -2,6 +2,7 @@
  * Settings variables.
  */
 @use 'sass:math';
+@use 'sass:color';
 
 /* Font sizes */
 // Mobile
@@ -36,6 +37,7 @@ $color-primary: $color-green;
 $color-primary-transparent: rgba($color-primary, .85);
 $color-accent: $color-green-light;
 $color-action-bg: $color-grey;
+$color-action-bg-active: color.scale($color-grey, $lightness: -30%);
 
 /* settings */
 $gutter-width: 2rem;

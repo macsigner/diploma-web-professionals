@@ -316,6 +316,10 @@
     font-weight: 700;
 }
 
+@mixin font-mobile-button-submit {
+    @include font-block-05-mobile;
+}
+
 @mixin font-mobile-table {
     @include font-block-03-mobile;
 }
