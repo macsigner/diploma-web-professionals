@@ -1,20 +1,36 @@
 import * as Tools from '../tools.js';
+import Base from './Base.js';
 
 /**
  * Customizable select menu.
  */
-class CustomSelect {
+class CustomSelect extends Base {
     /**
      * Construct.
      * @param el
      */
-    constructor(el) {
+    constructor(el, options = {}) {
+        super();
+
+        this._defaultSettings = {
+            namespace: 'custom-select',
+        };
+
+        this._settings = Tools.mapOptions(this._defaultSettings, options);
+
         this.el = el;
+        this.el.classList.add(this.getNamespace('-original'));
         this.el.classList.add('custom-select-original');
 
         this.customSelect = document.createElement('dl');
+        this.customSelect.classList.add(this.getNamespace());
+
         this.current = document.createElement('dt');
+        this.current.classList.add(this.getNamespace('__label'));
+
         this.customOptions = document.createElement('dd');
+        this.customOptions.classList.add(this.getNamespace('__options'));
+
         this.customSelect.appendChild(this.current);
         this.customSelect.appendChild(this.customOptions);
 
@@ -27,7 +43,7 @@ class CustomSelect {
             this.el.parentNode.appendChild(this.customSelect);
         }
 
-        // Focus on custom selection if focus is set on main select otherwise.
+        // Focus on custom selection if focus is set on main select.
         this.el.addEventListener('focus', () => {
             this.customSelect.focus();
         });
@@ -72,6 +88,7 @@ class CustomSelect {
      * @private
      */
     _getSelectOptionMarkupFromObject(options) {
+        console.log(options);
         let html = options.reduce((prev, current) => {
             let optionHtml;
             let attributes = current.attributes ? this._getAttributeString(current.attributes) : '';
@@ -80,8 +97,8 @@ class CustomSelect {
                 optionHtml = `<option ${attributes}>${current.inner}</option>`;
             } else {
                 optionHtml = `
-                            <optgroup ${attributes}>
-                                ${this._getSelectOptionMarkupFromObject(current.inner)}
+                            <optgroup ${attributes} label="${current.inner.label}">
+                                ${this._getSelectOptionMarkupFromObject(current.inner.items)}
                             </optgroup>`;
             }
 
@@ -103,15 +120,22 @@ class CustomSelect {
             let attributes = current.attributes ? this._getAttributeString(current.attributes, 'data-') : '';
 
             if (typeof current.inner === 'string') {
-                menuHTML = `<li ${attributes}>${current.inner}</li>`;
+                menuHTML = `<li ${attributes} class="${this.getNamespace('__option')}" tabindex="1">
+                                ${current.inner}
+                            </li>`;
             } else {
-                menuHTML = this._getSelectOptionMarkupFromObject(current.inner);
+                console.log(current.inner);
+
+                menuHTML = `<li class="${this.getNamespace('__group')}">
+                                <span>${current.inner.label}</span>
+                                ${this._getMenuOptionsMarkupFromObject(current.inner.items)}
+                            </li>`;
             }
 
             return prev + menuHTML;
         }, '');
 
-        return `<ul>${html}</ul>`;
+        return `<ul class="${this.getNamespace('__options-inner')}">${html}</ul>`;
     }
 
     /**
@@ -206,7 +230,16 @@ class CustomSelect {
      * @private
      */
     _createOptionsObjectFromSingleElement(el) {
-        let inner = el.children.length ? this._createOptionsObjectFromElements(Array.from(el.children)) : el.innerHTML;
+        let inner;
+
+        if (el.children.length) {
+            inner = {
+                label: el.label,
+                items: this._createOptionsObjectFromElements(Array.from(el.children)),
+            };
+        } else {
+            inner = el.innerHTML;
+        }
 
         let obj = {
             inner,

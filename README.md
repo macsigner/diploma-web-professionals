@@ -260,7 +260,8 @@ Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
 Javascript – nicht auf Bibliotheken und Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
 Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin ich für den grössten Teil der
 Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
-zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
+zustande gekommen ist, deklariere ich es hiermit als _halb halb_. Gleiches gilt für die Funktion _mapOptions_ aus _
+tools.js_.
 
 ### Abweichungen von der Vorlage
 
