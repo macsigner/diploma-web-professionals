@@ -60,6 +60,8 @@ class CustomSelect extends Base {
         this.customSelect.addEventListener('change', () => {
             this.el.value = this.getCurrentValue();
 
+            this.current.innerHTML = this._getCurrentOptionElement().innerHTML;
+
             // Dispatch event for other listeners on select item itself.
             this.el.dispatchEvent(new Event('change', {
                 bubbles: true,
@@ -67,6 +69,8 @@ class CustomSelect extends Base {
         });
 
         this.render();
+
+        this.select();
     }
 
     /**
@@ -82,13 +86,21 @@ class CustomSelect extends Base {
     }
 
     /**
+     * Get the current selected option node.
+     * @returns {*}
+     * @private
+     */
+    _getCurrentOptionElement() {
+        return this._value ? this.el.querySelector(`[value="${this._value}"]`) : this.el.querySelector('[selected]');
+    }
+
+    /**
      * Get selection option markup fron object.
      * @param options
      * @returns {string}
      * @private
      */
     _getSelectOptionMarkupFromObject(options) {
-        console.log(options);
         let html = options.reduce((prev, current) => {
             let optionHtml;
             let attributes = current.attributes ? this._getAttributeString(current.attributes) : '';
@@ -124,8 +136,6 @@ class CustomSelect extends Base {
                                 ${current.inner}
                             </li>`;
             } else {
-                console.log(current.inner);
-
                 menuHTML = `<li class="${this.getNamespace('__group')}">
                                 <span>${current.inner.label}</span>
                                 ${this._getMenuOptionsMarkupFromObject(current.inner.items)}
@@ -170,8 +180,6 @@ class CustomSelect extends Base {
      */
     select(value) {
         this._value = value;
-
-        this.customOptions.querySelector(`[data-value="${value}]"`);
 
         this.customSelect.dispatchEvent(new CustomEvent('change',
             {
