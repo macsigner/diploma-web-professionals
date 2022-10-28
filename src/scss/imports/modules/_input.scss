@@ -44,4 +44,8 @@
         margin-bottom: 1.2rem;
         cursor: pointer;
     }
+
+    &__label--filter {
+        @extend .filter-label;
+    }
 }

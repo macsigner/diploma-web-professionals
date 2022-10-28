@@ -1,0 +1,20 @@
+/**
+ * filter-label bem module
+ */
+
+.filter-label {
+    @include font-mobile-label-filter;
+
+    display: block;
+    margin-top: 2.8rem;
+    margin-bottom: 1.8rem;
+
+    @include media-tablet {
+        @include font-desktop-form-label-filter;
+    }
+
+    &--reset-margin {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
