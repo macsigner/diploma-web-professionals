@@ -1,8 +1,9 @@
 /**
- * Delegate event to specified selector only.
- * @param {string} selector
- * @param {*} fn
- * @returns {(function(*): void)|*}
+ * Creates a function that delegates given event to specified selector only.
+ *
+ * @param {string} selector CSS query selector
+ * @param {*} fn Callback function run if selector matches
+ * @returns {function(): void} Function to be run on event
  */
 const delegate = (selector, fn) => {
     return (e) => {
@@ -13,10 +14,10 @@ const delegate = (selector, fn) => {
 };
 
 /**
- * Debounce function.
- * @param {string | Function} fn
- * @param {number} delay
- * @returns {(function(): void)|*}
+ * Create a debounce function.
+ * @param {function} fn Function to be run after debounce
+ * @param {number} delay Delay in milliseconds
+ * @returns {function(): void} Function to be called after interaction
  */
 const debounce = (fn, delay = 300) => {
     let timout;
@@ -30,8 +31,8 @@ const debounce = (fn, delay = 300) => {
 
 /**
  * Sort object by specified key.
- * @param key
- * @returns {(function(*, *): (number))|*}
+ * @param {string|number} key Key of object or array given
+ * @returns {function(*, *): number} Function to be called on each comparison
  */
 const sortBy = (key) => {
     return (a, b) => {
