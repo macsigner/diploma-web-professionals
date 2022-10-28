@@ -1,24 +1,28 @@
 <!doctype html>
 <html lang="de">
 <head>
-    {% include '@components/head.twig' %}
+
+    {% block head %}
+        {% include '@components/head.twig' %}
+    {% endblock %}
+
 </head>
 <body id="top">
 
-{% block mainNav %}
-    {% include '@components/nav-bar.twig' %}
-{% endblock %}
+{% block body %}
+    {% block mainNav %}
+        {% include '@components/nav-bar.twig' %}
+    {% endblock %}
 
-<main>
     {% block main %}
     {% endblock %}
 
     {% block mainEnd %}
     {% endblock %}
-</main>
 
-{% block mainFooter %}
-    {% include '@components/main-footer.twig' %}
+    {% block mainFooter %}
+        {% include '@components/main-footer.twig' %}
+    {% endblock %}
 {% endblock %}
 
 </body>
