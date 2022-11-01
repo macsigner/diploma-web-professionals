@@ -41,6 +41,7 @@ $color-action-bg-active: color.scale($color-grey, $lightness: -30%);
 
 /* settings */
 $gutter-width: 2rem;
+$transition-in: .1s;
 
 /* breakpoints */
 $breakpoint-tablet-up: math.div(60em, 1.6);

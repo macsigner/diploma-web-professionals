@@ -59,3 +59,20 @@ button,
     cursor: pointer;
     appearance: none;
 }
+
+fieldset {
+    padding: 0;
+    border: none;
+}
+
+legend {
+    display: block;
+
+    // Todo: Is there another way to reset legends?
+    // Reset position of legend
+    float: left;
+}
+
+legend + * {
+    clear: both;
+}

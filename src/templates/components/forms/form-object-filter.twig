@@ -17,14 +17,17 @@
         <option value="dateAsc">Datum aufsteigend</option>
         <option value="dateDesc">Datum aufsteigend</option>
     </select>
-    <fieldset>
+    <fieldset class="switch">
+        {# Todo: Semantics call for a radio button but it would be much easier with a checkbox #}
         <legend class="invisible">Filter Kaufen/Mieten</legend>
-        <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" checked data-filter-type="filter">
-        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu verkaufen" data-filter-type="filter">
-        <span>
-            <label for="estateTypeRent">Mieten</label>
-            <span></span>
-            <label for="estateTypeBuy">Kaufen</label>
+        <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" class="switch__input-first" checked data-filter-type="filter">
+        <label for="estateTypeRent" class="switch__label switch__label--first">Mieten</label>
+        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu verkaufen" class="switch__input-last" data-filter-type="filter">
+        <label for="estateTypeBuy" class="switch__label switch__label--last">Kaufen</label>
+        <span class="switch__box">
+            {# A little hacky but just for fun. Switch between radio buttons via CSS #}
+            <label class="switch__box-label switch__box-label--first" for="estateTypeRent"></label>
+            <label class="switch__box-label switch__box-label--last" for="estateTypeBuy"></label>
         </span>
     </fieldset>
     <fieldset>
