@@ -75,7 +75,7 @@
 
         <a href="#modal-content" data-modal>Open modal with content below</a>
 
-        <div id="modal-content" style="outline: 1px solid red">
+        <div id="modal-content">
             <h2>Lorem ipsum.</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, officia? Adipisci autem cupiditate
                 dicta dolorum, enim et exercitationem iste minima natus, praesentium quam quas reiciendis, rerum vel
@@ -88,8 +88,13 @@
                 Amet, nam!</p>
         </div>
 
-        <input type="text" id="modal-input-generated"><br>
-        <button id="modal-button-generated">Open modal with generated content</button>
+        <hr>
+
+        <div class="input">
+            <label for="modal-input-generated" class="input__label">Feld ausfüllen und Modal mit generiertem Inhalt öffnen</label>
+            <input type="text" id="modal-input-generated" class="input__field"><br>
+        </div>
+        <button id="modal-button-generated" class="button">Open modal with generated content</button>
     </section>
     <section class="base-width" id="section-map">
         <h1>Map</h1>
@@ -101,7 +106,8 @@
     <section class="base-width" id="section-select">
         <h1>Custom select</h1>
 
-        <label for="custom-select">Was</label>
+        <div class="input">
+        <label for="custom-select" class="input__label">Was</label>
         <select name="select" id="custom-select" data-custom-select>
             <option selected>Auswählen</option>
             <option value="1">Preis aufsteigend</option>
@@ -121,6 +127,7 @@
                 <option value="sub8">Sub 8</option>
             </optgroup>
         </select>
+        </div>
     </section>
     <section class="base-width" id="section-slider">
         <h1>Slider</h1>

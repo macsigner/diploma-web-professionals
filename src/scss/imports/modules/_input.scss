@@ -38,7 +38,11 @@
     }
 
     &__label {
-        @include font-desktop-form-label;
+        @include font-mobile-label;
+
+        @include media-tablet {
+            @include font-desktop-form-label;
+        }
 
         vertical-align: middle;
         margin-bottom: 1.2rem;

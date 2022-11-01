@@ -57,6 +57,13 @@ h3,
     }
 }
 
+hr {
+    height: 0;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--color-primary);
+}
+
 .base-width {
     --base-width-content-margin: var(--content-margin);
     --base-width-max-content-width: var(--max-content-width);
