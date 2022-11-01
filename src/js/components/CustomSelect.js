@@ -25,17 +25,30 @@ class CustomSelect extends Base {
         this.customSelect = document.createElement('dl');
         this.customSelect.classList.add(this.getNamespace());
 
-        this.current = document.createElement('dt');
-        this.current.classList.add(this.getNamespace('__label'));
+        this.label = document.createElement('dt');
+        this.label.classList.add(this.getNamespace('__label'));
+
+        this.labelInner = document.createElement('span');
+        this.labelInner.classList.add(this.getNamespace('__label-inner'));
+        this.label.appendChild(this.labelInner);
+
+        let icon = document.createElement('span');
+        icon.classList.add(this.getNamespace('__label-icon'));
+
+        this.label.appendChild(icon);
 
         this.customOptions = document.createElement('dd');
         this.customOptions.classList.add(this.getNamespace('__options'));
 
-        this.customSelect.appendChild(this.current);
+        this.customSelect.appendChild(this.label);
         this.customSelect.appendChild(this.customOptions);
 
         this.selectOptions = this._createOptionsObjectFromElements(Array.from(el.children));
         this.customSelect.setAttribute('tabindex', this.el.tabIndex);
+
+        // Reset aria attributes afterwards.
+        this.el.ariaHidden = true;
+        this.el.tabIndex = '-1';
 
         if (this.el.nextElementSibling) {
             this.el.parentNode.insertBefore(this.customSelect, this.el.nextElementSibling);
@@ -48,7 +61,17 @@ class CustomSelect extends Base {
             this.customSelect.focus();
         });
 
-        this.customSelect.addEventListener('focus', () => this.open());
+        this.customSelect.addEventListener('click', () => {
+            this.open();
+            this.customSelect.querySelector('[role="listbox"]').focus();
+        });
+        this.customSelect.addEventListener('focusout', Tools.delegate(this.getNamespaceClass(), (e) => {
+            if (e.target.closest(this.getNamespaceClass()) === this.customSelect) {
+                return;
+            }
+
+            this.close();
+        }));
 
         this.customSelect.addEventListener('click', Tools.delegate(
             '[data-value]',
@@ -60,13 +83,25 @@ class CustomSelect extends Base {
         this.customSelect.addEventListener('change', () => {
             this.el.value = this.getCurrentValue();
 
-            this.current.innerHTML = this._getCurrentOptionElement().innerHTML;
+            this.labelInner.innerHTML = this._getCurrentOptionElement().innerHTML;
 
             // Dispatch event for other listeners on select item itself.
             this.el.dispatchEvent(new Event('change', {
                 bubbles: true,
             }));
         });
+
+        // eslint-disable-next-line
+        // Todo: is this necessary? Is there another way to remove the event on close?
+        this.toggle = this._keypressListener = this._keypressListener.bind(this);
+
+        // eslint-disable-next-line
+        // Todo: is this necessary? Is there another way to remove the event on close?
+        this.toggle = this.toggle.bind(this);
+
+        // eslint-disable-next-line
+        // Todo: is this necessary? Is there another way to remove the event on close?
+        this._clickOutsideListener = this._clickOutsideListener.bind(this);
 
         this.render();
 
@@ -83,6 +118,10 @@ class CustomSelect extends Base {
         this.el.innerHTML = html;
 
         this.customOptions.innerHTML = menuHtml;
+
+        let selectedOption = this._getCurrentOptionElement();
+
+        this.select(selectedOption.value);
     }
 
     /**
@@ -91,7 +130,10 @@ class CustomSelect extends Base {
      * @private
      */
     _getCurrentOptionElement() {
-        return this._value ? this.el.querySelector(`[value="${this._value}"]`) : this.el.querySelector('[selected]');
+        // Just get the node, so the fallback in the last line will trigger if no element matches the selector.
+        let selected = this.el.querySelector(`[value="${this._value}"]`);
+
+        return selected ? selected : this.el.querySelector('[selected],option');
     }
 
     /**
@@ -132,12 +174,15 @@ class CustomSelect extends Base {
             let attributes = current.attributes ? this._getAttributeString(current.attributes, 'data-') : '';
 
             if (typeof current.inner === 'string') {
-                menuHTML = `<li ${attributes} class="${this.getNamespace('__option')}" tabindex="1">
+                menuHTML = `<li ${attributes}
+                                class="${this.getNamespace('__option')}"
+                                role="option"
+                                aria-selected="false">
                                 ${current.inner}
                             </li>`;
             } else {
                 menuHTML = `<li class="${this.getNamespace('__group')}">
-                                <span>${current.inner.label}</span>
+                                <span class="${this.getNamespace('__group-label')}">${current.inner.label}</span>
                                 ${this._getMenuOptionsMarkupFromObject(current.inner.items)}
                             </li>`;
             }
@@ -145,7 +190,9 @@ class CustomSelect extends Base {
             return prev + menuHTML;
         }, '');
 
-        return `<ul class="${this.getNamespace('__options-inner')}">${html}</ul>`;
+        return `<ul role="listbox"
+                    tabindex="${this.customSelect.tabIndex}"
+                    class="${this.getNamespace('__options-inner')}">${html}</ul>`;
     }
 
     /**
@@ -165,6 +212,9 @@ class CustomSelect extends Base {
      */
     open() {
         this.customSelect.classList.add('open');
+
+        document.addEventListener('click', this._clickOutsideListener);
+        window.addEventListener('keydown', this._keypressListener);
     }
 
     /**
@@ -172,6 +222,106 @@ class CustomSelect extends Base {
      */
     close() {
         this.customSelect.classList.remove('open');
+
+        document.removeEventListener('click', this._clickOutsideListener);
+        window.removeEventListener('keydown', this._keypressListener);
+    }
+
+    /**
+     * Toggle the open state of the options menu.
+     */
+    toggle() {
+        if (this.customSelect.matches('.open')) {
+            this.close();
+        } else {
+            this.close();
+        }
+    }
+
+    /**
+     * Handle click events out of current instance.
+     * @param e
+     * @private
+     */
+    _clickOutsideListener(e) {
+        // eslint-disable-next-line
+        // Todo: is the performance better this way?
+        // Handle this event without delegate. There is the posiiblity
+        if (e.target.closest(this.getNamespaceClass()) !== this.customSelect) {
+            this.close();
+        }
+    }
+
+    /**
+     * Handle keypress on opened select.
+     * @param e
+     * @private
+     */
+    _keypressListener(e) {
+        // Use keycode instead of key because of space key.
+        switch (e.keyCode) {
+            case 13: // Enter
+            case 32: // Space
+                e.stopPropagation();
+                e.preventDefault();
+                this.select(this.customSelect.querySelector('[aria-selected="true"]').dataset.value);
+                break;
+            case 38: // Arrow up
+                e.preventDefault();
+                this._focusPrevious();
+                break;
+            case 40: // Arrow down
+                e.preventDefault();
+                this._focusNext();
+                break;
+        }
+    }
+
+    /**
+     * Focus on next item.
+     * @private
+     */
+    _focusNext() {
+        let selectables = Array.from(this.customSelect.querySelectorAll('[aria-selected]'));
+        let indexOf = selectables.findIndex(el => el.ariaSelected === 'true');
+        let next = Math.min(indexOf + 1, selectables.length - 1);
+
+        selectables[next].focus();
+
+        this._applyAriaSelected(selectables[next].dataset.value);
+    }
+
+    /**
+     * Focus on next item.
+     * @private
+     */
+    _focusPrevious() {
+        let selectables = Array.from(this.customSelect.querySelectorAll('[aria-selected]'));
+        let indexOf = selectables.findIndex(el => el.ariaSelected === 'true');
+        let previous = Math.max(indexOf - 1, 0);
+
+        selectables[previous].focus();
+
+        this._applyAriaSelected(selectables[previous].dataset.value);
+    }
+
+    /**
+     * Apply aria selected on items.
+     * @param value
+     * @private
+     */
+    _applyAriaSelected(value = this._value) {
+        let selectedCustomOption = this.customSelect.querySelector('[aria-selected="true"]');
+
+        if (selectedCustomOption) {
+            selectedCustomOption.ariaSelected = 'false';
+        }
+
+        let current = this.customSelect.querySelector(`[data-value="${value}"]`);
+
+        // Set selected on first option if no value matches.
+        current = current ? current : this.customSelect.querySelector(this.getNamespaceClass('__option'));
+        current.ariaSelected = 'true';
     }
 
     /**
@@ -180,6 +330,8 @@ class CustomSelect extends Base {
      */
     select(value) {
         this._value = value;
+
+        this._applyAriaSelected(value);
 
         this.customSelect.dispatchEvent(new CustomEvent('change',
             {
