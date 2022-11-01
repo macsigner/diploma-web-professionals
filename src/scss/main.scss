@@ -18,6 +18,7 @@
 @import 'imports/modules/nav_bar';
 @import 'imports/modules/navigation_area';
 @import 'imports/modules/aspect';
+@import 'imports/modules/block_reset';
 
 // Atom modules
 @import 'imports/modules/button';
@@ -25,7 +26,9 @@
 @import 'imports/modules/filter_label';
 @import 'imports/modules/custom_select_original';
 @import 'imports/modules/custom_select';
+@import 'imports/modules/icons/icon_base';
 @import 'imports/modules/icons/icon_chevron';
+@import 'imports/modules/icons/icon_cross';
 
 // Default modules
 @import 'imports/modules/slider';
