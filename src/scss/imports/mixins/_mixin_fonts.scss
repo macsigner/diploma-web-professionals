@@ -67,56 +67,56 @@
 }
 
 @mixin font-block-01-desktop {
-    font-size: 16px;
+    font-size: $font-size-90-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(30, 16);
 }
 
 @mixin font-block-02-desktop {
-    font-size: 18px;
+    font-size: $font-size-100-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(30, 18);
 }
 
 @mixin font-block-03-desktop {
-    font-size: 20px;
+    font-size: $font-size-110-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(30, 20);
 }
 
 @mixin font-block-04-desktop {
-    font-size: 22px;
+    font-size: $font-size-120-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(27, 22);
 }
 
 @mixin font-block-05-desktop {
-    font-size: 28px;
+    font-size: $font-size-130-desktop;
     font-style: normal;
     font-weight: 700;
     line-height: math.div(30, 28);
 }
 
 @mixin font-block-06-desktop {
-    font-size: 33px;
+    font-size: $font-size-140-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(42, 33);
 }
 
 @mixin font-block-07-desktop {
-    font-size: 40px;
+    font-size: $font-size-150-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: 1.2;
 }
 
 @mixin font-block-08-desktop {
-    font-size: 56px;
+    font-size: $font-size-160-desktop;
     font-style: normal;
     font-weight: 400;
     line-height: math.div(80, 56);
