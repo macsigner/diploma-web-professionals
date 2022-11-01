@@ -4,9 +4,18 @@
 
 .slider {
     overflow: hidden;
+    margin-bottom: 4rem;
+
+    @include media-tablet {
+        margin-bottom: 5rem;
+    }
+
+    &__slides {
+        display: flex;
+    }
 
     &__inner {
-        display: flex;
+        position: relative;
     }
 
     &__item {
@@ -26,7 +35,12 @@
     }
 
     &__preview {
-        display: flex;
+        display: none;
+        margin-top: 1.2rem;
+
+        @include media-tablet {
+            display: flex;
+        }
     }
 
     &__preview-item {
@@ -35,8 +49,16 @@
         flex: 0 1 20rem;
     }
 
+    &__preview-item.current {
+        display: none;
+    }
+
+    &__preview-item.current:first-child + &__preview-item {
+        margin-left: 0;
+    }
+
     &__preview-item + &__preview-item {
-        margin-left: $gutter-width;
+        margin-left: 1.2rem;
     }
 
     &__preview-item img {
@@ -45,5 +67,43 @@
         height: 100%;
         max-width: none;
         cursor: pointer;
+    }
+
+    &__arrow-icon {
+        @extend .icon-chevron;
+
+        --color: #{$color-white};
+    }
+
+    &__prev-icon {
+        transform: scale(-1);
+    }
+
+    &__arrow {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 10;
+        width: 2.8rem;
+        background-color: rgba($color-white, .4);
+    }
+
+    &__arrow[disabled] {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &__arrow:hover {
+        @include media-desktop-small {
+            background-color: rgba($color-white, .8);
+        }
+    }
+
+    &__prev {
+        left: 0;
+    }
+
+    &__next {
+        right: 0;
     }
 }

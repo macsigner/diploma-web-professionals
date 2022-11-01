@@ -15,10 +15,11 @@
 @import 'imports/settings/custom_properties_main';
 @import 'imports/settings/settings_font_fasce';
 @import 'imports/base';
-@import 'imports/modules/nav_bar';
-@import 'imports/modules/navigation_area';
 @import 'imports/modules/aspect';
 @import 'imports/modules/block_reset';
+@import 'imports/modules/helper';
+@import 'imports/modules/nav_bar';
+@import 'imports/modules/navigation_area';
 
 // Atom modules
 @import 'imports/modules/button';
@@ -32,6 +33,7 @@
 
 // Default modules
 @import 'imports/modules/slider';
+@import 'imports/modules/slide_image';
 @import 'imports/modules/map';
 
 // Late modules

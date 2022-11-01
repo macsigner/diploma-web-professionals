@@ -1,0 +1,14 @@
+/**
+ * slide-image bem module
+ */
+
+.slide-image {
+    @extend .aspect;
+
+    img {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        object-fit: cover;
+    }
+}
