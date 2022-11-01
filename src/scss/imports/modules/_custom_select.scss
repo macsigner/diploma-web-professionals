@@ -1,0 +1,72 @@
+/**
+ * custom-select bem module
+ */
+@use 'sass:color';
+
+:root {
+    --custom-select-selected-bg: #{color.scale($color-action-bg, $lightness: 80%)};
+}
+
+.custom-select {
+    position: relative;
+
+    &.open {
+        z-index: 20;
+    }
+
+    &__label {
+        @extend .input__field;
+
+        display: flex;
+        align-items: center;
+    }
+
+    &__label-icon {
+        @extend .icon-chevron;
+
+        margin-left: auto;
+        transform: rotate(90deg);
+    }
+
+    &.open &__label-icon {
+        transform: rotate(270deg);
+    }
+
+    &__options {
+        display: none;
+        overflow: auto;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background-color: var(--color-input-bg);
+    }
+
+    &.open &__options {
+        display: block;
+    }
+
+    &__option,
+    &__group-label {
+        @extend .input__field;
+    }
+
+    &__option {
+        cursor: pointer;
+    }
+
+    &__option[aria-selected='true'],
+    &__option:focus {
+        background-color: var(--custom-select-selected-bg);
+    }
+
+    &__option:hover,
+    &__option:focus {
+        color: var(--color-action);
+        background-color: var(--color-action-bg);
+    }
+
+    &__group &__options-inner {
+        margin-left: 2rem;
+    }
+}

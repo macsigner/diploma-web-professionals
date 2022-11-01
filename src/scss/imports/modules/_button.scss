@@ -17,6 +17,7 @@
     background-color: var(--color-primary);
 
     &:hover {
+        color: var(--color-action);
         background-color: var(--color-action-bg);
     }
 

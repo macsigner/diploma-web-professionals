@@ -1,0 +1,26 @@
+/**
+ * icon-chevron bem module
+ */
+
+.icon-chevron {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 1em;
+    height: 1em;
+    font-size: 1em;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 75%;
+        height: 75%;
+        margin: auto;
+        border-width: 2px 2px 0 0;
+        border-style: solid;
+        border-color: var(--color);
+        transform: translateX(-25%) rotate(45deg);
+    }
+}
