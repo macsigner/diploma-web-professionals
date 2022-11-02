@@ -1,0 +1,21 @@
+/**
+ * icon-list bem module
+ */
+
+.icon-list {
+    $c: var(--color-primary);
+    $t: rgba($color-white, .001);
+    $g: linear-gradient(to right, #{$c} 0, #{$c} 22%, #{$t} 22.01%, #{$t} 27.99%, #{$c} 28%, #{$c} 100%);
+    @extend .icon-base;
+
+    width: 1.1em;
+    background-image: $g, $g, $g, $g, $g;
+    background-repeat: no-repeat;
+    background-position: 50% 0, 50% 25%, 50% 50%, 50% 75%, 50% 100%;
+    background-size: 100% .1em;
+    transition: background $transition-in;
+
+    &:hover {
+        background-size: 100% .2em;
+    }
+}
