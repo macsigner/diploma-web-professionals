@@ -1,0 +1,20 @@
+/**
+ * icon-tiles bem module
+ */
+
+.icon-tiles {
+    $c: var(--color-primary);
+    $g: linear-gradient(to right, #{$c} 0, #{$c} .25em);
+
+    @extend .icon-base;
+
+    background-image: $g, $g, $g, $g, $g, $g, $g, $g, $g;
+    background-repeat: no-repeat;
+    background-position: 0 0, 50% 0, 100% 0, 0 50%, 50% 50%, 100% 50%, 0 100%, 50% 100%, 100% 100%;
+    background-size: .25em .25em;
+    transition: background $transition-in;
+
+    &:hover {
+        background-size: .28em .28em;
+    }
+}
