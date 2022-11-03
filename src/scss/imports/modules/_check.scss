@@ -1,0 +1,69 @@
+/**
+ * checkbox bem module
+ */
+
+.check {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    &__mark {
+        @extend .icon-cross;
+
+        display: block;
+        position: relative;
+        flex: 0 0 auto;
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1.9rem;
+        background-color: var(--color-primary-text);
+        cursor: pointer;
+
+        @include media-tablet {
+            margin-right: 2.8rem;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            inset: 0;
+            width: 2rem;
+            height: 2px;
+            margin: auto;
+            background-color: var(--color);
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            transition: clip-path $transition-in;
+        }
+
+        &::before {
+            transform: rotate(45deg) scaleX(1.33);
+            transition-delay: $transition-in * 2;
+        }
+
+        &::after {
+            transform: rotate(-45deg) scaleX(1.33);
+        }
+    }
+
+    :checked + & &__mark::before,
+    :checked + & &__mark::after {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    :focus + & &__mark {
+        background-color: var(--color-action-bg);
+    }
+
+    &__label {
+        @include font-mobile-checkbox-label;
+
+        flex: 1 1 auto;
+
+        @include media-tablet {
+            @include font-desktop-form-checkbox-label;
+        }
+    }
+}

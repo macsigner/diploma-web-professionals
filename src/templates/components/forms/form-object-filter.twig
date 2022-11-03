@@ -1,15 +1,15 @@
 <form id="main-real-estate-filter" {% if applyFilter %}data-filter{% endif %}>
-    <label for="estate_type">Was</label>
+    <label for="estate_type" class="filter-label">Was</label>
     <select name="ref_type_id" id="ref_type_id" data-filter-type="filter">
         <option value="" selected>Alle Objekte</option>
     </select>
-    <label for="canton">Wo</label>
+    <label for="canton" class="filter-label">Wo</label>
     <select name="canton" id="canton">
         <option value="" selected>Alle Orte</option>
         <option value="appenzell">Appenzell</option>
         <option value="st.gallen">St.Gallen</option>
     </select>
-    <label for="sorting">Wo</label>
+    <label for="sorting" class="filter-label">Wo</label>
     <select name="sorting" id="sortBy" data-filter-type="sort">
         <option value="" selected>Auswählen</option>
         <option value="priceAsc">Preis aufsteigend</option>
