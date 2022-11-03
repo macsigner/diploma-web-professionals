@@ -1,0 +1,34 @@
+/**
+ * radio-icons bem module
+ */
+
+.radio-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    [type='radio'] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    &__legend {
+        @include font-mobile-radio-icon-label;
+
+        color: var(--color-primary);
+    }
+
+    &__icon {
+        --color: var(--color-action-bg);
+
+        margin-left: 2.6rem;
+        font-size: 3.2rem;
+        cursor: pointer;
+    }
+
+    :checked + &__icon {
+        --color: var(--color-primary);
+    }
+}

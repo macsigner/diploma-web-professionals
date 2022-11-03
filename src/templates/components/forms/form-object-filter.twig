@@ -30,17 +30,15 @@
             <label class="switch__box-label switch__box-label--last" for="estateTypeBuy"></label>
         </span>
     </fieldset>
-    <fieldset>
-        <legend>Ansicht:</legend>
-        <label>
-            <span class="invisible">Kachelansicht</span>
-            <input type="radio" name="layout" value="layoutTile" checked data-filter-type="template">
-            <span class="icon-tiles"></span>
+    <fieldset class="radio-icons">
+        <legend class="radio-icons__legend">Ansicht:</legend>
+        <input type="radio" name="layout" value="layoutTile" id="optionLayoutTile" checked data-filter-type="template">
+        <label for="optionLayoutTile" class="radio-icons__icon">
+            <span class="invisible">Kachelansicht</span><span class="icon-tiles"></span>
         </label>
-        <label>
-            <span class="invisible">Listenansicht</span>
-            <input type="radio" name="layout" value="layoutList" data-filter-type="template">
-            <span class="icon-list"></span>
+        <input type="radio" name="layout" value="layoutList" id="optionLayoutList" data-filter-type="template">
+        <label for="optionLayoutList" class="radio-icons__icon">
+            <span class="invisible">Listenansicht</span><span class="icon-list"></span>
         </label>
     </fieldset>
     <button>Suchen</button>

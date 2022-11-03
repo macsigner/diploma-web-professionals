@@ -6,119 +6,119 @@
 @mixin font-block-01-mobile {
     font-size: $font-size-100-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(28, 16);
 }
 
 @mixin font-block-02-mobile {
     font-size: $font-size-100-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(25, 16);
 }
 
 @mixin font-block-03-mobile {
     font-size: $font-size-100-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(30, 16);
 }
 
 @mixin font-block-04-mobile {
     font-size: $font-size-110-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(30, 18);
 }
 
 @mixin font-block-05-mobile {
     font-size: $font-size-120-mobile;
     font-style: normal;
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     line-height: 1.2;
 }
 
 @mixin font-block-06-mobile {
     font-size: $font-size-130-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(33, 21);
 }
 
 @mixin font-block-07-mobile {
     font-size: $font-size-140-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(27, 22);
 }
 
 @mixin font-block-08-mobile {
     font-size: $font-size-150-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: 1.2;
 }
 
 @mixin font-block-09-mobile {
     font-size: $font-size-160-mobile;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(32, 26);
 }
 
 @mixin font-block-01-desktop {
     font-size: $font-size-90-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(30, 16);
 }
 
 @mixin font-block-02-desktop {
     font-size: $font-size-100-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(30, 18);
 }
 
 @mixin font-block-03-desktop {
     font-size: $font-size-110-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(30, 20);
 }
 
 @mixin font-block-04-desktop {
     font-size: $font-size-120-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(27, 22);
 }
 
 @mixin font-block-05-desktop {
     font-size: $font-size-130-desktop;
     font-style: normal;
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     line-height: math.div(30, 28);
 }
 
 @mixin font-block-06-desktop {
     font-size: $font-size-140-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(42, 33);
 }
 
 @mixin font-block-07-desktop {
     font-size: $font-size-150-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: 1.2;
 }
 
 @mixin font-block-08-desktop {
     font-size: $font-size-160-desktop;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: math.div(80, 56);
 }
 
@@ -155,7 +155,7 @@
 @mixin font-desktop-form-label-filter {
     @include font-block-04-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-form-checkbox-label {
@@ -175,7 +175,7 @@
 @mixin font-desktop-button {
     @include font-block-04-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-table {
@@ -185,7 +185,7 @@
 @mixin font-desktop-table-head {
     @include font-block-04-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-image-tile {
@@ -203,7 +203,7 @@
 @mixin font-desktop-image-teaser-meta-title {
     @include font-block-01-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-detail {
@@ -213,7 +213,7 @@
 @mixin font-desktop-detail-title {
     @include font-block-02-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-news-detail {
@@ -232,7 +232,7 @@
 @mixin font-desktop-more {
     @include font-block-02-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-main-nav {
@@ -248,7 +248,7 @@
 @mixin font-desktop-footer-nav {
     @include font-block-02-desktop;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-desktop-footer-meta {
@@ -291,7 +291,7 @@
 @mixin font-mobile-label-filter {
     @include font-block-03-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-field {
@@ -301,19 +301,19 @@
 @mixin font-mobile-checkbox-switch {
     @include font-block-03-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-checkbox-label {
     @include font-block-03-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-button {
     @include font-block-03-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-button-submit {
@@ -327,7 +327,7 @@
 @mixin font-mobile-table-header {
     @include font-block-03-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-image-tile {
@@ -341,7 +341,7 @@
 @mixin font-mobile-image-teaser {
     @include font-block-03-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-image-teaser-meta {
@@ -356,6 +356,10 @@
     @include font-block-07-mobile;
 }
 
+@mixin font-mobile-radio-icon-label {
+    @include font-block-07-mobile;
+}
+
 @mixin font-mobile-detail {
     @include font-block-01-mobile;
 }
@@ -363,7 +367,7 @@
 @mixin font-mobile-detail-title {
     @include font-block-01-mobile;
 
-    font-weight: 700;
+    font-weight: $font-weight-bold;
 }
 
 @mixin font-mobile-modal-title {

@@ -3,7 +3,7 @@
  */
 
 .icon-tiles {
-    $c: var(--color-primary);
+    $c: var(--color);
     $g: linear-gradient(to right, #{$c} 0, #{$c} .25em);
 
     @extend .icon-base;
@@ -16,5 +16,16 @@
 
     &:hover {
         background-size: .28em .28em;
+    }
+
+    :checked + &,
+    :checked + * & {
+        animation: icon-tiles-in $transition-animation-in;
+    }
+}
+
+@keyframes icon-tiles-in {
+    from {
+        background-position: -.28em -.28em;
     }
 }
