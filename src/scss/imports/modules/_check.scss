@@ -17,7 +17,7 @@
         width: 5rem;
         height: 5rem;
         margin-right: 1.9rem;
-        background-color: var(--color-primary-text);
+        background-color: var(--color-input-bg);
         cursor: pointer;
 
         @include media-tablet {
@@ -30,7 +30,7 @@
             display: block;
             position: absolute;
             inset: 0;
-            width: 2rem;
+            width: 2.6rem;
             height: 2px;
             margin: auto;
             background-color: var(--color);
@@ -39,13 +39,17 @@
         }
 
         &::before {
-            transform: rotate(45deg) scaleX(1.33);
+            transform: rotate(45deg);
             transition-delay: $transition-in * 2;
         }
 
         &::after {
-            transform: rotate(-45deg) scaleX(1.33);
+            transform: rotate(-45deg);
         }
+    }
+
+    &__mark--radio {
+        border-radius: 50%;
     }
 
     :checked + & &__mark::before,
@@ -54,7 +58,25 @@
     }
 
     :focus + & &__mark {
-        background-color: var(--color-action-bg);
+        background-color: var(--color-input-focus);
+    }
+
+    &__mark--radio::before {
+        content: none;
+    }
+
+    &__mark--radio::after {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        clip-path: none;
+        transform: scale(0);
+        transition: transform $transition-in;
+    }
+
+    :checked + & &__mark--radio::after {
+        clip-path: none;
+        transform: scale(1);
     }
 
     &__label {
