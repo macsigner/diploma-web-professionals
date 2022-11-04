@@ -1,0 +1,13 @@
+/**
+ * block-reset bem module
+ */
+
+.block-reset {
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}

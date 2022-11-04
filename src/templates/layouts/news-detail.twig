@@ -1,20 +1,35 @@
 {% extends 'layouts::base.twig' %}
 
+{% block mainHeader %}
+{% endblock %}
+
 {% block main %}
 
-    <header>
-        {% if data.image %}
-            {% include '@components/image.twig' with {image: data} %}
-        {% endif %}
+    <article class="">
+        <header>
+            {% if data.image %}
+                {% include '@components/image.twig' with {image: data.image} %}
+            {% endif %}
 
-        <h1>{{ title }}</h1>
-        <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
-    </header>
+            <div class="base-width">
+                <h1>{{ title }}</h1>
+                <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
+            </div>
+        </header>
 
-    <div>{{ data.teaser }}</div>
+        <div class="base-width">
+
+            {% block mainArticle %}
+                {{ data.teaser }}
+            {% endblock %}
+
+        </div>
+    </article>
 
 {% endblock %}
 
 {% block mainEnd %}
-    <a href="/aktuelles.html">Zurück</a>
+
+    <a href="/aktuelles.html" class="button">Zurück</a>
+
 {% endblock %}

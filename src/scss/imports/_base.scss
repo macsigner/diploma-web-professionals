@@ -8,6 +8,60 @@ body {
     @include media-tablet {
         @include font-desktop-main;
     }
+
+    background-color: var(--color-accent);
+}
+
+h1,
+.h1 {
+    @include font-mobile-h1;
+
+    margin-top: 10.4rem;
+    margin-bottom: 6.4rem;
+
+    @include media-tablet {
+        margin-top: 18rem;
+        margin-bottom: 8rem;
+
+        @include font-desktop-h1;
+    }
+}
+
+h2,
+.h2 {
+    @include font-mobile-h2;
+
+    margin-top: 4.8rem;
+    margin-bottom: 4.4rem;
+
+    @include media-tablet {
+        margin-top: 11rem;
+        margin-bottom: 5rem;
+
+        @include font-desktop-h2;
+    }
+}
+
+h3,
+.h3 {
+    @include font-mobile-h3;
+
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+
+    @include media-tablet {
+        margin-top: 13rem;
+        margin-bottom: 7rem;
+
+        @include font-desktop-h3;
+    }
+}
+
+hr {
+    height: 0;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--color-primary);
 }
 
 .base-width {

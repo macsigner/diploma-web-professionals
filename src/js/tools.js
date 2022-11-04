@@ -48,8 +48,8 @@ const sortBy = (key) => {
 
 /**
  * Clean empty strings from object.
- * @param obj
- * @returns {*}
+ * @param obj {object} Object to be cleaned from empty strings.
+ * @returns {object}
  */
 const cleanEmptyStringsFromObject = (obj) => {
     for (let key of Object.keys(obj)) {
@@ -63,9 +63,39 @@ const cleanEmptyStringsFromObject = (obj) => {
     return obj;
 };
 
+/**
+ * Map options object deep.
+ * @param originalOptions {object} Original options object.
+ * @param newOptions {object} New options object that will overwrite correlating values.
+ * @returns {object}
+ */
+const mapOptions = (originalOptions, newOptions) => {
+    let settings = Object.assign({}, originalOptions);
+
+    if (Array.isArray(originalOptions)) {
+        settings = originalOptions.map((x) => x);
+    } else {
+        settings = Object.assign({}, originalOptions);
+    }
+
+    Object.keys(newOptions).forEach((strKey) => {
+        if (typeof newOptions[strKey] === 'object'
+            && !(newOptions[strKey] instanceof Node)
+            && !(newOptions[strKey] instanceof Function)
+        ) {
+            settings[strKey] = this.mapOptions(settings[strKey], newOptions[strKey]);
+        } else {
+            settings[strKey] = newOptions[strKey];
+        }
+    });
+
+    return settings;
+};
+
 export {
     delegate,
     debounce,
     sortBy,
     cleanEmptyStringsFromObject,
+    mapOptions,
 };

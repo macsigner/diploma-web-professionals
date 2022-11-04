@@ -260,7 +260,8 @@ Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
 Javascript – nicht auf Bibliotheken und Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
 Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin ich für den grössten Teil der
 Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
-zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
+zustande gekommen ist, deklariere ich es hiermit als _halb halb_. Gleiches gilt für die Funktion _mapOptions_ aus _
+tools.js_.
 
 ### Abweichungen von der Vorlage
 
@@ -270,6 +271,8 @@ zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
   Angaben ohne Einheiten wegen
   der [Vererbung](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values)
   .
+- __Abstände zwischen den *label*- und *input*-Feldern:__ Da ich die Felder mit den Bezeichnungen optisch nur sehr ungut
+  zuteilen konnte, habe ich die Abstände etwas angepasst um die Trennung der Blöcke besser ersichtlich zu machen.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 

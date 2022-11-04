@@ -1,8 +1,17 @@
 <article>
     <header>
 
+        {% for key, val in item.data %}
+            <pre>{{ key }}</pre>
+            <pre>{{ val }}</pre>
+        {% endfor %}
         {% if item.data.image %}
-            {% include '@components/image.twig' with {image: item} %}
+            {% include '@components/image.twig' with {
+                image: {
+                    path: item.data.image,
+                    alt: item.data.title
+                }
+            } %}
         {% endif %}
 
         <h2>{{ item.data.teaserTitle ? item.data.teaserTitle : item.title }}</h2>

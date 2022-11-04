@@ -15,12 +15,30 @@
 @import 'imports/settings/custom_properties_main';
 @import 'imports/settings/settings_font_fasce';
 @import 'imports/base';
+@import 'imports/modules/aspect';
+@import 'imports/modules/block_reset';
+@import 'imports/modules/helper';
 @import 'imports/modules/nav_bar';
 @import 'imports/modules/navigation_area';
-@import 'imports/modules/aspect';
+
+// Atom modules
+@import 'imports/modules/icons/icon_base';
+@import 'imports/modules/icons/icon_chevron';
+@import 'imports/modules/icons/icon_cross';
+@import 'imports/modules/icons/icon_tiles';
+@import 'imports/modules/icons/icon_list';
+@import 'imports/modules/button';
+@import 'imports/modules/input';
+@import 'imports/modules/check';
+@import 'imports/modules/filter_label';
+@import 'imports/modules/custom_select_original';
+@import 'imports/modules/custom_select';
+@import 'imports/modules/switch';
+@import 'imports/modules/radio_icons';
 
 // Default modules
 @import 'imports/modules/slider';
+@import 'imports/modules/slide_image';
 @import 'imports/modules/map';
 
 // Late modules

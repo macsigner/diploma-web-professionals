@@ -1,15 +1,15 @@
 <form id="main-real-estate-filter" {% if applyFilter %}data-filter{% endif %}>
-    <label for="estate_type">Was</label>
+    <label for="estate_type" class="filter-label">Was</label>
     <select name="ref_type_id" id="ref_type_id" data-filter-type="filter">
         <option value="" selected>Alle Objekte</option>
     </select>
-    <label for="canton">Wo</label>
+    <label for="canton" class="filter-label">Wo</label>
     <select name="canton" id="canton">
         <option value="" selected>Alle Orte</option>
         <option value="appenzell">Appenzell</option>
         <option value="st.gallen">St.Gallen</option>
     </select>
-    <label for="sorting">Wo</label>
+    <label for="sorting" class="filter-label">Wo</label>
     <select name="sorting" id="sortBy" data-filter-type="sort">
         <option value="" selected>Auswählen</option>
         <option value="priceAsc">Preis aufsteigend</option>
@@ -17,26 +17,29 @@
         <option value="dateAsc">Datum aufsteigend</option>
         <option value="dateDesc">Datum aufsteigend</option>
     </select>
-    <fieldset>
+    <fieldset class="switch">
+        {# Todo: Semantics call for a radio button but it would be much easier with a checkbox #}
         <legend class="invisible">Filter Kaufen/Mieten</legend>
-        <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" checked data-filter-type="filter">
-        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu verkaufen" data-filter-type="filter">
-        <span>
-            <label for="estateTypeRent">Mieten</label>
-            <span></span>
-            <label for="estateTypeBuy">Kaufen</label>
+        <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" class="switch__input-first" checked data-filter-type="filter">
+        <label for="estateTypeRent" class="switch__label switch__label--first">Mieten</label>
+        <input type="radio" name="estate_type" id="estateTypeBuy" value="zu verkaufen" class="switch__input-last" data-filter-type="filter">
+        <label for="estateTypeBuy" class="switch__label switch__label--last">Kaufen</label>
+        <span class="switch__box">
+            {# A little hacky but just for fun. Switch between radio buttons via CSS #}
+            <label class="switch__box-label switch__box-label--first" for="estateTypeRent"></label>
+            <label class="switch__box-label switch__box-label--last" for="estateTypeBuy"></label>
         </span>
     </fieldset>
-    <fieldset>
-        <legend>Ansicht:</legend>
-        <label>
-            <span class="invisible">Kachelansicht</span>
-            <input type="radio" name="layout" value="layoutTile" checked data-filter-type="template">
+    <fieldset class="radio-icons">
+        <legend class="radio-icons__legend">Ansicht:</legend>
+        <input type="radio" name="layout" value="layoutTile" id="optionLayoutTile" checked data-filter-type="template">
+        <label for="optionLayoutTile" class="radio-icons__icon">
+            <span class="invisible">Kachelansicht</span><span class="icon-tiles"></span>
         </label>
-        <label>
-            <span class="invisible">Listenansicht</span>
-            <input type="radio" name="layout" value="layoutList" data-filter-type="template">
+        <input type="radio" name="layout" value="layoutList" id="optionLayoutList" data-filter-type="template">
+        <label for="optionLayoutList" class="radio-icons__icon">
+            <span class="invisible">Listenansicht</span><span class="icon-list"></span>
         </label>
     </fieldset>
-    <button>Suchen</button>
+    <button class="button button--submit button--w100">Suchen</button>
 </form>

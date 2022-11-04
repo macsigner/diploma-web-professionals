@@ -1,0 +1,53 @@
+/**
+ * button bem module
+ */
+
+.button {
+    @include font-mobile-button;
+
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 14.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: .8rem 1rem .7rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-primary-text);
+    background-color: var(--color-primary);
+
+    &:hover {
+        color: var(--color-action);
+        background-color: var(--color-action-bg);
+    }
+
+    &:active {
+        background-color: var(--color-action-bg-active);
+    }
+
+    @include media-tablet {
+        @include font-desktop-button;
+    }
+
+    &--block {
+        display: block;
+    }
+
+    &--w100 {
+        width: 100%;
+    }
+
+    &--submit {
+        padding-top: 1.4rem;
+        padding-bottom: 1.2rem;
+
+        @include font-mobile-button-submit;
+
+        @include media-tablet {
+            @include font-desktop-button;
+
+            padding-top: 1rem;
+            padding-bottom: .8rem;
+        }
+    }
+}

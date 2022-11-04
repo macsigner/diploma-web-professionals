@@ -1,0 +1,77 @@
+/**
+ * switch bem module
+ */
+
+:root {
+    --switch-dot-size: 2rem;
+}
+
+.switch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5.2rem;
+    margin-bottom: 4.8rem;
+
+    [type='radio'],
+    [type='checkbox'] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    &__label {
+        @include font-mobile-checkbox-switch;
+    }
+
+    &__label--last {
+        order: 10;
+    }
+
+    &__input-first:checked ~ &__label--first,
+    &__input-last:checked ~ &__label--last {
+        color: var(--color-primary);
+    }
+
+    &__box {
+        display: block;
+        position: relative;
+        width: 8.8rem;
+        margin: 0 1rem;
+        border: 2px solid var(--color-primary);
+        border-radius: calc(var(--switch-dot-size) / 2 + 2 * 2px);
+        background-color: var(--color-primary);
+        cursor: pointer;
+    }
+
+    &__box::after {
+        content: '';
+        display: block;
+        position: relative;
+        left: 0;
+        width: var(--switch-dot-size);
+        height: var(--switch-dot-size);
+        border-radius: 50%;
+        background-color: var(--color-primary-text);
+        transition: left .1s, transform .1s;
+    }
+
+    &__input-last:checked ~ &__box::after {
+        left: 100%;
+        transform: translateX(-100%);
+    }
+
+    &__box-label {
+        display: none;
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    &__input-first:checked ~ &__box &__box-label--last,
+    &__input-last:checked ~ &__box &__box-label--first {
+        display: block;
+    }
+}

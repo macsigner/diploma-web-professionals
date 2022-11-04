@@ -9,6 +9,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /**
@@ -38,8 +40,6 @@ svg {
 ul,
 ol {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 }
 
 li,
@@ -58,4 +58,21 @@ button,
     background-color: transparent;
     cursor: pointer;
     appearance: none;
+}
+
+fieldset {
+    padding: 0;
+    border: none;
+}
+
+legend {
+    display: block;
+
+    // Todo: Is there another way to reset legends?
+    // Reset position of legend
+    float: left;
+}
+
+legend + * {
+    clear: both;
 }

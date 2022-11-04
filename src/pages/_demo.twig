@@ -8,6 +8,7 @@
 
         <ul>
             <li><a href="#section-main-navigation" data-smooth-scroll>Main navigation</a></li>
+            <li><a href="#section-main-atoms" data-smooth-scroll>Elemente</a></li>
             <li><a href="#section-modal" data-smooth-scroll>Modal</a></li>
             <li><a href="#section-map" data-smooth-scroll>Map</a></li>
             <li><a href="#section-select" data-smooth-scroll>Custom select</a></li>
@@ -22,12 +23,99 @@
 
         <button data-main-navigation-toggle>Toggle main navigation</button>
     </section>
+    <section class="base-width" id="section-main-atoms">
+        <h2>Buttons</h2>
+
+        <a href="#" class="button">button</a>
+        <hr>
+        <a href="#" class="button">button more text</a>
+        <hr>
+        <a href="#" class="button button--block">button block</a>
+        <hr>
+        <a href="#" class="button button--submit">button submit</a>
+        <hr>
+        <a href="#" class="button button--submit button--block">button submit block</a>
+
+        <h2>Inputs</h2>
+
+        <div class="input">
+            <label for="example-input-1" class="input__label">Input</label>
+            <input type="text" id="example-input-1" class="input__field" placeholder="some input text">
+        </div>
+
+        <div class="input">
+            <label for="example-input-2" class="input__label">Other input</label>
+            <input type="text" id="example-input-2" class="input__field" value="preset value">
+        </div>
+
+        <div class="input">
+            <label for="example-input-3" class="input__label">Some more input</label>
+            <input type="text" id="example-input-3" class="input__field">
+        </div>
+
+        <h3>Inputs Filter</h3>
+
+        <div class="input">
+            <label for="example-input-filter-1" class="filter-label">Input</label>
+            <input type="text" id="example-input-filter-1" class="input__field" placeholder="some input text">
+        </div>
+
+        <div class="input">
+            <label for="example-input-filter-2" class="filter-label">Other input</label>
+            <input type="text" id="example-input-filter-2" class="input__field" value="preset value">
+        </div>
+
+        <div class="input">
+            <label for="example-input-filter-3" class="filter-label">Some more input</label>
+            <input type="text" id="example-input-filter-3" class="input__field">
+        </div>
+
+        <h3>Inputs Checkbox</h3>
+
+        <div class="checkboxes">
+            <input type="checkbox" id="example-checkbox-1" class="invisible">
+            <label for="example-checkbox-1" class="check">
+                <span class="check__mark"></span>
+                <span class="check__label">Lorem ipsum dolor</span>
+            </label>
+            <input type="checkbox" id="example-checkbox-2" class="invisible">
+            <label for="example-checkbox-2" class="check">
+                <span class="check__mark"></span>
+                <span class="check__label">Lorem ipsum dolor</span>
+            </label>
+            <input type="checkbox" id="example-checkbox-3" class="invisible">
+            <label for="example-checkbox-3" class="check">
+                <span class="check__mark"></span>
+                <span class="check__label">Lorem ipsum dolor</span>
+            </label>
+        </div>
+
+        <h3>Inputs Radio</h3>
+
+        <div class="checkboxes">
+            <input type="checkbox" name="example-radio-group" id="example-radio-1" class="invisible">
+            <label for="example-radio-1" class="check">
+                <span class="check__mark check__mark--radio"></span>
+                <span class="check__label">Lorem ipsum dolor</span>
+            </label>
+            <input type="checkbox" name="example-radio-group" id="example-radio-2" class="invisible">
+            <label for="example-radio-2" class="check">
+                <span class="check__mark check__mark--radio"></span>
+                <span class="check__label">Lorem ipsum dolor</span>
+            </label>
+            <input type="checkbox" name="example-radio-group" id="example-radio-3" class="invisible">
+            <label for="example-radio-3" class="check">
+                <span class="check__mark check__mark--radio"></span>
+                <span class="check__label">Lorem ipsum dolor</span>
+            </label>
+        </div>
+    </section>
     <section class="base-width" id="section-modal">
         <h1>Modal</h1>
 
         <a href="#modal-content" data-modal>Open modal with content below</a>
 
-        <div id="modal-content" style="outline: 1px solid red">
+        <div id="modal-content">
             <h2>Lorem ipsum.</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, officia? Adipisci autem cupiditate
                 dicta dolorum, enim et exercitationem iste minima natus, praesentium quam quas reiciendis, rerum vel
@@ -40,8 +128,13 @@
                 Amet, nam!</p>
         </div>
 
-        <input type="text" id="modal-input-generated"><br>
-        <button id="modal-button-generated">Open modal with generated content</button>
+        <hr>
+
+        <div class="input">
+            <label for="modal-input-generated" class="input__label">Feld ausfüllen und Modal mit generiertem Inhalt öffnen</label>
+            <input type="text" id="modal-input-generated" class="input__field"><br>
+        </div>
+        <button id="modal-button-generated" class="button">Open modal with generated content</button>
     </section>
     <section class="base-width" id="section-map">
         <h1>Map</h1>
@@ -53,7 +146,8 @@
     <section class="base-width" id="section-select">
         <h1>Custom select</h1>
 
-        <label for="custom-select">Was</label>
+        <div class="input">
+        <label for="custom-select" class="input__label">Was</label>
         <select name="select" id="custom-select" data-custom-select>
             <option selected>Auswählen</option>
             <option value="1">Preis aufsteigend</option>
@@ -73,6 +167,7 @@
                 <option value="sub8">Sub 8</option>
             </optgroup>
         </select>
+        </div>
     </section>
     <section class="base-width" id="section-slider">
         <h1>Slider</h1>
@@ -80,19 +175,19 @@
         <div>
             <ul data-slider>
                 <li>
-                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_01.jpeg" alt="Some alt tag">
+                    <figure class="slide-image"><img src="/src/assets/images/objekt/slide_01.jpeg" alt="Some alt tag">
                     </figure>
                 </li>
                 <li>
-                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_02.jpeg" alt="Some alt tag">
+                    <figure class="slide-image"><img src="/src/assets/images/objekt/slide_02.jpeg" alt="Some alt tag">
                     </figure>
                 </li>
                 <li>
-                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_03.jpeg" alt="Some alt tag">
+                    <figure class="slide-image"><img src="/src/assets/images/objekt/slide_03.jpeg" alt="Some alt tag">
                     </figure>
                 </li>
                 <li>
-                    <figure class="aspect"><img src="/src/assets/images/objekt/slide_04.jpeg" alt="Some alt tag">
+                    <figure class="slide-image"><img src="/src/assets/images/objekt/slide_04.jpeg" alt="Some alt tag">
                     </figure>
                 </li>
             </ul>

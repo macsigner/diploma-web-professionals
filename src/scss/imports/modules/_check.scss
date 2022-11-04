@@ -1,0 +1,91 @@
+/**
+ * checkbox bem module
+ */
+
+.check {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    &__mark {
+        @extend .icon-cross;
+
+        display: block;
+        position: relative;
+        flex: 0 0 auto;
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1.9rem;
+        background-color: var(--color-input-bg);
+        cursor: pointer;
+
+        @include media-tablet {
+            margin-right: 2.8rem;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            inset: 0;
+            width: 2.6rem;
+            height: 2px;
+            margin: auto;
+            background-color: var(--color);
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            transition: clip-path $transition-in;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+            transition-delay: $transition-in * 2;
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &__mark--radio {
+        border-radius: 50%;
+    }
+
+    :checked + & &__mark::before,
+    :checked + & &__mark::after {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    :focus + & &__mark {
+        background-color: var(--color-input-focus);
+    }
+
+    &__mark--radio::before {
+        content: none;
+    }
+
+    &__mark--radio::after {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        clip-path: none;
+        transform: scale(0);
+        transition: transform $transition-in;
+    }
+
+    :checked + & &__mark--radio::after {
+        clip-path: none;
+        transform: scale(1);
+    }
+
+    &__label {
+        @include font-mobile-checkbox-label;
+
+        flex: 1 1 auto;
+
+        @include media-tablet {
+            @include font-desktop-form-checkbox-label;
+        }
+    }
+}

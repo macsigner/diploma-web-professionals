@@ -1,4 +1,23 @@
+/**
+ * Custom properties
+ */
+@use 'sass:color';
+
 :root {
     --content-margin: 2rem;
     --max-content-width: 120rem;
+
+    // Colors
+    --color-primary: #{$color-primary};
+    --color-primary-text: #{$color-white};
+    --color-primary-transparent: #{$color-primary-transparent};
+    --color-accent: #{$color-accent};
+    --color-action: #{$color-white};
+    --color-action-bg: #{$color-action-bg};
+    --color-action-bg-active: #{$color-action-bg-active};
+    --color-input-bg: #{$color-white};
+    --color-input-focus: #{rgba($color-white, .7)};
+
+    // Color settings.
+    --color: #{$color-black};
 }

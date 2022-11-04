@@ -13,13 +13,26 @@ Styleguide classes.modal
 */
 
 .modal {
+    overflow: auto;
     position: fixed;
     inset: 0;
-    background-color: white;
+    z-index: 110;
+    background-color: var(--color-primary);
+
+    &__inner {
+        @extend .base-width;
+
+        margin-top: 11rem;
+        margin-bottom: 2.8rem;
+    }
 
     &__close {
+        @extend .icon-cross;
+
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 2.8rem;
+        right: var(--content-margin);
+        font-size: 3rem;
+        text-indent: -9999em;
     }
 }
