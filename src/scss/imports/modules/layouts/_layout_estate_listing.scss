@@ -1,0 +1,20 @@
+/**
+ * layout-estate-listing bem module
+ */
+
+.layout-estate-listing {
+    @include media-tablet {
+        display: grid;
+        grid-gap: $gutter-width;
+        grid-template-columns: repeat(2, minmax(10px, 1fr));
+    }
+
+    @include media-desktop-small {
+        grid-gap: 8.8rem;
+        grid-template-columns: repeat(3, minmax(10px, 1fr));
+    }
+
+    &.template-layout-list {
+        display: block;
+    }
+}

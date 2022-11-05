@@ -1,6 +1,7 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import Template from './Template.js';
 import Filter from './Filter.js';
+import * as Tools from '../tools.js';
 
 /**
  * Handle real estates rendering.
@@ -42,6 +43,8 @@ class RealEstates {
         this.templates = {};
         let templates = this.el.querySelectorAll('template');
 
+        this._templateClasses = new Set();
+
         templates.forEach(el => {
             this.templates[el.dataset.templateName] = new Template(el);
         });
@@ -79,6 +82,13 @@ class RealEstates {
 
         if (e.detail.Filter.filters.template) {
             this._settings.template = e.detail.Filter.filters.template.layout;
+            let templateClass = `template-${Tools.camelToKebabCase(e.detail.Filter.filters.template.layout)}`;
+
+            this.el.classList.remove(...this._templateClasses);
+
+            this.el.classList.add(templateClass);
+
+            this._templateClasses.add(templateClass);
         }
 
         this.render();

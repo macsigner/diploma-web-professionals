@@ -306,6 +306,10 @@ Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow](https
 
 [Regulärer Ausdruck Telefonnummber][html :: regex phone number]
 
+#### Javascript
+
+[Konvertierung Camelcase zu Kebabcase][javascript :: camel to kebab] innerhalb der _tools.js_
+
 ## Eidesstattliche Erklärung
 
 Hiermit erkläre ich, dass ich die Diplomarbeit selbständig verfasst / programmiert und keine anderen als die angegebenen
@@ -323,3 +327,5 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 [webpack :: chunk load error]: https://stackoverflow.com/a/65541635
 
 [html :: regex phone number]: https://ihateregex.io/expr/phone/
+
+[javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682

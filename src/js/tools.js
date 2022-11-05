@@ -92,10 +92,25 @@ const mapOptions = (originalOptions, newOptions) => {
     return settings;
 };
 
+/**
+ * Convert camel case string to kebab case.
+ * @param str
+ * @returns {string}
+ * @param {string} str
+ */
+function camelToKebabCase(str) {
+    if (str !== str.toLowerCase()) {
+        str = str.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
+    }
+
+    return str;
+}
+
 export {
     delegate,
     debounce,
     sortBy,
     cleanEmptyStringsFromObject,
     mapOptions,
+    camelToKebabCase,
 };
