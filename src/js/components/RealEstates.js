@@ -200,6 +200,8 @@ class RealEstates {
             }, estates);
         }
 
+        let items = [];
+
         for (let estate of estates) {
             if (!this._matchesFilter(estate)) {
                 continue;
@@ -209,7 +211,28 @@ class RealEstates {
 
             let item = this.templates[this._settings.template].create(estate);
 
-            this.el.appendChild(item);
+            items.push(item);
+        }
+
+        if (items[0] && items[0].firstElementChild.tagName === 'TR') {
+            let tBody = document.createElement('tbody');
+            items.forEach(item => tBody.appendChild(item));
+
+            let table;
+
+            if (this.templates.table) {
+                table = this.templates['table'].create({
+                    tableRows: tBody.innerHTML,
+                });
+            } else {
+                table = document.createElement('table');
+
+                table.appendChild(tBody);
+            }
+
+            this.el.appendChild(table);
+        } else {
+            items.forEach(item => this.el.appendChild(item));
         }
     }
 

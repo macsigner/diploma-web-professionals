@@ -201,14 +201,8 @@
         </div>
         <div class="layout-estate-listing" data-real-estates data-real-estates-filter="#main-real-estate-filter" data-real-estates-filter-layout-toggle="#main-real-estate-filter">
             {% include '@components/html-templates/estate-tile.twig' %}
-
-            <template data-template-name="layoutList">
-                <tr>
-                    <th data-template="title"></th>
-                    <td data-template="date"></td>
-                    <td data-template="text"></td>
-                </tr>
-            </template>
+            {% include '@components/html-templates/estate-table-row.twig' %}
+            {% include '@components/html-templates/estate-table.twig' %}
         </div>
     </section>
 
