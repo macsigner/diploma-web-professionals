@@ -182,7 +182,7 @@
     @include font-block-04-desktop;
 }
 
-@mixin font-desktop-table-head {
+@mixin font-desktop-table-header {
     @include font-block-04-desktop;
 
     font-weight: $font-weight-bold;
