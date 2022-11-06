@@ -1,0 +1,13 @@
+/**
+ * color-scheme bem module
+ */
+
+.color-scheme {
+    color: var(--color);
+    background-color: var(--bg-color);
+
+    &--hero {
+        --color: #{$color-black};
+        --bg-color: #{$color-white};
+    }
+}

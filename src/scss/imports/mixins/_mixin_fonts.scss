@@ -142,6 +142,10 @@
     @include font-block-06-desktop;
 }
 
+@mixin font-desktop-hero {
+    @include font-block-08-desktop;
+}
+
 // Field filter
 @mixin font-desktop-form-field {
     @include font-block-02-desktop;
