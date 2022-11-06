@@ -54,10 +54,6 @@
     thead th,
     thead td {
         color: var(--color-primary);
-
-        @include media-desktop-small {
-            border-top: 2px solid var(--color-primary);
-        }
     }
 
     td,

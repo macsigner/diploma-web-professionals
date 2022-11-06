@@ -3,18 +3,21 @@
  */
 
 .layout-estate-listing {
+    padding-top: 3rem;
+
     @include media-tablet {
         display: grid;
-        grid-gap: $gutter-width;
+        grid-gap: 0 var(--large-gutter-width);
         grid-template-columns: repeat(2, minmax(10px, 1fr));
+        padding-top: 3.4rem;
     }
 
     @include media-desktop-small {
-        grid-gap: 8.8rem;
         grid-template-columns: repeat(3, minmax(10px, 1fr));
     }
 
     &.template-layout-list {
         display: block;
+        padding-top: 0;
     }
 }

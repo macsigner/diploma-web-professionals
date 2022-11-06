@@ -1,0 +1,63 @@
+/**
+ * layout-filter-form bem module
+ */
+
+.layout-filter-form {
+    display: grid;
+    grid-template-areas:
+        'select'
+        'switch'
+        'search'
+        'layout';
+    grid-template-columns: repeat(1, minmax(10px, 1fr));
+
+    @include media-desktop-small {
+        grid-gap: 0 var(--large-gutter-width);
+        grid-template-areas:
+            'select select switch'
+            'select select search'
+            'layout layout layout';
+        grid-template-columns: repeat(3, minmax(10px, 1fr));
+    }
+
+    &__select {
+        @include media-tablet {
+            display: grid;
+            grid-area: select;
+            grid-gap: 0 var(--large-gutter-width);
+            grid-template-columns: repeat(2, minmax(10px, 1fr));
+        }
+    }
+
+    &__search {
+        grid-area: search;
+        align-self: end;
+    }
+
+    &__switch {
+        grid-area: switch;
+        align-self: end;
+    }
+
+    // Todo: Remove layout selection from filter form, append to RealEstate.js and separate css styling.
+    &__layout-select {
+        grid-area: layout;
+        padding-bottom: 2.9rem;
+        border-bottom: 2px solid var(--color-primary);
+
+        @include media-desktop-small {
+            margin-top: 15.8rem;
+        }
+    }
+
+    .button,
+    .switch {
+        @include media-desktop-small {
+            margin: 0;
+        }
+    }
+
+    .button {
+        margin-top: 0;
+    }
+}
