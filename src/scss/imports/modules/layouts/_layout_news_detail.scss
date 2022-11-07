@@ -1,0 +1,59 @@
+/**
+ * layout-news-detail bem module
+ */
+
+.layout-news-detail {
+    @include font-mobile-news-detail;
+
+    @include media-desktop-small {
+        @include font-desktop-news-detail;
+    }
+
+    &__hero-image {
+        @extend .header-hero__image;
+    }
+
+    &__title {
+        @include font-mobile-news-detail-title;
+
+        margin-top: 4.6rem;
+        margin-bottom: 3.8rem;
+        text-align: center;
+
+        @include media-desktop-small {
+            @include font-desktop-news-detail-title;
+
+            margin-top: 13rem;
+            margin-bottom: 7.2rem;
+        }
+    }
+
+    &__meta {
+        margin-bottom: 1em;
+
+        @include media-desktop-small {
+            @include font-desktop-news-detail-meta;
+        }
+    }
+
+    &__meta-title {
+        font-weight: $font-weight-bold;
+    }
+
+    &__inner {
+        @extend .base-width;
+
+        --max-content-width: 88rem;
+    }
+
+    &__back {
+        @extend .button;
+
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &__footer {
+        margin-top: 3.6rem;
+    }
+}

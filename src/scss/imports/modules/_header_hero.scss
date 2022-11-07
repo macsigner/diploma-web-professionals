@@ -23,6 +23,14 @@
         }
     }
 
+    &--detail &__image::before {
+        padding-top: math.percentage(math.div(242, 375));
+
+        @include media-desktop-small {
+            padding-top: math.percentage(math.div(501, 1680));
+        }
+    }
+
     &__block {
         padding: 2.2rem var(--content-margin) 2.4rem;
         color: var(--color);
