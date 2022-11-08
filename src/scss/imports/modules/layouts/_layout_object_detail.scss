@@ -1,0 +1,77 @@
+/**
+ * layout-object-detail bem module
+ */
+@use 'sass:math';
+
+.layout-object-detail {
+    @include font-desktop-detail;
+
+    @include media-desktop-small {
+        @include font-mobile-detail;
+    }
+
+    &__main {
+        @include media-desktop-small {
+            display: grid;
+        }
+    }
+
+    &__title {
+        @include font-mobile-detail-title;
+
+        margin-top: 4.6rem;
+        margin-bottom: 1.2rem;
+
+        @include media-desktop-small {
+            @include font-desktop-detail-title;
+        }
+    }
+
+    &__header {
+        margin-bottom: 3.6rem;
+
+        @include media-desktop-small {
+            margin-bottom: 4.7rem;
+        }
+    }
+
+    &__map {
+        @extend .aspect;
+
+        margin-top: 1.8rem;
+        margin-bottom: 1.8rem;
+    }
+
+    &__map::before {
+        padding-top: math.percentage(math.div(215, 328));
+
+        @include media-desktop-small {
+            padding-top: math.percentage(math.div(300, 907));
+        }
+    }
+
+    &__description-title {
+        @include font-inherit;
+
+        margin-top: 1em;
+        margin-bottom: 0;
+        font-weight: $font-weight-bold;
+    }
+
+    &__back {
+        margin-top: 10.3rem;
+
+        @include media-desktop-small {
+            margin-top: 17.2rem;
+        }
+    }
+
+    &__back .link__icon {
+        transform: scale(-1);
+    }
+
+    &__contact-button {
+        @extend .button;
+        @extend .button--block;
+    }
+}

@@ -2,58 +2,71 @@
 
 {% block main %}
 
-    <header>
-        <h1>{{ title }}</h1>
-
-        {% if data.slides %}
-
-            <ul>
-
-                {% for slide in data.slides %}
-
-                    <li>
-
-                        {% include '@components/image.twig' with {image: slide}.image %}
-
-                    </li>
-
-                {% endfor %}
-
-            </ul>
-
-        {% endif %}
-        <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
-    </header>
-
-    <main>
-        <p><strong>Verfügbarkeit</strong> <br>
-            Ab {{ data.availability }}</p>
-
-        <p><strong>Location</strong> <br>
-            {{ data.location }}</p>
-
-        <p><strong>Preis</strong> <br>
-            {{ data.price }}</p>
-
-        <p><strong>Nutzfläche</strong> <br>
-            Fläche {{ data.area }}</p>
-
-        <div>
-            <h2>Beschreibung</h2>
-            {{ data.description }}
+    <div class="layout-object-detail base-width">
+        <div class="layout-object-detail__back">
+            <button onclick="history.back()" class="link">
+                <span class="link__icon"><span class="icon-chevron"></span></span><span>zurück zur Übersicht</span>
+            </button>
         </div>
+        <header class="layout-object-detail__header">
+            <h1 class="layout-object-detail__title">Zu verkaufen <strong>{{ title }}</strong></h1>
 
-        <div>
-            <a href="/kontakt.html">Jetzt anfragen!</a>
-        </div>
+            {% if data.slides %}
 
-        <div id="location-map">
-            <script type="application/json">{{ {
-                    location: data.location,
-                    title: title,
-                } | json_encode() }}</script>
-        </div>
-    </main>
+                <ul data-slider>
+
+                    {% for slide in data.slides %}
+
+                        <li>
+                            <figure class="slide-image">
+
+                                {% include '@components/image.twig' with {image: slide}.image %}
+
+                            </figure>
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            {% endif %}
+            <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
+        </header>
+
+        <main>
+            <div class="layout-object-detail__meta-infos">
+                <p><strong>Verfügbarkeit</strong> <br>
+                    Ab {{ data.availability }}</p>
+
+                <p><strong>Location</strong> <br>
+                    {{ data.location }}</p>
+
+                <p><strong>Preis</strong> <br>
+                    {{ data.price }}</p>
+
+                <p><strong>Nutzfläche</strong> <br>
+                    Fläche {{ data.area }}</p>
+            </div>
+
+            <div class="layout-object-detail__description">
+                <h2 class="layout-object-detail__description-title">Beschreibung</h2>
+                {{ data.description }}
+            </div>
+
+            <div id="location-map" class="layout-object-detail__map" data-map>
+                <script type="application/json">{{ {
+                        location: data.location,
+                        title: title,
+                    } | json_encode() }}</script>
+            </div>
+
+            <div class="layout-object-detail__contact-footer">
+                <p><strong>Haben wir <br>Ihr Interesse geweckt?</strong></p>
+
+                <a href="/kontakt.html" class="layout-object-detail__contact-button">Jetzt anfragen!</a>
+            </div>
+        </main>
+    </div>
 
 {% endblock %}
 
