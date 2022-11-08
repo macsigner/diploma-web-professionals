@@ -1,5 +1,6 @@
 /**
  * Base class.
+ * Extending functionality of components.
  */
 class Base {
     /**
@@ -16,8 +17,8 @@ class Base {
     /**
      * Get the namespace class with prepended dot. Eg. for query selectors.
      *
-     * @param suffix {string}
-     * @param prefix
+     * @param suffix {string} String appended after the namespace class.
+     * @param prefix {string} String prepended before the namespace class.
      * @returns {string}
      */
     getNamespaceClass(suffix = '', prefix = '') {
