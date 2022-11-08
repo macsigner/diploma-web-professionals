@@ -37,7 +37,7 @@ Um die Seiten in eine bestimmte Reihenfolge zu bringen, kann ein Prefix im Datei
 mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Daten werden mit einer _JSON_-Datei
 eingebunden. Die Prefixe werden für die URLs entfernt.
 
-Aufbau gemäss Ansicht:
+__Aufbau gemäss Ansicht:__
 
 ```
 ├── 010_aktuelles.twig
@@ -53,6 +53,30 @@ Aufbau gemäss Ansicht:
     └── subsub
         └── subsub.twig
 ```
+
+#### Zusätzliche Daten für die Seiten
+
+Um einer Seite zusätzliche Daten mitzugeben kann eine _JSON_-Datei hinterlegt werden, welche denselben Namen hat wie die
+Seite. Es können auch Attribute überschrieben werden, wie das `title`-Tag.
+
+__Beispiel an einem Newseintrag:__
+
+```json
+{
+    "title": "Grossprojekt Home & House",
+    "image": "/src/assets/images/aktuelles/aktuelles_01.jpeg",
+    "date": "2021-08-01",
+    "teaserTitle": "Home & House News",
+    "teaser": "Grossprojekt Home & House nimmt Gestalt an Es entstehen insgesamt 40 komfortable Eigentumswohnungen in den kommenden Jahren im Quartier Hokuspokus."
+}
+```
+
+#### Skripte nur für spezifische Seiten
+
+Um Skripte nur für eine einzelne Seite anzugeben, wird eine _Javascript_-Datei im Skriptordner _src/js/pages_ unter dem
+gleichen Namen wie die Seite angelegt. Dieses wird dann als zusätzlicher _Chunk_ beim Build eingepflegt.\
+Um beispielsweise für die Seite *src/pages/010_aktuelles/_001_grossprojekt-home-house.twig* ein eigenes Skript zu laden
+wird die Datei *src/js/pages/010_aktuelles/_001_grossprojekt-home-house.js* angelegt.
 
 [//]: # (todo: does the order of files being read depend on the host?)
 
