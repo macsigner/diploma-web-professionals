@@ -80,8 +80,6 @@ wird die Datei *src/js/pages/010_aktuelles/_001_grossprojekt-home-house.js* ange
 
 [//]: # (todo: does the order of files being read depend on the host?)
 
-[//]: # (todo: implement hidden pages via underline as prefix in filename)
-
 [//]: # (todo: write setup as soon there is one and update comment)
 
 ## URL der lauffähigen Version
@@ -202,6 +200,11 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 
+### [Node][technology :: node :: homepage] und [npm][technology :: npm :: homepage]
+
+Eingesetzt um verschiedene Skripte/Module (Eg. _ghpages_, _twig_, _eslint_, ect.) im Projekt einsetzen zu können. _NPM_
+ermöglicht die eingesetzen Technologien einfach mit dem Projekt "mitzuführen" und bei Bedarf zu installieren.
+
 ### [Deepl](https://www.deepl.com/translator)
 
 Übersetzungstool zum Vermeiden von [falschen Freunden](https://de.wikipedia.org/wiki/Falscher_Freund).
@@ -288,6 +291,8 @@ Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdin
 zustande gekommen ist, deklariere ich es hiermit als _halb halb_. Gleiches gilt für die Funktion _mapOptions_ aus _
 tools.js_.
 
+Ebenfalls übernommen ist die Funktion `mapOptions` in _tools.js_ welche aber ebenfalls ursprünglich von mir stammt.
+
 ### Abweichungen von der Vorlage
 
 - __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
@@ -307,33 +312,33 @@ tools.js_.
 
 #### Node
 
-[Ersten Buchstaben in Grossschreibung konvertieren][node :: uppercase first letter of string]\
+[Ersten Buchstaben in Grossschreibung konvertieren][sources :: node :: uppercase first letter of string]\
 Genutzt in der _PageCollection_ um aus dem Dateinamen eine art Seitentitel zu generieren.
 
 ### Fix
 
 #### Node
 
-[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]\
+[Fehler: `__dirname is not defined in ES module scope`][sources :: node :: dirname not in es scope]\
 Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau auf `"type": "module"`.
 
-[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]\
+[Fehler: `Parsing error: Unexpected token import`][sources :: eslint :: parsing error: unexpected token import]\
 Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im _eslintrc.json_ auf `"ecmaVersion": 11`
 nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
 setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
 basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
-gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegenswert.
+gemäss [dieser Antwort][sources :: eslint :: parsing error: unexpected token import :: answer] noch überlegenswert.
 
-[Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][webpack :: chunk load error]\
-Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow](https://stackoverflow.com/a/66197410)
+[Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][sources :: webpack :: chunk load error]\
+Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow][sources :: webpack :: chunk load error :: answer]
 
 #### HTML
 
-[Regulärer Ausdruck Telefonnummber][html :: regex phone number]
+[Regulärer Ausdruck Telefonnummber][sources :: html :: regex phone number]
 
 #### Javascript
 
-[Konvertierung Camelcase zu Kebabcase][javascript :: camel to kebab] innerhalb der _tools.js_
+[Konvertierung Camelcase zu Kebabcase][sources :: javascript :: camel to kebab] innerhalb der _tools.js_
 
 ## Eidesstattliche Erklärung
 
@@ -342,15 +347,22 @@ Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt
 kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
 vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
+[technology :: node :: homepage]: https://nodejs.org/en/
 
-[node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+[technology :: npm :: homepage]: https://www.npmjs.com/
 
-[node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+[sources :: node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
-[eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
+[sources :: node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
 
-[webpack :: chunk load error]: https://stackoverflow.com/a/65541635
+[sources :: eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
 
-[html :: regex phone number]: https://ihateregex.io/expr/phone/
+[sources :: eslint :: parsing error: unexpected token import :: answer]: https://stackoverflow.com/a/58646219
 
-[javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
+[sources :: webpack :: chunk load error]: https://stackoverflow.com/a/65541635
+
+[sources :: webpack :: chunk load error :: answer]: https://stackoverflow.com/a/66197410
+
+[sources :: html :: regex phone number]: https://ihateregex.io/expr/phone/
+
+[sources :: javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
