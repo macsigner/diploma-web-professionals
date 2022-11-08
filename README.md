@@ -1,3 +1,4 @@
+
 Diplomarbeit 2022 Web Frontend Developer
 ========================================
 
@@ -132,21 +133,21 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - [ ] Header _1h_
     - [ ] Hauptnavigation _1h_
     - [ ] Footer _1h_
-    - [ ] Strukturstyling (Headlines, Buttons, Formularfelder) _3h_
+    - [x] Strukturstyling (Headlines, Buttons, Formularfelder) _3h_
     - [ ] Home
-        - [ ] Headerbild mit Teaser _1h_
+        - [x] Headerbild mit Teaser _1h_
         - [ ] Filterformular _3h_
-        - [ ] Kachelansicht _1h_
-        - [ ] Bildkachel _1h_
-        - [ ] Listenansicht _2h_
-    - [ ] Aktuelles
-        - [ ] Bildteaser _2h_
+        - [x] Kachelansicht _1h_
+        - [x] Bildkachel _1h_
+        - [x] Listenansicht _2h_
+    - [x] Aktuelles
+        - [x] Bildteaser _2h_
         - [ ] Bildteaserlayout _1h_
     - [ ] Objektdetail
-        - [ ] Slider _1h_
+        - [x] Slider _1h_
         - [ ] Detaillayout _2h_
         - [ ] Hintergrundblock _1h_
-    - [ ] Newsdetail _2h_
+    - [x] Newsdetail _2h_
     - [ ] Formular _3h_
         - [ ] Modal
     - [ ] Kontakt _1h_
