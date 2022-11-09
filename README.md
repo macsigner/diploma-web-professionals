@@ -16,19 +16,20 @@ npm install
 
 ### Nodeskripte
 
-| Befehl          | Auswirkung                                               |
-|-----------------|----------------------------------------------------------|
-| `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien |
-| `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_     |
-| `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_      |
-| `deploy`        | Build der Seiten und anschliessend des Skripts `ghpages` |
-| `ghpages`       | Erstellt den Branch ghpages und pusht diesen auf Github  |
-| `debug`         | Startet ndb via nodemon                                  |
-| `lint:js`       | Linting der Javascriptdateien                            |
-| `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur              |
-| `lint:scss`     | Linting der Stylesheets                                  |
-| `lint:scss:fix` | Linting der Stylesheets mit Korrektur                    |
-| `lint`          | Linting der Javascript und Stylesheets mit Korrektur     |
+| Befehl          | Auswirkung                                                           |
+|-----------------|----------------------------------------------------------------------|
+| `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien             |
+| `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_                 |
+| `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_                  |
+| `deploy`        | Build der Seiten und anschliessend des Skripts `ghpages`             |
+| `ghpages`       | Erstellt den Branch ghpages und pusht diesen auf Github              |
+| `ghpages:doc`   | Erzeugt die Dokumentationsseiten für die Javaskriptcodedokumentation |
+| `debug`         | Startet ndb via nodemon                                              |
+| `lint:js`       | Linting der Javascriptdateien                                        |
+| `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur                          |
+| `lint:scss`     | Linting der Stylesheets                                              |
+| `lint:scss:fix` | Linting der Stylesheets mit Korrektur                                |
+| `lint`          | Linting der Javascript und Stylesheets mit Korrektur                 |
 
 ### Seitenstruktur
 
