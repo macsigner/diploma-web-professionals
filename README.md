@@ -1,3 +1,4 @@
+
 Diplomarbeit 2022 Web Frontend Developer
 ========================================
 
@@ -15,19 +16,20 @@ npm install
 
 ### Nodeskripte
 
-| Befehl          | Auswirkung                                               |
-|-----------------|----------------------------------------------------------|
-| `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien |
-| `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_     |
-| `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_      |
-| `deploy`        | Build der Seiten und anschliessend des Skripts `ghpages` |
-| `ghpages`       | Erstellt den Branch ghpages und pusht diesen auf Github  |
-| `debug`         | Startet ndb via nodemon                                  |
-| `lint:js`       | Linting der Javascriptdateien                            |
-| `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur              |
-| `lint:scss`     | Linting der Stylesheets                                  |
-| `lint:scss:fix` | Linting der Stylesheets mit Korrektur                    |
-| `lint`          | Linting der Javascript und Stylesheets mit Korrektur     |
+| Befehl          | Auswirkung                                                           |
+|-----------------|----------------------------------------------------------------------|
+| `start`         | Startet den Webpackdevserver mit Beobachtung der Dateien             |
+| `build`         | Build der Seiten und Assets gemäss _webpack.prod.js_                 |
+| `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_                  |
+| `deploy`        | Build der Seiten und anschliessend des Skripts `ghpages`             |
+| `ghpages`       | Erstellt den Branch ghpages und pusht diesen auf Github              |
+| `ghpages:doc`   | Erzeugt die Dokumentationsseiten für die Javaskriptcodedokumentation |
+| `debug`         | Startet ndb via nodemon                                              |
+| `lint:js`       | Linting der Javascriptdateien                                        |
+| `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur                          |
+| `lint:scss`     | Linting der Stylesheets                                              |
+| `lint:scss:fix` | Linting der Stylesheets mit Korrektur                                |
+| `lint`          | Linting der Javascript und Stylesheets mit Korrektur                 |
 
 ### Seitenstruktur
 
@@ -36,7 +38,7 @@ Um die Seiten in eine bestimmte Reihenfolge zu bringen, kann ein Prefix im Datei
 mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Daten werden mit einer _JSON_-Datei
 eingebunden. Die Prefixe werden für die URLs entfernt.
 
-Aufbau gemäss Ansicht:
+__Aufbau gemäss Ansicht:__
 
 ```
 ├── 010_aktuelles.twig
@@ -53,9 +55,31 @@ Aufbau gemäss Ansicht:
         └── subsub.twig
 ```
 
-[//]: # (todo: does the order of files being read depend on the host?)
+#### Zusätzliche Daten für die Seiten
 
-[//]: # (todo: implement hidden pages via underline as prefix in filename)
+Um einer Seite zusätzliche Daten mitzugeben kann eine _JSON_-Datei hinterlegt werden, welche denselben Namen hat wie die
+Seite. Es können auch Attribute überschrieben werden, wie das `title`-Tag.
+
+__Beispiel an einem Newseintrag:__
+
+```json
+{
+    "title": "Grossprojekt Home & House",
+    "image": "/src/assets/images/aktuelles/aktuelles_01.jpeg",
+    "date": "2021-08-01",
+    "teaserTitle": "Home & House News",
+    "teaser": "Grossprojekt Home & House nimmt Gestalt an Es entstehen insgesamt 40 komfortable Eigentumswohnungen in den kommenden Jahren im Quartier Hokuspokus."
+}
+```
+
+#### Skripte nur für spezifische Seiten
+
+Um Skripte nur für eine einzelne Seite anzugeben, wird eine _Javascript_-Datei im Skriptordner _src/js/pages_ unter dem
+gleichen Namen wie die Seite angelegt. Dieses wird dann als zusätzlicher _Chunk_ beim Build eingepflegt.\
+Um beispielsweise für die Seite *src/pages/010_aktuelles/_001_grossprojekt-home-house.twig* ein eigenes Skript zu laden
+wird die Datei *src/js/pages/010_aktuelles/_001_grossprojekt-home-house.js* angelegt.
+
+[//]: # (todo: does the order of files being read depend on the host?)
 
 [//]: # (todo: write setup as soon there is one and update comment)
 
@@ -132,21 +156,21 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - [ ] Header _1h_
     - [ ] Hauptnavigation _1h_
     - [ ] Footer _1h_
-    - [ ] Strukturstyling (Headlines, Buttons, Formularfelder) _3h_
+    - [x] Strukturstyling (Headlines, Buttons, Formularfelder) _3h_
     - [ ] Home
-        - [ ] Headerbild mit Teaser _1h_
+        - [x] Headerbild mit Teaser _1h_
         - [ ] Filterformular _3h_
-        - [ ] Kachelansicht _1h_
-        - [ ] Bildkachel _1h_
-        - [ ] Listenansicht _2h_
-    - [ ] Aktuelles
-        - [ ] Bildteaser _2h_
+        - [x] Kachelansicht _1h_
+        - [x] Bildkachel _1h_
+        - [x] Listenansicht _2h_
+    - [x] Aktuelles
+        - [x] Bildteaser _2h_
         - [ ] Bildteaserlayout _1h_
     - [ ] Objektdetail
-        - [ ] Slider _1h_
+        - [x] Slider _1h_
         - [ ] Detaillayout _2h_
         - [ ] Hintergrundblock _1h_
-    - [ ] Newsdetail _2h_
+    - [x] Newsdetail _2h_
     - [ ] Formular _3h_
         - [ ] Modal
     - [ ] Kontakt _1h_
@@ -176,6 +200,11 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 | Abgabe Diplomarbeit               | 1h        | 27.11.2022 |                  |         |
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
+
+### [Node][technology :: node :: homepage] und [npm][technology :: npm :: homepage]
+
+Eingesetzt um verschiedene Skripte/Module (Eg. _ghpages_, _twig_, _eslint_, ect.) im Projekt einsetzen zu können. _NPM_
+ermöglicht die eingesetzen Technologien einfach mit dem Projekt "mitzuführen" und bei Bedarf zu installieren.
 
 ### [Deepl](https://www.deepl.com/translator)
 
@@ -263,6 +292,8 @@ Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdin
 zustande gekommen ist, deklariere ich es hiermit als _halb halb_. Gleiches gilt für die Funktion _mapOptions_ aus _
 tools.js_.
 
+Ebenfalls übernommen ist die Funktion `mapOptions` in _tools.js_ welche aber ebenfalls ursprünglich von mir stammt.
+
 ### Abweichungen von der Vorlage
 
 - __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
@@ -282,33 +313,33 @@ tools.js_.
 
 #### Node
 
-[Ersten Buchstaben in Grossschreibung konvertieren][node :: uppercase first letter of string]\
+[Ersten Buchstaben in Grossschreibung konvertieren][sources :: node :: uppercase first letter of string]\
 Genutzt in der _PageCollection_ um aus dem Dateinamen eine art Seitentitel zu generieren.
 
 ### Fix
 
 #### Node
 
-[Fehler: `__dirname is not defined in ES module scope`][node :: dirname not in es scope]\
+[Fehler: `__dirname is not defined in ES module scope`][sources :: node :: dirname not in es scope]\
 Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau auf `"type": "module"`.
 
-[Fehler: `Parsing error: Unexpected token import`][eslint :: parsing error: unexpected token import]\
+[Fehler: `Parsing error: Unexpected token import`][sources :: eslint :: parsing error: unexpected token import]\
 Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im _eslintrc.json_ auf `"ecmaVersion": 11`
 nötig. In diesem Projekt nicht weiter von Belang aber ansonsten würde ich wohl das File auf die Ignoreliste
 setzen.\Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgeindeinem Grund auf einer älteren Version
 basierenen müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste ist –
-gemäss [dieser Antwort](https://stackoverflow.com/a/58646219) noch überlegenswert.
+gemäss [dieser Antwort][sources :: eslint :: parsing error: unexpected token import :: answer] noch überlegenswert.
 
-[Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][webpack :: chunk load error]\
-Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow](https://stackoverflow.com/a/66197410)
+[Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][sources :: webpack :: chunk load error]\
+Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow][sources :: webpack :: chunk load error :: answer]
 
 #### HTML
 
-[Regulärer Ausdruck Telefonnummber][html :: regex phone number]
+[Regulärer Ausdruck Telefonnummber][sources :: html :: regex phone number]
 
 #### Javascript
 
-[Konvertierung Camelcase zu Kebabcase][javascript :: camel to kebab] innerhalb der _tools.js_
+[Konvertierung Camelcase zu Kebabcase][sources :: javascript :: camel to kebab] innerhalb der _tools.js_
 
 ## Eidesstattliche Erklärung
 
@@ -317,15 +348,22 @@ Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt
 kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
 vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
+[technology :: node :: homepage]: https://nodejs.org/en/
 
-[node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+[technology :: npm :: homepage]: https://www.npmjs.com/
 
-[node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+[sources :: node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
-[eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
+[sources :: node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
 
-[webpack :: chunk load error]: https://stackoverflow.com/a/65541635
+[sources :: eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
 
-[html :: regex phone number]: https://ihateregex.io/expr/phone/
+[sources :: eslint :: parsing error: unexpected token import :: answer]: https://stackoverflow.com/a/58646219
 
-[javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
+[sources :: webpack :: chunk load error]: https://stackoverflow.com/a/65541635
+
+[sources :: webpack :: chunk load error :: answer]: https://stackoverflow.com/a/66197410
+
+[sources :: html :: regex phone number]: https://ihateregex.io/expr/phone/
+
+[sources :: javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
