@@ -1,9 +1,11 @@
+/** @module Tools */
+
 /**
  * Creates a function that delegates given event to specified selector only.
  *
- * @param {string} selector CSS query selector
- * @param {*} fn Callback function run if selector matches
- * @returns {function(): void} Function to be run on event
+ * @param {String} selector CSS query selector
+ * @param {Function({Event})} fn Callback function run if selector matches
+ * @returns {Function(): void} Function to be run on event
  */
 const delegate = (selector, fn) => {
     return (e) => {
@@ -14,10 +16,11 @@ const delegate = (selector, fn) => {
 };
 
 /**
- * Create a debounce function.
- * @param {function} fn Function to be run after debounce
- * @param {number} delay Delay in milliseconds
- * @returns {function(): void} Function to be called after interaction
+ * Create a debounce function that runs after set delay.
+ *
+ * @param {Function} fn Function to be run after debounce
+ * @param {Number} delay Delay in milliseconds
+ * @returns {Function(): void} Function to be called after interaction
  */
 const debounce = (fn, delay = 300) => {
     let timout;
@@ -31,8 +34,9 @@ const debounce = (fn, delay = 300) => {
 
 /**
  * Sort object by specified key.
- * @param {string|number} key Key of object or array given
- * @returns {function(*, *): number} Function to be called on each comparison
+ *
+ * @param {String|Number} key Key of object or array given
+ * @returns {Function({Object}, {Object}): Number} Function to be called on each comparison
  */
 const sortBy = (key) => {
     return (a, b) => {
@@ -48,8 +52,9 @@ const sortBy = (key) => {
 
 /**
  * Clean empty strings from object.
- * @param obj {object} Object to be cleaned from empty strings.
- * @returns {object}
+ *
+ * @param obj {Object} Object to be cleaned from empty strings
+ * @returns {Object} Object with empty string properties removed
  */
 const cleanEmptyStringsFromObject = (obj) => {
     for (let key of Object.keys(obj)) {
@@ -65,9 +70,10 @@ const cleanEmptyStringsFromObject = (obj) => {
 
 /**
  * Map options object deep.
- * @param originalOptions {object} Original options object.
- * @param newOptions {object} New options object that will overwrite correlating values.
- * @returns {object}
+ *
+ * @param originalOptions {Object} Original options object
+ * @param newOptions {Object} New options object that will overwrite correlating values
+ * @returns {Object}
  */
 const mapOptions = (originalOptions, newOptions) => {
     let settings = Object.assign({}, originalOptions);
@@ -94,9 +100,8 @@ const mapOptions = (originalOptions, newOptions) => {
 
 /**
  * Convert camel case string to kebab case.
- * @param str
- * @returns {string}
- * @param {string} str
+ * @param {String} str Camel case string
+ * @returns {string} Kebab case string.
  */
 function camelToKebabCase(str) {
     if (str !== str.toLowerCase()) {
