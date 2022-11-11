@@ -33,22 +33,22 @@
             <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
         </header>
 
-        <main>
+        <main class="layout-object-detail__main">
             <div class="layout-object-detail__meta-infos">
-                <p><strong>Verfügbarkeit</strong> <br>
+                <p class="layout-object-detail__info-item"><strong>Verfügbarkeit</strong> <br>
                     Ab {{ data.availability }}</p>
 
-                <p><strong>Location</strong> <br>
+                <p class="layout-object-detail__info-item"><strong>Location</strong> <br>
                     {{ data.location }}</p>
 
-                <p><strong>Preis</strong> <br>
+                <p class="layout-object-detail__info-item"><strong>Preis</strong> <br>
                     {{ data.price }}</p>
 
-                <p><strong>Nutzfläche</strong> <br>
+                <p class="layout-object-detail__info-item"><strong>Nutzfläche</strong> <br>
                     Fläche {{ data.area }}</p>
             </div>
 
-            <div class="layout-object-detail__description">
+            <div class="layout-object-detail__description layout-object-detail__info-item">
                 <h2 class="layout-object-detail__description-title">Beschreibung</h2>
                 {{ data.description }}
             </div>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="layout-object-detail__contact-footer">
-                <p><strong>Haben wir <br>Ihr Interesse geweckt?</strong></p>
+                <p class="layout-object-detail__description-title"><strong>Haben wir <br>Ihr Interesse geweckt?</strong></p>
 
                 <a href="/kontakt.html" class="layout-object-detail__contact-button">Jetzt anfragen!</a>
             </div>
