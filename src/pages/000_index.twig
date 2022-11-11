@@ -2,26 +2,29 @@
 
 {% block main %}
 
-    <header>
-        <img src="/src/assets/images/home/header_image.jpeg" alt="Aussenansicht Immobilie im Neubrutalstil">
+    <header class="header-hero">
+        <figure class="header-hero__image">
+            <img src="/src/assets/images/home/header_image.jpeg" alt="Aussenansicht Immobilie im Neubrutalstil">
+        </figure>
 
-        <h1>Die optimale Balance zwischen Ästhetik und Funktionalität</h1>
+        <div class="header-hero__block">
+            <div class="header-hero__block-inner">
+                <h1 class="header-hero__title">Die optimale Balance zwischen Ästhetik und Funktionalität</h1>
+            </div>
+        </div>
     </header>
 
-    <section>
+    <main class="base-width target-block" id="main">
         <h2>Immobilien</h2>
 
-        {% include '@components/forms/form-object-filter.twig' %}
-
-        <hr>
         <div>
-
-            {% for item in pages.030_objekt.pages %}
-                {% include '@components/object-item.twig' %}
-            {% endfor %}
-
-            <button type="button">Mehr laden</button>
+            {% include '@components/forms/form-object-filter.twig' %}
         </div>
-    </section>
+        <div class="layout-estate-listing" data-real-estates data-real-estates-filter="#main-real-estate-filter" data-real-estates-filter-layout-toggle="#main-real-estate-filter">
+            {% include '@components/html-templates/estate-tile.twig' %}
+            {% include '@components/html-templates/estate-table-row.twig' %}
+            {% include '@components/html-templates/estate-table.twig' %}
+        </div>
+    </main>
 
 {% endblock %}

@@ -5,31 +5,39 @@
 
 {% block main %}
 
-    <article class="">
-        <header>
+    <main class="layout-news-detail">
+        <header class="layout-news-detail__hero-image">
+
             {% if data.image %}
                 {% include '@components/image.twig' with {image: data.image} %}
             {% endif %}
 
-            <div class="base-width">
-                <h1>{{ title }}</h1>
-                <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
-            </div>
         </header>
 
-        <div class="base-width">
+        <div class="layout-news-detail__inner">
+            <h1 class="layout-news-detail__title">{{ title }}</h1>
+            <div class="layout-news-detail__meta">
+                <p class="layout-news-detail__meta-title">{{ data.teaserTitle ? data.teaserTitle : title }}</p>
+                <time datetime="{{ data.date.datetime }}">{{ data.date.locale }}</time>
+            </div>
 
-            {% block mainArticle %}
-                {{ data.teaser }}
-            {% endblock %}
+            <div class="text-container">
 
+                {% block mainArticle %}
+                    <p>{{ data.teaser }}</p>
+                {% endblock %}
+
+            </div>
+
+            <footer class="layout-news-detail__footer">
+                <a href="/aktuelles.html" class="button">zurück</a>
+            </footer>
         </div>
-    </article>
+    </main>
 
 {% endblock %}
 
 {% block mainEnd %}
 
-    <a href="/aktuelles.html" class="button">Zurück</a>
 
 {% endblock %}

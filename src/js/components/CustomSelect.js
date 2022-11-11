@@ -7,7 +7,8 @@ import Base from './Base.js';
 class CustomSelect extends Base {
     /**
      * Construct.
-     * @param el
+     * @param {Element} el Document node
+     * @param {Object} options Object to overwrite default settings.
      */
     constructor(el, options = {}) {
         super();
@@ -43,6 +44,14 @@ class CustomSelect extends Base {
         this.customSelect.appendChild(this.label);
         this.customSelect.appendChild(this.customOptions);
 
+        /**
+         * Select options Array
+         * @type Array
+         * @property {Object[]} selectOptions[].attributes Key value pairs of element attributes. Eg. value.
+         * @property {String|Object} selectOptions[].inner Content of the option or object for optgroup.
+         * @property {String} selectOptions[].inner.label Label for the optgroup element.
+         * @property {Array} selectOptions[].inner.items Label for the optgroup element.
+         */
         this.selectOptions = this._createOptionsObjectFromElements(Array.from(el.children));
         this.customSelect.setAttribute('tabindex', this.el.tabIndex);
 
@@ -126,7 +135,7 @@ class CustomSelect extends Base {
 
     /**
      * Get the current selected option node.
-     * @returns {*}
+     * @returns {Element} The currently selected `<option>` element.
      * @private
      */
     _getCurrentOptionElement() {
@@ -137,9 +146,9 @@ class CustomSelect extends Base {
     }
 
     /**
-     * Get selection option markup fron object.
-     * @param options
-     * @returns {string}
+     * Create select tag markup fron object.
+     * @param {Array} options Array of objects.
+     * @returns {String}
      * @private
      */
     _getSelectOptionMarkupFromObject(options) {
@@ -164,8 +173,9 @@ class CustomSelect extends Base {
 
     /**
      * Get menu items markup.
-     * @param options
-     * @returns {*}
+     *
+     * @param {Array} options Array of objects.
+     * @returns {String} HTML of custom select.
      * @private
      */
     _getMenuOptionsMarkupFromObject(options) {
@@ -196,9 +206,10 @@ class CustomSelect extends Base {
     }
 
     /**
-     * Get attributes as string.
-     * @param attributes
-     * @returns {string}
+     * Get attributes as string. Each attribute will also be generated as data-attribute.
+     *
+     * @param {Object} attributes Key value pairs of attributes
+     * @returns {String} String containing the attributes to be added to a node.
      * @private
      */
     _getAttributeString(attributes, prefix = '') {
@@ -228,7 +239,7 @@ class CustomSelect extends Base {
     }
 
     /**
-     * Toggle the open state of the options menu.
+     * Toggle the open state of the select menu.
      */
     toggle() {
         if (this.customSelect.matches('.open')) {
@@ -239,22 +250,24 @@ class CustomSelect extends Base {
     }
 
     /**
-     * Handle click events out of current instance.
-     * @param e
+     * Listen for click events outside the current instance.
+     *
+     * @param {Event} e The click event on the document.
      * @private
      */
     _clickOutsideListener(e) {
         // eslint-disable-next-line
         // Todo: is the performance better this way?
-        // Handle this event without delegate. There is the posiiblity
+        // Handle this event explicitly without delegate.
         if (e.target.closest(this.getNamespaceClass()) !== this.customSelect) {
             this.close();
         }
     }
 
     /**
-     * Handle keypress on opened select.
-     * @param e
+     * Switch further actions on keypress on opened select.
+     *
+     * @param {Event} e
      * @private
      */
     _keypressListener(e) {
@@ -279,6 +292,7 @@ class CustomSelect extends Base {
 
     /**
      * Focus on next item.
+     *
      * @private
      */
     _focusNext() {
@@ -292,7 +306,8 @@ class CustomSelect extends Base {
     }
 
     /**
-     * Focus on next item.
+     * Focus on previous item.
+     *
      * @private
      */
     _focusPrevious() {
@@ -307,6 +322,7 @@ class CustomSelect extends Base {
 
     /**
      * Apply aria selected on items.
+     *
      * @param value
      * @private
      */
@@ -326,7 +342,8 @@ class CustomSelect extends Base {
 
     /**
      * Select specified value.
-     * @param value
+     *
+     * @param {String} value Value to be selected.
      */
     select(value) {
         this._value = value;
@@ -345,8 +362,9 @@ class CustomSelect extends Base {
     }
 
     /**
-     * Set options of select and update custo select.
-     * @param options
+     * Set available options of select and update custom select.
+     *
+     * @param {Object[]} options Array of objects {@link CustomSelect#selectOptions}
      */
     setOptions(options) {
         this.selectOptions = options;
@@ -356,7 +374,8 @@ class CustomSelect extends Base {
 
     /**
      * Get current value.
-     * @returns {*}
+     *
+     * @returns {String}
      */
     getCurrentValue() {
         return this._value;
@@ -364,17 +383,19 @@ class CustomSelect extends Base {
 
     /**
      * Get name of current select field.
-     * @returns {*}
+     *
+     * @returns {String}
      */
     getName() {
         return this.el.name || this.el.id;
     }
 
+    // Todo: Maybe make this public for further use?
     /**
      * Create initial options object from children.
      *
      * @param children
-     * @returns {*}
+     * @returns {Object} @see {@link CustomSelect#selectOptions}
      * @private
      */
     _createOptionsObjectFromElements(children) {
@@ -385,8 +406,9 @@ class CustomSelect extends Base {
 
     /**
      * Create single item options object.
+     *
      * @param el
-     * @returns {{attributes: {}, inner: (String|Array)}}
+     * @returns {Object} @see {@link CustomSelect#selectOptions}
      * @private
      */
     _createOptionsObjectFromSingleElement(el) {

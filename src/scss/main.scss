@@ -35,11 +35,25 @@
 @import 'imports/modules/custom_select';
 @import 'imports/modules/switch';
 @import 'imports/modules/radio_icons';
+@import 'imports/modules/link';
+@import 'imports/modules/target_block';
 
 // Default modules
+@import 'imports/modules/text_container';
+@import 'imports/modules/header_hero';
 @import 'imports/modules/slider';
 @import 'imports/modules/slide_image';
 @import 'imports/modules/map';
+@import 'imports/modules/color_scheme';
+@import 'imports/modules/bg';
+@import 'imports/modules/tiles/tile_teaser';
+@import 'imports/modules/layouts/layout_filter_form';
+@import 'imports/modules/layouts/layout_estate_listing';
+@import 'imports/modules/layouts/layout_news_detail';
+@import 'imports/modules/layouts/layout_object_detail';
+@import 'imports/modules/layouts/layout_object_form';
+@import 'imports/modules/estate_table';
+@import 'imports/modules/image_teaser';
 
 // Late modules
 @import 'imports/modules/modal';

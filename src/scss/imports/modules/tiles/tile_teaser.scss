@@ -1,0 +1,52 @@
+/**
+ * tile-teaser bem module
+ */
+@use 'sass:math';
+
+.tile-teaser {
+    @include font-mobile-image-tile;
+
+    margin-bottom: 4.4rem;
+
+    @include media-tablet {
+        @include font-desktop-image-tile;
+    }
+
+    @include media-desktop-small {
+        margin-bottom: 9rem;
+    }
+
+    &__image {
+        @extend .aspect;
+
+        margin-bottom: 2.4rem;
+
+        @include media-desktop-small {
+            margin-bottom: 1.8rem;
+        }
+    }
+
+    &__image::before {
+        padding-top: math.percentage(math.div(165, 306));
+
+        @include media-desktop-small {
+            padding-top: math.percentage(math.div(230, 414));
+        }
+    }
+
+    &__title {
+        @include font-mobile-image-tile-title;
+
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @include media-tablet {
+            margin-top: .6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        @include media-desktop-small {
+            @include font-desktop-image-tile-title;
+        }
+    }
+}

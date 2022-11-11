@@ -1,23 +1,31 @@
-<form id="main-real-estate-filter" {% if applyFilter %}data-filter{% endif %}>
-    <label for="estate_type" class="filter-label">Was</label>
-    <select name="ref_type_id" id="ref_type_id" data-filter-type="filter">
-        <option value="" selected>Alle Objekte</option>
-    </select>
-    <label for="canton" class="filter-label">Wo</label>
-    <select name="canton" id="canton">
-        <option value="" selected>Alle Orte</option>
-        <option value="appenzell">Appenzell</option>
-        <option value="st.gallen">St.Gallen</option>
-    </select>
-    <label for="sorting" class="filter-label">Wo</label>
-    <select name="sorting" id="sortBy" data-filter-type="sort">
-        <option value="" selected>Auswählen</option>
-        <option value="priceAsc">Preis aufsteigend</option>
-        <option value="priceDesc">Preis aufsteigend</option>
-        <option value="dateAsc">Datum aufsteigend</option>
-        <option value="dateDesc">Datum aufsteigend</option>
-    </select>
-    <fieldset class="switch">
+<form id="main-real-estate-filter" class="layout-filter-form" {% if applyFilter %}data-filter{% endif %}>
+    <div class="layout-filter-form__select">
+        <div>
+            <label for="estate_type" class="filter-label">Was</label>
+            <select name="ref_type_id" id="ref_type_id" data-filter-type="filter">
+                <option value="" selected>Alle Objekte</option>
+            </select>
+        </div>
+        <div>
+            <label for="canton" class="filter-label">Wo</label>
+            <select name="canton" id="canton">
+                <option value="" selected>Alle Orte</option>
+                <option value="appenzell">Appenzell</option>
+                <option value="st.gallen">St.Gallen</option>
+            </select>
+        </div>
+        <div>
+            <label for="sorting" class="filter-label">Wo</label>
+            <select name="sorting" id="sortBy" data-filter-type="sort">
+                <option value="" selected>Auswählen</option>
+                <option value="priceAsc">Preis aufsteigend</option>
+                <option value="priceDesc">Preis aufsteigend</option>
+                <option value="dateAsc">Datum aufsteigend</option>
+                <option value="dateDesc">Datum aufsteigend</option>
+            </select>
+        </div>
+    </div>
+    <fieldset class="switch layout-filter-form__switch">
         {# Todo: Semantics call for a radio button but it would be much easier with a checkbox #}
         <legend class="invisible">Filter Kaufen/Mieten</legend>
         <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" class="switch__input-first" checked data-filter-type="filter">
@@ -30,7 +38,7 @@
             <label class="switch__box-label switch__box-label--last" for="estateTypeBuy"></label>
         </span>
     </fieldset>
-    <fieldset class="radio-icons">
+    <fieldset class="layout-filter-form__layout-select radio-icons">
         <legend class="radio-icons__legend">Ansicht:</legend>
         <input type="radio" name="layout" value="layoutTile" id="optionLayoutTile" checked data-filter-type="template">
         <label for="optionLayoutTile" class="radio-icons__icon">
@@ -41,5 +49,7 @@
             <span class="invisible">Listenansicht</span><span class="icon-list"></span>
         </label>
     </fieldset>
-    <button class="button button--submit button--w100">Suchen</button>
+    <div class="layout-filter-form__search">
+        <button class="button button--submit button--w100">Suchen</button>
+    </div>
 </form>

@@ -1,25 +1,32 @@
-<article>
-    <header>
+<article class="image-teaser">
+    <header class="image-teaser__header">
 
-        {% for key, val in item.data %}
-            <pre>{{ key }}</pre>
-            <pre>{{ val }}</pre>
-        {% endfor %}
         {% if item.data.image %}
-            {% include '@components/image.twig' with {
-                image: {
-                    path: item.data.image,
-                    alt: item.data.title
-                }
-            } %}
+
+            <figure class="image-teaser__image">
+
+                {% include '@components/image.twig' with {
+                    image: {
+                        path: item.data.image,
+                        alt: item.data.title
+                    }
+                } %}
+
+            </figure>
+
         {% endif %}
 
-        <h2>{{ item.data.teaserTitle ? item.data.teaserTitle : item.title }}</h2>
-        <time datetime="{{ item.data.date.datetime }}">{{ item.data.date.locale }}</time>
     </header>
 
-    <div>{{ item.data.teaser }}</div>
-
-    <a href="{{ item.url }}">weiter</a>
+    <div class="image-teaser__main">
+        <div class="image-teaser__meta-title">
+            <h2 class="image-teaser__title">{{ item.data.teaserTitle ? item.data.teaserTitle : item.title }}</h2>
+            <time datetime="{{ item.data.date.datetime }}">{{ item.data.date.locale }}</time>
+        </div>
+        <div>{{ item.data.teaser }}</div>
+        <div class="image-teaser__footer">
+            <a href="{{ item.url }}" class="image-teaser__more">weiter</a>
+        </div>
+    </div>
 </article>
 

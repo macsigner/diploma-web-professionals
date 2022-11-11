@@ -1,0 +1,134 @@
+/**
+ * layout-object-detail bem module
+ */
+@use 'sass:math';
+
+.layout-object-detail {
+    @include font-desktop-detail;
+
+    @include media-desktop-small {
+        @include font-mobile-detail;
+    }
+
+    &__header,
+    &__main {
+        max-width: 90.7rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    &__main {
+        @include media-tablet {
+            display: grid;
+            grid-gap: $gutter-width;
+            grid-template-areas:
+                'aside description'
+                'aside action'
+                'map map';
+            grid-template-columns: minmax(10px, 1fr) minmax(10px, 2fr);
+        }
+
+        @include media-desktop-small {
+            grid-template-columns: minmax(10px, 3fr) minmax(10px, 7fr);
+        }
+    }
+
+    &__title {
+        @include font-mobile-detail-title;
+
+        margin-top: 4.6rem;
+        margin-bottom: 1.2rem;
+
+        @include media-desktop-small {
+            @include font-desktop-detail-title;
+        }
+    }
+
+    &__header {
+        margin-bottom: 3.6rem;
+
+        @include media-desktop-small {
+            margin-bottom: 4.7rem;
+        }
+    }
+
+    &__map {
+        @extend .aspect;
+
+        grid-area: map;
+        margin-top: 1.8rem;
+        margin-bottom: 1.8rem;
+
+        @include media-desktop-small {
+            margin-top: 2.9rem;
+        }
+    }
+
+    &__map::before {
+        padding-top: math.percentage(math.div(215, 328));
+
+        @include media-desktop-small {
+            padding-top: math.percentage(math.div(300, 907));
+        }
+    }
+
+    &__meta-infos {
+        grid-area: aside;
+    }
+
+    &__description {
+        grid-area: description;
+    }
+
+    &__description-title {
+        @include font-inherit;
+
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: $font-weight-bold;
+
+        @include media-desktop-small {
+            br {
+                display: none;
+            }
+        }
+    }
+
+    &__info-item {
+        margin-top: 0;
+        margin-bottom: 4.6rem;
+
+        @include media-desktop-small {
+            margin-bottom: 3rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__back {
+        margin-top: 10.3rem;
+
+        @include media-desktop-small {
+            margin-top: 17.2rem;
+        }
+    }
+
+    &__back .link__icon {
+        transform: scale(-1);
+    }
+
+    &__contact-button {
+        @extend .button;
+        @extend .button--block;
+
+        grid-area: action;
+        margin-bottom: 0;
+    }
+
+    &__contact-footer {
+        align-self: end;
+        padding-top: 2rem;
+    }
+}

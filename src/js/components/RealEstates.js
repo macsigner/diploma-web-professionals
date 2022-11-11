@@ -1,6 +1,7 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import Template from './Template.js';
 import Filter from './Filter.js';
+import * as Tools from '../tools.js';
 
 /**
  * Handle real estates rendering.
@@ -10,11 +11,18 @@ class RealEstates {
      * Construct.
      * @param el
      */
-    constructor(el) {
+    constructor(el, options = {}) {
         this.el = el;
-        this._settings = {
+        this._defaultSettings = {
             template: 'layoutTile',
+            limit: 0,
         };
+        this._customSettings = options;
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
+
+        if (this.el.dataset.realEstatesLimit) {
+            this._settings.limit = parseInt(this.el.dataset.realEstatesLimit);
+        }
 
         this._attachFilter();
 
@@ -41,6 +49,8 @@ class RealEstates {
     _setTemplates() {
         this.templates = {};
         let templates = this.el.querySelectorAll('template');
+
+        this._templateClasses = new Set();
 
         templates.forEach(el => {
             this.templates[el.dataset.templateName] = new Template(el);
@@ -79,6 +89,13 @@ class RealEstates {
 
         if (e.detail.Filter.filters.template) {
             this._settings.template = e.detail.Filter.filters.template.layout;
+            let templateClass = `template-${Tools.camelToKebabCase(e.detail.Filter.filters.template.layout)}`;
+
+            this.el.classList.remove(...this._templateClasses);
+
+            this.el.classList.add(templateClass);
+
+            this._templateClasses.add(templateClass);
         }
 
         this.render();
@@ -190,6 +207,8 @@ class RealEstates {
             }, estates);
         }
 
+        let items = [];
+
         for (let estate of estates) {
             if (!this._matchesFilter(estate)) {
                 continue;
@@ -199,7 +218,32 @@ class RealEstates {
 
             let item = this.templates[this._settings.template].create(estate);
 
-            this.el.appendChild(item);
+            items.push(item);
+        }
+
+        if (this._settings.limit > 0) {
+            items = items.slice(0, this._settings.limit);
+        }
+
+        if (items[0] && items[0].firstElementChild.tagName === 'TR') {
+            let tBody = document.createElement('tbody');
+            items.forEach(item => tBody.appendChild(item));
+
+            let table;
+
+            if (this.templates.table) {
+                table = this.templates['table'].create({
+                    tableRows: tBody.innerHTML,
+                });
+            } else {
+                table = document.createElement('table');
+
+                table.appendChild(tBody);
+            }
+
+            this.el.appendChild(table);
+        } else {
+            items.forEach(item => this.el.appendChild(item));
         }
     }
 

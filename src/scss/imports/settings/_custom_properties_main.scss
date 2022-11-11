@@ -4,8 +4,15 @@
 @use 'sass:color';
 
 :root {
+    // Measures
     --content-margin: 2rem;
-    --max-content-width: 120rem;
+    --max-content-width: 142rem;
+    --gutter-width: #{$gutter-width};
+    --large-gutter-width: #{$gutter-width};
+
+    @include media-desktop-small {
+        --large-gutter-width: 8.8rem;
+    }
 
     // Colors
     --color-primary: #{$color-primary};
@@ -20,4 +27,5 @@
 
     // Color settings.
     --color: #{$color-black};
+    --bg-color: #{$color-white};
 }
