@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/MainNavigation.js</title>
+    <title>JSDoc: Source: components/Base.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/MainNavigation.js</h1>
+    <h1 class="page-title">Source: components/Base.js</h1>
 
     
 
@@ -26,41 +26,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import * as Tools from '../tools.js';
-
-/**
- * Handle the main navigation and triggers.
+            <pre class="prettyprint source linenums"><code>/**
+ * Base class.
+ * Extending functionality of components.
  */
-class MainNavigation {
+class Base {
     /**
-     * Construct.
+     * Get the namespace class. Eg. for dynamic css class naming.
+     *
+     * @param suffix {string} String appended after the namespace class.
+     * @param prefix {string} String prepended before the namespace class.
+     * @returns {string}
      */
-    constructor(navigationArea, options = {
-        toggleSelector: '[data-main-navigation-toggle]',
-    }) {
-        this.el = navigationArea;
-        this._settings = options;
-
-        document.addEventListener(
-            'click',
-            Tools.delegate(this._settings.toggleSelector, this._toggleListener.bind(this))
-        );
+    getNamespace(suffix = '', prefix = '') {
+        return prefix + (this._settings ? this._settings.namespace : this.settings.namespace) + suffix;
     }
 
     /**
-     * Toggle states and css classes for main navigation visibility.
-     * @param e
-     * @private
+     * Get the namespace class with prepended dot. Eg. for query selectors.
+     *
+     * @param suffix {string} String appended after the namespace class.
+     * @param prefix {string} String prepended before the namespace class.
+     * @returns {string}
      */
-    _toggleListener() {
-        document.body.classList.toggle('main-navigation-area-is-open');
-        this.el.classList.toggle('is-open');
-
-        document.querySelectorAll(this._settings.toggleSelector).forEach(el => el.classList.toggle('is-active'));
+    getNamespaceClass(suffix = '', prefix = '') {
+        return '.' + this.getNamespace(suffix, prefix);
     }
 }
 
-export default MainNavigation;
+export default Base;
 </code></pre>
         </article>
     </section>

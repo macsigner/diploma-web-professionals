@@ -27,6 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import Template from './Template.js';
+import * as Tools from '../tools.js';
 
 /**
  * Slider.
@@ -37,20 +38,33 @@ class Slider {
      * @param el
      * @param options
      */
-    constructor(el, options = {
-        addArrows: true,
-        prevArrowContent: '&lt;span className="invisible">vorheriger Slide&lt;/span>',
-        nextArrowContent: '&lt;span class="invisible">nächster Slide&lt;/span>',
-        addPreview: true,
-    }) {
+    constructor(el, options = {}) {
         this.el = el;
-        this.el.classList.add('slider__inner');
+
+        this._defaultSettings = {
+            addArrows: true,
+            prevArrowContent: `&lt;span class="slider__prev-icon slider__arrow-icon">&lt;/span>
+                                   &lt;span class="invisible">vorheriger Slide&lt;/span>`,
+            nextArrowContent: `&lt;span class="invisible">nächster Slide&lt;/span>
+                                   &lt;span class="slider__next-icon slider__arrow-icon">&lt;/span>`,
+            addPreview: true,
+        };
+        this._customSettings = options;
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
+
+        this.el.classList.add('slider__slides');
         this.slides = Array.from(el.children);
-        this._settings = options;
-        this._wrapper = document.createElement('div');
-        this._wrapper.classList.add('slider');
-        this.el.parentNode.insertBefore(this._wrapper, this.el);
-        this._wrapper.appendChild(this.el);
+
+        this._sliderInner = document.createElement('div');
+        this._sliderInner.classList.add('slider__inner');
+
+        this._sliderWrapper = document.createElement('div');
+        this._sliderWrapper.classList.add('slider');
+        this._sliderWrapper.appendChild(this._sliderInner);
+
+        this.el.parentNode.insertBefore(this._sliderWrapper, this.el);
+        this._sliderInner.appendChild(this.el);
+
         this.slides.forEach((el) => {
             el.classList.add('slider__item');
         });
@@ -61,6 +75,11 @@ class Slider {
 
         if (this._settings.addPreview) {
             this._appendPreviews();
+
+            this._sliderWrapper.addEventListener(
+                'click',
+                Tools.delegate('.slider__preview-item', (e) => this._previewClickListener(e))
+            );
         }
 
         this.goToSlide(0);
@@ -103,13 +122,15 @@ class Slider {
         this.prevArrow = document.createElement('button');
         this.prevArrow.innerHTML = this._settings.prevArrowContent;
         this.prevArrow.addEventListener('click', () => this.prev());
+        this.prevArrow.classList.add('slider__prev', 'slider__arrow');
 
         this.nextArrow = document.createElement('button');
         this.nextArrow.innerHTML = this._settings.nextArrowContent;
         this.nextArrow.addEventListener('click', () => this.next());
+        this.nextArrow.classList.add('slider__next', 'slider__arrow');
 
-        this._wrapper.appendChild(this.prevArrow);
-        this._wrapper.appendChild(this.nextArrow);
+        this._sliderInner.appendChild(this.prevArrow);
+        this._sliderInner.appendChild(this.nextArrow);
 
         this.el.addEventListener('afterGoTo', () => this._updateArrows());
     }
@@ -142,7 +163,7 @@ class Slider {
         let previewContainer = document.createElement('ul');
         previewContainer.classList.add('slider__preview');
 
-        this._wrapper.appendChild(previewContainer);
+        this._sliderWrapper.appendChild(previewContainer);
 
         let htmlTemplate = document.createElement('template');
         htmlTemplate.dataset.templateName = 'preview';
@@ -181,6 +202,17 @@ class Slider {
             }
         });
     }
+
+    /**
+     * Handle clicks on preview items.
+     * @param e
+     * @private
+     */
+    _previewClickListener(e) {
+        let indexItem = e.target.closest('[data-index]');
+
+        this.goToSlide(parseInt(indexItem.dataset.index));
+    }
 }
 
 export default Slider;
@@ -194,13 +226,13 @@ export default Slider;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Global</h3><ul><li><a href="global.html#cleanEmptyStringsFromObject">cleanEmptyStringsFromObject</a></li><li><a href="global.html#debounce">debounce</a></li><li><a href="global.html#delegate">delegate</a></li><li><a href="global.html#sortBy">sortBy</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Tue Oct 25 2022 08:05:38 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Fri Nov 11 2022 14:23:15 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
