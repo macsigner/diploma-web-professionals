@@ -5,17 +5,24 @@
 .link {
     @include font-mobile-main;
 
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-weight: $font-weight-bold;
-
     @include media-desktop-small {
         @include font-desktop-main;
     }
 
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    color: var(--color);
+
     &__icon {
         display: block;
         margin-right: 2.3rem;
+    }
+
+    &__text + &__icon,
+    &__icon + &__text {
+        margin-left: 1.8rem;
     }
 }
