@@ -10,4 +10,9 @@
         --color: #{$color-black};
         --bg-color: #{$color-white};
     }
+
+    &--dark-on-primary {
+        --color: #{$color-black};
+        --bg-color: #{$color-primary};
+    }
 }

@@ -1,0 +1,19 @@
+/**
+ * bg bem module
+ */
+
+.bg {
+    padding-top: 5.4rem;
+    padding-bottom: 4.1rem;
+    color: var(--color);
+    background-color: var(--bg-color);
+
+    :not(.bg) + &,
+    & + :not(.bg) {
+        margin-top: 4.8rem;
+    }
+
+    &__inner {
+        @extend .base-width;
+    }
+}

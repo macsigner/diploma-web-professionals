@@ -11,11 +11,18 @@ class RealEstates {
      * Construct.
      * @param el
      */
-    constructor(el) {
+    constructor(el, options = {}) {
         this.el = el;
-        this._settings = {
+        this._defaultSettings = {
             template: 'layoutTile',
+            limit: 0,
         };
+        this._customSettings = options;
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
+
+        if (this.el.dataset.realEstatesLimit) {
+            this._settings.limit = parseInt(this.el.dataset.realEstatesLimit);
+        }
 
         this._attachFilter();
 
@@ -212,6 +219,10 @@ class RealEstates {
             let item = this.templates[this._settings.template].create(estate);
 
             items.push(item);
+        }
+
+        if (this._settings.limit > 0) {
+            items = items.slice(0, this._settings.limit);
         }
 
         if (items[0] && items[0].firstElementChild.tagName === 'TR') {

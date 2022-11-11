@@ -68,6 +68,15 @@
         </main>
     </div>
 
+    <aside class="bg color-scheme color-scheme--dark-on-primary">
+        <div class="bg__inner">
+            <div class="layout-estate-listing layout-estate-listing--newest" data-real-estates data-real-estates-limit="3">
+                {% include '@components/html-templates/estate-tile.twig' %}
+                {% include '@components/html-templates/estate-table.twig' %}
+            </div>
+        </div>
+    </aside>
+
 {% endblock %}
 
 {% block mainEnd %}

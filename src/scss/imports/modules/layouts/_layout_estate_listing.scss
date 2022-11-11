@@ -20,4 +20,12 @@
         display: block;
         padding-top: 0;
     }
+
+    &--newest > :nth-child(2) ~ * {
+        display: none;
+
+        @include media-desktop-small {
+            display: block;
+        }
+    }
 }
