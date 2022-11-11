@@ -34,8 +34,8 @@ npm install
 ### Seitenstruktur
 
 Neue Seiten können unter _src/pages/_ angelegt werden. Es wird auch eine Baumstruktur der Seiten als Objekt mitgegeben.\
-Um die Seiten in eine bestimmte Reihenfolge zu bringen, kann ein Prefix im Dateinamen hinzugefügt werden. Die Seite kann
-mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Daten werden mit einer _JSON_-Datei
+Um die Seiten in eine bestimmte "Reihenfolge" zu bringen, kann ein Prefix im Dateinamen hinzugefügt werden. Die Seite
+kann mit vorangestelltem Unterline `_` als versteckt markiert werden. Zusätzliche Daten werden mit einer _JSON_-Datei
 eingebunden. Die Prefixe werden für die URLs entfernt.
 
 __Aufbau gemäss Ansicht:__
@@ -57,8 +57,8 @@ __Aufbau gemäss Ansicht:__
 
 #### Zusätzliche Daten für die Seiten
 
-Um einer Seite zusätzliche Daten mitzugeben kann eine _JSON_-Datei hinterlegt werden, welche denselben Namen hat wie die
-Seite. Es können auch Attribute überschrieben werden, wie das `title`-Tag.
+Um einer Seite zusätzliche Daten mitzugeben, kann eine _JSON_-Datei hinterlegt werden, welche denselben Namen hat wie
+die Seite. Es können auch Attribute überschrieben werden, wie das `title`-Tag.
 
 __Beispiel an einem Newseintrag:__
 
@@ -85,7 +85,7 @@ wird die Datei *src/js/pages/010_aktuelles/_001_grossprojekt-home-house.js* ange
 
 ## URL der lauffähigen Version
 
-[dipl22mac.netlify.app](https://dipl22mac.netlify.app)
+[dipl22mac.netlify.app][preview]
 
 ## Zeitplan / Meilensteine
 
@@ -148,7 +148,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
         - [ ] Implementierung Kontakt, Formmodal _2h_ mit Objektauswahl
     - [ ] Formularversand _2h_
     - [ ] Google map
-        - [ ] Vordesign von [Snazzymaps](https://snazzymaps.com/) _1h_
+        - [ ] Vordesign von [Snazzymaps][roadmap :: snazzymaps] _1h_
         - [x] Implementierung und Designanpassung mit neuem Pin _2h_
     - [x] Slider _2h_
     - Reserve _4h_
@@ -206,28 +206,29 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 Eingesetzt um verschiedene Skripte/Module (Eg. _ghpages_, _twig_, _eslint_, ect.) im Projekt einsetzen zu können. _NPM_
 ermöglicht die eingesetzen Technologien einfach mit dem Projekt "mitzuführen" und bei Bedarf zu installieren.
 
-### [Deepl](https://www.deepl.com/translator)
+### [Deepl][technology :: translation :: deepl]
 
-Übersetzungstool zum Vermeiden von [falschen Freunden](https://de.wikipedia.org/wiki/Falscher_Freund).
+Übersetzungstool zum Vermeiden von [falschen Freunden][technology :: translation :: friends].
 
-### [Webpack](https://webpack.js.org/)
+### [Webpack][technology :: webpack]
 
 Einsatz aufgrund des Kurses, also primär als Lernmethode vorhanden. Wenn ich mir was aus den Fingern saugen müsste:
 
-- Ermöglicht Cachebusting ohne manuelles Eingreiffen
+- Ermöglicht Cachebusting ohne manuelles Eingreifen
 - Dateien (hauptsächlich Bilddateien) können beim Durchjagen optimiert werden
 - Ausführliche\* Doku
-- Weite Verbreitung ermöglicht eine einfachere Hilfestellung
+- Weite Verbreitung ermöglicht eine einfachere Hilfestellung (primär Recherche bei Problemen aber auch um Features
+  hinzuzufügen)
 
 *Die Doku ist zwar recht Ausführlich aber – teilweise – höllisch schwer verständlich.
 
-### [NDB](https://github.com/GoogleChromeLabs/ndb#readme)
+### [NDB][technology :: ndb]
 
 Da das Debugging der Nodeskripte recht mühsam war, begab ich mich auf die Suche nach einem Debugger, bei dem ich
 Haltepunkte setzen kann. analog Xdebug. Hauptgrund für den Einsatz von NDB ist die Familiarität mit den Entwicklertools
 von Chrome.
 
-### [twig-html-loader](https://github.com/radiocity/twig-html-loader#readme)
+### [twig-html-loader][technology :: twig html loader]
 
 Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
 voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
@@ -235,7 +236,7 @@ Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. A
 gekommen.\
 _Nachtrag_: Zwischenzeitlich würde ich wohl eher Nunjucks einsetzen, da näher an Node.
 
-### [normalise.css](https://github.com/necolas/normalize.css)
+### [normalise.css][technology :: normalise.css]
 
 Normalisierung der Stile in den verschiedenen Browsern. Alternativ wäre auch ein Reset in Frage gekommen. Vorteil bei
 diesem, ist auch das fehlende Stile schneller ersichtlich sind. Persönlich ist mir eine Normalisierung lieber, da so die
@@ -278,8 +279,8 @@ apply anarchism in the UK
 
 Die wichtigsten Module in der Beschreibung. Die JSDoc zu finden unter:
 
-[Frontend](https://dipl22mac-jsdoc-frontend.netlify.app/) \
-[Backend](https://dipl22mac-jsdoc-backend.netlify.app/)
+[Frontend][preview :: doc :: frontend] \
+[Backend][preview :: doc :: backend]
 
 [//]: # (todo: write whatever i did myself and maybe update comment)
 
@@ -299,8 +300,7 @@ Ebenfalls übernommen ist die Funktion `mapOptions` in _tools.js_ welche aber eb
 - __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
   ein ähnlicher Font – gleiche Schriftgrösse, gleiche Familie – mit akzeptablem Zeilenabstand _(Titel 1.1 bis 1.3,
   Laufschrift 1.3 bis 1.8_ vorhanden war, habe ich diesen übernommen.\
-  Angaben ohne Einheiten wegen
-  der [Vererbung](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values)
+  Angaben ohne Einheiten wegen der [Vererbung][comment :: css :: line-height inheritance]
   .
 - __Abstände zwischen den *label*- und *input*-Feldern:__ Da ich die Felder mit den Bezeichnungen optisch nur sehr ungut
   zuteilen konnte, habe ich die Abstände etwas angepasst um die Trennung der Blöcke besser ersichtlich zu machen.
@@ -348,9 +348,29 @@ Quellen und Hilfsmittel benutzt und die aus fremden Quellen direkt oder indirekt
 kenntlich gemacht habe. Die Arbeit habe ich bisher keinem anderen Prüfungsgremium in gleicher oder vergleichbarer Form
 vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
+[preview]: https://dipl22mac.netlify.app
+
+[preview :: doc :: frontend]: https://dipl22mac-jsdoc-frontend.netlify.app/
+
+[preview :: doc :: backend]: https://dipl22mac-jsdoc-backend.netlify.app/
+
+[roadmap :: snazzymaps]: https://snazzymaps.com/
+
 [technology :: node :: homepage]: https://nodejs.org/en/
 
 [technology :: npm :: homepage]: https://www.npmjs.com/
+
+[technology :: translation :: deepl]: https://www.deepl.com/translator
+
+[technology :: translation :: friends]: https://de.wikipedia.org/wiki/Falscher_Freund
+
+[technology :: webpack]: https://webpack.js.org/
+
+[technology :: ndb]: https://github.com/GoogleChromeLabs/ndb#readme
+
+[technology :: twig html loader]: https://github.com/radiocity/twig-html-loader#readme
+
+[technology :: normalise.css]: https://github.com/necolas/normalize.css
 
 [sources :: node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
 
@@ -367,3 +387,5 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 [sources :: html :: regex phone number]: https://ihateregex.io/expr/phone/
 
 [sources :: javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
+
+[comment :: css :: line-height inheritance]:https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values
