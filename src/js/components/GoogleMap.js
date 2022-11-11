@@ -1,5 +1,6 @@
 /* globals google */
 
+// Todo: extend documentation and finish :)
 /**
  * Init google map.
  */

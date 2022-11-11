@@ -148,7 +148,7 @@ class CustomSelect extends Base {
     /**
      * Create select tag markup fron object.
      * @param {Array} options Array of objects.
-     * @returns {string}
+     * @returns {String}
      * @private
      */
     _getSelectOptionMarkupFromObject(options) {
@@ -173,8 +173,9 @@ class CustomSelect extends Base {
 
     /**
      * Get menu items markup.
+     *
      * @param {Array} options Array of objects.
-     * @returns {string} HTML of custom select.
+     * @returns {String} HTML of custom select.
      * @private
      */
     _getMenuOptionsMarkupFromObject(options) {
@@ -206,8 +207,9 @@ class CustomSelect extends Base {
 
     /**
      * Get attributes as string. Each attribute will also be generated as data-attribute.
+     *
      * @param {Object} attributes Key value pairs of attributes
-     * @returns {string} String containing the attributes to be added to a node.
+     * @returns {String} String containing the attributes to be added to a node.
      * @private
      */
     _getAttributeString(attributes, prefix = '') {
@@ -249,6 +251,7 @@ class CustomSelect extends Base {
 
     /**
      * Listen for click events outside the current instance.
+     *
      * @param {Event} e The click event on the document.
      * @private
      */
@@ -263,6 +266,7 @@ class CustomSelect extends Base {
 
     /**
      * Switch further actions on keypress on opened select.
+     *
      * @param {Event} e
      * @private
      */
@@ -288,6 +292,7 @@ class CustomSelect extends Base {
 
     /**
      * Focus on next item.
+     *
      * @private
      */
     _focusNext() {
@@ -302,6 +307,7 @@ class CustomSelect extends Base {
 
     /**
      * Focus on previous item.
+     *
      * @private
      */
     _focusPrevious() {
@@ -316,6 +322,7 @@ class CustomSelect extends Base {
 
     /**
      * Apply aria selected on items.
+     *
      * @param value
      * @private
      */
@@ -335,7 +342,8 @@ class CustomSelect extends Base {
 
     /**
      * Select specified value.
-     * @param {string} value Value to be selected.
+     *
+     * @param {String} value Value to be selected.
      */
     select(value) {
         this._value = value;
@@ -355,6 +363,7 @@ class CustomSelect extends Base {
 
     /**
      * Set available options of select and update custom select.
+     *
      * @param {Object[]} options Array of objects {@link CustomSelect#selectOptions}
      */
     setOptions(options) {
@@ -365,7 +374,8 @@ class CustomSelect extends Base {
 
     /**
      * Get current value.
-     * @returns {string}
+     *
+     * @returns {String}
      */
     getCurrentValue() {
         return this._value;
@@ -373,17 +383,19 @@ class CustomSelect extends Base {
 
     /**
      * Get name of current select field.
-     * @returns {*}
+     *
+     * @returns {String}
      */
     getName() {
         return this.el.name || this.el.id;
     }
 
+    // Todo: Maybe make this public for further use?
     /**
      * Create initial options object from children.
      *
      * @param children
-     * @returns {*}
+     * @returns {Object} @see {@link CustomSelect#selectOptions}
      * @private
      */
     _createOptionsObjectFromElements(children) {
@@ -394,8 +406,9 @@ class CustomSelect extends Base {
 
     /**
      * Create single item options object.
+     *
      * @param el
-     * @returns {{attributes: {}, inner: (String|Array)}}
+     * @returns {Object} @see {@link CustomSelect#selectOptions}
      * @private
      */
     _createOptionsObjectFromSingleElement(el) {
