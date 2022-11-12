@@ -68,7 +68,7 @@ __Beispiel an einem Newseintrag:__
     "image": "/src/assets/images/aktuelles/aktuelles_01.jpeg",
     "date": "2021-08-01",
     "teaserTitle": "Home & House News",
-    "teaser": "Grossprojekt Home & House nimmt Gestalt an Es entstehen insgesamt 40 komfortable Eigentumswohnungen in den kommenden Jahren im Quartier Hokuspokus."
+    "teaser": "Grossprojekt Home & House nimmt Gestalt an Es entstehen ..."
 }
 ```
 
@@ -277,10 +277,30 @@ apply anarchism in the UK
 
 ### Javascriptdokumentation
 
-Die wichtigsten Module in der Beschreibung. Die JSDoc zu finden unter:
+Die wichtigsten Module in der Beschreibung. Die JSDoc ist zu finden unter:
 
-[Frontend][preview :: doc :: frontend] \
-[Backend][preview :: doc :: backend]
+[Javascript im Frontend][preview :: doc :: frontend] \
+[Javascript Node][preview :: doc :: backend]
+
+#### Zum Gesamtaufbau
+
+Primär war es mir ein Anliegen die Skripte so zu schreiben, dass er Einsatz auf weiteren Teilen möglichst einfach von
+staten geht und / oder bei späteren Anpassungen unkompliziert Funktionen erweitert, angepasst oder neu hinzugefügt
+werden können. Natürlich ist dies nicht immer der Fall aber soweit möglich, habe ich mich darum bemüht.
+
+Die Ansätze sind unten an drei Beispielen erläutert.
+
+##### Template.js
+
+[//]: # (todo: describe template)
+
+##### PageCollection.js
+
+[//]: # (todo: describe page collection)
+
+##### CustomSelect
+
+[//]: # (todo: describe custom select)
 
 [//]: # (todo: write whatever i did myself and maybe update comment)
 
@@ -290,10 +310,11 @@ Ziel dieses Kurses ist für mich in erster Linie Grundlagen nachzuholen und mich
 Javascript – nicht auf Bibliotheken und Frameworks zu verlassen. Da ich allerdings in der Media Motion AG als
 Frontendentwickler arbeite, erlaube ich mir das Linting zu übernehmen. Zwar bin ich für den grössten Teil der
 Implementation des Lintings (primär Stylelinting)verantwortlich, da es allerdings nicht im Zuge der Diplomarbeit
-zustande gekommen ist, deklariere ich es hiermit als _halb halb_. Gleiches gilt für die Funktion _mapOptions_ aus _
-tools.js_.
+zustande gekommen ist, deklariere ich es hiermit als _halb halb_.
 
-Ebenfalls übernommen ist die Funktion `mapOptions` in _tools.js_ welche aber ebenfalls ursprünglich von mir stammt.
+Gleiches gilt für die Funktion aus _tools.js_:
+
+- _mapOptions_
 
 ### Abweichungen von der Vorlage
 
