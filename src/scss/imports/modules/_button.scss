@@ -50,4 +50,12 @@
             padding-bottom: .8rem;
         }
     }
+
+    &--modal {
+        @extend .button--submit;
+
+        display: block;
+        width: 100%;
+        background-color: var(--color);
+    }
 }

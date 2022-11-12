@@ -227,6 +227,10 @@
     font-weight: $font-weight-bold;
 }
 
+@mixin font-desktop-modal-title {
+    @include font-block-06-desktop;
+}
+
 @mixin font-desktop-news-detail {
     @include font-block-01-desktop;
 }

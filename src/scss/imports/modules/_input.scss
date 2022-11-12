@@ -6,7 +6,7 @@
     position: relative;
 
     & + & {
-        margin-top: 1.8rem;
+        margin-top: var(--input-distance);
     }
 
     &__field,

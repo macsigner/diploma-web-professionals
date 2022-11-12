@@ -9,6 +9,8 @@
     --max-content-width: 142rem;
     --gutter-width: #{$gutter-width};
     --large-gutter-width: #{$gutter-width};
+    --input-distance: 1.8rem;
+    --check-distance: 3rem;
 
     @include media-desktop-small {
         --large-gutter-width: 8.8rem;

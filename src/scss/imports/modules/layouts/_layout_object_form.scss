@@ -3,5 +3,85 @@
  */
 
 .layout-object-form {
-    display: grid;
+    --input-distance: 0;
+    --check-distance: 1.1rem;
+
+    max-width: 130.6rem;
+    margin-right: auto;
+    margin-left: auto;
+
+    @include media-desktop-small {
+        --check-distance: 0;
+
+        display: grid;
+        grid-gap: 3.3rem 5.8rem;
+        grid-template-columns: repeat(4, minmax(10px, 1fr));
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    textarea {
+        min-height: 16.3rem;
+    }
+
+    &__item {
+        grid-column: span 2;
+        margin-bottom: 1.9rem;
+
+        @include media-desktop-small {
+            margin-bottom: 0;
+        }
+    }
+
+    &__item--group {
+        display: flex;
+    }
+
+    &__item--group > &__item {
+        margin: 0;
+    }
+
+    &__item--group > &__item + &__item {
+        margin-left: 2.6rem;
+    }
+
+    &__item--small {
+        flex: 0 1 13rem;
+    }
+
+    &__item--medium {
+        flex: 1 1 16.7rem;
+    }
+
+    &__item--message {
+        --input-distance: 3.5rem;
+
+        margin-bottom: 3.7rem;
+
+        @include media-desktop-small {
+            --input-distance: 0;
+
+            grid-column: 1 / -1;
+            margin: 0;
+        }
+    }
+
+    &__item--checkobx {
+        @include media-desktop-small {
+            grid-column: span 1;
+            align-self: end;
+        }
+    }
+
+    &__item--submit {
+        margin-top: 3.7rem;
+
+        @include media-desktop-small {
+            margin-top: 0;
+        }
+    }
+
+    &__item--submit .button {
+        margin: 0;
+    }
 }

@@ -6,53 +6,61 @@
         <button class="modal__close"></button>
         <div class="modal__inner">
             <header>
-                <h1>Interesse am Objekt <br>
+                <h1 class="modal__title">Interesse am Objekt <br>
                     <strong>Bijou am See</strong></h1>
             </header>
 
-            <form>
-                <div>
-                    <label for="firstName">Vorname</label>
-                    <input type="text" id="firstName">
+            <form class="layout-object-form">
+                <div class="layout-object-form__item input">
+                    <label for="firstName" class="input__label">Vorname</label>
+                    <input type="text" id="firstName" class="input__field">
                 </div>
-                <div>
-                    <label for="lastName">Nachname</label>
-                    <input type="text" id="lastName">
+                <div class="layout-object-form__item input">
+                    <label for="lastName" class="input__label">Nachname</label>
+                    <input type="text" id="lastName" class="input__field">
                 </div>
-                <div>
-                    <label for="address">Adresse</label>
-                    <input type="text" id="address">
+                <div class="layout-object-form__item input">
+                    <label for="address" class="input__label">Adresse</label>
+                    <input type="text" id="address" class="input__field">
                 </div>
-                <div>
-                    <label for="zip">PLZ</label>
-                    <input type="text" id="zip">
+                <div class="layout-object-form__item layout-object-form__item--group">
+                    <div class="layout-object-form__item layout-object-form__item--small input">
+                        <label for="zip" class="input__label">PLZ</label>
+                        <input type="text" id="zip" class="input__field">
+                    </div>
+                    <div class="layout-object-form__item layout-object-form__item--medium input">
+                        <label for="place" class="input__label">Ort</label>
+                        <input type="text" id="place" class="input__field">
+                    </div>
                 </div>
-                <div>
-                    <label for="place">Ort</label>
-                    <input type="text" id="place">
+                <div class="layout-object-form__item input">
+                    <label for="phoneNumber" class="input__label">Telefonnummer</label>
+                    <input type="tel" id="phoneNumber" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" class="input__field">
                 </div>
-                <div>
-                    <label for="phoneNumber">Telefonnummer</label>
-                    <input type="tel" id="phoneNumber" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+                <div class="layout-object-form__item input">
+                    <label for="email" class="input__label">E-Mail</label>
+                    <input type="email" id="email" class="input__field">
                 </div>
-                <div>
-                    <label for="email">E-Mail</label>
-                    <input type="email" id="email">
+                <div class="layout-object-form__item layout-object-form__item--message input">
+                    <label for="message" class="input__label">Ihre Nachricht</label>
+                    <textarea type="text" id="message" class="input__field"></textarea>
                 </div>
-                <div>
-                    <label for="message">Ihre Nachricht</label>
-                    <input type="text" id="message">
+                <div class="layout-object-form__item layout-object-form__item--checkobx">
+                    <input type="checkbox" id="information" class="invisible">
+                    <label for="information" class="check">
+                        <span class="check__mark"></span>
+                        <span class="check__label">Information</span>
+                    </label>
                 </div>
-                <div>
-                    <input type="checkbox" id="information">
-                    <label for="information">Information</label>
+                <div class="layout-object-form__item layout-object-form__item--checkobx">
+                    <input type="checkbox" id="tour" class="invisible">
+                    <label for="tour" class="check">
+                        <span class="check__mark"></span>
+                        <span class="check__label">Besichtigung</span>
+                    </label>
                 </div>
-                <div>
-                    <input type="checkbox" id="tour">
-                    <label for="tour">Besichtigung</label>
-                </div>
-                <div>
-                    <button>Senden</button>
+                <div class="layout-object-form__item layout-object-form__item--submit">
+                    <button class="button button--submit button--modal">Senden</button>
                 </div>
         </div>
     </div>

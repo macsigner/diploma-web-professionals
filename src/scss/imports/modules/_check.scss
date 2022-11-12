@@ -6,7 +6,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: var(--check-distance);
+
+    [type='checkbox'],
+    [type='radio'] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
 
     &__mark {
         @extend .icon-cross;

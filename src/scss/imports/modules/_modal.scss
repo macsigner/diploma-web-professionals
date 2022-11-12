@@ -17,13 +17,17 @@ Styleguide classes.modal
     position: fixed;
     inset: 0;
     z-index: 110;
+    padding-top: 10rem;
+    padding-bottom: 10.2rem;
     background-color: var(--color-primary);
+
+    @include media-desktop-small {
+        padding-top: 10.8rem;
+        padding-bottom: 17.2rem;
+    }
 
     &__inner {
         @extend .base-width;
-
-        margin-top: 11rem;
-        margin-bottom: 2.8rem;
     }
 
     &__close {
@@ -34,5 +38,16 @@ Styleguide classes.modal
         right: var(--content-margin);
         font-size: 3rem;
         text-indent: -9999em;
+    }
+
+    &__title {
+        @include font-mobile-modal-title;
+
+        margin-top: 0;
+        margin-bottom: 7rem;
+
+        @include media-desktop-small {
+            @include font-desktop-modal-title;
+        }
     }
 }
