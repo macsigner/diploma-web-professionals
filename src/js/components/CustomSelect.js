@@ -390,6 +390,7 @@ class CustomSelect extends Base {
         return this.el.name || this.el.id;
     }
 
+    // eslint-disable-next-line
     // Todo: Maybe make this public for further use?
     /**
      * Create initial options object from children.

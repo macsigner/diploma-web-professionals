@@ -1,5 +1,5 @@
 /* globals google */
-
+// eslint-disable-next-line
 // Todo: extend documentation and finish :)
 /**
  * Init google map.
