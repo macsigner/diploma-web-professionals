@@ -2,55 +2,24 @@
 
 {% block main %}
 
-    <header>
-        <h1>Interesse am Objekt <br>
-        <strong>Bijou am See</strong></h1>
-    </header>
+    <main class="base-width">
+        <div class="layout-contact">
+        <h1 class="page-title text-align-center">Kontakt</h1>
 
-    <form>
-        <div>
-            <label for="firstName">Vorname</label>
-            <input type="text" id="firstName">
+        <div class="map">
+            <div data-map></div>
         </div>
-        <div>
-            <label for="lastName">Nachname</label>
-            <input type="text" id="lastName">
+
+        <div class="text-container">
+            <p>Home & House <br>
+                Fabrikstrasse 24 <br>
+                9472 Grabs <br>
+                Schweiz</p>
+
+            <p><a href="tel:+41817400000">081 740 00 00</a> <br>
+                <a href="mailto:info@homehouse.ch">info@homehouse.ch</a></p>
         </div>
-        <div>
-            <label for="address">Adresse</label>
-            <input type="text" id="address">
         </div>
-        <div>
-            <label for="zip">PLZ</label>
-            <input type="text" id="zip">
-        </div>
-        <div>
-            <label for="place">Ort</label>
-            <input type="text" id="place">
-        </div>
-        <div>
-            <label for="phoneNumber">Telefonnummer</label>
-            <input type="tel" id="phoneNumber" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
-        </div>
-        <div>
-            <label for="email">E-Mail</label>
-            <input type="email" id="email">
-        </div>
-        <div>
-            <label for="message">Ihre Nachricht</label>
-            <input type="text" id="message">
-        </div>
-        <div>
-            <input type="checkbox" id="information">
-            <label for="information">Information</label>
-        </div>
-        <div>
-            <input type="checkbox" id="tour">
-            <label for="tour">Besichtigung</label>
-        </div>
-        <div>
-            <button>Senden</button>
-        </div>
-    </form>
+    </main>
 
 {% endblock %}
