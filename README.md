@@ -294,7 +294,7 @@ einem realen Projekt wohl nicht selbst entwickeln, sondern auf Bibliotheken zur�
 ##### PageCollection.js
 
 __Info: Diese hat den Nachteil, dass nach dem Neuanlegen einer Seite, Webpack nochmals gestartet werden muss. Da dies
-nach Anfrage eigentlich ein Bastel ist, würde ich dies in einem Projekt *so* nicht einsetzen.__
+nach Rückfrage eigentlich ein Bastel ist, würde ich dies in einem Projekt *so* nicht einsetzen.__
 
 Die Logik für die Benamslung der Dateien, habe ich mir von CMS wie [grav][tech doc :: grav] und _Static Site_
 -Generatoren wie [11ty][tech doc :: 11ty] abgeschaut.
@@ -313,7 +313,41 @@ Dieser Aufbau ermöglicht es mir auch in Kombination mit einer Templatesprache (
 
 ##### Template.js
 
-[//]: # (todo: describe template)
+Auch hier ist es ein Versuch, die Funktion zum Generieren der Einzelelemente (Eg. Immobilienelement) vom hart
+hinterlegten Markup zu trennen, bzw. das Markup ausserhalb des generierenden Objekts zu haben. Tabellen und
+Kachelansichten können so im einem `template`-Tag hinterlegt werden. Bei der Initialisierung wird ein Element erzeugt,
+bei dem die Anpassbaren Teile – das Attribut _data-template_ – in einem Array zwischengespeichert werden. Beim Erzeugen
+eines neuen Elements muss ein Objekt mit den entsprechenden Schlüsselwertpaaren übergeben werden. Korrelierende Werte
+zwischen Objektschlüssel und dem Wert des Attributs, werden dann vor dem Generieren des neuen Elements ersetzt.
+
+Beispiel Basismarkup:
+
+```html
+<ul>
+<template>
+    <li data-template="title"></li>
+</template>
+</ul>
+```
+
+Beispielinitialisierung:
+
+```javascript
+const el = document.querySelector('template');
+const template = new Template(el);
+const listItem = template.create({
+    'title': 'I am a list item',
+});
+document.querySelector('ul').appendChild(listItem);
+```
+
+Erzeugter Ast:
+
+```html
+<ul>
+    <li>I am a list Item</li>
+</ul>
+```
 
 ##### CustomSelect
 
