@@ -3,7 +3,6 @@
  */
 
 .slider {
-    overflow: hidden;
     margin-bottom: 4rem;
 
     @include media-tablet {
@@ -15,6 +14,7 @@
     }
 
     &__inner {
+        overflow: hidden;
         position: relative;
     }
 
@@ -46,11 +46,13 @@
     &__preview-item {
         @extend .aspect;
 
+        overflow: visible;
         flex: 0 1 20rem;
+        transition: flex $transition-in, margin $transition-in;
     }
 
     &__preview-item.current {
-        display: none;
+        flex: 0 0 0;
     }
 
     &__preview-item.current:first-child + &__preview-item {

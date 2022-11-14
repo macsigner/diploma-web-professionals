@@ -38,9 +38,14 @@
 
         margin-top: 4.6rem;
         margin-bottom: 1.2rem;
+        font-weight: $font-weight-regular;
+        text-align: center;
 
         @include media-desktop-small {
             @include font-desktop-detail-title;
+
+            margin-bottom: 6rem;
+            font-weight: $font-weight-regular;
         }
     }
 
