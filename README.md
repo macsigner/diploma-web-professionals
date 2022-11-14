@@ -344,12 +344,17 @@ document.querySelector('ul').appendChild(listItem);
 Erzeugter Ast:
 
 ```html
+
 <ul>
     <li>I am a list Item</li>
 </ul>
 ```
 
 ##### CustomSelect
+
+Auch dies wieder eine Klasse, welche ich so nicht in einem Projekt einsetzen würde, bzw. auf eine Vorhandene Lösung
+setzen würde. Aber gerade die scheinbar einfache Anforderung eines Selektmenüs mit eigenem Styling stellt eine
+überraschend interessante Herausforderung dar.\
 
 [//]: # (todo: describe custom select)
 
