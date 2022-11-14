@@ -1,18 +1,9 @@
-<ul>
+<ul class="layout-footer__main-nav">
 
     {% for item in navItems %}
         {% if item.public %}
 
-            <li>
-                <a href="{{ item.url }}">{{ item.title }}</a>
-
-                {% if item.pages %}
-                    <div class="sub">
-                        {% include '@components/navigations/navigation-footer.twig' with {'navItems': item.pages} %}
-                    </div>
-                {% endif %}
-
-            </li>
+            <li><a href="{{ item.url }}"><strong>{{ item.title }}</strong></a></li>
 
         {% endif %}
     {% endfor %}

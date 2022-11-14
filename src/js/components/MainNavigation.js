@@ -25,7 +25,7 @@ class MainNavigation {
      * @private
      */
     _toggleListener() {
-        document.body.classList.toggle('main-navigation-area-is-open');
+        document.documentElement.classList.toggle('main-navigation-area-is-open');
         this.el.classList.toggle('is-open');
 
         document.querySelectorAll(this._settings.toggleSelector).forEach(el => el.classList.toggle('is-active'));

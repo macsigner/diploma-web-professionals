@@ -1,0 +1,42 @@
+/**
+ * main-nav bem module
+ */
+
+.main-nav {
+    @include media-desktop-navigation {
+        display: flex;
+    }
+
+    &__item + &__item {
+        margin-top: 2rem;
+
+        @include media-desktop-navigation {
+            margin-top: 0;
+            margin-left: 3rem;
+        }
+    }
+
+    &__link {
+        @include font-mobile-main-nav;
+
+        transition: color $transition-in;
+
+        @include media-desktop-navigation {
+            @include font-desktop-main-nav;
+        }
+    }
+
+    &__link--active {
+        color: var(--color-primary-text);
+    }
+
+    &:hover &__link--active {
+        color: var(--color-primary-text-transparent);
+    }
+
+    &__link:hover,
+    &:hover &__link--active:hover {
+        color: var(--color-primary-text);
+        transition-duration: 0s;
+    }
+}

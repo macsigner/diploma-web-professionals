@@ -2,18 +2,14 @@
 
 {% block main %}
 
-    <section>
+    <section class="base-width">
         <h1>alle Objekte</h1>
 
-        <hr>
-        <div>
-
-            {% if subpages %}
-                {% for key, item in subpages %}
-                    {% include '@components/object-item.twig' with item %}
-                {% endfor %}
-            {% endif %}
-
+        <div class="layout-estate-listing" data-real-estates>
+            {% include '@components/html-templates/estate-tile.twig' %}
+            {% include '@components/html-templates/estate-table-row.twig' %}
+            {% include '@components/html-templates/estate-table.twig' %}
+            {% include '@components/html-templates/estate-detail.twig' %}
         </div>
     </section>
 

@@ -1,20 +1,20 @@
-<div class="nav-bar">
+<div class="nav-bar" id="nav-bar">
     {% block navBar %}
 
         <a href="./">
             <img src="/src/assets/images/_brand/logo_home_house.svg" width="100" height="78" alt="Logo Home House">
         </a>
 
-        <button aria-hidden="true" data-main-navigation-toggle>Menu</button>
+        <button aria-hidden="true" data-main-navigation-toggle class="nav-bar__nav-toggle icon-burger"><span class="invisible">Menu</span></button>
 
-        <div id="navigation-area" class="navigation-area">
+        <div id="navigation-area" class="nav-bar__menu">
             <nav>
 
                 {% include '@components/navigations/navigation-main.twig' with {'navItems': pages} %}
 
             </nav>
 
-            <ul>
+            <ul class="nav-bar__meta-menu">
                 <li><a href="/impressum.html">Impressum</a></li>
                 <li><a href="/datenschutz.html">Datenschutz</a></li>
             </ul>

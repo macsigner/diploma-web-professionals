@@ -14,15 +14,13 @@ nlMaps.forEach(el => {
     }
 });
 
-if (nlMaps.length > 0) {
-    window.initMap = () => {
-        window.dispatchEvent(new Event('mapsReady'));
-    };
+window.initMap = () => {
+    window.dispatchEvent(new Event('mapsReady'));
+};
 
-    let script = document.createElement('script');
-    // eslint-disable-next-line
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBuYN6-VdQmu93Y4GOaNomzqJyxYE-PM4U&callback=initMap&v=weekly';
-    script.defer = true;
+let script = document.createElement('script');
+// eslint-disable-next-line
+script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBuYN6-VdQmu93Y4GOaNomzqJyxYE-PM4U&callback=initMap&v=weekly';
+script.defer = true;
 
-    document.head.appendChild(script);
-}
+document.head.appendChild(script);

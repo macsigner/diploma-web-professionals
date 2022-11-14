@@ -3,5 +3,78 @@
  */
 
 .nav-bar {
-    position: relative;
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 2.5rem 1.4rem 2rem;
+    background-color: var(--color-primary-transparent);
+    transition: background $transition-slow;
+
+    @include media-desktop-navigation {
+        padding: 2.8rem 4.2rem;
+    }
+
+    &.is-open {
+        background-color: var(--color-primary);
+    }
+
+    &__menu {
+        overflow: auto;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: 100;
+        height: calc(100vh - 100%);
+        padding-top: 9.2rem;
+        text-align: center;
+        background-color: var(--color-primary-transparent);
+        visibility: hidden;
+        opacity: 0;
+        transition: background $transition-slow, opacity $transition-slow, visibility 0s $transition-slow;
+
+        @include media-desktop-navigation {
+            overflow: visible;
+            position: static;
+            height: auto;
+            padding-top: 0;
+            background-color: transparent;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &.is-open &__menu {
+        background-color: var(--color-primary);
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
+
+    &__meta-menu {
+        margin-top: 8rem;
+
+        @include media-desktop-navigation {
+            display: none;
+        }
+    }
+
+    &__meta-menu a {
+        @include font-mobile-main;
+    }
+
+    &__meta-menu li {
+        margin-bottom: 1rem;
+    }
+
+    &__nav-toggle {
+        @include media-desktop-navigation {
+            display: none;
+        }
+    }
 }

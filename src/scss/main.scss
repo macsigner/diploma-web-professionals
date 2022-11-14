@@ -11,19 +11,9 @@
 @import 'normalize.css';
 @import 'imports/custom_reset';
 
-// Early modules
-@import 'imports/settings/custom_properties_main';
-@import 'imports/settings/settings_font_fasce';
-@import 'imports/base';
-@import 'imports/modules/aspect';
-@import 'imports/modules/block_reset';
-@import 'imports/modules/helper';
-@import 'imports/modules/nav_bar';
-@import 'imports/modules/navigation_area';
-@import 'imports/modules/page_title';
-
 // Atom modules
 @import 'imports/modules/icons/icon_base';
+@import 'imports/modules/icons/icon_burger';
 @import 'imports/modules/icons/icon_chevron';
 @import 'imports/modules/icons/icon_cross';
 @import 'imports/modules/icons/icon_tiles';
@@ -38,6 +28,17 @@
 @import 'imports/modules/radio_icons';
 @import 'imports/modules/link';
 @import 'imports/modules/target_block';
+
+// Early modules
+@import 'imports/settings/custom_properties_main';
+@import 'imports/settings/settings_font_fasce';
+@import 'imports/base';
+@import 'imports/modules/aspect';
+@import 'imports/modules/block_reset';
+@import 'imports/modules/helper';
+@import 'imports/modules/nav_bar';
+@import 'imports/modules/main_nav';
+@import 'imports/modules/page_title';
 
 // Default modules
 @import 'imports/modules/text_container';
@@ -54,8 +55,12 @@
 @import 'imports/modules/layouts/layout_object_detail';
 @import 'imports/modules/layouts/layout_object_form';
 @import 'imports/modules/layouts/layout_contact';
+@import 'imports/modules/layouts/layout_footer';
 @import 'imports/modules/estate_table';
 @import 'imports/modules/image_teaser';
 
 // Late modules
+@import 'imports/modules/main_footer';
+@import 'imports/modules/pointer';
 @import 'imports/modules/modal';
+@import 'imports/modules/detail_modal';

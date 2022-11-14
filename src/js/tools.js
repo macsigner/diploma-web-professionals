@@ -89,7 +89,7 @@ const mapOptions = (originalOptions, newOptions) => {
             && !(newOptions[strKey] instanceof Node)
             && !(newOptions[strKey] instanceof Function)
         ) {
-            settings[strKey] = this.mapOptions(settings[strKey], newOptions[strKey]);
+            settings[strKey] = mapOptions(settings[strKey], newOptions[strKey]);
         } else {
             settings[strKey] = newOptions[strKey];
         }

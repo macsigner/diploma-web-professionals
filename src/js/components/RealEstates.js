@@ -2,6 +2,7 @@ import { GraphQLClient, gql } from 'graphql-request';
 import Template from './Template.js';
 import Filter from './Filter.js';
 import * as Tools from '../tools.js';
+import RealEstateDetail from './RealEstateDetail.js';
 
 /**
  * Handle real estates rendering.
@@ -29,6 +30,14 @@ class RealEstates {
         this._setTemplates();
 
         this.client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
+
+        if (this.templates.detail) {
+            this.detail = new RealEstateDetail({
+                template: this.templates.detail,
+            });
+
+            this._applyClickListener();
+        }
 
         this.loadData();
     }
@@ -77,6 +86,18 @@ class RealEstates {
                 console.log(error);
             }
         }
+    }
+
+    /**
+     * Apply click listener to current instance.
+     * @private
+     */
+    _applyClickListener() {
+        this.el.addEventListener('click', Tools.delegate('[data-id]', (e) => {
+            let id = parseInt(e.target.closest('[data-id]').dataset.id);
+
+            this.detail.open(id);
+        }));
     }
 
     /**
@@ -217,6 +238,9 @@ class RealEstates {
             estate.image = estate.images[0];
 
             let item = this.templates[this._settings.template].create(estate);
+
+            item.firstElementChild.dataset.id = estate.id;
+            item.firstElementChild.classList.add('pointer');
 
             items.push(item);
         }

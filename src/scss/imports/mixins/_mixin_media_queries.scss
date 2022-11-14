@@ -19,3 +19,9 @@
         @content;
     }
 }
+
+@mixin media-desktop-navigation {
+    @include media-desktop-small {
+        @content;
+    }
+}

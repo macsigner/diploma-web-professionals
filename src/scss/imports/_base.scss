@@ -2,6 +2,10 @@
  * base bem module
  */
 
+html {
+    overflow: scroll;
+}
+
 body {
     @include font-mobile-main;
 
@@ -9,6 +13,8 @@ body {
         @include font-desktop-main;
     }
 
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
     background-color: var(--color-accent);
 }
 

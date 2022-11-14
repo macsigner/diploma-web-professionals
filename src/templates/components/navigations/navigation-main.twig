@@ -1,14 +1,17 @@
-<ul>
+<ul class="{% if(wrapperClass) %}{{ wrapperClass }}{% else %}main-nav{% endif %}">
 
     {% for item in navItems %}
         {% if item.public %}
 
-            <li>
-                <a href="{{ item.url }}" class="{% if url == item.url %} active{% endif %}">{{ item.title }}</a>
+            <li class="main-nav__item">
+                <a href="{{ item.url }}" class="main-nav__link{% if url == item.url %} main-nav__link--active{% endif %}">{{ item.title }}</a>
 
                 {% if item.pages %}
                     <div class="sub">
-                        {% include '@components/navigations/navigation-main.twig' with {'navItems': item.pages} %}
+                        {% include '@components/navigations/navigation-main.twig' with {
+                            'navItems': item.pages,
+                            'wrapperClass': 'main-nav__sub',
+                        } %}
                     </div>
                 {% endif %}
 

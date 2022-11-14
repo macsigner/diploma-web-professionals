@@ -288,17 +288,73 @@ Primär war es mir ein Anliegen die Skripte so zu schreiben, dass er Einsatz auf
 staten geht und / oder bei späteren Anpassungen unkompliziert Funktionen erweitert, angepasst oder neu hinzugefügt
 werden können. Natürlich ist dies nicht immer der Fall aber soweit möglich, habe ich mich darum bemüht.
 
-Die Ansätze sind unten an drei Beispielen erläutert.
-
-##### Template.js
-
-[//]: # (todo: describe template)
+Die Ansätze sind unten an drei Beispielen erläutert. Gleichzeitig sind dies allerdings auch drei Ansätze, welche ich in
+einem realen Projekt wohl nicht selbst entwickeln, sondern auf Bibliotheken zurückgreifen würde.
 
 ##### PageCollection.js
 
-[//]: # (todo: describe page collection)
+__Info: Diese hat den Nachteil, dass nach dem Neuanlegen einer Seite, Webpack nochmals gestartet werden muss. Da dies
+nach Rückfrage eigentlich ein Bastel ist, würde ich dies in einem Projekt *so* nicht einsetzen.__
+
+Die Logik für die Benamslung der Dateien, habe ich mir von CMS wie [grav][tech doc :: grav] und _Static Site_
+-Generatoren wie [11ty][tech doc :: 11ty] abgeschaut.
+
+Ich habe in der Annahme angefangen, dass ich früher oder später so oder so in die Situation kommen werde, Templates
+nachträglich anpassen zu müssen. Dies hiesse auch einige verlinkungen auf den Seiten in der Hauptnavigation oder – und
+dies war der Primärgedanke – Verlinkungen auf Unterseiten korrigieren zu müssen. Um die Fehleranfälligkeit etwas zu
+Reduzieren, habe ich die Klasse `PageCollection` aufgebaut. Diese Sammelt die Files im Ordner _src/pages_, erstellt
+daraus eine "Seitenstruktur" und eine "Hauptnavigation" als Objekt und generiert und auch die nötigen Informationen um
+dem _html-loader_ die entsprechende Quell- und Zieldatei mitzugeben.
+
+Aus diesen Information wird die Hauptnavigation und die Auflistung der Nachrichteneinträge generiert.
+
+Dieser Aufbau ermöglicht es mir auch in Kombination mit einer Templatesprache (in diesm Fall Twig), über eine _JSON_
+-Datei dem Template weitere Information mitzugeben, wie Übersichtsbild, Teasertexte, Datum oder _Title_tags.
+
+##### Template.js
+
+Auch hier ist es ein Versuch, die Funktion zum Generieren der Einzelelemente (Eg. Immobilienelement) vom hart
+hinterlegten Markup zu trennen, bzw. das Markup ausserhalb des generierenden Objekts zu haben. Tabellen und
+Kachelansichten können so im einem `template`-Tag hinterlegt werden. Bei der Initialisierung wird ein Element erzeugt,
+bei dem die Anpassbaren Teile – das Attribut _data-template_ – in einem Array zwischengespeichert werden. Beim Erzeugen
+eines neuen Elements muss ein Objekt mit den entsprechenden Schlüsselwertpaaren übergeben werden. Korrelierende Werte
+zwischen Objektschlüssel und dem Wert des Attributs, werden dann vor dem Generieren des neuen Elements ersetzt.
+
+Beispiel Basismarkup:
+
+```html
+<ul>
+<template>
+    <li data-template="title"></li>
+</template>
+</ul>
+```
+
+Beispielinitialisierung:
+
+```javascript
+const el = document.querySelector('template');
+const template = new Template(el);
+const listItem = template.create({
+    'title': 'I am a list item',
+});
+document.querySelector('ul').appendChild(listItem);
+```
+
+Erzeugter Ast:
+
+```html
+
+<ul>
+    <li>I am a list Item</li>
+</ul>
+```
 
 ##### CustomSelect
+
+Auch dies wieder eine Klasse, welche ich so nicht in einem Projekt einsetzen würde, bzw. auf eine Vorhandene Lösung
+setzen würde. Aber gerade die scheinbar einfache Anforderung eines Selektmenüs mit eigenem Styling stellt eine
+überraschend interessante Herausforderung dar.\
 
 [//]: # (todo: describe custom select)
 
@@ -325,6 +381,10 @@ Gleiches gilt für die Funktion aus _tools.js_:
   .
 - __Abstände zwischen den *label*- und *input*-Feldern:__ Da ich die Felder mit den Bezeichnungen optisch nur sehr ungut
   zuteilen konnte, habe ich die Abstände etwas angepasst um die Trennung der Blöcke besser ersichtlich zu machen.
+- __Ausrichtung Hauptnavigation:__
+  - Die Abstände links und rechts sind angeglichen statt verschieden.
+  - Elemente (Button, Logo) sind vertikal ausgemittet aneinander.
+- __Ausrichtung Footer:__ Die Flucht des Footers ist auf den Rest des Inhalts angepasst.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
@@ -393,9 +453,15 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
 [technology :: normalise.css]: https://github.com/necolas/normalize.css
 
-[sources :: node :: dirname not in es scope]: https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+[tech doc :: grav]: https://getgrav.org/
 
-[sources :: node :: uppercase first letter of string]: https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+[tech doc :: 11ty]: https://www.11ty.dev/
+
+[sources :: node :: dirname not in es scope]:
+https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+
+[sources :: node :: uppercase first letter of string]:
+https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
 
 [sources :: eslint :: parsing error: unexpected token import]: https://stackoverflow.com/a/65541635
 
@@ -409,4 +475,5 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 
 [sources :: javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
 
-[comment :: css :: line-height inheritance]:https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values
+[comment :: css :: line-height inheritance]:
+https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values

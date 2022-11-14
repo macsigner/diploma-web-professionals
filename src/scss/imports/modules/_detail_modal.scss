@@ -1,33 +1,25 @@
 /**
- * modal bem module
+ * detail-modal bem module
  */
 
-.modal {
+.detail-modal {
     overflow: auto;
     position: fixed;
     inset: 0;
     z-index: 110;
     padding-top: 10rem;
     padding-bottom: 10.2rem;
-    background-color: var(--color-primary);
+    background-color: var(--color-accent);
 
     @include media-desktop-small {
         padding-top: 10.8rem;
         padding-bottom: 17.2rem;
     }
 
-    &__inner {
-        @extend .base-width;
-    }
-
     &__close {
         @extend .icon-cross;
 
-        position: absolute;
-        top: 2.8rem;
-        right: var(--content-margin);
-        font-size: 3rem;
-        text-indent: -9999em;
+        display: none;
     }
 
     &__title {

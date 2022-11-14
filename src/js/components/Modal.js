@@ -1,19 +1,25 @@
 import * as Tools from '../tools.js';
+import Base from './Base.js';
 
 /**
  * Default modal for contact page.
  */
-class Modal {
+class Modal extends Base {
     /**
      * Construct.
      * @param content
      * @param options
      */
-    constructor(content, options = {
-        appendTo: document.body,
-        closeButtonContent: 'schliessen',
-    }) {
-        this._settings = options;
+    constructor(content, options = {}) {
+        super();
+
+        this._defaultSettings = {
+            namespace: 'modal',
+            appendTo: document.body,
+            closeButtonContent: 'schliessen',
+        };
+        this._customSettings = options;
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
 
         if (typeof content === 'string') {
             content = document.querySelector(content).cloneNode(true);
@@ -26,6 +32,8 @@ class Modal {
         this.modal.addEventListener('click', Tools.delegate('[data-modal-close]', this.close.bind(this)));
 
         this._settings.appendTo.appendChild(this.modal);
+
+        document.documentElement.style.setProperty('overflow', 'hidden');
     }
 
     /**
@@ -33,6 +41,8 @@ class Modal {
      */
     close() {
         this.modal.remove();
+
+        document.documentElement.style.removeProperty('overflow');
     }
 
     /**
@@ -55,12 +65,14 @@ class Modal {
      */
     _createModal(content) {
         let modal = document.createElement('div');
-        modal.classList.add('modal');
+        modal.classList.add(this.getNamespace());
 
         let modalInner = document.createElement('div');
-        modalInner.classList.add('modal__inner');
+        modalInner.classList.add(this.getNamespace('__inner'));
         modalInner.innerHTML
-            = `<button class="modal__close" data-modal-close>${this._settings.closeButtonContent}</button>`;
+            = `<button class="${this.getNamespace('__close')}" data-modal-close>
+                    ${this._settings.closeButtonContent}
+               </button>`;
         modalInner.appendChild(content);
 
         modal.appendChild(modalInner);

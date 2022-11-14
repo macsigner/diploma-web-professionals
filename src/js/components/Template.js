@@ -7,9 +7,12 @@ class Template {
      * @param template
      */
     constructor(template) {
+        this.templateParent = template.parentNode;
         this.template = template.content.cloneNode(true);
 
         this.insertNodes = this.getTemplateInsertNodes();
+
+        this.template.querySelectorAll('[data-template]').forEach(el => el.removeAttribute('data-template'));
     }
 
     /**
@@ -24,7 +27,11 @@ class Template {
                 prev[current.dataset.template] = [];
             }
 
-            prev[current.dataset.template].push(current);
+            if (current.tagName.toLowerCase() === 'template') {
+                prev[current.dataset.template].push(new Template(current));
+            } else {
+                prev[current.dataset.template].push(current);
+            }
 
             return prev;
         }, {});
@@ -40,7 +47,17 @@ class Template {
     create(data) {
         for (let key of Object.keys(this.insertNodes)) {
             for (let el of this.insertNodes[key]) {
-                if (data[key]) {
+                if (data[key] && Array.isArray(data[key]) && el instanceof Template) {
+                    el.templateParent.innerHTML = '';
+
+                    let subData = {};
+                    for (let subItem of data[key]) {
+                        subData[key] = subItem;
+                        let subElement = el.create(subData);
+
+                        el.templateParent.appendChild(subElement);
+                    }
+                } else if (data[key]) {
                     this._applyDataToElement(el, data[key]);
                 } else {
                     el.remove();
