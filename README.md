@@ -317,15 +317,16 @@ hinterlegten Markup zu trennen, bzw. das Markup ausserhalb des generierenden Obj
 Kachelansichten können so im einem `template`-Tag hinterlegt werden. Bei der Initialisierung wird ein Element erzeugt,
 bei dem die Anpassbaren Teile – das Attribut _data-template_ – in einem Array zwischengespeichert werden. Beim Erzeugen
 eines neuen Elements muss ein Objekt mit den entsprechenden Schlüsselwertpaaren übergeben werden. Korrelierende Werte
-zwischen Objektschlüssel und dem Wert des Attributs, werden dann vor dem Generieren des neuen Elements ersetzt.
+zwischen Objektschlüssel und dem Wert des Attributs werden dann vor dem Generieren des neuen Elements ersetzt.
 
 Beispiel Basismarkup:
 
 ```html
+
 <ul>
-<template>
-    <li data-template="title"></li>
-</template>
+    <template>
+        <li data-template="title"></li>
+    </template>
 </ul>
 ```
 
@@ -355,7 +356,57 @@ Auch dies wieder eine Klasse, welche ich so nicht in einem Projekt einsetzen wü
 setzen würde. Aber gerade die scheinbar einfache Anforderung eines Selektmenüs mit eigenem Styling stellt eine
 überraschend interessante Herausforderung dar.\
 
-[//]: # (todo: describe custom select)
+Um die Werte nach einem Optionsupdate im Frontend synchron zu halten, besitzt die Klasse eine Renderunktion. Diese wird
+auch nach der Initialisierung aufgerufen, nachdem aus dem Markup des original Selektelements ein Konfigurationsobjekt
+generiert wurde. Ausserdem wir ein _Changeevent_ auf dem Original ausgelöst, um allfällige andere Plugins zu alarmieren,
+welche einen Listener auf dem Element haben.
+
+Um das Styling zu erweiter, bzw. Zurückzusetzen kann Optionsobjekt übergeben werden, mit der Property _namespace_. Diese
+Property wird als Basisklasse genutzt für die CSS-Klassen.
+
+Beispiel Basismarkup:
+
+```html
+
+<select name="ref_type_id" id="ref_type_id" tabindex="1">
+    <option value="">Alle</option>
+    <option value="1">Haus</option>
+    <option value="2">Wohnung</option>
+</select>
+```
+
+Beispielinitialisierung:
+
+```javascript
+const el = document.querySelector('#ref_type_id');
+new CustomSelect(el);
+```
+
+Erzeugter Ast:
+
+```html
+<select name="ref_type_id"
+        id="ref_type_id"
+        data-filter-type="filter"
+        class="custom-select-original"
+        aria-hidden="true"
+        tabindex="-1">
+    <option value="">Alle</option>
+    <option value="1">Haus</option>
+    <option value="2">Wohnung</option>
+</select>
+<dl class="custom-select" tabindex="0">
+    <dt class="custom-select__label">
+        <span class="custom-select__label-inner">Alle</span><span class="custom-select__label-icon"></span></dt>
+    <dd class="custom-select__options">
+        <ul role="listbox" tabindex="0" class="custom-select__options-inner">
+            <li data-value="" class="custom-select__option" role="option" aria-selected="true">Alle</li>
+            <li data-value="1" class="custom-select__option" role="option" aria-selected="false">Haus</li>
+            <li data-value="2" class="custom-select__option" role="option" aria-selected="false">Wohnung</li>
+        </ul>
+    </dd>
+</dl>
+```
 
 [//]: # (todo: write whatever i did myself and maybe update comment)
 
