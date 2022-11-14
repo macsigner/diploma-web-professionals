@@ -19,6 +19,7 @@
     // Colors
     --color-primary: #{$color-primary};
     --color-primary-text: #{$color-white};
+    --color-primary-text-transparent: #{rgba($color-white, .5)};
     --color-primary-transparent: #{$color-primary-transparent};
     --color-accent: #{$color-accent};
     --color-action: #{$color-white};

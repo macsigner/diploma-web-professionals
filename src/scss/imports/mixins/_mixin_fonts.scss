@@ -393,6 +393,13 @@
     @include font-block-04-mobile;
 }
 
+@mixin font-mobile-main-nav {
+    font-size: calc(1.6rem + (19vw / 376 * 100));
+    font-weight: $font-weight-regular;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+}
+
 @mixin font-mobile-footer {
     @include font-block-04-mobile;
 }

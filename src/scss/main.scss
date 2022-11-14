@@ -11,16 +11,6 @@
 @import 'normalize.css';
 @import 'imports/custom_reset';
 
-// Early modules
-@import 'imports/settings/custom_properties_main';
-@import 'imports/settings/settings_font_fasce';
-@import 'imports/base';
-@import 'imports/modules/aspect';
-@import 'imports/modules/block_reset';
-@import 'imports/modules/helper';
-@import 'imports/modules/nav_bar';
-@import 'imports/modules/page_title';
-
 // Atom modules
 @import 'imports/modules/icons/icon_base';
 @import 'imports/modules/icons/icon_burger';
@@ -38,6 +28,17 @@
 @import 'imports/modules/radio_icons';
 @import 'imports/modules/link';
 @import 'imports/modules/target_block';
+
+// Early modules
+@import 'imports/settings/custom_properties_main';
+@import 'imports/settings/settings_font_fasce';
+@import 'imports/base';
+@import 'imports/modules/aspect';
+@import 'imports/modules/block_reset';
+@import 'imports/modules/helper';
+@import 'imports/modules/nav_bar';
+@import 'imports/modules/main_nav';
+@import 'imports/modules/page_title';
 
 // Default modules
 @import 'imports/modules/text_container';

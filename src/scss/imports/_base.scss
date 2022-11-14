@@ -2,6 +2,10 @@
  * base bem module
  */
 
+html {
+    overflow: scroll;
+}
+
 body {
     @include font-mobile-main;
 
