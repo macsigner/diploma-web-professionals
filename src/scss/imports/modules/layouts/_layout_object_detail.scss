@@ -122,6 +122,7 @@
     &__contact-button {
         @extend .button;
         @extend .button--block;
+        @extend .button--w100;
 
         grid-area: action;
         margin-bottom: 0;

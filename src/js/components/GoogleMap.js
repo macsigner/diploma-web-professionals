@@ -1,17 +1,28 @@
 /* globals google */
 // eslint-disable-next-line
 // Todo: extend documentation and finish :)
+import Base from './Base.js';
+import * as Tools from '../tools.js';
+
 /**
  * Init google map.
  */
-class GoogleMap {
+class GoogleMap extends Base {
     /**
      * Construct.
      * @param el
      * @param options
      */
-    constructor(el) {
+    constructor(el, options = {}) {
+        super();
+
         this.el = el;
+        this._defaultSettings = {
+            lat: 47.4236282,
+            long: 9.2929987,
+        };
+        this._customSettings = options;
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
 
         if (window.google) {
             this._init();
@@ -50,10 +61,12 @@ class GoogleMap {
      * @private
      */
     _createMap() {
+        console.log('create');
+
         return new google.maps.Map(this.el, {
             center: {
-                lat: 47.4236282,
-                lng: 9.2929987,
+                lat: this._settings.lat,
+                lng: this._settings.long,
             },
             zoom: 12,
         });

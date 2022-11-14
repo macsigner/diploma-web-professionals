@@ -1,0 +1,68 @@
+<template data-template-name="detail">
+    <div class="layout-object-detail base-width">
+        <div class="layout-object-detail__back">
+            <button data-modal-close class="link">
+                <span class="link__icon"><span class="icon-chevron"></span></span><span>zurück zur Übersicht</span>
+            </button>
+        </div>
+        <header class="layout-object-detail__header">
+            <h1 class="layout-object-detail__title">Zu verkaufen <strong data-template="title"></strong></h1>
+
+            <ul data-slider>
+                <template data-template="images">
+                    <li>
+                        <figure class="slide-image">
+                            <img data-template="images">
+                        </figure>
+                    </li>
+                </template>
+            </ul>
+        </header>
+
+        <main class="layout-object-detail__main">
+            <div class="layout-object-detail__meta-infos">
+                <p class="layout-object-detail__info-item"><strong>Verfügbarkeit</strong> <br>
+                    Ab <span data-template="availability"></span></p>
+
+                <p class="layout-object-detail__info-item"><strong>Location</strong> <br>
+                    <span data-template="zip"></span>
+                    <span data-template="canton"></span>,
+                    <span data-template="city"></span>
+                </p>
+
+                <p class="layout-object-detail__info-item"><strong>Preis</strong> <br>
+                    CHF <span data-template="prize_local"></span></p>
+
+                <p class="layout-object-detail__info-item"><strong>Nutzfläche</strong> <br>
+                    Fläche <span data-template="usable_area"></span>m<sup>2</sup></p>
+            </div>
+
+            <div class="layout-object-detail__description layout-object-detail__info-item">
+                <h2 class="layout-object-detail__description-title">Beschreibung</h2>
+                <div data-template="description"></div>
+            </div>
+
+            <div id="location-map" class="layout-object-detail__map" data-map></div>
+
+            <div class="layout-object-detail__contact-footer">
+                <p class="layout-object-detail__description-title"><strong>Haben wir <br>Ihr Interesse geweckt?</strong>
+                </p>
+
+                <button href="/kontakt.html" class="layout-object-detail__contact-button">Jetzt anfragen!</button>
+            </div>
+        </main>
+    </div>
+
+    <aside class="bg color-scheme color-scheme--dark-on-primary">
+        <div class="bg__inner">
+            <div class="layout-estate-listing layout-estate-listing--newest" data-real-estates>
+                {% include '@components/html-templates/estate-tile.twig' %}
+                {% include '@components/html-templates/estate-table.twig' %}
+            </div>
+            <div class="text-align-right">
+                <a href="/#main" class="link"><strong class="link__text">Alle Objekte
+                        anzeigen</strong><span class="link__icon icon-chevron"></span></a>
+            </div>
+        </div>
+    </aside>
+</template>
