@@ -5,15 +5,13 @@
 .detail-modal {
     overflow: auto;
     position: fixed;
-    inset: 0;
+    inset: var(--nav-bar-height, 0) 0 0;
     z-index: 110;
     padding-top: 10rem;
-    padding-bottom: 10.2rem;
     background-color: var(--color-accent);
 
     @include media-desktop-small {
         padding-top: 10.8rem;
-        padding-bottom: 17.2rem;
     }
 
     &__close {

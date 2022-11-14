@@ -5,13 +5,13 @@
 .page-title {
     @include font-mobile-section-title;
 
-    margin-top: 5rem;
+    margin-top: calc(5rem + var(--nav-bar-height, 7.6rem));
     margin-bottom: 5rem;
 
     @include media-desktop-small {
         @include font-desktop-h1;
 
-        margin-top: 10rem;
+        margin-top: calc(10rem + var(--nav-bar-height, 13.2rem));
         margin-bottom: 4.8rem;
     }
 }
