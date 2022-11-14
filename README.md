@@ -1,4 +1,3 @@
-
 Diplomarbeit 2022 Web Frontend Developer
 ========================================
 
@@ -153,13 +152,13 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
     - [x] Slider _2h_
     - Reserve _4h_
 - [ ] Frontendstyling
-    - [ ] Header _1h_
-    - [ ] Hauptnavigation _1h_
-    - [ ] Footer _1h_
+    - [x] Header _1h_
+    - [x] Hauptnavigation _1h_
+    - [x] Footer _1h_
     - [x] Strukturstyling (Headlines, Buttons, Formularfelder) _3h_
-    - [ ] Home
+    - [x] Home
         - [x] Headerbild mit Teaser _1h_
-        - [ ] Filterformular _3h_
+        - [x] Filterformular _3h_
         - [x] Kachelansicht _1h_
         - [x] Bildkachel _1h_
         - [x] Listenansicht _2h_
@@ -168,12 +167,12 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
         - [ ] Bildteaserlayout _1h_
     - [ ] Objektdetail
         - [x] Slider _1h_
-        - [ ] Detaillayout _2h_
-        - [ ] Hintergrundblock _1h_
+        - [x] Detaillayout _2h_
+        - [x] Hintergrundblock _1h_
     - [x] Newsdetail _2h_
-    - [ ] Formular _3h_
+    - [x] Formular _3h_
         - [ ] Modal
-    - [ ] Kontakt _1h_
+    - [x] Kontakt _1h_
     - Reserve _4h_
 - [ ] Schlusstests
     - [ ] Chrome _1h_
@@ -193,7 +192,7 @@ __Erläuterung__: Zeiten sind immer aufgerundet mit einer Stunde _(1h)_ als klei
 | Dateistrukturierung mit Demodaten | 13h       | 03.10.2022 | 02.10.2022       | ca. 12h |
 | Aufbau HTML-Templates             | 10h       | 08.10.2022 | 09.10.2022       | ca. 16h |
 | Javascriptfunktionalität          | 15h       | 17.10.2022 | 22.10.2022       | ca. 24h |
-| Frontendstyling                   | 31h       | 07.11.2022 |                  |         |
+| Frontendstyling                   | 31h       | 07.11.2022 | 14.11.2022       | ca. 40h |
 | Testing / Fixing (Crossbrowser)   | 11h       | 14.11.2022 |                  |         |
 | Testing "User" / Fixing           | 4h        | 21.11.2022 |                  |         |
 | Letzte Anpassungen an der Doku    | 4h        | 21.11.2022 |                  |         |
@@ -382,8 +381,8 @@ Gleiches gilt für die Funktion aus _tools.js_:
 - __Abstände zwischen den *label*- und *input*-Feldern:__ Da ich die Felder mit den Bezeichnungen optisch nur sehr ungut
   zuteilen konnte, habe ich die Abstände etwas angepasst um die Trennung der Blöcke besser ersichtlich zu machen.
 - __Ausrichtung Hauptnavigation:__
-  - Die Abstände links und rechts sind angeglichen statt verschieden.
-  - Elemente (Button, Logo) sind vertikal ausgemittet aneinander.
+    - Die Abstände links und rechts sind angeglichen statt verschieden.
+    - Elemente (Button, Logo) sind vertikal ausgemittet aneinander.
 - __Ausrichtung Footer:__ Die Flucht des Footers ist auf den Rest des Inhalts angepasst.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
@@ -412,7 +411,8 @@ basierenen müssen, wäre der Import über eine externe Datei – welche auf der
 gemäss [dieser Antwort][sources :: eslint :: parsing error: unexpected token import :: answer] noch überlegenswert.
 
 [Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][sources :: webpack :: chunk load error]\
-Fehler in der Browserconsole. Anpassung gemäss Frage auf [Stack Overflow][sources :: webpack :: chunk load error :: answer]
+Fehler in der Browserconsole. Anpassung gemäss Frage
+auf [Stack Overflow][sources :: webpack :: chunk load error :: answer]
 
 #### HTML
 
