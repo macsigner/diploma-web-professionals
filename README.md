@@ -381,9 +381,10 @@ Gleiches gilt für die Funktion aus _tools.js_:
   .
 - __Abstände zwischen den *label*- und *input*-Feldern:__ Da ich die Felder mit den Bezeichnungen optisch nur sehr ungut
   zuteilen konnte, habe ich die Abstände etwas angepasst um die Trennung der Blöcke besser ersichtlich zu machen.
-- __Ausrichtung Hauptnavigation__:
+- __Ausrichtung Hauptnavigation:__
   - Die Abstände links und rechts sind angeglichen statt verschieden.
   - Elemente (Button, Logo) sind vertikal ausgemittet aneinander.
+- __Ausrichtung Footer:__ Die Flucht des Footers ist auf den Rest des Inhalts angepasst.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 
