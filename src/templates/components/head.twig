@@ -11,5 +11,10 @@
     <meta name="msapplication-TileColor" content="#92b9af">
     <meta name="msapplication-config" content="/src/assets/favicons/browserconfig.xml">
     <meta name="theme-color" content="#92b9af">
-    <title>{{ page.data.title }}</title>
+    {% if page.data.description %}
+        <meta name="description" content="{{ page.data.description }}"/>
+    {% endif %}
+    {% if page.data.description %}
+        <title>Home House - {{ page.data.title }}</title>
+    {% endif %}
 </head>
