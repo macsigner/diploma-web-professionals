@@ -76,7 +76,7 @@ __Beispiel an einem Newseintrag:__
 Um Skripte nur für eine einzelne Seite anzugeben, wird eine Javascriptdatei im Skriptordner _src/js/pages_ unter dem
 gleichen Namen wie die Seite angelegt. Die Javascriptdatei wird dann als zusätzlicher _Chunk_ beim Build eingepflegt.\
 Um beispielsweise für die Seite *src/pages/010_aktuelles/_001_grossprojekt-home-house.twig* ein eigenes Skript zu ladenb
-wird die Datei *src/js/pages/010_aktuelles/_001_grossprojekt-home-house.js* angelegt.
+wird die Datei _src/js/pages/010_aktuelles/\_001\_grossprojekt-home-house.js_ angelegt.
 
 [//]: # (todo: does the order of files being read depend on the host?)
 
