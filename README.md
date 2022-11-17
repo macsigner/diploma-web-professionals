@@ -426,6 +426,15 @@ Gleiches gilt für die Funktion aus _tools.js_:
 
 - _mapOptions_
 
+Des Weiteren gab es zwei Bereiche Die mir sauer aufstossen, welche aber dennoch von Interesse waren. Die
+Templategeschichte vom Frontend _(Template.js)_ und die verfolgte Geschichte mit der Detailseite. Ersteres ist eine
+Funktion, für ich mit Sicherheit nicht in einem Produktivsystem einsetzen würde aber aufgrund der Aufgabenstellung (
+möglichst wenig Fremdcode einzusetzen) in Angriff genommen wurde. Allerdings war dies eine der interessantesten
+Aufgaben.\
+Zum anderen Teil die Detailseite: Diese hätte ich gerne Serverseitig generiert, da der Rest stark frontendlastig ist __
+und__ nach der Durchsicht über die [Googleindexierung][comment :: google indexing] habe ich mich auf die Vorhanden
+Lösung besonnen.
+
 ### Abweichungen von der Vorlage
 
 - __`line-height` Schriften:__ Bei übergrossen Zeilenabständen habe ich mir erlaubt von der Vorlage abzuweichen. Sofern
@@ -532,3 +541,6 @@ https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-
 
 [comment :: css :: line-height inheritance]:
 https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values
+
+[comment :: google indexing]:
+https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
