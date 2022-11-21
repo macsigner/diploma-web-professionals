@@ -237,10 +237,11 @@ class RealEstates {
 
             estate.image = estate.images[0];
 
+            estate.link = `./detail.html?estate=${estate.id}`;
+
             let item = this.templates[this._settings.template].create(estate);
 
             item.firstElementChild.dataset.id = estate.id;
-            item.firstElementChild.classList.add('pointer');
 
             items.push(item);
         }

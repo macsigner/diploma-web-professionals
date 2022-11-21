@@ -59,8 +59,6 @@ class Template {
                     }
                 } else if (data[key]) {
                     this._applyDataToElement(el, data[key]);
-                } else {
-                    el.remove();
                 }
             }
         }
@@ -78,6 +76,9 @@ class Template {
         switch (el.tagName.toLowerCase()) {
             case 'img':
                 this._applyImageAttributes(el, data);
+                break;
+            case 'a':
+                el.href = data;
                 break;
             default:
                 el.innerHTML = data;
