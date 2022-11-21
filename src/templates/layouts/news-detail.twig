@@ -9,7 +9,10 @@
         <header class="layout-news-detail__hero-image">
 
             {% if data.image %}
-                {% include '@components/image.twig' with {image: data.image} %}
+                {% include '@components/picture.twig' with {image: {
+                    path: data.image,
+                    alt: title,
+                }} %}
             {% endif %}
 
         </header>

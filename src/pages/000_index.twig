@@ -4,7 +4,12 @@
 
     <header class="header-hero">
         <figure class="header-hero__image">
-            <img src="/src/assets/images/home/header_image.jpeg" alt="Aussenansicht Immobilie im Neubrutalstil">
+            {% include '@components/picture.twig' with {
+                image: {
+                    path: '/src/assets/images/home/header_image.jpeg',
+                    alt: 'Aussenansicht Immobilie im Neubrutalstil',
+                }
+            } %}
         </figure>
 
         <div class="header-hero__block">
