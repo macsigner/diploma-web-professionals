@@ -149,7 +149,32 @@ class RealEstates {
             this._templateClasses.add(templateClass);
         }
 
-        this.render();
+        let callback;
+
+        if (this.filter.sort.sorting) {
+            switch (this.filter.sort.sorting) {
+                case 'dateAsc':
+                    callback = Tools.sortBy('updated_at');
+                    break;
+                case 'dateDesc':
+                    callback = (a, b) => Tools.sortBy('updated_at')(a, b) * -1;
+                    break;
+                case 'prizeAsc':
+                    callback = Tools.sortBy('prize');
+                    break;
+                case 'prizeDesc':
+                    callback = (a, b) => Tools.sortBy('prize')(a, b) * -1;
+                    break;
+            }
+        }
+
+        if (callback) {
+            this.render({
+                sortCallback: callback,
+            });
+        } else {
+            this.render();
+        }
     }
 
     /**
@@ -176,6 +201,7 @@ class RealEstates {
                     usable_area
                     estate_type
                     description
+                    updated_at
                     images {
                         image_path
                         title
@@ -246,7 +272,7 @@ class RealEstates {
      * @param {{sortCallback: (function(*, *))}} options
      */
     render(options = {
-        sortCallback: Tools.sortBy('id'),
+        sortCallback: Tools.sortBy('updated_at'),
     }) {
         this.el.innerHTML = '';
         let estates = this.estates;
