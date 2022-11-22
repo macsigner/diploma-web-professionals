@@ -40,18 +40,28 @@ class GoogleMap extends Base {
 
         this.map = this._createMap();
 
-        this.showAddress('Marktplatz Bohl, 9000 St.Gallen');
-    }
+        // eslint-disable-next-line
+        let pinSVGHole = 'M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z';
+        let markerImage = {
+            path: pinSVGHole,
+            anchor: new google.maps.Point(12, 17),
+            fillOpacity: 1,
+            fillColor: '000000',
+            strokeWeight: 0,
+            strokeColor: '000000',
+            scale: 2,
+            labelOrigin: new google.maps.Point(12, 15),
+        };
 
-    /**
-     * Show specified address in map.
-     * @param address
-     */
-    showAddress(address) {
-        this.geocoder.geocode({
-            address,
-        }, (result, status) => {
-            console.log(result, status);
+        Object.keys(this._settings.marker).forEach(key => {
+            let obj = this._settings.marker[key];
+
+            new google.maps.Marker({
+                position: obj.position,
+                map: this.map,
+                title: obj.title,
+                icon: markerImage,
+            });
         });
     }
 
@@ -61,15 +71,209 @@ class GoogleMap extends Base {
      * @private
      */
     _createMap() {
-        console.log('create');
-
         return new google.maps.Map(this.el, {
-            center: {
-                lat: this._settings.lat,
-                lng: this._settings.long,
-            },
-            zoom: 12,
+            center: this._settings.position,
+            styles: this._getMapStyle(),
+            zoom: 16,
         });
+    }
+
+    /**
+     * Map style from snazzy maps https://snazzymaps.com/style/132/light-gray
+     * @returns {Array}
+     * @private
+     */
+    _getMapStyle() {
+        return [
+            {
+                'featureType': 'administrative',
+                'stylers': [
+                    {
+                        'visibility': 'off',
+                    },
+                ],
+            },
+            {
+                'featureType': 'landscape',
+                'stylers': [
+                    {
+                        'visibility': 'simplified',
+                    },
+                ],
+            },
+            {
+                'featureType': 'landscape',
+                'elementType': 'geometry.fill',
+                'stylers': [
+                    {
+                        'color': '#EFEFEF',
+                    },
+                    {
+                        'visibility': 'on',
+                    },
+                ],
+            },
+            {
+                'featureType': 'poi',
+                'stylers': [
+                    {
+                        'visibility': 'off',
+                    },
+                ],
+            },
+            {
+                'featureType': 'poi',
+                'elementType': 'labels.icon',
+                'stylers': [
+                    {
+                        'color': '#888888',
+                    },
+                    {
+                        'visibility': 'on',
+                    },
+                ],
+            },
+            {
+                'featureType': 'poi.business',
+                'elementType': 'labels.icon',
+                'stylers': [
+                    {
+                        'visibility': 'simplified',
+                    },
+                ],
+            },
+            {
+                'featureType': 'poi.business',
+                'elementType': 'labels.text',
+                'stylers': [
+                    {
+                        'visibility': 'on',
+                    },
+                ],
+            },
+            {
+                'featureType': 'poi.business',
+                'elementType': 'labels.text.fill',
+                'stylers': [
+                    {
+                        'color': '#4e4646',
+                    },
+                ],
+            },
+            {
+                'featureType': 'poi.business',
+                'elementType': 'labels.text.stroke',
+                'stylers': [
+                    {
+                        'color': '#ffffff',
+                    },
+                    {
+                        'visibility': 'off',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road',
+                'elementType': 'labels.icon',
+                'stylers': [
+                    {
+                        'visibility': 'off',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road',
+                'elementType': 'labels.text.fill',
+                'stylers': [
+                    {
+                        'color': '#696969',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road.arterial',
+                'elementType': 'geometry.fill',
+                'stylers': [
+                    {
+                        'color': '#FFFFFF',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road.arterial',
+                'elementType': 'geometry.stroke',
+                'stylers': [
+                    {
+                        'color': '#D6D6D6',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road.highway',
+                'elementType': 'geometry.fill',
+                'stylers': [
+                    {
+                        'color': '#FFFFFF',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road.highway',
+                'elementType': 'geometry.stroke',
+                'stylers': [
+                    {
+                        'color': '#B3B3B3',
+                    },
+                    {
+                        'visibility': 'on',
+                    },
+                ],
+            },
+            {
+                'featureType': 'road.local',
+                'elementType': 'geometry.fill',
+                'stylers': [
+                    {
+                        'color': '#FFFFFF',
+                    },
+                    {
+                        'visibility': 'on',
+                    },
+                    {
+                        'weight': 1.8,
+                    },
+                ],
+            },
+            {
+                'featureType': 'road.local',
+                'elementType': 'geometry.stroke',
+                'stylers': [
+                    {
+                        'color': '#D7D7D7',
+                    },
+                ],
+            },
+            {
+                'featureType': 'transit',
+                'stylers': [
+                    {
+                        'color': '#808080',
+                    },
+                    {
+                        'visibility': 'off',
+                    },
+                ],
+            },
+            {
+                'featureType': 'water',
+                'elementType': 'geometry.fill',
+                'stylers': [
+                    {
+                        'color': '#D3D3D3',
+                    },
+                ],
+            },
+        ];
     }
 }
 
