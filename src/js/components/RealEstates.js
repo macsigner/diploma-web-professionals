@@ -93,10 +93,40 @@ class RealEstates {
      * @private
      */
     _applyClickListener() {
-        this.el.addEventListener('click', Tools.delegate('[data-id]', (e) => {
-            let id = parseInt(e.target.closest('[data-id]').dataset.id);
+        this.el.addEventListener('click', Tools.delegate('[data-table-sort-value]', (e) => {
+            let button = e.target.closest('[data-table-sort-value]');
+            let value = button.dataset.tableSortValue;
 
-            this.detail.open(id);
+            if (!this._tableSettings) {
+                this._tableSettings = {};
+            }
+
+            let order = this._tableSettings.order === 'asc' && this._tableSettings.key === value ? 'desc' : 'asc';
+
+            switch (value) {
+                case 'usable_area':
+                case 'prize':
+                    this.render({
+                        sortCallback:
+                            order === 'asc'
+                                ? (a, b) => a[value] - b[value]
+                                : (a, b) => b[value] - a[value],
+                    });
+                    break;
+                default:
+                    this.render({
+                        sortCallback:
+                            order === 'asc'
+                                ? Tools.sortBy(value)
+                                : (a, b) => Tools.sortBy(value)(a, b) * -1,
+                    });
+            }
+
+            let sortButtons = this.el.querySelectorAll(`[data-table-sort-value="${value}"]`);
+            sortButtons.forEach(el => el.classList.add(order));
+
+            this._tableSettings.key = value;
+            this._tableSettings.order = order;
         }));
     }
 
@@ -119,7 +149,32 @@ class RealEstates {
             this._templateClasses.add(templateClass);
         }
 
-        this.render();
+        let callback;
+
+        if (this.filter.sort.sorting) {
+            switch (this.filter.sort.sorting) {
+                case 'dateAsc':
+                    callback = Tools.sortBy('updated_at');
+                    break;
+                case 'dateDesc':
+                    callback = (a, b) => Tools.sortBy('updated_at')(a, b) * -1;
+                    break;
+                case 'prizeAsc':
+                    callback = Tools.sortBy('prize');
+                    break;
+                case 'prizeDesc':
+                    callback = (a, b) => Tools.sortBy('prize')(a, b) * -1;
+                    break;
+            }
+        }
+
+        if (callback) {
+            this.render({
+                sortCallback: callback,
+            });
+        } else {
+            this.render();
+        }
     }
 
     /**
@@ -146,6 +201,7 @@ class RealEstates {
                     usable_area
                     estate_type
                     description
+                    updated_at
                     images {
                         image_path
                         title
@@ -211,8 +267,13 @@ class RealEstates {
 
     /**
      * Render current estates.
+     *
+     * @param options
+     * @param {{sortCallback: (function(*, *))}} options
      */
-    render() {
+    render(options = {
+        sortCallback: Tools.sortBy('updated_at'),
+    }) {
         this.el.innerHTML = '';
         let estates = this.estates;
 
@@ -230,17 +291,20 @@ class RealEstates {
 
         let items = [];
 
-        for (let estate of estates) {
-            if (!this._matchesFilter(estate)) {
-                continue;
-            }
+        estates = estates.filter(estate => this._matchesFilter(estate));
 
+        if (options.sortCallback) {
+            estates.sort(options.sortCallback);
+        }
+
+        for (let estate of estates) {
             estate.image = estate.images[0];
+
+            estate.link = `./detail.html?estate=${estate.id}`;
 
             let item = this.templates[this._settings.template].create(estate);
 
             item.firstElementChild.dataset.id = estate.id;
-            item.firstElementChild.classList.add('pointer');
 
             items.push(item);
         }

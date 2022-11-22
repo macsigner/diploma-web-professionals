@@ -2,10 +2,26 @@
     <div class="estate-table">
         <table>
             <thead>
-            <th>Objekt</th>
-            <th>Ort</th>
-            <th>Fläche</th>
-            <th>Preis/Miete</th>
+            <th>Objekt
+                <button data-table-sort-value="title" class="estate-table__sort-button">
+                    <span class="icon-arrow"></span>
+                </button>
+            </th>
+            <th>Ort
+                <button data-table-sort-value="zip" class="estate-table__sort-button">
+                    <span class="icon-arrow"></span>
+                </button>
+            </th>
+            <th>Fläche
+                <button data-table-sort-value="usable_area" class="estate-table__sort-button">
+                    <span class="icon-arrow"></span>
+                </button>
+            </th>
+            <th>Preis/Miete
+                <button data-table-sort-value="prize" class="estate-table__sort-button">
+                    <span class="icon-arrow"></span>
+                </button>
+            </th>
             </thead>
             <tbody data-template="tableRows"></tbody>
         </table>

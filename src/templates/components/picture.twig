@@ -1,0 +1,28 @@
+<picture>
+
+    {% if image.sources %}
+        {% for source in image.sources %}
+            <source srcset="{{ source.srcset }}"
+                {% if source.width %} width="{{ source.width }}"{% endif %}
+                {% if source.height %} height="{{ source.height }}"{% endif %}>
+
+        {% endfor %}
+    {% else %}
+        {% set arrExt = image.path|split('.') %}
+        {% set ext = arrExt | last %}
+        {% set filePath = arrExt | slice(0, arrExt.length - 1) %}
+
+        <source srcset="{{ filePath }}_mobile.webp" media="(max-width: 37.5em)">
+        <source srcset="{{ filePath }}_mobile.{{ ext }}" media="(max-width: 37.5em)">
+        <source srcset="{{ filePath }}_tablet.webp" media="(max-width: 56.25em)">
+        <source srcset="{{ filePath }}_tablet.{{ ext }}" media="(max-width: 56.25em)">
+        <source srcset="{{ filePath }}_desktop_small.webp" media="(max-width: 80em)">
+        <source srcset="{{ filePath }}_desktop_small.{{ ext }}" media="(max-width: 80em)">
+        <source srcset="{{ filePath }}_large.webp" media="(max-width: 80em)">
+        <source srcset="{{ filePath }}_large.{{ ext }}" media="(max-width: 80em)">
+        <source srcset="{{ filePath }}.webp">
+    {% endif %}
+
+    <img src="{% if image.path %}{{ image.path }}{% else %}{{ image }}{% endif %}"
+         {% if image.alt %}alt="{{ image.alt }}"{% endif %}>
+</picture>

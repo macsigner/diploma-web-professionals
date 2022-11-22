@@ -70,6 +70,8 @@ class RealEstateDetail extends Base {
             useGrouping: true,
         });
 
+        this._data = estate;
+
         let el = this._settings.template.create(estate);
 
         let wrapper = document.createElement('div');
@@ -86,6 +88,15 @@ class RealEstateDetail extends Base {
         new Modal(wrapper, {
             namespace: 'detail-modal',
         });
+    }
+
+    /**
+     * Get the current data.
+     *
+     * @returns {Object} Estate data of current instance.
+     */
+    getData() {
+        return this._data;
     }
 }
 

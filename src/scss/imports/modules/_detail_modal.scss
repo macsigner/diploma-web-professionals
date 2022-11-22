@@ -6,14 +6,12 @@
     overflow: auto;
     position: fixed;
     inset: 0;
-    z-index: 110;
+    z-index: 90;
     padding-top: 10rem;
-    padding-bottom: 10.2rem;
     background-color: var(--color-accent);
 
     @include media-desktop-small {
         padding-top: 10.8rem;
-        padding-bottom: 17.2rem;
     }
 
     &__close {
