@@ -121,10 +121,40 @@ class RealEstates {
      * @private
      */
     _applyClickListener() {
-        this.el.addEventListener('click', Tools.delegate('[data-id]', (e) => {
-            let id = parseInt(e.target.closest('[data-id]').dataset.id);
+        this.el.addEventListener('click', Tools.delegate('[data-table-sort-value]', (e) => {
+            let button = e.target.closest('[data-table-sort-value]');
+            let value = button.dataset.tableSortValue;
 
-            this.detail.open(id);
+            if (!this._tableSettings) {
+                this._tableSettings = {};
+            }
+
+            let order = this._tableSettings.order === 'asc' &amp;&amp; this._tableSettings.key === value ? 'desc' : 'asc';
+
+            switch (value) {
+                case 'usable_area':
+                case 'prize':
+                    this.render({
+                        sortCallback:
+                            order === 'asc'
+                                ? (a, b) => a[value] - b[value]
+                                : (a, b) => b[value] - a[value],
+                    });
+                    break;
+                default:
+                    this.render({
+                        sortCallback:
+                            order === 'asc'
+                                ? Tools.sortBy(value)
+                                : (a, b) => Tools.sortBy(value)(a, b) * -1,
+                    });
+            }
+
+            let sortButtons = this.el.querySelectorAll(`[data-table-sort-value="${value}"]`);
+            sortButtons.forEach(el => el.classList.add(order));
+
+            this._tableSettings.key = value;
+            this._tableSettings.order = order;
         }));
     }
 
@@ -147,7 +177,32 @@ class RealEstates {
             this._templateClasses.add(templateClass);
         }
 
-        this.render();
+        let callback;
+
+        if (this.filter.sort.sorting) {
+            switch (this.filter.sort.sorting) {
+                case 'dateAsc':
+                    callback = Tools.sortBy('updated_at');
+                    break;
+                case 'dateDesc':
+                    callback = (a, b) => Tools.sortBy('updated_at')(a, b) * -1;
+                    break;
+                case 'prizeAsc':
+                    callback = Tools.sortBy('prize');
+                    break;
+                case 'prizeDesc':
+                    callback = (a, b) => Tools.sortBy('prize')(a, b) * -1;
+                    break;
+            }
+        }
+
+        if (callback) {
+            this.render({
+                sortCallback: callback,
+            });
+        } else {
+            this.render();
+        }
     }
 
     /**
@@ -174,6 +229,7 @@ class RealEstates {
                     usable_area
                     estate_type
                     description
+                    updated_at
                     images {
                         image_path
                         title
@@ -239,8 +295,13 @@ class RealEstates {
 
     /**
      * Render current estates.
+     *
+     * @param options
+     * @param {{sortCallback: (function(*, *))}} options
      */
-    render() {
+    render(options = {
+        sortCallback: Tools.sortBy('updated_at'),
+    }) {
         this.el.innerHTML = '';
         let estates = this.estates;
 
@@ -258,17 +319,20 @@ class RealEstates {
 
         let items = [];
 
-        for (let estate of estates) {
-            if (!this._matchesFilter(estate)) {
-                continue;
-            }
+        estates = estates.filter(estate => this._matchesFilter(estate));
 
+        if (options.sortCallback) {
+            estates.sort(options.sortCallback);
+        }
+
+        for (let estate of estates) {
             estate.image = estate.images[0];
+
+            estate.link = `./detail.html?estate=${estate.id}`;
 
             let item = this.templates[this._settings.template].create(estate);
 
             item.firstElementChild.dataset.id = estate.id;
-            item.firstElementChild.classList.add('pointer');
 
             items.push(item);
         }
@@ -332,13 +396,13 @@ export default RealEstates;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setCustomProperties">setCustomProperties</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Nov 14 2022 19:03:31 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Tue Nov 22 2022 08:04:05 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

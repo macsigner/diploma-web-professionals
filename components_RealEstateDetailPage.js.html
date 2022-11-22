@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Source: components/RealEstateDetailPage.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,180 +17,73 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Source: components/RealEstateDetailPage.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2></h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="setCustomProperties"><span class="type-signature"></span>setCustomProperties<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="inits_documentScriptInit.js.html">inits/documentScriptInit.js</a>, <a href="inits_documentScriptInit.js.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import RealEstateDetail from './RealEstateDetail.js';
+
+/**
+ * Real estate detail page class.
+ */
+class RealEstateDetailPage {
+    /**
+     * Construct
+     * @param id
+     * @param options
+     */
+    constructor(id, options = {}) {
+        this._settings = options;
+
+        this._detail = new RealEstateDetail({
+            template: this._settings.template,
+        });
+
+        let promise = this._detail.open(id);
+
+        promise.then(() => {
+            let data = this._detail.getData();
+
+            this._applyMetaData({
+                description: data.description,
+                title: `Home House - ${data.title}`,
+            });
+        });
+    }
+
+    /**
+     * Apply meta data on current page.
+     * @param obj
+     * @private
+     */
+    _applyMetaData(obj) {
+        if (obj.description) {
+            let description = document.head.querySelector('meta[name="description"]') || document.createElement('meta');
+
+            description.content = obj.description;
+
+            document.head.appendChild(description);
+        }
+
+        if (obj.title) {
+            let title = document.head.querySelector('title') || document.createElement('title');
+
+            title.innerHTML = obj.title;
+
+            document.head.appendChild(title);
+        }
+    }
+}
+
+export default RealEstateDetailPage;
+</code></pre>
+        </article>
+    </section>
 
 
 

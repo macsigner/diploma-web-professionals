@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Base</title>
+    <title>JSDoc: Class: RealEstateDetailPage</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Base</h1>
+    <h1 class="page-title">Class: RealEstateDetailPage</h1>
 
     
 
@@ -28,10 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Base<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>RealEstateDetailPage<span class="signature">(id, options)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Base class.
-Extending functionality of components.</div>
+            <div class="class-description">Real estate detail page class.</div>
         
     
 </header>
@@ -46,19 +45,85 @@ Extending functionality of components.</div>
     
 
     
-    <h4 class="name" id="Base"><span class="type-signature"></span>new Base<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RealEstateDetailPage"><span class="type-signature"></span>new RealEstateDetailPage<span class="signature">(id, options)</span><span class="type-signature"></span></h4>
     
 
     
 
 
 
+<div class="description">
+    Construct
+</div>
 
 
 
 
 
 
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -94,7 +159,7 @@ Extending functionality of components.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Base.js.html">components/Base.js</a>, <a href="components_Base.js.html#line5">line 5</a>
+        <a href="components_RealEstateDetailPage.js.html">components/RealEstateDetailPage.js</a>, <a href="components_RealEstateDetailPage.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -150,7 +215,7 @@ Extending functionality of components.</div>
     
 
     
-    <h4 class="name" id="getNamespace"><span class="type-signature"></span>getNamespace<span class="signature">(suffix, prefix)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="_applyMetaData"><span class="type-signature">(private) </span>_applyMetaData<span class="signature">(obj)</span><span class="type-signature"></span></h4>
     
 
     
@@ -158,7 +223,7 @@ Extending functionality of components.</div>
 
 
 <div class="description">
-    Get the namespace class. Eg. for dynamic css class naming.
+    Apply meta data on current page.
 </div>
 
 
@@ -194,15 +259,10 @@ Extending functionality of components.</div>
 
         <tr>
             
-                <td class="name"><code>suffix</code></td>
+                <td class="name"><code>obj</code></td>
             
 
             <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
             
             </td>
 
@@ -210,30 +270,7 @@ Extending functionality of components.</div>
 
             
 
-            <td class="description last">String appended after the namespace class.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>prefix</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">String prepended before the namespace class.</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -274,7 +311,7 @@ Extending functionality of components.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Base.js.html">components/Base.js</a>, <a href="components_Base.js.html#line13">line 13</a>
+        <a href="components_RealEstateDetailPage.js.html">components/RealEstateDetailPage.js</a>, <a href="components_RealEstateDetailPage.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -299,202 +336,6 @@ Extending functionality of components.</div>
 
 
 
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getNamespaceClass"><span class="type-signature"></span>getNamespaceClass<span class="signature">(suffix, prefix)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Get the namespace class with prepended dot. Eg. for query selectors.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>suffix</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">String appended after the namespace class.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>prefix</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">String prepended before the namespace class.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Base.js.html">components/Base.js</a>, <a href="components_Base.js.html#line24">line 24</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
