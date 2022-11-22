@@ -5,6 +5,7 @@ import Slider from './Slider.js';
 import Modal from './Modal.js';
 import GoogleMap from './GoogleMap.js';
 import RealEstates from './RealEstates.js';
+import Template from './Template.js';
 
 /**
  * Real estate detail view.
@@ -73,6 +74,16 @@ class RealEstateDetail extends Base {
         this._data = estate;
 
         let el = this._settings.template.create(estate);
+
+        let htmlTemplate = el.querySelector('#contact-form template');
+
+        if (htmlTemplate) {
+            let template = new Template(htmlTemplate);
+
+            htmlTemplate.parentNode.appendChild(template.create());
+
+            htmlTemplate.remove();
+        }
 
         let wrapper = document.createElement('div');
 

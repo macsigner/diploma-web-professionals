@@ -22,7 +22,7 @@ class Modal extends Base {
         this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
 
         if (typeof content === 'string') {
-            content = document.querySelector(content).cloneNode(true);
+            content = document.querySelector(content);
 
             this._cleanContentAttributes(content);
         }
@@ -55,7 +55,9 @@ class Modal extends Base {
         wrapper.removeAttribute('id');
 
         content.querySelectorAll('[id]').forEach(el => {
-            el.removeAttribute('id');
+            if (!el.closest('form')) {
+                el.removeAttribute('id');
+            }
         });
     }
 
