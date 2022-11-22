@@ -100,4 +100,21 @@
             @include font-desktop-table;
         }
     }
+
+    &__sort-button {
+        --color: var(--color-primary);
+    }
+
+    &__sort-button .icon-arrow {
+        transform: scale(-1);
+    }
+
+    &__sort-button.asc,
+    &__sort-button.desc {
+        --color: var(--color-primary-text-dark);
+    }
+
+    &__sort-button.asc .icon-arrow {
+        transform: scale(1);
+    }
 }
