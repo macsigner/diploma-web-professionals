@@ -55,16 +55,16 @@ class GoogleMap extends Base {
             labelOrigin: new google.maps.Point(12, 15),
         };
 
-        Object.keys(this._settings.marker).forEach(key => {
-            let obj = this._settings.marker[key];
-
-            new google.maps.Marker({
-                position: obj.position,
-                map: this.map,
-                title: obj.title,
-                icon: markerImage,
+        if (this._settings.markers) {
+            this._settings.markers.forEach(marker => {
+                new google.maps.Marker({
+                    position: marker.position,
+                    map: this.map,
+                    title: marker.title,
+                    icon: markerImage,
+                });
             });
-        });
+        }
     }
 
     /**
@@ -77,6 +77,7 @@ class GoogleMap extends Base {
             center: this._settings.position,
             styles: this._getMapStyle(),
             zoom: 16,
+            disableDefaultUI: true,
         });
     }
 
@@ -158,7 +159,7 @@ class GoogleMap extends Base {
                 'elementType': 'labels.text.fill',
                 'stylers': [
                     {
-                        'color': '#4e4646',
+                        'color': '#4E4646',
                     },
                 ],
             },
@@ -167,7 +168,7 @@ class GoogleMap extends Base {
                 'elementType': 'labels.text.stroke',
                 'stylers': [
                     {
-                        'color': '#ffffff',
+                        'color': '#FFFFFF',
                     },
                     {
                         'visibility': 'off',

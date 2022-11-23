@@ -3,7 +3,7 @@
  */
 
 html {
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 body {
@@ -13,9 +13,20 @@ body {
         @include font-desktop-main;
     }
 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     background-color: var(--color-accent);
+}
+
+body > * {
+    flex: 0 0 auto;
+}
+
+body > main {
+    flex: 1 0 auto;
 }
 
 h1,
