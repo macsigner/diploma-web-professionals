@@ -18,8 +18,10 @@ class GoogleMap extends Base {
 
         this.el = el;
         this._defaultSettings = {
-            lat: 47.4236282,
-            long: 9.2929987,
+            position: {
+                lat: 47.4236282,
+                lng: 9.2929987,
+            },
         };
         this._customSettings = options;
         this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);

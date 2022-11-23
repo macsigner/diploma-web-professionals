@@ -88,7 +88,23 @@ class RealEstateDetail extends Base {
         let wrapper = document.createElement('div');
 
         el.querySelectorAll('[data-slider]').forEach(sub => new Slider(sub));
-        el.querySelectorAll('[data-map]').forEach(sub => new GoogleMap(sub));
+        el.querySelectorAll('[data-map]').forEach(sub => {
+            new GoogleMap(sub, {
+                position: {
+                    lat: estate.lat,
+                    lng: estate.long,
+                },
+                markers: [
+                    {
+                        title: estate.title,
+                        position: {
+                            lat: estate.lat,
+                            lng: estate.long,
+                        },
+                    },
+                ],
+            });
+        });
         el.querySelectorAll('[data-real-estates]').forEach(sub => new RealEstates(sub, {
             lat: estate.lat,
             long: estate.long,
