@@ -25,10 +25,10 @@ const delegate = (selector, fn) => {
 const debounce = (fn, delay = 300) => {
     let timeout;
 
-    return () => {
+    return (e) => {
         clearTimeout(timeout);
 
-        timeout = setTimeout(fn, delay);
+        timeout = setTimeout(() => fn(e), delay);
     };
 };
 

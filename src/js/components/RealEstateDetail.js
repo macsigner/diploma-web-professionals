@@ -6,6 +6,7 @@ import GoogleMap from './GoogleMap.js';
 import RealEstates from './RealEstates.js';
 import Template from './Template.js';
 import RealEstateBase from './RealEstateBase.js';
+import FormSubmit from './FormSubmit.js';
 
 /**
  * Real estate detail view.
@@ -120,6 +121,10 @@ class RealEstateDetail extends RealEstateBase {
             let contactModal = new Modal(contactModalContent, {
                 open: false,
             });
+
+            contactModalContent.querySelectorAll('form').forEach(el => new FormSubmit(el));
+
+            contactModal.open();
 
             wrapper.addEventListener('click', Tools.delegate('[data-real-estate-contact]', () => {
                 contactModal.open();

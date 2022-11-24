@@ -1,5 +1,6 @@
 import { GraphQLClient } from 'graphql-request';
 import Base from './Base.js';
+import SETTINGS from '../settings.js';
 
 /**
  * Real estate base class.
@@ -11,7 +12,7 @@ class RealEstateBase extends Base {
     constructor() {
         super();
 
-        this._client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
+        this._client = new GraphQLClient(SETTINGS.gqlURL);
     }
 
     /**

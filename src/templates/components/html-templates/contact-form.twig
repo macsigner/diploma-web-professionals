@@ -5,40 +5,40 @@
     </header>
 
     <form class="layout-object-form">
-        <input type="text" data-template="id" hidden>
+        <input type="text" name="estate_id" data-template="id" hidden>
         <div class="layout-object-form__item input">
             <label for="firstName" class="input__label">Vorname</label>
-            <input type="text" id="firstName" class="input__field">
+            <input type="text" id="firstName" name="firstname" class="input__field" data-validate-required required>
         </div>
         <div class="layout-object-form__item input">
             <label for="lastName" class="input__label">Nachname</label>
-            <input type="text" id="lastName" class="input__field">
+            <input type="text" id="lastName" name="lastname" class="input__field" required>
         </div>
         <div class="layout-object-form__item input">
             <label for="address" class="input__label">Adresse</label>
-            <input type="text" id="address" class="input__field">
+            <input type="text" id="address" name="address" class="input__field" required>
         </div>
         <div class="layout-object-form__item layout-object-form__item--group">
             <div class="layout-object-form__item layout-object-form__item--small input">
                 <label for="zip" class="input__label">PLZ</label>
-                <input type="text" id="zip" class="input__field">
+                <input type="text" id="zip" name="postalcode" class="input__field" required>
             </div>
             <div class="layout-object-form__item layout-object-form__item--medium input">
-                <label for="place" class="input__label">Ort</label>
-                <input type="text" id="place" class="input__field">
+                <label for="city" class="input__label">Ort</label>
+                <input type="text" id="city" name="city" class="input__field" required>
             </div>
         </div>
         <div class="layout-object-form__item input">
             <label for="phoneNumber" class="input__label">Telefonnummer</label>
-            <input type="tel" id="phoneNumber" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" class="input__field">
+            <input type="tel" id="phoneNumber" name="phonenumber" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" class="input__field" required>
         </div>
         <div class="layout-object-form__item input">
             <label for="email" class="input__label">E-Mail</label>
-            <input type="email" id="email" class="input__field">
+            <input type="email" id="email" name="email" class="input__field" required>
         </div>
         <div class="layout-object-form__item layout-object-form__item--message input">
             <label for="message" class="input__label">Ihre Nachricht</label>
-            <textarea type="text" id="message" class="input__field"></textarea>
+            <textarea type="text" id="message" name="content" class="input__field"></textarea>
         </div>
         <div class="layout-object-form__item layout-object-form__item--checkobx">
             <input type="checkbox" id="information" name="information" class="invisible">
@@ -48,7 +48,7 @@
             </label>
         </div>
         <div class="layout-object-form__item layout-object-form__item--checkobx">
-            <input type="checkbox" id="tour" name="tour" class="invisible">
+            <input type="checkbox" id="tour" name="visit" class="invisible">
             <label for="tour" class="check">
                 <span class="check__mark"></span>
                 <span class="check__label">Besichtigung</span>
