@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/FormSubmit.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/FormSubmit.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { gql, GraphQLClient } from 'graphql-request';
+import SETTINGS from '../settings.js';
+import * as Tools from '../tools.js';
+
+/**
+ * Form submission via mutate.
+ */
+class FormSubmit {
+    /**
+     * Construct.
+     * @param el {HTMLFormElement} Form element
+     */
+    constructor(el) {
+        this._client = new GraphQLClient(SETTINGS.gqlURL);
+        this._form = el;
+
+        this._loadFormData();
+
+        this._form.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', Tools.debounce((e) => this._inputListener(e), 1200));
+            input.addEventListener('blur', Tools.debounce((e) => this._inputListener(e), 1200));
+        });
+
+        this._form.addEventListener(
+            'click',
+            Tools.delegate('[type=submit], button', () => this.validate())
+        );
+
+        this._form.addEventListener('submit', (e) => {
+            console.log('submit');
+            e.preventDefault();
+
+            let isValid = this.validate();
+
+            let obj = this._getFormDataObject();
+
+            if (isValid) {
+                let mutation = this._mutate(obj);
+
+                mutation.then((response) => {
+                    console.log(response);
+                });
+            }
+        });
+    }
+
+    /**
+     * Mutate
+     * @returns {Promise&lt;void>}
+     * @private
+     */
+    async _mutate(data) {
+        let createMessage = gql`
+            mutation(
+                $estate_id: ID!,
+                $firstname: String!,
+                $lastname: String!,
+                $address: String!,
+                $postalcode: String!,
+                $city: String!,
+                $phonenumber: String!,
+                $email: String!,
+                $content: String!,
+                $information: Boolean,
+                $visit: Boolean
+            ) {
+                createMessage(
+                    estate_id: $estate_id
+                    firstname: $firstname
+                    lastname: $lastname
+                    address: $address
+                    postalcode: $postalcode
+                    city: $city
+                    phonenumber: $phonenumber
+                    email: $email
+                    content: $content
+                    information: $information
+                    visit: $visit
+                ) {
+                    address
+                    city
+                    content
+                    created_at
+                    email
+                    estate {
+                        title,
+                    }
+                    firstname
+                    id
+                    information
+                    lastname
+                    phonenumber
+                    postalcode
+                    updated_at
+                    visit
+                }
+            }
+        `;
+
+        let requiredFields = {
+            firstname: '',
+            lastname: '',
+            address: '',
+            postalcode: '',
+            city: '',
+            phonenumber: '',
+            email: '',
+            content: '',
+            information: false,
+            visit: false,
+        };
+
+        let messageData = Object.assign(requiredFields, data);
+
+        return await this._client.request(createMessage, messageData);
+    }
+
+    /**
+     * Listen for input changes.
+     *
+     * @param e {Event} Input or blur event
+     * @private
+     */
+    _inputListener(e) {
+        this.validateField(e.target);
+    }
+
+    /**
+     * Validate single field.
+     *
+     * @param el {HTMLInputElement} Single input field
+     */
+    validateField(el) {
+        el.setCustomValidity('');
+        let isValid = el.checkValidity();
+        let container = el.closest('.input') || el;
+
+        if (isValid) {
+            container.classList.add('is-valid');
+            container.classList.remove('is-invalid');
+
+            this._saveFormData();
+        } else {
+            let message;
+
+            if (el.value.trim() === '') {
+                message = 'Dies ist ein Pflichtfeld. Bitte füllen sie es aus.';
+            } else {
+                container.classList.remove('is-valid');
+                container.classList.add('is-invalid');
+
+                switch (el.name) {
+                    case 'phonenumber':
+                        message = 'Bitte geben sie eine gültige Telefonnummer ein';
+                        break;
+                    default:
+                        message = 'Ungültige Angaben.';
+                }
+            }
+
+            el.setCustomValidity(message);
+            el.checkValidity();
+        }
+
+        if (el.value.trim() === '' &amp;&amp; el.required) {
+            container.classList.remove('is-valid');
+            container.classList.add('is-invalid');
+        } else if (!el.required) {
+            container.classList.remove('is-valid');
+            container.classList.remove('is-invalid');
+        }
+    }
+
+    /**
+     * Validate current form.
+     */
+    validate() {
+        let fields = Array.from(this._form.elements);
+
+        return fields.reduce((prev, current) => {
+            this.validateField(current);
+
+            return prev &amp;&amp; current.checkValidity();
+        }, true);
+    }
+
+    /**
+     * Save form data to local storage.
+     *
+     * @private
+     */
+    _saveFormData() {
+        let obj = this._getFormDataObject();
+
+        window.localStorage.setItem('formData', JSON.stringify(obj));
+    }
+
+    /**
+     *
+     * @returns {any|Object} Form data object
+     * @private
+     */
+    _loadFormData() {
+        let json = window.localStorage.getItem('formData');
+
+        if (!json) {
+            return;
+        }
+
+        let data = JSON.parse(json);
+
+        Array.from(this._form.elements).forEach(el => {
+            if (data[el.name]) {
+                switch (el.type) {
+                    case 'checkbox':
+                    case 'radio':
+                        el.checked = !!data[el.name];
+                        break;
+                    default:
+                        el.value = data[el.name];
+                }
+            }
+        });
+
+        return data;
+    }
+
+    /**
+     * Get current form data as object.
+     *
+     * @returns {Object} Form data as object
+     * @private
+     */
+    _getFormDataObject() {
+        let formData = new FormData(this._form);
+
+        let obj = {};
+
+        for (let [key, entry] of formData.entries()) {
+            switch (key) {
+                case 'information':
+                case 'visit':
+                    obj[key] = !!entry;
+                    break;
+                default:
+                    obj[key] = entry;
+            }
+        }
+
+        return obj;
+    }
+}
+
+export default FormSubmit;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setCustomProperties">setCustomProperties</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Nov 24 2022 23:48:13 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
