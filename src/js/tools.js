@@ -33,6 +33,22 @@ const debounce = (fn, delay = 300) => {
 };
 
 /**
+ * Compare two values for sort function.
+ * @param a
+ * @param b
+ * @returns {number}
+ */
+const compare = (a, b) => {
+    if (a > b) {
+        return 1;
+    } else if (a < b) {
+        return -1;
+    }
+
+    return 0;
+};
+
+/**
  * Sort object by specified key.
  *
  * @param {String|Number} key Key of object or array given
@@ -40,13 +56,7 @@ const debounce = (fn, delay = 300) => {
  */
 const sortBy = (key) => {
     return (a, b) => {
-        if (a[key] > b[key]) {
-            return 1;
-        } else if (a[key] < b[key]) {
-            return -1;
-        }
-
-        return 0;
+        return compare(a[key], b[key]);
     };
 };
 
@@ -76,15 +86,23 @@ const cleanEmptyStringsFromObject = (obj) => {
  * @returns {Object}
  */
 const mapOptions = (originalOptions, newOptions) => {
-    let settings = Object.assign({}, originalOptions);
+    if (!originalOptions) {
+        return newOptions;
+    }
+
+    let settings;
 
     if (Array.isArray(originalOptions)) {
         settings = originalOptions.map((x) => x);
+        console.log(settings);
     } else {
         settings = Object.assign({}, originalOptions);
     }
 
     Object.keys(newOptions).forEach((strKey) => {
+        if (strKey === 'markers') {
+            console.log(strKey);
+        }
         if (typeof newOptions[strKey] === 'object'
             && !(newOptions[strKey] instanceof Node)
             && !(newOptions[strKey] instanceof Function)
@@ -115,6 +133,7 @@ export {
     delegate,
     debounce,
     sortBy,
+    compare,
     cleanEmptyStringsFromObject,
     mapOptions,
     camelToKebabCase,

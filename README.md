@@ -75,8 +75,8 @@ __Beispiel an einem Newseintrag:__
 
 Um Skripte nur für eine einzelne Seite anzugeben, wird eine Javascriptdatei im Skriptordner _src/js/pages_ unter dem
 gleichen Namen wie die Seite angelegt. Die Javascriptdatei wird dann als zusätzlicher _Chunk_ beim Build eingepflegt.\
-Um beispielsweise für die Seite *src/pages/010_aktuelles/_001_grossprojekt-home-house.twig* ein eigenes Skript zu ladenb
-wird die Datei _src/js/pages/010_aktuelles/\_001\_grossprojekt-home-house.js_ angelegt.
+Um beispielsweise für die Seite _src/pages/010_aktuelles/\_001\_grossprojekt-home-house.twig_ ein eigenes Skript zu
+laden, wird die Datei _src/js/pages/010_aktuelles/\_001\_grossprojekt-home-house.js_ angelegt.
 
 [//]: # (todo: does the order of files being read depend on the host?)
 
@@ -470,8 +470,8 @@ Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau auf `"type":
 Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im _eslintrc.json_ auf `"ecmaVersion": 11`
 nötig. Für dieses Projekt war diese Anpassung nicht weiter von Belang aber ansonsten würde ich wohl das File auf die
 Ignoreliste setzen.\
-Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgendeinem Grund auf einer älteren Version
-basieren müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste steht –
+Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgendeinem Grund auf einer älteren Version basieren
+müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste steht –
 gemäss [dieser Antwort][sources :: eslint :: parsing error: unexpected token import :: answer] noch überlegenswert.
 
 [Fehler: `[HMR] Update failed: ChunkLoadError: Loading hot update chunk app failed.`][sources :: webpack :: chunk load error]\
@@ -484,7 +484,9 @@ auf [Stack Overflow][sources :: webpack :: chunk load error :: answer]
 
 #### Javascript
 
-[Konvertierung Camelcase zu Kebabcase][sources :: javascript :: camel to kebab] innerhalb der _tools.js_
+[Konvertierung Camelcase zu Kebabcase][sources :: javascript :: camel to kebab] innerhalb der _tools.js_.
+
+[Google Maps Marker][sources :: javascript :: custom marker] bei der Implementierung eines eigenen Markers.
 
 ## Eidesstattliche Erklärung
 
@@ -522,7 +524,7 @@ vorgelegt. Sie wurde bisher auch nicht veröffentlicht.
 [tech doc :: 11ty]: https://www.11ty.dev/
 
 [sources :: node :: dirname not in es scope]:
-https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope#:~:text=The%20__dirname%20or%20__,directory%20name%20of%20the%20path.
+https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope
 
 [sources :: node :: uppercase first letter of string]:
 https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
@@ -537,7 +539,10 @@ https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-
 
 [sources :: html :: regex phone number]: https://ihateregex.io/expr/phone/
 
-[sources :: javascript :: camel to kebab]: https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
+[sources :: javascript :: camel to kebab]:
+https://javascript.plainenglish.io/from-camel-case-to-dash-syntax-in-javascript-c685206ee682
+
+[sources :: javascript :: custom marker]: https://stackoverflow.com/a/23163930
 
 [comment :: css :: line-height inheritance]:
 https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#prefer_unitless_numbers_for_line-height_values
