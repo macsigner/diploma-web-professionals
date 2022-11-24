@@ -18,12 +18,24 @@ class RealEstates {
             template: 'layoutTile',
             limit: 0,
             pagination: false,
+            more: true,
+            moreShow: true,
+            moreInitial: 3,
+            moreItems: 6,
             medias: [
                 {
                     media: '(min-width: 56.25em)',
                     settings: {
                         pagination: true,
                         paginationItemsPerPage: 6,
+                        more: false,
+                    },
+                },
+                {
+                    media: '(min-width: 37.5em)',
+                    settings: {
+                        moreInitial: 4,
+                        moreItems: 8,
                     },
                 },
             ],
@@ -72,6 +84,7 @@ class RealEstates {
         }
 
         this._applyPagination();
+        this._applyMoreButton();
 
         this.render();
     }
@@ -327,6 +340,55 @@ class RealEstates {
     }
 
     /**
+     * Apply more button.
+     * @private
+     */
+    _applyMoreButton() {
+        if (this._moreElement) {
+            this._moreElement.remove();
+        }
+
+        if (this._settings.more) {
+            this._more = {
+                show: this._more && this._more.show ? this._more.show : this._settings.moreInitial,
+            };
+
+            this._createMoreButton();
+        } else {
+            delete this._moreElement;
+            delete this._more;
+        }
+    }
+
+    /**
+     * Create more button.
+     * @private
+     */
+    _createMoreButton() {
+        let button = document.createElement('div');
+        button.classList.add('show-more', 'base-width');
+        let html = '<button class="button button--w100 button--block" data-estate-more>Mehr laden</button>';
+
+        button.innerHTML = html;
+
+        button.addEventListener('click', () => {
+            this._more = {
+                show: this._settings.moreItems === 0 ? 0 : this._more.show + this._settings.moreItems,
+            };
+
+            this.render();
+        });
+
+        this._moreElement = button;
+
+        if (this.el.parentNode.nextElementSibling) {
+            this.el.parentNode.parentNode.insertBefore(this._moreElement, this.el.parentNode.nextElementSibling);
+        } else {
+            this.el.parentNode.appendChild(this._moreElement);
+        }
+    }
+
+    /**
      * Update pagination button content.
      * @private
      */
@@ -446,6 +508,20 @@ class RealEstates {
             }
 
             this._updatePaginationButtons();
+        }
+
+        if (this._settings.more) {
+            if (this.filter.template.layout === 'layoutList') {
+                this._moreElement.classList.add('hide');
+            } else {
+                this._moreElement.classList.remove('hide');
+
+                if (this._more.show >= items.length || this._more.show === 0) {
+                    this._moreElement.remove();
+                }
+
+                items = items.slice(0, this._more.show);
+            }
         }
 
         if (items[0] && items[0].firstElementChild.tagName === 'TR') {
