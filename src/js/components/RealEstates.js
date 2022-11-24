@@ -17,9 +17,22 @@ class RealEstates {
         this._defaultSettings = {
             template: 'layoutTile',
             limit: 0,
+            pagination: false,
+            medias: [
+                {
+                    media: '(min-width: 56.25em)',
+                    settings: {
+                        pagination: true,
+                        paginationItemsPerPage: 6,
+                    },
+                },
+            ],
         };
         this._customSettings = options;
-        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
+
+        this._init();
+
+        window.addEventListener('resize', Tools.debounce(() => this._init()));
 
         if (this.el.dataset.realEstatesLimit) {
             this._settings.limit = parseInt(this.el.dataset.realEstatesLimit);
@@ -40,6 +53,27 @@ class RealEstates {
         }
 
         this.loadData();
+    }
+
+    /**
+     * Init optional functionalities.
+     *
+     * @private
+     */
+    _init() {
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
+
+        if (this._settings.medias) {
+            let mediaOptions = Tools.getMediaOptions(this._settings.medias);
+
+            if (mediaOptions) {
+                this._settings = Tools.mapOptions(this._settings, mediaOptions);
+            }
+        }
+
+        this._applyPagination();
+
+        this.render();
     }
 
     /**
@@ -205,11 +239,105 @@ class RealEstates {
         let response = await this.client.request(query);
         this.estates = response.estates;
 
+        /**
+         * Dispatched when data has been loaded.
+         *
+         * @event RealEstates#realEstateDataLoaded
+         */
+        this.el.dispatchEvent(new Event('realEstateDataLoaded'));
+
         if (this.filterForm) {
             this._createOptionsEstates(response);
         }
 
         this.render();
+    }
+
+    /**
+     * Apply pagination.
+     * @private
+     */
+    _applyPagination() {
+        if (this._paginationElement) {
+            this._paginationElement.remove();
+        }
+
+        if (this._settings.pagination) {
+            this._pagination = {
+                current: this._pagination && this._pagination.current ? this._pagination.current : 1,
+            };
+
+            this._createPagination();
+        } else {
+            delete this._paginationElement;
+            delete this._pagination;
+        }
+    }
+
+    /**
+     * Create pagination element.
+     * @private
+     */
+    _createPagination() {
+        let pagination = document.createElement('div');
+        pagination.classList.add('pagination', 'base-width');
+        let html = `<button class="pagination__button pagination__button--prev link" data-pagination="prev">
+                        <span class="link__icon"><span class="icon-chevron"></span></span>
+                        <span class="link__text">Zurück</span>
+                    </button>
+                    <button class="pagination__button pagination__button--next link" data-pagination="next">
+                        <span class="link__text">Seite
+                            <span class="pagination__current"></span> von
+                            <span class="pagination__total"></span>
+                        </span>
+                        <span class="link__icon"><span class="icon-chevron"></span></span>
+                    </button>`;
+
+        pagination.innerHTML = html;
+
+        pagination.addEventListener('click', Tools.delegate('[data-pagination]', (e) => {
+            let button = e.target.closest('[data-pagination]');
+            switch (button.dataset.pagination) {
+                case 'next':
+                    this._pagination.current = Math.min(this._pagination.current + 1, this._pagination.total);
+                    break;
+                case 'prev':
+                    this._pagination.current = Math.max(this._pagination.current - 1, 0);
+                    break;
+                default:
+                    this._pagination.current = Math.min(
+                        Math.max(
+                            parseInt(button.dataset.pagination), 0
+                        ), this._pagination.total
+                    );
+            }
+
+            this.render();
+
+            this._updatePaginationButtons();
+        }));
+
+        this._paginationElement = pagination;
+
+        if (this.el.parentNode.nextElementSibling) {
+            this.el.parentNode.parentNode.insertBefore(this._paginationElement, this.el.parentNode.nextElementSibling);
+        } else {
+            this.el.parentNode.appendChild(this._paginationElement);
+        }
+    }
+
+    /**
+     * Update pagination button content.
+     * @private
+     */
+    _updatePaginationButtons() {
+        if (this.filter.template.layout === 'layoutList') {
+            this._paginationElement.classList.add('hide');
+        } else {
+            this._paginationElement.classList.remove('hide');
+            this._paginationElement.querySelector('.pagination__total').innerHTML = this._pagination.total;
+            this._paginationElement.querySelector('.pagination__current').innerHTML = this._pagination.current;
+        }
     }
 
     /**
@@ -265,6 +393,10 @@ class RealEstates {
     render(options = {
         sortCallback: Tools.sortBy('updated_at'),
     }) {
+        if (!this.estates) {
+            return;
+        }
+
         this.el.innerHTML = '';
         let estates = this.estates;
 
@@ -302,6 +434,18 @@ class RealEstates {
 
         if (this._settings.limit > 0) {
             items = items.slice(0, this._settings.limit);
+        }
+
+        if (this._settings.pagination) {
+            if (this.filter.template.layout !== 'layoutList') {
+                this._pagination.total = Math.ceil(items.length / this._settings.paginationItemsPerPage);
+                let start = this._settings.paginationItemsPerPage * (this._pagination.current - 1);
+                let end = start + this._settings.paginationItemsPerPage;
+
+                items = items.slice(start, end);
+            }
+
+            this._updatePaginationButtons();
         }
 
         if (items[0] && items[0].firstElementChild.tagName === 'TR') {
