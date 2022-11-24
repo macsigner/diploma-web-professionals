@@ -23,12 +23,12 @@ const delegate = (selector, fn) => {
  * @returns {Function(): void} Function to be called after interaction
  */
 const debounce = (fn, delay = 300) => {
-    let timout;
+    let timeout;
 
     return () => {
-        clearTimeout(timout);
+        clearTimeout(timeout);
 
-        setTimeout(fn, delay);
+        timeout = setTimeout(fn, delay);
     };
 };
 
@@ -129,6 +129,24 @@ function camelToKebabCase(str) {
     return str;
 }
 
+/**
+ * Get settings according to media query.
+ *
+ * @param medias {Object[]}
+ */
+function getMediaOptions(medias, key = 'settings') {
+    let matchingOption;
+
+    // Go through each item, so the logic matches that of CSS as it will apply the last item.
+    medias.forEach(function(item) {
+        if (window.matchMedia(item.media).matches) {
+            matchingOption = item[key];
+        }
+    });
+
+    return matchingOption;
+}
+
 export {
     delegate,
     debounce,
@@ -137,4 +155,5 @@ export {
     cleanEmptyStringsFromObject,
     mapOptions,
     camelToKebabCase,
+    getMediaOptions,
 };
