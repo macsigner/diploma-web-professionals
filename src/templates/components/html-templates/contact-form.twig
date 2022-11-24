@@ -1,10 +1,11 @@
 <template>
     <header>
         <h1 class="modal__title">Interesse am Objekt <br>
-            <strong>Bijou am See</strong></h1>
+            <strong data-template="title">Bijou am See</strong></h1>
     </header>
 
     <form class="layout-object-form">
+        <input type="text" data-template="id" hidden>
         <div class="layout-object-form__item input">
             <label for="firstName" class="input__label">Vorname</label>
             <input type="text" id="firstName" class="input__field">

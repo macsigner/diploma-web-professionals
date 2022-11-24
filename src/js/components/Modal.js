@@ -14,6 +14,7 @@ class Modal extends Base {
         super();
 
         this._defaultSettings = {
+            open: true,
             namespace: 'modal',
             appendTo: document.body,
             closeButtonContent: 'schliessen',
@@ -31,9 +32,18 @@ class Modal extends Base {
 
         this.modal.addEventListener('click', Tools.delegate('[data-modal-close]', this.close.bind(this)));
 
+        if (this._settings.open) {
+            this.open();
+        }
+    }
+
+    /**
+     * Open current modal.
+     */
+    open() {
         this._settings.appendTo.appendChild(this.modal);
 
-        document.documentElement.style.setProperty('overflow', 'hidden');
+        document.documentElement.classList.add('lock-scroll');
     }
 
     /**
@@ -42,7 +52,7 @@ class Modal extends Base {
     close() {
         this.modal.remove();
 
-        document.documentElement.style.removeProperty('overflow');
+        document.documentElement.classList.remove('lock-scroll');
     }
 
     /**

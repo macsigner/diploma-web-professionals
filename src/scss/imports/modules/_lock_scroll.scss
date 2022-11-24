@@ -1,0 +1,8 @@
+/**
+ * lock-scroll bem module
+ */
+
+html.lock-scroll {
+    overflow: hidden;
+    margin-right: var(--scrollbar-width, 0);
+}

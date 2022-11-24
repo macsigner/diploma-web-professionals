@@ -80,7 +80,7 @@ class RealEstateDetail extends Base {
         if (htmlTemplate) {
             let template = new Template(htmlTemplate);
 
-            htmlTemplate.parentNode.appendChild(template.create());
+            htmlTemplate.parentNode.appendChild(template.create(estate));
 
             htmlTemplate.remove();
         }
@@ -118,6 +118,17 @@ class RealEstateDetail extends Base {
                 },
             ],
         }));
+
+        let contactModalContent = el.querySelector('[data-real-estate-contact-modal]');
+        if (contactModalContent) {
+            let contactModal = new Modal(contactModalContent, {
+                open: false,
+            });
+
+            wrapper.addEventListener('click', Tools.delegate('[data-real-estate-contact]', () => {
+                contactModal.open();
+            }));
+        }
 
         wrapper.appendChild(el);
 

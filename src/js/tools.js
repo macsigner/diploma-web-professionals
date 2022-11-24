@@ -143,6 +143,26 @@ function getMediaOptions(medias, key = 'settings') {
     return matchingOption;
 }
 
+/**
+ * Lock scroll on element.
+ */
+function lockScroll(el = document.documentElement) {
+    document.documentElement.style.setProperty(
+        '--scrollbar-width',
+        (window.innerWidth - document.documentElement.scrollWidth) + 'px'
+    );
+
+    el.classList.add('lock-scroll');
+}
+
+/**
+ * Unlock scroll on element.
+ * @param el
+ */
+function unlockScroll(el = document.documentElement) {
+    el.classList.remove('lock-scroll');
+}
+
 export {
     delegate,
     debounce,
@@ -152,4 +172,6 @@ export {
     mapOptions,
     camelToKebabCase,
     getMediaOptions,
+    lockScroll,
+    unlockScroll,
 };
