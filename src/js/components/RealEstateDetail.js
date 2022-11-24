@@ -106,8 +106,17 @@ class RealEstateDetail extends Base {
             });
         });
         el.querySelectorAll('[data-real-estates]').forEach(sub => new RealEstates(sub, {
-            lat: estate.lat,
-            long: estate.long,
+            limit: 2,
+            more: false,
+            moreShow: false,
+            medias: [
+                {
+                    media: '(min-width: 56.25em)',
+                    settings: {
+                        limit: 3,
+                    },
+                },
+            ],
         }));
 
         wrapper.appendChild(el);

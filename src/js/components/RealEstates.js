@@ -22,33 +22,12 @@ class RealEstates {
             moreShow: true,
             moreInitial: 3,
             moreItems: 6,
-            medias: [
-                {
-                    media: '(min-width: 56.25em)',
-                    settings: {
-                        pagination: true,
-                        paginationItemsPerPage: 6,
-                        more: false,
-                    },
-                },
-                {
-                    media: '(min-width: 37.5em)',
-                    settings: {
-                        moreInitial: 4,
-                        moreItems: 8,
-                    },
-                },
-            ],
         };
         this._customSettings = options;
 
         this._init();
 
         window.addEventListener('resize', Tools.debounce(() => this._init()));
-
-        if (this.el.dataset.realEstatesLimit) {
-            this._settings.limit = parseInt(this.el.dataset.realEstatesLimit);
-        }
 
         this._attachFilter();
 
@@ -205,6 +184,11 @@ class RealEstates {
                     break;
             }
         }
+
+        delete this._pagination;
+        delete this._more;
+        this._applyPagination();
+        this._applyMoreButton();
 
         if (callback) {
             this.render({
@@ -499,7 +483,7 @@ class RealEstates {
         }
 
         if (this._settings.pagination) {
-            if (this.filter.template.layout !== 'layoutList') {
+            if (this.filter && this.filter.template.layout !== 'layoutList') {
                 this._pagination.total = Math.ceil(items.length / this._settings.paginationItemsPerPage);
                 let start = this._settings.paginationItemsPerPage * (this._pagination.current - 1);
                 let end = start + this._settings.paginationItemsPerPage;
@@ -511,7 +495,7 @@ class RealEstates {
         }
 
         if (this._settings.more) {
-            if (this.filter.template.layout === 'layoutList') {
+            if (this.filter && this.filter.template.layout === 'layoutList') {
                 this._moreElement.classList.add('hide');
             } else {
                 this._moreElement.classList.remove('hide');

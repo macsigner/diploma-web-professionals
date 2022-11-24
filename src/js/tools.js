@@ -94,15 +94,11 @@ const mapOptions = (originalOptions, newOptions) => {
 
     if (Array.isArray(originalOptions)) {
         settings = originalOptions.map((x) => x);
-        console.log(settings);
     } else {
         settings = Object.assign({}, originalOptions);
     }
 
     Object.keys(newOptions).forEach((strKey) => {
-        if (strKey === 'markers') {
-            console.log(strKey);
-        }
         if (typeof newOptions[strKey] === 'object'
             && !(newOptions[strKey] instanceof Node)
             && !(newOptions[strKey] instanceof Function)
