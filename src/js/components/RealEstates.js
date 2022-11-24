@@ -43,15 +43,6 @@ class RealEstates {
     }
 
     /**
-     * Filter title by filter.
-     * @param el
-     * @returns {boolean}
-     */
-    filterTitle(item) {
-        return item.title.toLowerCase().includes(this.filter.filterCallback.filterTitle);
-    }
-
-    /**
      * Get template nodes.
      * @private
      */
