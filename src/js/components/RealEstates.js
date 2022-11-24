@@ -1,18 +1,21 @@
-import { GraphQLClient, gql } from 'graphql-request';
+import { gql } from 'graphql-request';
 import Template from './Template.js';
 import Filter from './Filter.js';
 import * as Tools from '../tools.js';
 import RealEstateDetail from './RealEstateDetail.js';
+import RealEstateBase from './RealEstateBase.js';
 
 /**
  * Handle real estates rendering.
  */
-class RealEstates {
+class RealEstates extends RealEstateBase {
     /**
      * Construct.
      * @param el
      */
     constructor(el, options = {}) {
+        super();
+
         this.el = el;
         this._defaultSettings = {
             template: 'layoutTile',
@@ -32,8 +35,6 @@ class RealEstates {
         this._attachFilter();
 
         this._setTemplates();
-
-        this._client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
 
         if (this.templates.detail) {
             this.detail = new RealEstateDetail({
@@ -467,9 +468,7 @@ class RealEstates {
         }
 
         for (let estate of estates) {
-            estate.image = estate.images[0];
-
-            estate.link = `./detail.html?estate=${estate.id}`;
+            estate = this._getFormattedObject(estate);
 
             let item = this.templates[this._settings.template].create(estate);
 
