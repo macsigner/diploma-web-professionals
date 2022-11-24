@@ -33,7 +33,7 @@ class RealEstates {
 
         this._setTemplates();
 
-        this.client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
+        this._client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
 
         if (this.templates.detail) {
             this.detail = new RealEstateDetail({
@@ -233,7 +233,7 @@ class RealEstates {
             }
         `;
 
-        let response = await this.client.request(query);
+        let response = await this._client.request(query);
         this.estates = response.estates;
 
         /**
