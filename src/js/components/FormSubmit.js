@@ -14,6 +14,8 @@ class FormSubmit {
         this._client = new GraphQLClient(SETTINGS.gqlURL);
         this._form = el;
 
+        this._loadFormData();
+
         this._form.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', Tools.debounce((e) => this._inputListener(e), 1200));
             input.addEventListener('blur', Tools.debounce((e) => this._inputListener(e), 1200));
@@ -28,19 +30,16 @@ class FormSubmit {
             console.log('submit');
             e.preventDefault();
 
-            let formData = new FormData(this._form);
-
             let isValid = this.validate();
 
-            let obj = {};
-
-            for (let [key, entry] of formData.entries()) {
-                obj[key] = entry;
-            }
+            let obj = this._getFormDataObject();
 
             if (isValid) {
-                console.log('is valid');
-                console.log(isValid);
+                let mutation = this._mutate(obj);
+
+                mutation.then((response) => {
+                    console.log(response);
+                });
             }
         });
     }
@@ -52,26 +51,68 @@ class FormSubmit {
      */
     async _mutate(data) {
         let createMessage = gql`
-            type Mutation {
+            mutation(
+                $estate_id: ID!,
+                $firstname: String!,
+                $lastname: String!,
+                $address: String!,
+                $postalcode: String!,
+                $city: String!,
+                $phonenumber: String!,
+                $email: String!,
+                $content: String!,
+                $information: Boolean,
+                $visit: Boolean
+            ) {
                 createMessage(
-                    estate_id: ID!
-                    fristname: String!
-                    lastname: String!
-                    address: String!
-                    postalcode: String!
-                    city: String!
-                    phonenumber: String!
-                    email: String!
-                    content: String
-                    information: Boolean
-                    visit: Boolean
-                ): Message!
+                    estate_id: $estate_id
+                    firstname: $firstname
+                    lastname: $lastname
+                    address: $address
+                    postalcode: $postalcode
+                    city: $city
+                    phonenumber: $phonenumber
+                    email: $email
+                    content: $content
+                    information: $information
+                    visit: $visit
+                ) {
+                    address
+                    city
+                    content
+                    created_at
+                    email
+                    estate {
+                        title,
+                    }
+                    firstname
+                    id
+                    information
+                    lastname
+                    phonenumber
+                    postalcode
+                    updated_at
+                    visit
+                }
             }
         `;
 
-        let response = await this._client.request(createMessage, data);
+        let requiredFields = {
+            firstname: '',
+            lastname: '',
+            address: '',
+            postalcode: '',
+            city: '',
+            phonenumber: '',
+            email: '',
+            content: '',
+            information: false,
+            visit: false,
+        };
 
-        console.log(response);
+        let messageData = Object.assign(requiredFields, data);
+
+        return await this._client.request(createMessage, messageData);
     }
 
     /**
@@ -97,6 +138,8 @@ class FormSubmit {
         if (isValid) {
             container.classList.add('is-valid');
             container.classList.remove('is-invalid');
+
+            this._saveFormData();
         } else {
             let message;
 
@@ -139,6 +182,72 @@ class FormSubmit {
 
             return prev && current.checkValidity();
         }, true);
+    }
+
+    /**
+     * Save form data to local storage.
+     *
+     * @private
+     */
+    _saveFormData() {
+        let obj = this._getFormDataObject();
+
+        window.localStorage.setItem('formData', JSON.stringify(obj));
+    }
+
+    /**
+     *
+     * @returns {any|Object} Form data object
+     * @private
+     */
+    _loadFormData() {
+        let json = window.localStorage.getItem('formData');
+
+        if (!json) {
+            return;
+        }
+
+        let data = JSON.parse(json);
+
+        Array.from(this._form.elements).forEach(el => {
+            if (data[el.name]) {
+                switch (el.type) {
+                    case 'checkbox':
+                    case 'radio':
+                        el.checked = !!data[el.name];
+                        break;
+                    default:
+                        el.value = data[el.name];
+                }
+            }
+        });
+
+        return data;
+    }
+
+    /**
+     * Get current form data as object.
+     *
+     * @returns {Object} Form data as object
+     * @private
+     */
+    _getFormDataObject() {
+        let formData = new FormData(this._form);
+
+        let obj = {};
+
+        for (let [key, entry] of formData.entries()) {
+            switch (key) {
+                case 'information':
+                case 'visit':
+                    obj[key] = !!entry;
+                    break;
+                default:
+                    obj[key] = entry;
+            }
+        }
+
+        return obj;
     }
 }
 
