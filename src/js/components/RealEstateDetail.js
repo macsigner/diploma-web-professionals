@@ -124,8 +124,6 @@ class RealEstateDetail extends RealEstateBase {
 
             contactModalContent.querySelectorAll('form').forEach(el => new FormSubmit(el));
 
-            contactModal.open();
-
             wrapper.addEventListener('click', Tools.delegate('[data-real-estate-contact]', () => {
                 contactModal.open();
             }));

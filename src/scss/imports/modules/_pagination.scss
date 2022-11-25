@@ -12,6 +12,11 @@
         font-weight: $font-weight-bold;
     }
 
+    &__button[disabled] {
+        visibility: hidden;
+        pointer-events: none;
+    }
+
     &__button--prev .icon-chevron {
         transform: scale(-1);
     }

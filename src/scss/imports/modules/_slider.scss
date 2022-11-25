@@ -55,8 +55,8 @@
         flex: 0 0 0;
     }
 
-    &__preview-item.current:first-child + &__preview-item {
-        margin-left: 0;
+    &__preview-item.current:not(:only-child) {
+        margin-left: -100%;
     }
 
     &__preview-item + &__preview-item {

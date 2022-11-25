@@ -300,7 +300,7 @@ class RealEstates extends RealEstateBase {
                     this._pagination.current = Math.min(this._pagination.current + 1, this._pagination.total);
                     break;
                 case 'prev':
-                    this._pagination.current = Math.max(this._pagination.current - 1, 0);
+                    this._pagination.current = Math.max(this._pagination.current - 1, 1);
                     break;
                 default:
                     this._pagination.current = Math.min(
@@ -384,6 +384,20 @@ class RealEstates extends RealEstateBase {
             this._paginationElement.classList.remove('hide');
             this._paginationElement.querySelector('.pagination__total').innerHTML = this._pagination.total;
             this._paginationElement.querySelector('.pagination__current').innerHTML = this._pagination.current;
+
+            let prev = this._paginationElement.querySelector('.pagination__button--prev');
+            if (this._pagination.current === 1) {
+                prev.disabled = true;
+            } else {
+                prev.removeAttribute('disabled');
+            }
+
+            let next = this._paginationElement.querySelector('.pagination__button--next');
+            if (this._pagination.current === this._pagination.total) {
+                next.disabled = true;
+            } else {
+                next.removeAttribute('disabled');
+            }
         }
     }
 
