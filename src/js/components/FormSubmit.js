@@ -12,7 +12,9 @@ class FormSubmit {
      * @param el {HTMLFormElement} Form element
      */
     constructor(el) {
-        this._client = new GraphQLClient(SETTINGS.gqlURL);
+        this._client = new GraphQLClient(SETTINGS.gqlURL, {
+            errorPolicy: 'all',
+        });
         this._form = el;
 
         this._loadFormData();
@@ -28,7 +30,6 @@ class FormSubmit {
         );
 
         this._form.addEventListener('submit', (e) => {
-            console.log('submit');
             e.preventDefault();
 
             let isValid = this.validate();
@@ -41,15 +42,40 @@ class FormSubmit {
                 mutation.then((response) => {
                     this._form.classList.add('submitted');
 
-                    window.localStorage.removeItem('formData');
-                    this._form.reset();
+                    // eslint-disable-next-line
+                    // Todo: Reapply form reset
+                    // T window.localStorage.removeItem('formData');
+                    // T this._form.reset();
 
-                    console.log(response.createMessage);
+                    let summaryArray = this._getSubmissionSummary(response.createMessage);
+
+                    let summary = document.createElement('table');
+                    let rows = summaryArray.reduce(
+                        (prev, current) => prev + `<tr><td>${current.title}</td><td>${current.content}</td></tr>`,
+                        ''
+                    );
+
+                    summary.innerHTML = `<tbody>${rows}</tbody>`;
+
+                    new Alert({
+                        title: 'Ihre Daten wurden versendet',
+                        content: 'Ihre Angaben:',
+                        custom: summary,
+                    }, {
+                        appendTo: this._form.parentNode,
+                    });
                 }).catch(error => {
                     this._saveFormData();
 
+                    console.log(mutation.errors);
+
                     let mailBody = Object.keys(obj)
                         .reduce((prev, key) => `${prev}\n${key}: ${obj[key]}`, '');
+
+                    mailBody += `\n\n Fehler:\n${error}`;
+
+                    // eslint-disable-next-line
+                    // Todo: Rethinking what errors should be shown.
                     new Alert({
                         title: 'Ein Fehler ist aufgetreten',
                         message: `
@@ -65,6 +91,8 @@ class FormSubmit {
                     }, {
                         appendTo: this._form.parentNode,
                     });
+
+                    console.error(error);
                 });
             }
         });
@@ -139,6 +167,76 @@ class FormSubmit {
         let messageData = Object.assign(requiredFields, data);
 
         return await this._client.request(createMessage, messageData);
+    }
+
+    /**
+     * Get summary from submission.
+     *
+     * @param data {Object} Object from submission
+     * @returns {{title: String, content: String}[]} Object with title and content
+     * @private
+     */
+    _getSubmissionSummary(data) {
+        let contentObject = [];
+
+        for (let key of Object.keys(data)) {
+            let field = this._getFieldByName(key);
+
+            if (!field || field.disabled) {
+                continue;
+            }
+
+            let content;
+
+            switch (field.type) {
+                case 'checkbox':
+                    content = field.checked ? 'ja' : 'nein';
+                    break;
+                default:
+                    content = field.value;
+            }
+
+            if (typeof this._getLabelByName(key) === 'undefined') {
+                console.log(key);
+            }
+
+            contentObject.push({
+                title: this._getLabelByName(key),
+                content,
+            });
+        }
+
+        return contentObject;
+    }
+
+    /**
+     * Get single label content by name of input field.
+     *
+     * @param name {String}
+     * @returns {String}
+     * @private
+     */
+    _getLabelByName(name) {
+        let label = this._form.querySelector(`label[for="${name}"]`);
+        let content;
+        if (label) {
+            content = label.textContent;
+        } else {
+            content = this._getFieldByName(name).closest('label').textContent;
+        }
+
+        return content.replace('\n', '').trim();
+    }
+
+    /**
+     * Get input element by name.
+     *
+     * @param name {String}
+     * @returns {HTMLElement} Field element
+     * @private
+     */
+    _getFieldByName(name) {
+        return this._form.querySelector(`[name="${name}"]`);
     }
 
     /**

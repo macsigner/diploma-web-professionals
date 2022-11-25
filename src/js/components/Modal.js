@@ -31,7 +31,8 @@ class Modal extends Base {
 
         this.modal = this._createModal(content);
 
-        this.modal.addEventListener('click', Tools.delegate('[data-modal-close]', this.close.bind(this)));
+        this.modal.querySelectorAll('[data-modal-close]')
+            .forEach(el => el.addEventListener('click', () => this.close()));
 
         if (this._settings.open) {
             this.open();
@@ -54,6 +55,8 @@ class Modal extends Base {
      */
     close() {
         this.modal.remove();
+
+        console.log(this.modal);
 
         if (this._settings.lockScroll) {
             Tools.unlockScroll();
