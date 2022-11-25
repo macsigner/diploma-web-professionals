@@ -1,8 +1,8 @@
 /**
- * alert bem module
+ * info-modal bem module
  */
 
-.alert {
+.info-modal {
     @extend .block-reset;
 
     position: absolute;
@@ -12,9 +12,18 @@
     width: 80rem;
     max-width: 100%;
     padding: 3rem;
-    border: 1rem solid var(--color-alert);
+    border: 1rem solid var(--color-primary);
     background-color: $color-white;
+    box-shadow: 0 0 5px 3px rgba($color-black, .3);
     transform: translate(-50%, -50%);
+
+    &--success {
+        border-color: var(--color-success);
+    }
+
+    &--alert {
+        border-color: var(--color-alert);
+    }
 
     &-wrapper {
         position: relative;

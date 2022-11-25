@@ -1,7 +1,7 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import SETTINGS from '../settings.js';
 import * as Tools from '../tools.js';
-import Alert from './Alert.js';
+import InfoModal from './InfoModal.js';
 
 /**
  * Form submission via mutate.
@@ -42,10 +42,8 @@ class FormSubmit {
                 mutation.then((response) => {
                     this._form.classList.add('submitted');
 
-                    // eslint-disable-next-line
-                    // Todo: Reapply form reset
-                    // T window.localStorage.removeItem('formData');
-                    // T this._form.reset();
+                    window.localStorage.removeItem('formData');
+                    this._form.reset();
 
                     let summaryArray = this._getSubmissionSummary(response.createMessage);
 
@@ -57,39 +55,44 @@ class FormSubmit {
 
                     summary.innerHTML = `<tbody>${rows}</tbody>`;
 
-                    new Alert({
+                    new InfoModal({
                         title: 'Ihre Daten wurden versendet',
                         content: 'Ihre Angaben:',
                         custom: summary,
                     }, {
                         appendTo: this._form.parentNode,
+                        variant: 'success',
                     });
                 }).catch(error => {
                     this._saveFormData();
-
-                    console.log(mutation.errors);
 
                     let mailBody = Object.keys(obj)
                         .reduce((prev, key) => `${prev}\n${key}: ${obj[key]}`, '');
 
                     mailBody += `\n\n Fehler:\n${error}`;
 
+                    let title = document.querySelector('.modal__title strong').textContent.trim();
+                    let mailSubject = `Interesse am Objekt ${title}`;
+
                     // eslint-disable-next-line
                     // Todo: Rethinking what errors should be shown.
-                    new Alert({
+                    new InfoModal({
                         title: 'Ein Fehler ist aufgetreten',
+                        /* eslint-disable max-len */
                         message: `
-                                <pre class="error">${error}</pre>
+                            <pre class="error">${error}</pre>
 
-                                <p>Die Formulardaten wurden lokal in Ihrem Broswer gespeichert.<br>
+                            <p>Die Formulardaten wurden lokal in Ihrem Broswer gespeichert.<br>
 
-                                Sie können es später erneut versuchen oder die  Daten per Mail übermitteln.</p>
+                            Sie können es später erneut versuchen oder die  Daten per Mail übermitteln.</p>
 
-                                <a href="mailto:info@homehouse.ch?body=${encodeURIComponent(mailBody)}"
-                                    class="button button--block">Daten per Mail übermitteln</a>
+                            <a href="mailto:info@homehouse.ch?body=${encodeURIComponent(mailBody)}&subject=${encodeURIComponent(mailSubject)}"
+                                class="button button--block">Daten per Mail übermitteln</a>
                             `,
+                        /* eslint-enable max-len */
                     }, {
                         appendTo: this._form.parentNode,
+                        variant: 'alert',
                     });
 
                     console.error(error);
@@ -130,6 +133,7 @@ class FormSubmit {
                     content: $content
                     information: $information
                     visit: $visit
+                    other: $other
                 ) {
                     address
                     city
@@ -194,10 +198,6 @@ class FormSubmit {
                     break;
                 default:
                     content = field.value;
-            }
-
-            if (typeof this._getLabelByName(key) === 'undefined') {
-                console.log(key);
             }
 
             contentObject.push({

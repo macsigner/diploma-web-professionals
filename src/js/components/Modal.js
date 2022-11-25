@@ -34,6 +34,10 @@ class Modal extends Base {
         this.modal.querySelectorAll('[data-modal-close]')
             .forEach(el => el.addEventListener('click', () => this.close()));
 
+        if (this._settings.variant) {
+            this.modal.classList.add(this.getNamespace(`--${this._settings.variant}`));
+        }
+
         if (this._settings.open) {
             this.open();
         }

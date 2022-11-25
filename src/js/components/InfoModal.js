@@ -3,7 +3,7 @@ import Modal from './Modal.js';
 /**
  * Alert message
  */
-class Alert extends Modal {
+class InfoModal extends Modal {
     /**
      * Construct.
      *
@@ -13,26 +13,25 @@ class Alert extends Modal {
     constructor(content, options = {
         appendTo: document.body,
     }) {
-        let alertElement = document.createElement('div');
-        alertElement.innerHTML = `
-            <h1 class="alert__title">${content.title}</h1>
-            <div class="alert__message">${content.message}</div>`;
+        let infoModalElement = document.createElement('div');
+        infoModalElement.innerHTML = `
+            <h1 class="info-modal__title">${content.title}</h1>
+            <div class="info-modal__message">${content.message}</div>`;
 
         if (content.custom) {
-            alertElement.appendChild(content.custom);
+            infoModalElement.appendChild(content.custom);
         }
 
-        super(alertElement, {
-            namespace: 'alert',
-            appendTo: options.appendTo,
+        super(infoModalElement, Object.assign({
+            namespace: 'info-modal',
             lockScroll: false,
-        });
+        }, options));
 
         options.appendTo.classList.add(this.getNamespace('-wrapper'));
     }
 
     /**
-     * Close alert.
+     * Close infoModal.
      */
     close() {
         super.close();
@@ -41,4 +40,4 @@ class Alert extends Modal {
     }
 }
 
-export default Alert;
+export default InfoModal;
