@@ -72,7 +72,6 @@
                     content: $content
                     information: $information
                     visit: $visit
-                    other: $other
                 ) {
                     address
                     city
