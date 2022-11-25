@@ -28,8 +28,9 @@
     --color-action-bg-active: #{$color-action-bg-active};
     --color-input-bg: #{$color-white};
     --color-input-focus: #{rgba($color-white, .7)};
-    --color-success: green;
-    --color-alert: red;
+    --color-success: #{$color-success};
+    --color-alert: #{$color-alert};
+    --color-alert-text: #{$color-white};
 
     // Color settings.
     --color: #{$color-black};

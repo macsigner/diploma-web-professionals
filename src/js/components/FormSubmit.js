@@ -1,6 +1,7 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import SETTINGS from '../settings.js';
 import * as Tools from '../tools.js';
+import Alert from './Alert.js';
 
 /**
  * Form submission via mutate.
@@ -38,7 +39,32 @@ class FormSubmit {
                 let mutation = this._mutate(obj);
 
                 mutation.then((response) => {
-                    console.log(response);
+                    this._form.classList.add('submitted');
+
+                    window.localStorage.removeItem('formData');
+                    this._form.reset();
+
+                    console.log(response.createMessage);
+                }).catch(error => {
+                    this._saveFormData();
+
+                    let mailBody = Object.keys(obj)
+                        .reduce((prev, key) => `${prev}\n${key}: ${obj[key]}`, '');
+                    new Alert({
+                        title: 'Ein Fehler ist aufgetreten',
+                        message: `
+                                <pre class="error">${error}</pre>
+
+                                <p>Die Formulardaten wurden lokal in Ihrem Broswer gespeichert.<br>
+
+                                Sie können es später erneut versuchen oder die  Daten per Mail übermitteln.</p>
+
+                                <a href="mailto:info@homehouse.ch?body=${encodeURIComponent(mailBody)}"
+                                    class="button button--block">Daten per Mail übermitteln</a>
+                            `,
+                    }, {
+                        appendTo: this._form.parentNode,
+                    });
                 });
             }
         });

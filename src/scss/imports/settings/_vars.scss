@@ -40,6 +40,8 @@ $color-grey: #878787;
 $color-primary: $color-green;
 $color-primary-transparent: rgba($color-primary, .85);
 $color-accent: $color-green-light;
+$color-alert: #B04A2A;
+$color-success: green;
 $color-action-bg: $color-grey;
 $color-action-bg-active: color.scale($color-grey, $lightness: -30%);
 

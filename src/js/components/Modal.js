@@ -18,6 +18,7 @@ class Modal extends Base {
             namespace: 'modal',
             appendTo: document.body,
             closeButtonContent: 'schliessen',
+            lockScroll: true,
         };
         this._customSettings = options;
         this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
@@ -43,7 +44,9 @@ class Modal extends Base {
     open() {
         this._settings.appendTo.appendChild(this.modal);
 
-        document.documentElement.classList.add('lock-scroll');
+        if (this._settings.lockScroll) {
+            Tools.lockScroll();
+        }
     }
 
     /**
@@ -52,7 +55,9 @@ class Modal extends Base {
     close() {
         this.modal.remove();
 
-        document.documentElement.classList.remove('lock-scroll');
+        if (this._settings.lockScroll) {
+            Tools.unlockScroll();
+        }
     }
 
     /**
