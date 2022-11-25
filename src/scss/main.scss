@@ -59,10 +59,13 @@
 @import 'imports/modules/layouts/layout_footer';
 @import 'imports/modules/estate_table';
 @import 'imports/modules/image_teaser';
+@import 'imports/modules/pagination';
 
 // Late modules
 @import 'imports/modules/main_footer';
 @import 'imports/modules/pointer';
 @import 'imports/modules/cover';
 @import 'imports/modules/modal';
+@import 'imports/modules/info_modal';
+@import 'imports/modules/lock_scroll';
 @import 'imports/modules/detail_modal';

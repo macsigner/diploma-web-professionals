@@ -45,20 +45,22 @@ class Template {
      * @returns {HTMLDivElement}
      */
     create(data) {
-        for (let key of Object.keys(this.insertNodes)) {
-            for (let el of this.insertNodes[key]) {
-                if (data[key] && Array.isArray(data[key]) && el instanceof Template) {
-                    el.templateParent.innerHTML = '';
+        if (data) {
+            for (let key of Object.keys(this.insertNodes)) {
+                for (let el of this.insertNodes[key]) {
+                    if (data[key] && Array.isArray(data[key]) && el instanceof Template) {
+                        el.templateParent.innerHTML = '';
 
-                    let subData = {};
-                    for (let subItem of data[key]) {
-                        subData[key] = subItem;
-                        let subElement = el.create(subData);
+                        let subData = {};
+                        for (let subItem of data[key]) {
+                            subData[key] = subItem;
+                            let subElement = el.create(subData);
 
-                        el.templateParent.appendChild(subElement);
+                            el.templateParent.appendChild(subElement);
+                        }
+                    } else if (data[key]) {
+                        this._applyDataToElement(el, data[key]);
                     }
-                } else if (data[key]) {
-                    this._applyDataToElement(el, data[key]);
                 }
             }
         }
@@ -79,6 +81,9 @@ class Template {
                 break;
             case 'a':
                 el.href = data;
+                break;
+            case 'input':
+                el.value = data;
                 break;
             default:
                 el.innerHTML = data;

@@ -23,12 +23,12 @@ const delegate = (selector, fn) => {
  * @returns {Function(): void} Function to be called after interaction
  */
 const debounce = (fn, delay = 300) => {
-    let timout;
+    let timeout;
 
-    return () => {
-        clearTimeout(timout);
+    return (e) => {
+        clearTimeout(timeout);
 
-        setTimeout(fn, delay);
+        timeout = setTimeout(() => fn(e), delay);
     };
 };
 
@@ -94,15 +94,11 @@ const mapOptions = (originalOptions, newOptions) => {
 
     if (Array.isArray(originalOptions)) {
         settings = originalOptions.map((x) => x);
-        console.log(settings);
     } else {
         settings = Object.assign({}, originalOptions);
     }
 
     Object.keys(newOptions).forEach((strKey) => {
-        if (strKey === 'markers') {
-            console.log(strKey);
-        }
         if (typeof newOptions[strKey] === 'object'
             && !(newOptions[strKey] instanceof Node)
             && !(newOptions[strKey] instanceof Function)
@@ -129,6 +125,44 @@ function camelToKebabCase(str) {
     return str;
 }
 
+/**
+ * Get settings according to media query.
+ *
+ * @param medias {Object[]}
+ */
+function getMediaOptions(medias, key = 'settings') {
+    let matchingOption;
+
+    // Go through each item, so the logic matches that of CSS as it will apply the last item.
+    medias.forEach(function(item) {
+        if (window.matchMedia(item.media).matches) {
+            matchingOption = item[key];
+        }
+    });
+
+    return matchingOption;
+}
+
+/**
+ * Lock scroll on element.
+ */
+function lockScroll(el = document.documentElement) {
+    document.documentElement.style.setProperty(
+        '--scrollbar-width',
+        (window.innerWidth - document.documentElement.scrollWidth) + 'px'
+    );
+
+    el.classList.add('lock-scroll');
+}
+
+/**
+ * Unlock scroll on element.
+ * @param el
+ */
+function unlockScroll(el = document.documentElement) {
+    el.classList.remove('lock-scroll');
+}
+
 export {
     delegate,
     debounce,
@@ -137,4 +171,7 @@ export {
     cleanEmptyStringsFromObject,
     mapOptions,
     camelToKebabCase,
+    getMediaOptions,
+    lockScroll,
+    unlockScroll,
 };

@@ -1,16 +1,17 @@
-import { GraphQLClient, gql } from 'graphql-request';
-import Base from './Base.js';
+import { gql } from 'graphql-request';
 import * as Tools from '../tools.js';
 import Slider from './Slider.js';
 import Modal from './Modal.js';
 import GoogleMap from './GoogleMap.js';
 import RealEstates from './RealEstates.js';
 import Template from './Template.js';
+import RealEstateBase from './RealEstateBase.js';
+import FormSubmit from './FormSubmit.js';
 
 /**
  * Real estate detail view.
  */
-class RealEstateDetail extends Base {
+class RealEstateDetail extends RealEstateBase {
     /**
      * Construct.
      * @param options
@@ -25,8 +26,6 @@ class RealEstateDetail extends Base {
         this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
 
         this._settings.template = this._customSettings.template;
-
-        this._client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
     }
 
     /**
@@ -67,9 +66,7 @@ class RealEstateDetail extends Base {
 
         let estate = response.estate;
 
-        estate['prize_local'] = estate.prize.toLocaleString('de-CH', {
-            useGrouping: true,
-        });
+        estate = this._getFormattedObject(estate);
 
         this._data = estate;
 
@@ -80,7 +77,7 @@ class RealEstateDetail extends Base {
         if (htmlTemplate) {
             let template = new Template(htmlTemplate);
 
-            htmlTemplate.parentNode.appendChild(template.create());
+            htmlTemplate.parentNode.appendChild(template.create(estate));
 
             htmlTemplate.remove();
         }
@@ -106,9 +103,31 @@ class RealEstateDetail extends Base {
             });
         });
         el.querySelectorAll('[data-real-estates]').forEach(sub => new RealEstates(sub, {
-            lat: estate.lat,
-            long: estate.long,
+            limit: 2,
+            more: false,
+            moreShow: false,
+            medias: [
+                {
+                    media: '(min-width: 56.25em)',
+                    settings: {
+                        limit: 3,
+                    },
+                },
+            ],
         }));
+
+        let contactModalContent = el.querySelector('[data-real-estate-contact-modal]');
+        if (contactModalContent) {
+            let contactModal = new Modal(contactModalContent, {
+                open: false,
+            });
+
+            contactModalContent.querySelectorAll('form').forEach(el => new FormSubmit(el));
+
+            wrapper.addEventListener('click', Tools.delegate('[data-real-estate-contact]', () => {
+                contactModal.open();
+            }));
+        }
 
         wrapper.appendChild(el);
 

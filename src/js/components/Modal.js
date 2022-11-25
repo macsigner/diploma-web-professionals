@@ -14,9 +14,11 @@ class Modal extends Base {
         super();
 
         this._defaultSettings = {
+            open: true,
             namespace: 'modal',
             appendTo: document.body,
             closeButtonContent: 'schliessen',
+            lockScroll: true,
         };
         this._customSettings = options;
         this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
@@ -29,11 +31,27 @@ class Modal extends Base {
 
         this.modal = this._createModal(content);
 
-        this.modal.addEventListener('click', Tools.delegate('[data-modal-close]', this.close.bind(this)));
+        this.modal.querySelectorAll('[data-modal-close]')
+            .forEach(el => el.addEventListener('click', () => this.close()));
 
+        if (this._settings.variant) {
+            this.modal.classList.add(this.getNamespace(`--${this._settings.variant}`));
+        }
+
+        if (this._settings.open) {
+            this.open();
+        }
+    }
+
+    /**
+     * Open current modal.
+     */
+    open() {
         this._settings.appendTo.appendChild(this.modal);
 
-        document.documentElement.style.setProperty('overflow', 'hidden');
+        if (this._settings.lockScroll) {
+            Tools.lockScroll();
+        }
     }
 
     /**
@@ -42,7 +60,11 @@ class Modal extends Base {
     close() {
         this.modal.remove();
 
-        document.documentElement.style.removeProperty('overflow');
+        console.log(this.modal);
+
+        if (this._settings.lockScroll) {
+            Tools.unlockScroll();
+        }
     }
 
     /**

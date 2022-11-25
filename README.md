@@ -425,6 +425,7 @@ Für den grössten Teil der Implementation dieses Lintings (primär Stylelinting
 Gleiches gilt für die Funktion aus _tools.js_:
 
 - _mapOptions_
+- _getMediaOptions_
 
 Des Weiteren gab es zwei Bereiche Die mir sauer aufstossen, welche aber dennoch von Interesse waren. Die
 Templategeschichte vom Frontend _(Template.js)_ und die verfolgte Geschichte mit der Detailseite. Ersteres ist eine
@@ -447,6 +448,8 @@ Lösung besonnen.
     - Die Abstände links und rechts sind angeglichen statt verschieden.
     - Die Elemente (Button, Logo) sind vertikal aneinander ausgemittet.
 - __Ausrichtung Footer:__ Die Flucht des Footers ist auf den Rest des Inhalts angepasst.
+- __Rundungen Fliesskommazahlen:__ Fliesskommazahlen in Pixeln sind per se auf oder abgerundet mit Fokus auf gerade
+  Zahlen, z.B. 28.7px auf 28px und 39.1px auf 40px.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
 

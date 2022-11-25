@@ -1,35 +1,40 @@
-import { GraphQLClient, gql } from 'graphql-request';
+import { gql } from 'graphql-request';
 import Template from './Template.js';
 import Filter from './Filter.js';
 import * as Tools from '../tools.js';
 import RealEstateDetail from './RealEstateDetail.js';
+import RealEstateBase from './RealEstateBase.js';
 
 /**
  * Handle real estates rendering.
  */
-class RealEstates {
+class RealEstates extends RealEstateBase {
     /**
      * Construct.
      * @param el
      */
     constructor(el, options = {}) {
+        super();
+
         this.el = el;
         this._defaultSettings = {
             template: 'layoutTile',
             limit: 0,
+            pagination: false,
+            more: true,
+            moreShow: true,
+            moreInitial: 3,
+            moreItems: 6,
         };
         this._customSettings = options;
-        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
 
-        if (this.el.dataset.realEstatesLimit) {
-            this._settings.limit = parseInt(this.el.dataset.realEstatesLimit);
-        }
+        this._init();
+
+        window.addEventListener('resize', Tools.debounce(() => this._init()));
 
         this._attachFilter();
 
         this._setTemplates();
-
-        this.client = new GraphQLClient('https://dev22-api.web-professionals.ch/graphql');
 
         if (this.templates.detail) {
             this.detail = new RealEstateDetail({
@@ -43,12 +48,25 @@ class RealEstates {
     }
 
     /**
-     * Filter title by filter.
-     * @param el
-     * @returns {boolean}
+     * Init optional functionalities.
+     *
+     * @private
      */
-    filterTitle(item) {
-        return item.title.toLowerCase().includes(this.filter.filterCallback.filterTitle);
+    _init() {
+        this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
+
+        if (this._settings.medias) {
+            let mediaOptions = Tools.getMediaOptions(this._settings.medias);
+
+            if (mediaOptions) {
+                this._settings = Tools.mapOptions(this._settings, mediaOptions);
+            }
+        }
+
+        this._applyPagination();
+        this._applyMoreButton();
+
+        this.render();
     }
 
     /**
@@ -168,6 +186,11 @@ class RealEstates {
             }
         }
 
+        delete this._pagination;
+        delete this._more;
+        this._applyPagination();
+        this._applyMoreButton();
+
         if (callback) {
             this.render({
                 sortCallback: callback,
@@ -211,14 +234,171 @@ class RealEstates {
             }
         `;
 
-        let response = await this.client.request(query);
+        let response = await this._client.request(query);
         this.estates = response.estates;
+
+        /**
+         * Dispatched when data has been loaded.
+         *
+         * @event RealEstates#realEstateDataLoaded
+         */
+        this.el.dispatchEvent(new Event('realEstateDataLoaded'));
 
         if (this.filterForm) {
             this._createOptionsEstates(response);
         }
 
         this.render();
+    }
+
+    /**
+     * Apply pagination.
+     * @private
+     */
+    _applyPagination() {
+        if (this._paginationElement) {
+            this._paginationElement.remove();
+        }
+
+        if (this._settings.pagination) {
+            this._pagination = {
+                current: this._pagination && this._pagination.current ? this._pagination.current : 1,
+            };
+
+            this._createPagination();
+        } else {
+            delete this._paginationElement;
+            delete this._pagination;
+        }
+    }
+
+    /**
+     * Create pagination element.
+     * @private
+     */
+    _createPagination() {
+        let pagination = document.createElement('div');
+        pagination.classList.add('pagination', 'base-width');
+        let html = `<button class="pagination__button pagination__button--prev link" data-pagination="prev">
+                        <span class="link__icon"><span class="icon-chevron"></span></span>
+                        <span class="link__text">Zurück</span>
+                    </button>
+                    <button class="pagination__button pagination__button--next link" data-pagination="next">
+                        <span class="link__text">Seite
+                            <span class="pagination__current"></span> von
+                            <span class="pagination__total"></span>
+                        </span>
+                        <span class="link__icon"><span class="icon-chevron"></span></span>
+                    </button>`;
+
+        pagination.innerHTML = html;
+
+        pagination.addEventListener('click', Tools.delegate('[data-pagination]', (e) => {
+            let button = e.target.closest('[data-pagination]');
+            switch (button.dataset.pagination) {
+                case 'next':
+                    this._pagination.current = Math.min(this._pagination.current + 1, this._pagination.total);
+                    break;
+                case 'prev':
+                    this._pagination.current = Math.max(this._pagination.current - 1, 1);
+                    break;
+                default:
+                    this._pagination.current = Math.min(
+                        Math.max(
+                            parseInt(button.dataset.pagination), 0
+                        ), this._pagination.total
+                    );
+            }
+
+            this.render();
+
+            this._updatePaginationButtons();
+        }));
+
+        this._paginationElement = pagination;
+
+        if (this.el.parentNode.nextElementSibling) {
+            this.el.parentNode.parentNode.insertBefore(this._paginationElement, this.el.parentNode.nextElementSibling);
+        } else {
+            this.el.parentNode.appendChild(this._paginationElement);
+        }
+    }
+
+    /**
+     * Apply more button.
+     * @private
+     */
+    _applyMoreButton() {
+        if (this._moreElement) {
+            this._moreElement.remove();
+        }
+
+        if (this._settings.more) {
+            this._more = {
+                show: this._more && this._more.show ? this._more.show : this._settings.moreInitial,
+            };
+
+            this._createMoreButton();
+        } else {
+            delete this._moreElement;
+            delete this._more;
+        }
+    }
+
+    /**
+     * Create more button.
+     * @private
+     */
+    _createMoreButton() {
+        let button = document.createElement('div');
+        button.classList.add('show-more', 'base-width');
+        let html = '<button class="button button--w100 button--block" data-estate-more>Mehr laden</button>';
+
+        button.innerHTML = html;
+
+        button.addEventListener('click', () => {
+            this._more = {
+                show: this._settings.moreItems === 0 ? 0 : this._more.show + this._settings.moreItems,
+            };
+
+            this.render();
+        });
+
+        this._moreElement = button;
+
+        if (this.el.parentNode.nextElementSibling) {
+            this.el.parentNode.parentNode.insertBefore(this._moreElement, this.el.parentNode.nextElementSibling);
+        } else {
+            this.el.parentNode.appendChild(this._moreElement);
+        }
+    }
+
+    /**
+     * Update pagination button content.
+     * @private
+     */
+    _updatePaginationButtons() {
+        if (this.filter.template.layout === 'layoutList') {
+            this._paginationElement.classList.add('hide');
+        } else {
+            this._paginationElement.classList.remove('hide');
+            this._paginationElement.querySelector('.pagination__total').innerHTML = this._pagination.total;
+            this._paginationElement.querySelector('.pagination__current').innerHTML = this._pagination.current;
+
+            let prev = this._paginationElement.querySelector('.pagination__button--prev');
+            if (this._pagination.current === 1) {
+                prev.disabled = true;
+            } else {
+                prev.removeAttribute('disabled');
+            }
+
+            let next = this._paginationElement.querySelector('.pagination__button--next');
+            if (this._pagination.current === this._pagination.total) {
+                next.disabled = true;
+            } else {
+                next.removeAttribute('disabled');
+            }
+        }
     }
 
     /**
@@ -274,6 +454,10 @@ class RealEstates {
     render(options = {
         sortCallback: Tools.sortBy('updated_at'),
     }) {
+        if (!this.estates) {
+            return;
+        }
+
         this.el.innerHTML = '';
         let estates = this.estates;
 
@@ -298,9 +482,7 @@ class RealEstates {
         }
 
         for (let estate of estates) {
-            estate.image = estate.images[0];
-
-            estate.link = `./detail.html?estate=${estate.id}`;
+            estate = this._getFormattedObject(estate);
 
             let item = this.templates[this._settings.template].create(estate);
 
@@ -311,6 +493,32 @@ class RealEstates {
 
         if (this._settings.limit > 0) {
             items = items.slice(0, this._settings.limit);
+        }
+
+        if (this._settings.pagination) {
+            if (this.filter && this.filter.template.layout !== 'layoutList') {
+                this._pagination.total = Math.ceil(items.length / this._settings.paginationItemsPerPage);
+                let start = this._settings.paginationItemsPerPage * (this._pagination.current - 1);
+                let end = start + this._settings.paginationItemsPerPage;
+
+                items = items.slice(start, end);
+            }
+
+            this._updatePaginationButtons();
+        }
+
+        if (this._settings.more) {
+            if (this.filter && this.filter.template.layout === 'layoutList') {
+                this._moreElement.classList.add('hide');
+            } else {
+                this._moreElement.classList.remove('hide');
+
+                if (this._more.show >= items.length || this._more.show === 0) {
+                    this._moreElement.remove();
+                }
+
+                items = items.slice(0, this._more.show);
+            }
         }
 
         if (items[0] && items[0].firstElementChild.tagName === 'TR') {
