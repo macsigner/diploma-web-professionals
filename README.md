@@ -32,7 +32,7 @@ npm install
 | `build:dev`     | Build der Seiten und Assets gemäss _webpack.dev.js_                  |
 | `deploy`        | Build der Seiten und anschliessend des Skripts _gh-pages_            |
 | `ghpages`       | Erstellt den Branch ghpages und pusht diesen auf Github              |
-| `ghpages:doc`   | Erzeugt die Dokumentationsseiten für die Javaskriptcodedokumentation |
+| `ghpages:doc`   | Erzeugt die Dokumentationsseiten für die Javascriptcodedokumentation |
 | `debug`         | Startet ndb via nodemon                                              |
 | `lint:js`       | Linting der Javascriptdateien                                        |
 | `lint:js:fix`   | Linting der Javascriptdateien mit Korrektur                          |
@@ -145,7 +145,7 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
     - [x] Formular _1h_
     - [x] Kontakt _1h_
     - Reserve _2h_
-- [ ] Javaskriptfunktionalität
+- [ ] Javascriptfunktionalität
     - [x] Hauptnavigation _3h_
         - [ ] ~~2nd Level~~
     - [x] Scroll (Smooth) _1h_
