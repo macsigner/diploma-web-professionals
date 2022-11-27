@@ -139,7 +139,8 @@ class Slider {
 
         let htmlTemplate = document.createElement('template');
         htmlTemplate.dataset.templateName = 'preview';
-        htmlTemplate.innerHTML = '<li class="slider__preview-item" data-index><img data-template="image"></li>';
+        htmlTemplate.innerHTML
+            = '<li class="slider__preview-item" loading="lazy" data-index><img data-template="image"></li>';
         let template = new Template(htmlTemplate);
 
         this.slides.forEach((el, i) => {
