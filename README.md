@@ -8,9 +8,9 @@ Unter [url-der-lauffähigen-version](#url-der-lauffähigen-version) liste ich ei
 -Links auf. Im Bereich [Zeitplan / Meilensteine](#zeitplan--meilensteine) zeige ich eine grobe Zeiteinteilung sowie die
 geplanten Meilensteine.\
 In [Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung](#technologiekonzept-inkl-evaluation-der-eingesetzten-technologien-begründung)
-beschreibt die zentralsten Technologien, welche ich im Projekt eingesetzt habe sowie allfällige Hinweise über die Art
-des Einsatzes in der Arbeit.
-Unter [Technische Dokumentation bei Eigenleistungen](#technische-dokumentation-bei-eigenleistungen) beschreibe ich die
+beschreibe ich die zentralsten Technologien, welche ich im Projekt eingesetzt habe, sowie allfällige Hinweise über die
+Art des Einsatzes in der Arbeit.
+Unter [Technische Dokumentation bei Eigenleistungen](#technische-dokumentation-bei-eigenleistungen) zeige ich die
 drei – für mich persönlich – wichtigsten Module. Eine Zusammenfassung meiner Erfahrungen und Anmerkungen zu den gröbsten
 Anpassungen an der Vorlage, habe ich unter [Zusammenfassung und Ausblick, persönliche Anmerkungen
 ](#zusammenfassung-und-ausblick-persönliche-anmerkungen) erstellt.
