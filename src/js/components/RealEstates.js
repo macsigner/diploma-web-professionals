@@ -30,7 +30,7 @@ class RealEstates extends RealEstateBase {
 
         this._init();
 
-        window.addEventListener('resize', Tools.debounce(() => this._init()));
+        window.addEventListener('widthResize', Tools.debounce(() => this._init()));
 
         this._attachFilter();
 

@@ -2,6 +2,7 @@ import { debounce } from '../tools.js';
 
 let navBar = document.querySelector('.nav-bar');
 let resizeTimeout;
+
 /**
  *
  */
@@ -22,6 +23,24 @@ window.addEventListener('scroll', debounce((e) => {
             originalEvent: e,
         },
     }));
+}));
+
+let windowWidth = window.innerWidth;
+
+window.addEventListener('resize', debounce(() => {
+    if (windowWidth !== window.innerWidth) {
+        windowWidth = window.innerWidth;
+
+        window.dispatchEvent(new Event('widthResize'));
+    }
+}));
+
+window.addEventListener('scroll', debounce(() => {
+    if (window.scrollY > 100) {
+        document.documentElement.classList.add('has-scrolled');
+    } else {
+        document.documentElement.classList.remove('has-scrolled');
+    }
 }));
 
 setResizeProperties();

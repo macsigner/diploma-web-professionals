@@ -1,6 +1,7 @@
 /**
  * layout-news-detail bem module
  */
+@use 'sass:math';
 
 .layout-news-detail {
     @include font-mobile-news-detail;
@@ -11,6 +12,14 @@
 
     &__hero-image {
         @extend .header-hero__image;
+    }
+
+    &__hero-image::after {
+        padding-top: math.percentage(math.div(242, 376));
+
+        @include media-desktop-navigation {
+            padding-top: math.percentage(math.div(501, 1680));
+        }
     }
 
     &__title {
