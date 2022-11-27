@@ -18,7 +18,7 @@
     }
 
     &__image {
-        @extend .hover-image__wrap;
+        @extend .hover-image;
         @extend .aspect;
 
         margin-bottom: 2.4rem;

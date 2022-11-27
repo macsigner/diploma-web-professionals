@@ -12,7 +12,9 @@
     }
 
     &--dark-on-primary {
-        --color: #{$color-black};
-        --bg-color: #{$color-primary};
+        --color: var(--color-primary-text-dark);
+        --bg-color: var(--color-primary);
+        --color-selection: var(--color-primary-text-dark);
+        --bg-color-selection: var(--color-primary-text-transparent);
     }
 }

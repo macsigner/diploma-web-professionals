@@ -13,7 +13,7 @@
     }
 
     &:hover img,
-    &-parent:hover &__wrap img {
+    &-parent:hover & img {
         transform: scale(1.05);
         transition-duration: $transition-in-fast;
     }
