@@ -74,7 +74,7 @@ __Beispiel an einem Newseintrag:__
 #### Skripte nur für spezifische Seiten
 
 Um Skripte nur für eine einzelne Seite anzugeben, wird eine Javascriptdatei im Skriptordner _src/js/pages_ unter dem
-gleichen Namen wie die Seite angelegt. Die Javascriptdatei wird dann als zusätzlicher _Chunk_ beim Build eingepflegt.\
+gleichen Namen wie die Seite angelegt. Die Javascriptdatei wird dann als zusätzliches _Chunk_ beim Build eingepflegt.\
 Um beispielsweise für die Seite _src/pages/010_aktuelles/\_001\_grossprojekt-home-house.twig_ ein eigenes Skript zu
 laden, wird die Datei _src/js/pages/010_aktuelles/\_001\_grossprojekt-home-house.js_ angelegt.
 
@@ -203,7 +203,7 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
 ### [Node][technology :: node :: homepage] und [npm][technology :: npm :: homepage]
 
 Node habe ich verwendet, um verschiedene Skripte/Module (z.B. _ghpages_, _twig_, _eslint_ etc.) im Projekt einsetzen zu
-können. _NPM_ ermöglicht es, die eingesetzen Technologien einfach mit dem Projekt "mitzuführen" und bei Bedarf zu
+können. _NPM_ ermöglicht es, die eingesetzten Technologien einfach mit dem Projekt "mitzuführen" und bei Bedarf zu
 installieren.
 
 ### [Deepl][technology :: translation :: deepl]
@@ -229,11 +229,10 @@ Entwicklertools von Chrome.
 
 ### [twig-html-loader][technology :: twig html loader]
 
-Ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
+Meine ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
 voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
 Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch _Nunjucks_ in
-Frage
-gekommen.\
+Frage gekommen.\
 _Nachtrag_: Zwischenzeitlich würde ich wohl eher Nunjucks einsetzen, da näher an Node.
 
 ### [normalise.css][technology :: normalise.css]
@@ -294,8 +293,7 @@ finden unter:
 ##### PageCollection.js
 
 __Info: Dieses Modul hat den Nachteil, dass nach dem Neuanlegen einer Seite, Webpack nochmals gestartet werden muss. Da
-dies
-nach Rückfrage eigentlich ein Bastel ist, würde ich dies in einem Projekt so nicht einsetzen.__
+dies nach Rückfrage eigentlich ein Bastel ist, würde ich dies in einem Projekt so nicht einsetzen.__
 
 Die Logik für die Benamsung der Dateien habe ich mir von CMS wie [grav][tech doc :: grav] und _Static Site Generatoren_
 wie [11ty][tech doc :: 11ty] abgeschaut.
@@ -305,12 +303,12 @@ nachträglich anpassen zu müssen. Dies hätte auch bedeutet, einige Verlinkunge
 oder – und dies war der Primärgedanke – Verlinkungen auf Unterseiten korrigieren zu müssen. Um die Fehleranfälligkeit
 etwas zu
 reduzieren, habe ich die Klasse `PageCollection` aufgebaut. Diese sammelt die Files im Ordner _src/pages_, erstellt
-daraus eine "Seitenstruktur" und eine "Hauptnavigation" als Objekt und generiert und auch die nötigen Informationen, um
+daraus eine "Seitenstruktur" und eine "Hauptnavigation" als Objekt und generiert auch die nötigen Informationen, um
 dem _html-loader_ die entsprechende Quell- und Zieldatei mitzugeben.
 
-Aus diesen Informationen wird die Hauptnavigation und die Auflistung der Nachrichteneinträge generiert.
+Aus diesen Informationen werden die Hauptnavigation und die Auflistung der Nachrichteneinträge generiert.
 
-Dieser Aufbau ermöglicht es mir auch in Kombination mit einer Templatesprache (in diesem Fall Twig), über eine _JSON_
+Dieser Aufbau ermöglicht es mir, auch in Kombination mit einer Templatesprache (in diesem Fall Twig) über eine _JSON_
 -Datei dem Template weitere Information mitzugeben, wie z.B. Übersichtsbild, Teasertexte, Datum oder _Title_tags.
 
 ##### Template.js
@@ -460,7 +458,7 @@ Lösung besonnen.
 #### Node
 
 [Ersten Buchstaben in Grossschreibung konvertieren][sources :: node :: uppercase first letter of string]\
-Genutzt in der _PageCollection_ um aus dem Dateinamen eine Art Seitentitel zu generieren.
+Genutzt in der _PageCollection_, um aus dem Dateinamen eine Art Seitentitel zu generieren.
 
 ### Fix
 
@@ -471,7 +469,7 @@ Beim Build bei Nutzung von `__dirname` nach dem Umstellen und Umbau auf `"type":
 
 [Fehler: `Parsing error: Unexpected token import`][sources :: eslint :: parsing error: unexpected token import]\
 Beim Linting von _webpack.common.js_ und _webpack.dev.js_ Umstellung des im _eslintrc.json_ auf `"ecmaVersion": 11`
-nötig. Für dieses Projekt war diese Anpassung nicht weiter von Belang aber ansonsten würde ich wohl das File auf die
+nötig. Für dieses Projekt war diese Anpassung nicht weiter von Belang, aber ansonsten würde ich wohl das File auf die
 Ignoreliste setzen.\
 Falls das Linting aber nötig ist __und__ die Parseoptionen aus irgendeinem Grund auf einer älteren Version basieren
 müssen, wäre der Import über eine externe Datei – welche auf der Ignoreliste steht –
@@ -483,7 +481,7 @@ auf [Stack Overflow][sources :: webpack :: chunk load error :: answer]
 
 #### HTML
 
-[Regulärer Ausdruck Telefonnummber][sources :: html :: regex phone number]
+[Regulärer Ausdruck Telefonnummer][sources :: html :: regex phone number]
 
 #### Javascript
 
