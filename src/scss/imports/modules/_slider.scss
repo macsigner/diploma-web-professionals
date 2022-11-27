@@ -37,6 +37,7 @@
     &__preview {
         display: none;
         margin-top: 1.2rem;
+        margin-right: -1.2rem;
 
         @include media-tablet {
             display: flex;
@@ -48,19 +49,15 @@
 
         overflow: visible;
         flex: 0 1 20rem;
-        transition: flex $transition-in, margin $transition-in;
+        margin-right: 1.2rem;
+        transition: opacity $transition-slow, transform $transition-slow;
     }
 
     &__preview-item.current {
-        flex: 0 0 0;
-    }
-
-    &__preview-item.current:not(:only-child) {
-        margin-left: -100%;
-    }
-
-    &__preview-item + &__preview-item {
-        margin-left: 1.2rem;
+        position: absolute;
+        z-index: 1;
+        transform: scale(0);
+        pointer-events: none;
     }
 
     &__preview-item img {
