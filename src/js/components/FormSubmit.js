@@ -195,7 +195,7 @@ class FormSubmit {
      * Get summary from submission.
      *
      * @param data {Object} Object from submission
-     * @returns {{title: String, content: String}[]} Object with title and content
+     * @returns {Object[]} Array of objects with title and content
      * @private
      */
     _getSubmissionSummary(data) {
