@@ -8,8 +8,9 @@ import { debounce } from '../tools.js';
 class Slider {
     /**
      * Construct.
-     * @param el
-     * @param options
+     *
+     * @param {HTMLElement} el Wrapper of slider elements
+     * @param {Object} options Slider configuration
      */
     constructor(el, options = {}) {
         this.el = el;
@@ -73,7 +74,8 @@ class Slider {
 
     /**
      * Go to specified slide.
-     * @param index
+     *
+     * @param {Number} index Index of next slide
      */
     goToSlide(index) {
         this.index = index;
@@ -102,6 +104,7 @@ class Slider {
 
     /**
      * Append arrows to current slider.
+     *
      * @private
      */
     _appendArrows() {
@@ -123,6 +126,7 @@ class Slider {
 
     /**
      * Update arrows visibility.
+     *
      * @private
      */
     _updateArrows() {
@@ -143,6 +147,7 @@ class Slider {
 
     /**
      * Append and create preview images to current slider.
+     *
      * @private
      */
     _appendPreviews() {
@@ -178,6 +183,7 @@ class Slider {
 
     /**
      * Update preview image classes.
+     *
      * @private
      */
     _updatePreviews() {
@@ -192,7 +198,8 @@ class Slider {
 
     /**
      * Handle clicks on preview items.
-     * @param e
+     *
+     * @param {Event} e Click event
      * @private
      */
     _previewClickListener(e) {

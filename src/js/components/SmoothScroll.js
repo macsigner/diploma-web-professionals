@@ -6,7 +6,8 @@ import * as Tools from '../tools.js';
 class SmoothScroll {
     /**
      * Construct.
-     * @param scope
+     *
+     * @param {HTMLElement} scope Scope of overflow
      */
     constructor(scope = document.documentElement) {
         this.scope = scope;
@@ -19,7 +20,8 @@ class SmoothScroll {
 
     /**
      * Listen for click event on smooth scroll links.
-     * @param e
+     *
+     * @param {Event} e Click event
      * @private
      */
     _linkClickListener(e) {
@@ -44,7 +46,8 @@ class SmoothScroll {
 
     /**
      * Get target element from node.
-     * @param el
+     *
+     * @param {HTMLElement} el Target of set link element
      * @private
      */
     _getLinkTargetElement(el) {

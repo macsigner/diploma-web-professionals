@@ -9,6 +9,7 @@ import InfoModal from './InfoModal.js';
 class FormSubmit {
     /**
      * Construct.
+     *
      * @param el {HTMLFormElement} Form element
      */
     constructor(el) {
@@ -109,7 +110,8 @@ class FormSubmit {
     }
 
     /**
-     * Mutate
+     * Mutate. Send form data.
+     *
      * @returns {Promise<void>}
      * @private
      */

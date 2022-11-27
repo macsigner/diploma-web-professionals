@@ -7,8 +7,9 @@ import Template from './Template.js';
 class RealEstateDetailPage {
     /**
      * Construct
-     * @param id
-     * @param options
+     *
+     * @param {Number} id Id of the estate.
+     * @param {Object} options Pass template via options object
      */
     constructor(el, options = {}) {
         this.el = el;
@@ -35,7 +36,8 @@ class RealEstateDetailPage {
 
     /**
      * Apply meta data on current page.
-     * @param obj
+     *
+     * @param {Object} obj Object with title and description property for current page.
      * @private
      */
     _applyMetaData(obj) {
