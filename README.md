@@ -3,7 +3,17 @@ Diplomarbeit 2022 Web Frontend Developer
 
 ## Abstract / Management Summary
 
-[//]: # (todo: add summary at end of project)
+Im [Setup Guide](#setup-guide) beschreibe ich die Grundzüge des Projekts und liste die nutzbaren Skripte auf.
+Unter [url-der-lauffähigen-version](#url-der-lauffähigen-version) liste ich einen Link zur Seite und den _Jsdoc_
+-Links auf. Im Bereich [Zeitplan / Meilensteine](#zeitplan--meilensteine) zeige ich eine grobe Zeiteinteilung sowie die
+geplanten Meilensteine.\
+In [Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung](#technologiekonzept-inkl-evaluation-der-eingesetzten-technologien-begründung)
+beschreibt die zentralsten Technologien, welche ich im Projekt eingesetzt habe sowie allfällige Hinweise über die Art
+des Einsatzes in der Arbeit.
+Unter [Technische Dokumentation bei Eigenleistungen](#technische-dokumentation-bei-eigenleistungen) beschreibe ich die
+drei – für mich persönlich – wichtigsten Module. Eine Zusammenfassung meiner Erfahrungen und Anmerkungen zu den gröbsten
+Anpassungen an der Vorlage, habe ich unter [Zusammenfassung und Ausblick, persönliche Anmerkungen
+](#zusammenfassung-und-ausblick-persönliche-anmerkungen) erstellt.
 
 ## Setup Guide
 
@@ -85,6 +95,10 @@ laden, wird die Datei _src/js/pages/010_aktuelles/\_001\_grossprojekt-home-house
 ## URL der lauffähigen Version
 
 [dipl22mac.netlify.app][preview]
+
+[Jsdoc - Frontend][preview :: doc :: frontend]
+
+[Jsdoc - Node][preview :: doc :: backend]
 
 ## Zeitplan / Meilensteine
 
@@ -229,7 +243,8 @@ Entwicklertools von Chrome.
 
 ### [twig-html-loader][technology :: twig html loader]
 
-Meine ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da ich aber
+Meine ursprüngliche Idee war, die Templates über die im Kurs angesprochene Methode (Suchen/Ersetzen) zu erstellen. Da
+ich aber
 voraussichtlich auf einen Rattenschwanz von Problemen gestossen wäre – Rekursion mit Abbruchbedingungen, Übergabe der
 Daten an die Templates – habe ich mich auf eine vorhandene Lösung besonnen. Als Alternative wäre noch _Nunjucks_ in
 Frage gekommen.\
@@ -283,9 +298,8 @@ vonstattengeht und bei späteren Anpassungen unkompliziert Funktionen erweitert,
 werden können.
 
 Die drei wichtigsten Module sind nachfolgend grob umschrieben. In einem realen Projekt würde ich diese allerdings so
-nicht verwenden, sondern auf Bibliotheken oder Frameworks zurückgreifen. Eine detailliertere Dokumentation ist als _
-JSDoc_ zu
-finden unter:
+nicht verwenden, sondern auf Bibliotheken oder Frameworks zurückgreifen. Eine detailliertere Dokumentation ist als
+_JSDoc_ zu finden unter:
 
 [Javascript im Frontend][preview :: doc :: frontend] \
 [Javascript Node][preview :: doc :: backend]
@@ -309,7 +323,7 @@ dem _html-loader_ die entsprechende Quell- und Zieldatei mitzugeben.
 Aus diesen Informationen werden die Hauptnavigation und die Auflistung der Nachrichteneinträge generiert.
 
 Dieser Aufbau ermöglicht es mir, auch in Kombination mit einer Templatesprache (in diesem Fall Twig) über eine _JSON_
--Datei dem Template weitere Information mitzugeben, wie z.B. Übersichtsbild, Teasertexte, Datum oder _Title_tags.
+-Datei dem Template weitere Information mitzugeben, wie z.B. Übersichtsbild, Teasertexte, Datum oder *Title*tags.
 
 ##### Template.js
 
@@ -430,8 +444,8 @@ Templategeschichte vom Frontend _(Template.js)_ und die verfolgte Geschichte mit
 Funktion, für ich mit Sicherheit nicht in einem Produktivsystem einsetzen würde aber aufgrund der Aufgabenstellung (
 möglichst wenig Fremdcode einzusetzen) in Angriff genommen wurde. Allerdings war dies eine der interessantesten
 Aufgaben.\
-Zum anderen Teil die Detailseite: Diese hätte ich gerne Serverseitig generiert, da der Rest stark frontendlastig ist __
-und__ nach der Durchsicht über die [Googleindexierung][comment :: google indexing] habe ich mich auf die Vorhanden
+Zum anderen Teil die Detailseite: Diese hätte ich gerne Serverseitig generiert, da der Rest stark frontendlastig ist
+__und__ nach der Durchsicht über die [Googleindexierung][comment :: google indexing] habe ich mich auf die Vorhanden
 Lösung besonnen.
 
 ### Abweichungen von der Vorlage
@@ -450,8 +464,6 @@ Lösung besonnen.
   Zahlen, z.B. 28.7px auf 28px und 39.1px auf 40px.
 
 ## Literaturverzeichnis, Quellenangaben bei Nutzung von externem Code
-
-[//]: # (todo: update source information regularly)
 
 ### Erweiterung
 
