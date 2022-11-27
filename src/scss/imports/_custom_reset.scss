@@ -50,10 +50,14 @@ figure {
 }
 
 button,
+input,
+textarea,
+select,
 [type='submit'],
 [type='button'] {
     padding: 0;
     border: none;
+    border-radius: 0;
     color: inherit;
     background-color: transparent;
     cursor: pointer;
