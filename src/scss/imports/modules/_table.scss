@@ -1,0 +1,88 @@
+/**
+ * table bem module
+ */
+
+// Reset table display properties to keep mobile first solution.
+
+.table {
+    table,
+    td,
+    th,
+    tr,
+    tbody,
+    thead,
+    tfoot,
+    caption {
+        display: block;
+
+        @include media-desktop-small {
+            // Important for simplicity.
+            display: revert !important;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: left;
+    }
+
+    tr {
+        display: flex;
+        border-bottom: 2px solid var(--color-primary);
+
+        @include media-desktop-small {
+            border-bottom: none;
+        }
+    }
+
+    tr > :first-child {
+        overflow: hidden;
+        flex: 1 1 auto;
+    }
+
+    tr > :last-child {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    // stylelint-disable-next-line
+    tr > * + *:not(:last-child) {
+        display: none;
+    }
+
+    thead th,
+    thead td {
+        color: var(--color-primary);
+    }
+
+    td,
+    th {
+        @include font-mobile-main;
+
+        display: block;
+        vertical-align: top;
+        overflow: hidden;
+        padding: .8rem 1rem;
+
+        @include media-desktop-small {
+            @include font-desktop-main;
+
+            overflow: visible;
+            border-bottom: 2px solid var(--color-primary);
+            white-space: normal;
+        }
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    th {
+        font-weight: $font-weight-bold;
+    }
+}

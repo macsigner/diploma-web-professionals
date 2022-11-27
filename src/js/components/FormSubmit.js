@@ -42,27 +42,34 @@ class FormSubmit {
                 mutation.then((response) => {
                     this._form.classList.add('submitted');
 
-                    window.localStorage.removeItem('formData');
-                    this._form.reset();
-
                     let summaryArray = this._getSubmissionSummary(response.createMessage);
 
-                    let summary = document.createElement('table');
+                    summaryArray.unshift({
+                        title: 'Objekt',
+                        content: response.createMessage.estate.title,
+                    });
+
+                    let summary = document.createElement('div');
+                    summary.classList.add('table');
+
                     let rows = summaryArray.reduce(
                         (prev, current) => prev + `<tr><td>${current.title}</td><td>${current.content}</td></tr>`,
                         ''
                     );
 
-                    summary.innerHTML = `<tbody>${rows}</tbody>`;
+                    summary.innerHTML = `<table><tbody>${rows}</tbody></table>`;
 
                     new InfoModal({
                         title: 'Ihre Daten wurden versendet',
-                        content: 'Ihre Angaben:',
+                        message: 'Ihre Angaben:',
                         custom: summary,
                     }, {
                         appendTo: this._form.parentNode,
                         variant: 'success',
                     });
+
+                    window.localStorage.removeItem('formData');
+                    this._resetForm();
                 }).catch(error => {
                     this._saveFormData();
 
@@ -134,22 +141,22 @@ class FormSubmit {
                     information: $information
                     visit: $visit
                 ) {
+                    firstname
+                    lastname
                     address
+                    postalcode
                     city
-                    content
-                    created_at
+                    phonenumber
                     email
+                    content
+                    information
+                    visit
                     estate {
                         title,
                     }
-                    firstname
                     id
-                    information
-                    lastname
-                    phonenumber
-                    postalcode
+                    created_at
                     updated_at
-                    visit
                 }
             }
         `;
@@ -173,6 +180,18 @@ class FormSubmit {
     }
 
     /**
+     * Reset form.
+     *
+     * @private
+     */
+    _resetForm() {
+        this._form.reset();
+
+        this._form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+        this._form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-invalid'));
+    }
+
+    /**
      * Get summary from submission.
      *
      * @param data {Object} Object from submission
@@ -180,11 +199,12 @@ class FormSubmit {
      * @private
      */
     _getSubmissionSummary(data) {
-        let contentObject = [];
+        let contentArray = [];
 
         for (let key of Object.keys(data)) {
             let field = this._getFieldByName(key);
 
+            // Check if field is visible in form
             if (!field || field.disabled) {
                 continue;
             }
@@ -193,19 +213,23 @@ class FormSubmit {
 
             switch (field.type) {
                 case 'checkbox':
-                    content = field.checked ? 'ja' : 'nein';
+                    content = data[key] ? 'ja' : 'nein';
                     break;
                 default:
-                    content = field.value;
+                    content = data[key];
             }
 
-            contentObject.push({
-                title: this._getLabelByName(key),
-                content,
-            });
+            let label = this._getLabelByName(key);
+
+            if (label && content) {
+                contentArray.push({
+                    title: label,
+                    content,
+                });
+            }
         }
 
-        return contentObject;
+        return contentArray;
     }
 
     /**
