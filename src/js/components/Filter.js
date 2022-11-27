@@ -22,8 +22,8 @@ class Filter {
          */
         this.filters = {};
 
-        this._form.addEventListener('submit', this._formListener.bind(this));
-        this._form.addEventListener('change', this._formListener.bind(this));
+        this._form.addEventListener('submit', this._formSubmitListener.bind(this));
+        this._form.addEventListener('change', this._formChangeListener.bind(this));
 
         let selectFields = this._form.querySelectorAll('select');
 
@@ -86,17 +86,34 @@ class Filter {
     }
 
     /**
-     * Handle form submissions/changes.
+     * Handle form submissions.
      *
-     * @param {Event} e Submit or change event
+     * @param {Event} e Submit event
      * @private
      */
-    _formListener(e) {
+    _formSubmitListener(e) {
         e.preventDefault();
 
         this.filters = this.getFilter();
 
         this._form.dispatchEvent(new CustomEvent('filter', {
+            detail: {
+                Filter: this,
+                currentFilter: this.filters,
+            },
+        }));
+    }
+
+    /**
+     * Handle form changes.
+     *
+     * @param {Event} e Changehange event
+     * @private
+     */
+    _formChangeListener() {
+        this.filters = this.getFilter();
+
+        this._form.dispatchEvent(new CustomEvent('filterChange', {
             detail: {
                 Filter: this,
                 currentFilter: this.filters,

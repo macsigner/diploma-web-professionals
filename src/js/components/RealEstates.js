@@ -99,6 +99,7 @@ class RealEstates extends RealEstateBase {
                 this.filter = this.filterForm.getFilter();
 
                 filter.addEventListener('filter', e => this._filterListener(e));
+                filter.addEventListener('filterChange', e => this._filterChangeListener(e));
             } catch (error) {
                 console.warn('Filter not found!');
                 console.log(error);
@@ -156,17 +157,6 @@ class RealEstates extends RealEstateBase {
     _filterListener(e) {
         this.filter = e.detail.Filter.filters;
 
-        if (e.detail.Filter.filters.template) {
-            this._settings.template = e.detail.Filter.filters.template.layout;
-            let templateClass = `template-${Tools.camelToKebabCase(e.detail.Filter.filters.template.layout)}`;
-
-            this.el.classList.remove(...this._templateClasses);
-
-            this.el.classList.add(templateClass);
-
-            this._templateClasses.add(templateClass);
-        }
-
         let callback;
 
         if (this.filter.sort.sorting) {
@@ -196,6 +186,27 @@ class RealEstates extends RealEstateBase {
                 sortCallback: callback,
             });
         } else {
+            this.render();
+        }
+    }
+
+    /**
+     * Listen for change event on filter form.
+     *
+     * @param e {Event} filterChange event
+     * @private
+     */
+    _filterChangeListener(e) {
+        if (e.detail.Filter.filters.template && this._settings.template !== e.detail.Filter.filters.template.layout) {
+            this._settings.template = e.detail.Filter.filters.template.layout;
+            let templateClass = `template-${Tools.camelToKebabCase(e.detail.Filter.filters.template.layout)}`;
+
+            this.el.classList.remove(...this._templateClasses);
+
+            this.el.classList.add(templateClass);
+
+            this._templateClasses.add(templateClass);
+
             this.render();
         }
     }
