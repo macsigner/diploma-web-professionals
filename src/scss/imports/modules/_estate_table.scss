@@ -30,10 +30,17 @@
     tr {
         display: flex;
         border-bottom: 2px solid var(--color-primary);
+        background-color: transparent;
+        transition: background $transition-in;
 
         @include media-desktop-small {
             border-bottom: none;
         }
+    }
+
+    tbody tr:hover {
+        background-color: var(--color-primary-transparent);
+        transition-duration: 0s;
     }
 
     tr > :first-child {

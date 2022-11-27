@@ -133,21 +133,21 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
     - Reserve _2h_
 - [ ] Javaskriptfunktionalität
     - [x] Hauptnavigation _3h_
-        - [ ] 2nd Level
+        - [ ] ~~2nd Level~~
     - [x] Scroll (Smooth) _1h_
-    - [ ] Filterung / Listenansicht
+    - [x] Filterung / Listenansicht
         - [x] Wechsel zwischen den Ansichten _2h_
         - [x] Filterung Objekte
             - [x] Grundfilter _3h_
             - [x] Filter: Was, Wo, Sortierung, Art (kaufen, mieten) _3h_
-        - [ ] Paginierung _3h_
+        - [x] Paginierung _3h_
         - [x] Sortierung _2h_
-    - [ ] Modal
+    - [x] Modal
         - [x] Grundmodal _2h_
-        - [ ] Implementierung Kontakt, Formmodal _2h_ mit Objektauswahl
-    - [ ] Formularversand _2h_
-    - [ ] Google Maps
-        - [ ] Vordesign von [Snazzymaps][roadmap :: snazzymaps] _1h_
+        - [x] Implementierung Kontakt, Formmodal _2h_ ~~mit Objektauswahl~~
+    - [x] Formularversand _2h_
+    - [x] Google Maps
+        - [x] Vordesign von [Snazzymaps][roadmap :: snazzymaps] _1h_
         - [x] Implementierung und Designanpassung mit neuem Pin _2h_
     - [x] Slider _2h_
     - Reserve _4h_
@@ -164,14 +164,14 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
         - [x] Listenansicht _2h_
     - [x] Aktuelles
         - [x] Bildteaser _2h_
-        - [ ] Bildteaserlayout _1h_
-    - [ ] Objektdetail
+        - [x] Bildteaserlayout _1h_
+    - [x] Objektdetail
         - [x] Slider _1h_
         - [x] Detaillayout _2h_
         - [x] Hintergrundblock _1h_
     - [x] Newsdetail _2h_
     - [x] Formular _3h_
-        - [ ] Modal
+        - [x] Modal
     - [x] Kontakt _1h_
     - Reserve _4h_
 - [ ] Schlusstests
@@ -179,9 +179,9 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
     - [ ] Firefox _1h_
     - [ ] Safari _1h_
 - [ ] Fixing 1st _8h_
-- [ ] Benutzertest (nur Funktionalität, kein UX)
-    - [ ] Benutzer _2h_
-- [ ] Fixing 2nd _2h_
+- [x] Benutzertest (nur Funktionalität, kein UX)
+    - [x] Benutzer _2h_
+- [x] Fixing 2nd _2h_
 - [ ] Dokuupdate _4h_
 
 ### Meilensteine
