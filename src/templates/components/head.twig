@@ -10,9 +10,7 @@
 <meta name="msapplication-TileColor" content="#92b9af">
 <meta name="msapplication-config" content="/src/assets/favicons/browserconfig.xml">
 <meta name="theme-color" content="#92b9af">
+    <title>Home House - {% if data.title %}{{ data.title }}{% else %}{{ title }}{% endif %}</title>
 {% if data.description %}
     <meta name="description" content="{{ data.description }}"/>
-{% endif %}
-{% if data.title %}
-    <title>Home House - {{ data.title }}</title>
 {% endif %}
