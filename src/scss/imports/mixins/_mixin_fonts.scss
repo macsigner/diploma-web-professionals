@@ -211,7 +211,7 @@
     @include font-block-03-desktop;
 }
 
-@mixin font-desktop-image-teaser-meta-title {
+@mixin font-desktop-image-teaser-title {
     @include font-block-01-desktop;
 
     font-weight: $font-weight-bold;
@@ -355,11 +355,9 @@
 
 @mixin font-mobile-image-teaser {
     @include font-block-03-mobile;
-
-    font-weight: $font-weight-bold;
 }
 
-@mixin font-mobile-image-teaser-meta {
+@mixin font-mobile-image-teaser-title {
     @include font-block-03-mobile;
 }
 
