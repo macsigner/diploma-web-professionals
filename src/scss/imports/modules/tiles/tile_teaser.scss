@@ -4,6 +4,7 @@
 @use 'sass:math';
 
 .tile-teaser {
+    @extend .hover-image-parent;
     @include font-mobile-image-tile;
 
     margin-bottom: 4.4rem;
@@ -17,6 +18,7 @@
     }
 
     &__image {
+        @extend .hover-image__wrap;
         @extend .aspect;
 
         margin-bottom: 2.4rem;
