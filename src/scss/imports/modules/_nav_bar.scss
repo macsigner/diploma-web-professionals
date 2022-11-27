@@ -49,6 +49,12 @@
             visibility: visible;
             opacity: 1;
         }
+
+        // Fix popping menu.
+        .resizing &,
+        .resizing & * {
+            transition: none !important;
+        }
     }
 
     &.is-open &__menu {
