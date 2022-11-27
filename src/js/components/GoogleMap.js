@@ -1,6 +1,4 @@
 /* globals google */
-// eslint-disable-next-line
-// Todo: extend documentation and finish :)
 import Base from './Base.js';
 import * as Tools from '../tools.js';
 

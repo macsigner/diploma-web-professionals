@@ -133,7 +133,8 @@ class CustomSelect extends Base {
 
     /**
      * Get the current selected option node.
-     * @returns {Element} The currently selected `<option>` element.
+     *
+     * @returns {HTMLElement} The currently selected `<option>` element.
      * @private
      */
     _getCurrentOptionElement() {
@@ -145,6 +146,7 @@ class CustomSelect extends Base {
 
     /**
      * Create select tag markup fron object.
+     *
      * @param {Array} options Array of objects.
      * @returns {String}
      * @private
@@ -254,8 +256,6 @@ class CustomSelect extends Base {
      * @private
      */
     _clickOutsideListener(e) {
-        // eslint-disable-next-line
-        // Todo: is the performance better this way?
         // Handle this event explicitly without delegate.
         if (e.target.closest(this.getNamespaceClass()) !== this.customSelect) {
             this.close();
@@ -388,8 +388,6 @@ class CustomSelect extends Base {
         return this.el.name || this.el.id;
     }
 
-    // eslint-disable-next-line
-    // Todo: Maybe make this public for further use?
     /**
      * Create initial options object from children.
      *

@@ -88,10 +88,6 @@ gleichen Namen wie die Seite angelegt. Die Javascriptdatei wird dann als zusätz
 Um beispielsweise für die Seite _src/pages/010_aktuelles/\_001\_grossprojekt-home-house.twig_ ein eigenes Skript zu
 laden, wird die Datei _src/js/pages/010_aktuelles/\_001\_grossprojekt-home-house.js_ angelegt.
 
-[//]: # (todo: does the order of files being read depend on the host?)
-
-[//]: # (todo: write setup as soon there is one and update comment)
-
 ## URL der lauffähigen Version
 
 [dipl22mac.netlify.app][preview]
@@ -285,8 +281,6 @@ remove world hunger
 apply anarchism in the UK
 ```
 
-[//]: # (todo: add section about usage)
-
 ## Technische Dokumentation bei Eigenleistungen
 
 ### Javascriptdokumentation
@@ -424,8 +418,6 @@ Erzeugter Ast:
     </dd>
 </dl>
 ```
-
-[//]: # (todo: write whatever i did myself and maybe update comment)
 
 ## Zusammenfassung und Ausblick, persönliche Anmerkungen
 
