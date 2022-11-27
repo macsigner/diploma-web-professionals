@@ -17,4 +17,8 @@
         padding-top: 14.5rem;
         padding-bottom: 14.5rem;
     }
+
+    [data-real-estate-detail] + & {
+        margin-top: 0;
+    }
 }

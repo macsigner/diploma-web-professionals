@@ -1,4 +1,5 @@
 import RealEstateDetail from './RealEstateDetail.js';
+import Template from './Template.js';
 
 /**
  * Real estate detail page class.
@@ -9,14 +10,18 @@ class RealEstateDetailPage {
      * @param id
      * @param options
      */
-    constructor(id, options = {}) {
-        this._settings = options;
+    constructor(el, options = {}) {
+        this.el = el;
+        let elTemplate = el.querySelector('template');
 
-        this._detail = new RealEstateDetail({
+        this._settings = options;
+        this._settings.template = new Template(elTemplate);
+
+        this._detail = new RealEstateDetail(this.el, {
             template: this._settings.template,
         });
 
-        let promise = this._detail.open(id);
+        let promise = this._detail.open(this._settings.id);
 
         promise.then(() => {
             let data = this._detail.getData();

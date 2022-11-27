@@ -37,7 +37,7 @@ class RealEstates extends RealEstateBase {
         this._setTemplates();
 
         if (this.templates.detail) {
-            this.detail = new RealEstateDetail({
+            this.detail = new RealEstateDetail(this.el, {
                 template: this.templates.detail,
             });
 
