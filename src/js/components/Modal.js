@@ -41,12 +41,23 @@ class Modal extends Base {
         if (this._settings.open) {
             this.open();
         }
+
+        this.modal.addEventListener('animationend', () => {
+            if (!this.modal.matches('.open')) {
+                this.modal.remove();
+
+                if (this._settings.lockScroll) {
+                    Tools.unlockScroll();
+                }
+            }
+        });
     }
 
     /**
      * Open current modal.
      */
     open() {
+        this.modal.classList.add('open');
         this._settings.appendTo.appendChild(this.modal);
 
         if (this._settings.lockScroll) {
@@ -58,13 +69,7 @@ class Modal extends Base {
      * Close current modal.
      */
     close() {
-        this.modal.remove();
-
-        console.log(this.modal);
-
-        if (this._settings.lockScroll) {
-            Tools.unlockScroll();
-        }
+        this.modal.classList.remove('open');
     }
 
     /**

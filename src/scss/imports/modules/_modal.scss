@@ -3,6 +3,9 @@
  */
 
 .modal {
+    --color-selection: var(--color-primary-text-dark);
+    --bg-color-selection: var(--color-primary-text-transparent);
+
     overflow: auto;
     position: fixed;
     inset: 0;
@@ -10,6 +13,12 @@
     padding-top: 10rem;
     padding-bottom: 10.2rem;
     background-color: var(--color-primary);
+    animation: modal-out $transition-slow both;
+
+    &.open {
+        animation-name: modal-in;
+        animation-duration: $transition-slow;
+    }
 
     @include media-desktop-small {
         padding-top: 10.8rem;
@@ -39,5 +48,25 @@
         @include media-desktop-small {
             @include font-desktop-modal-title;
         }
+    }
+}
+
+@keyframes modal-in {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes modal-out {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
     }
 }

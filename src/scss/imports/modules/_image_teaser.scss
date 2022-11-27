@@ -4,10 +4,10 @@
 @use 'sass:math';
 
 .image-teaser {
-    @include font-mobile-main;
+    @include font-mobile-image-teaser;
 
     @include media-desktop-small {
-        @include font-desktop-main;
+        @include font-desktop-image-teaser;
 
         display: flex;
     }
@@ -61,11 +61,21 @@
         padding-top: math.percentage(math.div(193, 328));
     }
 
+    &__meta-title,
+    &__title {
+        @include font-mobile-image-teaser-title;
+
+        @include media-desktop-small {
+            @include font-desktop-image-teaser-title;
+        }
+    }
+
     &__meta-title {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         margin-bottom: 3rem;
+        font-weight: $font-weight-regular;
     }
 
     &__meta-title > * {
@@ -73,8 +83,6 @@
     }
 
     &__title {
-        @include font-inherit;
-
         margin-top: 0;
         margin-bottom: 0;
         font-weight: $font-weight-bold;

@@ -3,7 +3,8 @@
 
         {% if item.data.image %}
 
-            <figure class="image-teaser__image">
+            <figure class="image-teaser__image hover-image">
+                <a href="{{ item.url }}" class="hover-image__wrap">
 
                 {% include '@components/picture.twig' with {
                     image: {
@@ -12,6 +13,7 @@
                     }
                 } %}
 
+                </a>
             </figure>
 
         {% endif %}

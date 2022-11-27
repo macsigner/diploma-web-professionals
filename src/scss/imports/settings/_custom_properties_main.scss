@@ -12,10 +12,6 @@
     --input-distance: 1.8rem;
     --check-distance: 3rem;
 
-    @include media-desktop-small {
-        --large-gutter-width: 8.8rem;
-    }
-
     // Colors
     --color-primary: #{$color-primary};
     --color-primary-text: #{$color-white};
@@ -35,4 +31,6 @@
     // Color settings.
     --color: #{$color-black};
     --bg-color: #{$color-white};
+    --color-selection: var(--color-primary-text-dark);
+    --bg-color-selection: var(--color-primary-transparent);
 }

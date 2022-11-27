@@ -1,10 +1,10 @@
 /**
- * estate-table bem module
+ * table bem module
  */
 
 // Reset table display properties to keep mobile first solution.
 
-.estate-table {
+.table {
     table,
     td,
     th,
@@ -30,17 +30,10 @@
     tr {
         display: flex;
         border-bottom: 2px solid var(--color-primary);
-        background-color: transparent;
-        transition: background $transition-in;
 
         @include media-desktop-small {
             border-bottom: none;
         }
-    }
-
-    tbody tr:hover {
-        background-color: var(--color-primary-transparent);
-        transition-duration: 0s;
     }
 
     tr > :first-child {
@@ -65,13 +58,16 @@
 
     td,
     th {
+        @include font-mobile-main;
+
         display: block;
+        vertical-align: top;
         overflow: hidden;
-        padding: 1.4rem 1rem;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        padding: .8rem 1rem;
 
         @include media-desktop-small {
+            @include font-desktop-main;
+
             overflow: visible;
             border-bottom: 2px solid var(--color-primary);
             white-space: normal;
@@ -83,45 +79,10 @@
 
         &:last-child {
             padding-right: 0;
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        &:nth-last-child(2) {
-            white-space: nowrap;
         }
     }
 
     th {
-        @include font-mobile-table-header;
-
-        @include media-desktop-small {
-            @include font-desktop-table-header;
-        }
-    }
-
-    td {
-        @include font-mobile-table;
-
-        @include media-desktop-small {
-            @include font-desktop-table;
-        }
-    }
-
-    &__sort-button {
-        --color: var(--color-primary);
-    }
-
-    &__sort-button .icon-arrow {
-        transform: scale(-1);
-    }
-
-    &__sort-button.asc,
-    &__sort-button.desc {
-        --color: var(--color-primary-text-dark);
-    }
-
-    &__sort-button.asc .icon-arrow {
-        transform: scale(1);
+        font-weight: $font-weight-bold;
     }
 }

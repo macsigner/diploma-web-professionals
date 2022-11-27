@@ -16,12 +16,14 @@ class RealEstateDetail extends RealEstateBase {
      * Construct.
      * @param options
      */
-    constructor(options = {}) {
+    constructor(el, options = {}) {
         super();
 
+        this.el = el;
         this._defaultSettings = {
             namespace: 'real-estate-detail',
         };
+
         this._customSettings = options;
         this._settings = Tools.mapOptions(this._defaultSettings, this._customSettings);
 
@@ -131,9 +133,7 @@ class RealEstateDetail extends RealEstateBase {
 
         wrapper.appendChild(el);
 
-        new Modal(wrapper, {
-            namespace: 'detail-modal',
-        });
+        this.el.appendChild(wrapper);
     }
 
     /**

@@ -1,0 +1,40 @@
+/**
+ * cols bem module
+ */
+
+:root {
+    --cols: 1;
+    --cols-gutter: #{$gutter-width};
+}
+
+.cols {
+    display: grid;
+    grid-gap: var(--cols-gutter);
+    grid-template-columns: repeat(var(--cols), minmax(10px, 1fr));
+
+    @for $i from 1 through 12 {
+        &--#{$i} {
+            --cols: #{$i};
+        }
+    }
+
+    @include media-tablet {
+        &-tablet {
+            @for $i from 1 through 12 {
+                &--#{$i} {
+                    --cols: #{$i};
+                }
+            }
+        }
+    }
+
+    @include media-desktop-small {
+        &-desktop-small {
+            @for $i from 1 through 12 {
+                &--#{$i} {
+                    --cols: #{$i};
+                }
+            }
+        }
+    }
+}

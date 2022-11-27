@@ -29,6 +29,11 @@ body > main {
     flex: 1 0 auto;
 }
 
+::selection {
+    color: var(--color-selection);
+    background-color: var(--bg-color-selection);
+}
+
 h1,
 .h1 {
     @include font-mobile-h1;

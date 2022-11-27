@@ -24,5 +24,6 @@
     {% endif %}
 
     <img src="{% if image.path %}{{ image.path }}{% else %}{{ image }}{% endif %}"
+         loading="lazy"
          {% if image.alt %}alt="{{ image.alt }}"{% endif %}>
 </picture>

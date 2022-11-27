@@ -1,0 +1,20 @@
+/**
+ * hover-image bem module
+ *
+ * Including wrapper for exclusion from other images inside tile or other block.
+ */
+
+.hover-image {
+    overflow: hidden;
+
+    img {
+        transform: scale(1);
+        transition: transform $transition-slow;
+    }
+
+    &:hover img,
+    &-parent:hover & img {
+        transform: scale(1.05);
+        transition-duration: $transition-in-fast;
+    }
+}

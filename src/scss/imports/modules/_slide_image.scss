@@ -10,5 +10,7 @@
         height: 100%;
         max-width: none;
         object-fit: cover;
+        object-position: calc(var(--mouse-x) * 100%) calc(var(--mouse-y) * 100%);
+        transition: object-position .1s;
     }
 }

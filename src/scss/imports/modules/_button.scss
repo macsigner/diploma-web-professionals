@@ -15,10 +15,12 @@
     text-decoration: none;
     color: var(--color-primary-text);
     background-color: var(--color-primary);
+    transition: color $transition-in, background $transition-in;
 
     &:hover {
         color: var(--color-action);
         background-color: var(--color-action-bg);
+        transition-duration: $transition-in-fast;
     }
 
     &:active {

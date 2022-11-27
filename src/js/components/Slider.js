@@ -1,5 +1,6 @@
 import Template from './Template.js';
 import * as Tools from '../tools.js';
+import { debounce } from '../tools.js';
 
 /**
  * Slider.
@@ -36,6 +37,19 @@ class Slider {
 
         this.el.parentNode.insertBefore(this._sliderWrapper, this.el);
         this._sliderInner.appendChild(this.el);
+
+        this._sliderInner.addEventListener('mousemove', debounce((e) => {
+            let bound = this._sliderInner.getBoundingClientRect();
+            let x = e.pageX - bound.left;
+            let y = e.pageY - bound.top - window.scrollY;
+            let percentageX = Math.max(Math.min(x / bound.width, 1), 0);
+            let percentageY = Math.max(Math.min(y / bound.height, 1), 0);
+
+            window.requestAnimationFrame(() => {
+                this.el.style.setProperty('--mouse-x', percentageX);
+                this.el.style.setProperty('--mouse-y', percentageY);
+            });
+        }, 10));
 
         this.slides.forEach((el) => {
             el.classList.add('slider__item');
@@ -139,7 +153,8 @@ class Slider {
 
         let htmlTemplate = document.createElement('template');
         htmlTemplate.dataset.templateName = 'preview';
-        htmlTemplate.innerHTML = '<li class="slider__preview-item" data-index><img data-template="image"></li>';
+        htmlTemplate.innerHTML
+            = '<li class="slider__preview-item" loading="lazy" data-index><img data-template="image"></li>';
         let template = new Template(htmlTemplate);
 
         this.slides.forEach((el, i) => {

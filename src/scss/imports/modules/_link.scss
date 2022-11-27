@@ -18,10 +18,22 @@
 
     &__icon {
         display: block;
+        transform: translateX(0);
+        transition: color $transition-in, transform $transition-in;
     }
 
     &__text + &__icon,
     &__icon + &__text {
         margin-left: 1.8rem;
+    }
+
+    &:hover &__icon {
+        transform: translateX(-.3em);
+        transition-duration: $transition-in-fast;
+    }
+
+    &:hover &__text + &__icon {
+        transform: translateX(.3em);
+        transition-duration: $transition-in-fast;
     }
 }
