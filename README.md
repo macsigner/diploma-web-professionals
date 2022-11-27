@@ -145,7 +145,7 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
     - [x] Formular _1h_
     - [x] Kontakt _1h_
     - Reserve _2h_
-- [ ] Javascriptfunktionalität
+- [x] Javascriptfunktionalität
     - [x] Hauptnavigation _3h_
         - [ ] ~~2nd Level~~
     - [x] Scroll (Smooth) _1h_
@@ -165,7 +165,7 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
         - [x] Implementierung und Designanpassung mit neuem Pin _2h_
     - [x] Slider _2h_
     - Reserve _4h_
-- [ ] Frontendstyling
+- [x] Frontendstyling
     - [x] Header _1h_
     - [x] Hauptnavigation _1h_
     - [x] Footer _1h_
@@ -188,11 +188,11 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
         - [x] Modal
     - [x] Kontakt _1h_
     - Reserve _4h_
-- [ ] Schlusstests
-    - [ ] Chrome _1h_
-    - [ ] Firefox _1h_
-    - [ ] Safari _1h_
-- [ ] Fixing 1st _8h_
+- [x] Schlusstests
+    - [x] Chrome _1h_
+    - [x] Firefox _1h_
+    - [x] Safari _1h_
+- [x] Fixing 1st _8h_
 - [x] Benutzertest (nur Funktionalität, kein UX)
     - [x] Benutzer _2h_
 - [x] Fixing 2nd _2h_
@@ -207,10 +207,10 @@ __Erläuterung__: Die Zeiten sind immer aufgerundet mit einer Stunde (1h) als kl
 | Aufbau HTML-Templates             | 10h       | 08.10.2022 | 09.10.2022       | ca. 16h |
 | Javascriptfunktionalität          | 15h       | 17.10.2022 | 22.10.2022       | ca. 24h |
 | Frontendstyling                   | 31h       | 07.11.2022 | 14.11.2022       | ca. 40h |
-| Testing / Fixing (Crossbrowser)   | 11h       | 14.11.2022 |                  |         |
-| Testing "User" / Fixing           | 4h        | 21.11.2022 |                  |         |
-| Letzte Anpassungen an der Doku    | 4h        | 21.11.2022 |                  |         |
-| Abgabe Diplomarbeit               | 1h        | 27.11.2022 |                  |         |
+| Testing / Fixing (Crossbrowser)   | 11h       | 14.11.2022 | 27.11.2022       | ca. 20h |
+| ~~Testing "User"~~ / Fixing       | 4h        | 21.11.2022 | 27.11.2022       | ca. 4h  |
+| Letzte Anpassungen an der Doku    | 4h        | 21.11.2022 | 27.11.2022       | ca. 4h  |
+| Abgabe Diplomarbeit               | 1h        | 27.11.2022 | 27.11.2022       | -       |
 
 ## Technologiekonzept inkl. Evaluation der eingesetzten Technologien, Begründung
 

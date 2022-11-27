@@ -7,7 +7,8 @@ import Base from './Base.js';
 class CustomSelect extends Base {
     /**
      * Construct.
-     * @param {Element} el Document node
+     *
+     * @param {HTMLElement} el Document node
      * @param {Object} options Object to overwrite default settings.
      */
     constructor(el, options = {}) {
@@ -100,16 +101,13 @@ class CustomSelect extends Base {
             }));
         });
 
-        // eslint-disable-next-line
-        // Todo: is this necessary? Is there another way to remove the event on close?
+        // Bind and set to property to remove event listener later on.
         this.toggle = this._keypressListener = this._keypressListener.bind(this);
 
-        // eslint-disable-next-line
-        // Todo: is this necessary? Is there another way to remove the event on close?
+        // Bind and set to property to remove event listener later on.
         this.toggle = this.toggle.bind(this);
 
-        // eslint-disable-next-line
-        // Todo: is this necessary? Is there another way to remove the event on close?
+        // Bind and set to property to remove event listener later on.
         this._clickOutsideListener = this._clickOutsideListener.bind(this);
 
         this.render();
