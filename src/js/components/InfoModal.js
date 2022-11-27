@@ -22,21 +22,18 @@ class InfoModal extends Modal {
             infoModalElement.appendChild(content.custom);
         }
 
-        super(infoModalElement, Object.assign({
+        let modalObject = super(infoModalElement, Object.assign({
             namespace: 'info-modal',
             lockScroll: false,
         }, options));
 
         options.appendTo.classList.add(this.getNamespace('-wrapper'));
-    }
 
-    /**
-     * Close infoModal.
-     */
-    close() {
-        super.close();
-
-        this._settings.appendTo.classList.remove(this.getNamespace('-wrapper'));
+        modalObject.modal.addEventListener('animationend', () => {
+            if (!this.modal.matches('.open')) {
+                options.appendTo.classList.remove(this.getNamespace('-wrapper'));
+            }
+        });
     }
 }
 

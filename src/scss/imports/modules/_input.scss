@@ -17,6 +17,9 @@
     &__field {
         @include font-desktop-form-field;
 
+        --color-selection: var(--color-input-bg);
+        --bg-color-selection: var(--color);
+
         display: block;
         width: 100%;
         padding: 1.1rem 1.6rem .9rem;
@@ -26,15 +29,17 @@
 
     &__field::placeholder {
         color: inherit;
+        transition: color $transition-in, background-color $transition-in;
     }
 
     &__field:focus::placeholder {
         color: rgba($color-black, .4);
+        transition-duration: $transition-in-fast;
     }
 
     &__field:focus {
         background-color: var(--color-input-focus);
-        outline: 1px red;
+        outline: none;
     }
 
     &__label {
