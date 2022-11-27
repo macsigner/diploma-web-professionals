@@ -541,6 +541,10 @@ class RealEstates extends RealEstateBase {
         } else {
             items.forEach(item => this.el.appendChild(item));
         }
+
+        this.el.querySelectorAll('[data-id]').forEach((item, i) => {
+            item.style.setProperty('--item-index', i);
+        });
     }
 
     /**
