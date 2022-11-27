@@ -42,8 +42,9 @@
             height: 2px;
             margin: auto;
             background-color: var(--color);
+            opacity: 0;
             clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-            transition: clip-path $transition-in;
+            transition: opacity $transition-in, clip-path $transition-in;
         }
 
         &::before {
@@ -62,6 +63,7 @@
 
     :checked + & &__mark::before,
     :checked + & &__mark::after {
+        opacity: 1;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 
@@ -78,11 +80,13 @@
         height: 2rem;
         border-radius: 50%;
         clip-path: none;
+        opacity: 0;
         transform: scale(0);
         transition: transform $transition-in;
     }
 
     :checked + & &__mark--radio::after {
+        opacity: 1;
         clip-path: none;
         transform: scale(1);
     }

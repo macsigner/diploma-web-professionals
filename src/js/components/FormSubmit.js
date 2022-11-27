@@ -20,7 +20,7 @@ class FormSubmit {
         this._loadFormData();
 
         this._form.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', Tools.debounce((e) => this._inputListener(e), 1200));
+            input.addEventListener('input', Tools.debounce((e) => this._inputListener(e), 2000));
             input.addEventListener('blur', Tools.debounce((e) => this._inputListener(e), 1200));
         });
 
