@@ -10,6 +10,6 @@ import '/src/js/inits/modalInit.js';
 
 import '/src/js/inits/sliderInit.js';
 
-import '/src/js/inits/initMap.js';
+import '/src/js/inits/mapInit.js';
 
 import '/src/js/inits/realEstatesInit.js';

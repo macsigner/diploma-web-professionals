@@ -14,6 +14,7 @@ import FormSubmit from './FormSubmit.js';
 class RealEstateDetail extends RealEstateBase {
     /**
      * Construct.
+     *
      * @param options
      */
     constructor(el, options = {}) {
@@ -31,6 +32,7 @@ class RealEstateDetail extends RealEstateBase {
     }
 
     /**
+     * Open estate id.
      *
      * @param id
      */

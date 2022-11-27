@@ -4,7 +4,8 @@
 class Template {
     /**
      * Construct.
-     * @param template
+     *
+     * @param {HTMLElement} template Template element
      */
     constructor(template) {
         this.templateParent = template.parentNode;
@@ -17,7 +18,8 @@ class Template {
 
     /**
      * Get nodes for insert content from current template.
-     * @returns {*}
+     *
+     * @returns {Object}
      */
     getTemplateInsertNodes() {
         let elements = Array.from(this.template.querySelectorAll('[data-template]'));
@@ -41,8 +43,9 @@ class Template {
 
     /**
      * Create single item witch supplied data.
-     * @param data
-     * @returns {HTMLDivElement}
+     *
+     * @param {Object} data
+     * @returns {DocumentFragment} New document fragment with set data
      */
     create(data) {
         if (data) {
@@ -70,8 +73,9 @@ class Template {
 
     /**
      * Apply data to element.
-     * @param el
-     * @param data
+     *
+     * @param {HTMLElement} el
+     * @param {Object} data Object with template data
      * @private
      */
     _applyDataToElement(el, data) {
@@ -92,8 +96,9 @@ class Template {
 
     /**
      * Apply data to image.
-     * @param el
-     * @param data
+     *
+     * @param {HTMLImageElement} el
+     * @param {Object} data Data for image element
      * @private
      */
     _applyImageAttributes(el, data) {

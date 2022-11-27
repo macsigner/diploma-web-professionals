@@ -1,14 +1,14 @@
 <form id="main-real-estate-filter" class="layout-filter-form" {% if applyFilter %}data-filter{% endif %}>
     <div class="layout-filter-form__select">
         <div>
-            <label for="estate_type" class="filter-label">Was</label>
+            <label for="ref_type_id" class="filter-label">Was</label>
             <select name="ref_type_id" id="ref_type_id" data-filter-type="filter">
                 <option value="" selected>Alle Objekte</option>
             </select>
         </div>
         <div>
             <label for="canton" class="filter-label">Wo</label>
-            <select name="canton" id="canton">
+            <select name="canton" id="canton" id="canton">
                 <option value="" selected>Alle Orte</option>
                 <option value="appenzell">Appenzell</option>
                 <option value="st.gallen">St.Gallen</option>
@@ -16,7 +16,7 @@
         </div>
         <div>
             <label for="sorting" class="filter-label">Sortierung</label>
-            <select name="sorting" id="sortBy" data-filter-type="sort">
+            <select name="sorting" id="sorting" data-filter-type="sort">
                 <option value="" selected>Auswählen</option>
                 <option value="prizeAsc">Preis aufsteigend</option>
                 <option value="prizeDesc">Preis aufsteigend</option>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <fieldset class="switch layout-filter-form__switch">
-        {# Todo: Semantics call for a radio button but it would be much easier with a checkbox #}
+        {# Semantics call for a radio button but it would be much easier with a checkbox #}
         <legend class="invisible">Filter Kaufen/Mieten</legend>
         <input type="radio" name="estate_type" id="estateTypeRent" value="zu vermieten" class="switch__input-first" checked data-filter-type="filter">
         <label for="estateTypeRent" class="switch__label switch__label--first">Mieten</label>

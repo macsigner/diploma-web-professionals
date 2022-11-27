@@ -21,7 +21,8 @@ class MainNavigation {
 
     /**
      * Toggle states and css classes for main navigation visibility.
-     * @param e
+     *
+     * @param {Event} e Click event.
      * @private
      */
     _toggleListener() {

@@ -9,6 +9,7 @@ import InfoModal from './InfoModal.js';
 class FormSubmit {
     /**
      * Construct.
+     *
      * @param el {HTMLFormElement} Form element
      */
     constructor(el) {
@@ -109,7 +110,8 @@ class FormSubmit {
     }
 
     /**
-     * Mutate
+     * Mutate. Send form data.
+     *
      * @returns {Promise<void>}
      * @private
      */
@@ -195,7 +197,7 @@ class FormSubmit {
      * Get summary from submission.
      *
      * @param data {Object} Object from submission
-     * @returns {{title: String, content: String}[]} Object with title and content
+     * @returns {Object[]} Array of objects with title and content
      * @private
      */
     _getSubmissionSummary(data) {

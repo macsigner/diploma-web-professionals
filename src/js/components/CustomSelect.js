@@ -7,7 +7,8 @@ import Base from './Base.js';
 class CustomSelect extends Base {
     /**
      * Construct.
-     * @param {Element} el Document node
+     *
+     * @param {HTMLElement} el Document node
      * @param {Object} options Object to overwrite default settings.
      */
     constructor(el, options = {}) {
@@ -100,16 +101,13 @@ class CustomSelect extends Base {
             }));
         });
 
-        // eslint-disable-next-line
-        // Todo: is this necessary? Is there another way to remove the event on close?
+        // Bind and set to property to remove event listener later on.
         this.toggle = this._keypressListener = this._keypressListener.bind(this);
 
-        // eslint-disable-next-line
-        // Todo: is this necessary? Is there another way to remove the event on close?
+        // Bind and set to property to remove event listener later on.
         this.toggle = this.toggle.bind(this);
 
-        // eslint-disable-next-line
-        // Todo: is this necessary? Is there another way to remove the event on close?
+        // Bind and set to property to remove event listener later on.
         this._clickOutsideListener = this._clickOutsideListener.bind(this);
 
         this.render();
@@ -135,7 +133,8 @@ class CustomSelect extends Base {
 
     /**
      * Get the current selected option node.
-     * @returns {Element} The currently selected `<option>` element.
+     *
+     * @returns {HTMLElement} The currently selected `<option>` element.
      * @private
      */
     _getCurrentOptionElement() {
@@ -147,6 +146,7 @@ class CustomSelect extends Base {
 
     /**
      * Create select tag markup fron object.
+     *
      * @param {Array} options Array of objects.
      * @returns {String}
      * @private
@@ -256,8 +256,6 @@ class CustomSelect extends Base {
      * @private
      */
     _clickOutsideListener(e) {
-        // eslint-disable-next-line
-        // Todo: is the performance better this way?
         // Handle this event explicitly without delegate.
         if (e.target.closest(this.getNamespaceClass()) !== this.customSelect) {
             this.close();
@@ -390,8 +388,6 @@ class CustomSelect extends Base {
         return this.el.name || this.el.id;
     }
 
-    // eslint-disable-next-line
-    // Todo: Maybe make this public for further use?
     /**
      * Create initial options object from children.
      *

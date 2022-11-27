@@ -113,15 +113,27 @@
     }
 
     &__back {
-        margin-top: 10.3rem;
+        margin-top: 2.7rem;
 
         @include media-desktop-small {
-            margin-top: 17.2rem;
+            margin-top: 4rem;
         }
     }
 
     &__back .link__icon {
-        transform: scale(-1);
+        transform: scale(-1) translateX(0);
+    }
+
+    &__back .link:hover .link__icon {
+        transform: translateX(-.3em) scale(-1);
+    }
+
+    &__back .link__text {
+        display: none;
+
+        @include media-tablet {
+            display: block;
+        }
     }
 
     &__contact-button {

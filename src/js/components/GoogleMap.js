@@ -1,6 +1,4 @@
 /* globals google */
-// eslint-disable-next-line
-// Todo: extend documentation and finish :)
 import Base from './Base.js';
 import * as Tools from '../tools.js';
 
@@ -10,8 +8,9 @@ import * as Tools from '../tools.js';
 class GoogleMap extends Base {
     /**
      * Construct.
-     * @param el
-     * @param options
+     *
+     * @param el {HTMLElement} Wrapper element of map
+     * @param options {Object}
      */
     constructor(el, options = {}) {
         super();
@@ -35,11 +34,10 @@ class GoogleMap extends Base {
 
     /**
      * Init map.
+     *
      * @private
      */
     _init() {
-        this.geocoder = new google.maps.Geocoder();
-
         this.map = this._createMap();
 
         // eslint-disable-next-line
@@ -68,8 +66,9 @@ class GoogleMap extends Base {
     }
 
     /**
-     * Create map
-     * @returns {*}
+     * Create map.
+     *
+     * @returns {Object}
      * @private
      */
     _createMap() {
@@ -83,6 +82,7 @@ class GoogleMap extends Base {
 
     /**
      * Map style from snazzy maps https://snazzymaps.com/style/132/light-gray
+     *
      * @returns {Array}
      * @private
      */

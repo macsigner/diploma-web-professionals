@@ -7,8 +7,8 @@ class InfoModal extends Modal {
     /**
      * Construct.
      *
-     * @param content {Object}
-     * @param options
+     * @param {Object} content Preset content options
+     * @param {Object} options {@link Modal}
      */
     constructor(content, options = {
         appendTo: document.body,

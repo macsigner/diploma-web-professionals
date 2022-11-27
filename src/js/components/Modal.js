@@ -7,8 +7,8 @@ import Base from './Base.js';
 class Modal extends Base {
     /**
      * Construct.
-     * @param content
-     * @param options
+     * @param {HTMLElement|String} content CSS-Selector or HTML element
+     * @param {Object} options Options passed to modal
      */
     constructor(content, options = {}) {
         super();
@@ -74,6 +74,7 @@ class Modal extends Base {
 
     /**
      * Clean content attributes from unique or unused values.
+     *
      * @param content
      * @private
      */
@@ -90,6 +91,7 @@ class Modal extends Base {
 
     /**
      * Create basic modal.
+     *
      * @private
      */
     _createModal(content) {

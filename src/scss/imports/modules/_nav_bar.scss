@@ -6,7 +6,7 @@
     --viewport-offset: calc(100vw - 100%);
 
     display: flex;
-    position: fixed;
+    position: sticky;
     top: 0;
     right: 0;
     left: 0;
@@ -14,11 +14,22 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.4rem calc(2.5rem - var(--viewport-offset)) 1.4rem 2rem;
-    background-color: var(--color-primary-transparent);
+    background-color: var(--color-primary);
     transition: background $transition-slow;
 
     @include media-desktop-navigation {
         padding: 2.8rem calc(4.2rem - var(--viewport-offset)) 2.8rem 4.2rem;
+    }
+
+    .fixed-header & {
+        @include media-desktop-navigation {
+            position: fixed;
+        }
+    }
+
+    .has-scrolled &,
+    .fixed-header & {
+        background-color: var(--color-primary-transparent);
     }
 
     &.is-open {

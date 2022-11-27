@@ -11,7 +11,9 @@ import RealEstateBase from './RealEstateBase.js';
 class RealEstates extends RealEstateBase {
     /**
      * Construct.
-     * @param el
+     *
+     * @param el {HTMLElement} Real estates wrapper element
+     * @param {Object} options for current real estate instance
      */
     constructor(el, options = {}) {
         super();
@@ -30,7 +32,7 @@ class RealEstates extends RealEstateBase {
 
         this._init();
 
-        window.addEventListener('resize', Tools.debounce(() => this._init()));
+        window.addEventListener('widthResize', Tools.debounce(() => this._init()));
 
         this._attachFilter();
 
@@ -71,6 +73,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Get template nodes.
+     *
      * @private
      */
     _setTemplates() {
@@ -86,6 +89,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Attach filter form to current instance.
+     *
      * @private
      */
     _attachFilter() {
@@ -109,6 +113,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Apply click listener to current instance.
+     *
      * @private
      */
     _applyClickListener() {
@@ -151,7 +156,8 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Listen for filter events from filter form.
-     * @param e
+     *
+     * @param {Event} e Filter event.
      * @private
      */
     _filterListener(e) {
@@ -213,6 +219,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Load data from GraphQL API.
+     *
      * @returns {Promise<void>}
      */
     async loadData() {
@@ -264,6 +271,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Apply pagination.
+     *
      * @private
      */
     _applyPagination() {
@@ -285,6 +293,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Create pagination element.
+     *
      * @private
      */
     _createPagination() {
@@ -337,6 +346,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Apply more button.
+     *
      * @private
      */
     _applyMoreButton() {
@@ -358,6 +368,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Create more button.
+     *
      * @private
      */
     _createMoreButton() {
@@ -386,6 +397,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Update pagination button content.
+     *
      * @private
      */
     _updatePaginationButtons() {
@@ -414,6 +426,8 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Create select options from collected estates.
+     *
+     * @param {Object} obj Object to create new filter options from
      * @private
      */
     _createOptionsEstates(obj) {
@@ -443,8 +457,9 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Get formatted select option object from single item.
+     *
      * @param item
-     * @returns {{attributes: {value: *}, inner}}
+     * @returns {{attributes: {value: *}, inner}} Select options object
      * @private
      */
     _getSelectOptionObjectFromItem(item) {
@@ -560,7 +575,8 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Check if current item matches filter.
-     * @param obj
+     *
+     * @param {Object} obj Object to check filter on
      * @returns {boolean}
      * @private
      */
