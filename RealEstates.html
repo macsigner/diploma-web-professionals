@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>RealEstates<span class="signature">(el)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>RealEstates<span class="signature">(el, options)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">Handle real estates rendering.</div>
         
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="RealEstates"><span class="type-signature"></span>new RealEstates<span class="signature">(el)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RealEstates"><span class="type-signature"></span>new RealEstates<span class="signature">(el, options)</span><span class="type-signature"></span></h4>
     
 
     
@@ -94,13 +94,41 @@
 
             <td class="type">
             
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Real estates wrapper element</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">for current real estate instance</td>
         </tr>
 
     
@@ -249,7 +277,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line113">line 113</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -337,7 +365,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line331">line 331</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line352">line 352</a>
     </li></ul></dd>
     
 
@@ -425,7 +453,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line258">line 258</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line277">line 277</a>
     </li></ul></dd>
     
 
@@ -513,7 +541,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line91">line 91</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -601,7 +629,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line352">line 352</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -637,7 +665,7 @@
     
 
     
-    <h4 class="name" id="_createOptionsEstates"><span class="type-signature">(private) </span>_createOptionsEstates<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="_createOptionsEstates"><span class="type-signature">(private) </span>_createOptionsEstates<span class="signature">(obj)</span><span class="type-signature"></span></h4>
     
 
     
@@ -654,6 +682,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object to create new filter options from</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -689,7 +766,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line394">line 394</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line433">line 433</a>
     </li></ul></dd>
     
 
@@ -777,7 +854,144 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line279">line 279</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line299">line 299</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_filterChangeListener"><span class="type-signature">(private) </span>_filterChangeListener<span class="signature">(e)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Listen for change event on filter form.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>e</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">filterChange event</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -862,13 +1076,18 @@
 
             <td class="type">
             
+                
+<span class="param-type">Event</span>
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Filter event.</td>
         </tr>
 
     
@@ -909,7 +1128,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line156">line 156</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line163">line 163</a>
     </li></ul></dd>
     
 
@@ -1041,7 +1260,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line425">line 425</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line465">line 465</a>
     </li></ul></dd>
     
 
@@ -1069,6 +1288,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    Select options object
+</div>
+
 
 
 <dl>
@@ -1147,7 +1370,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line55">line 55</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -1232,13 +1455,18 @@
 
             <td class="type">
             
+                
+<span class="param-type">Object</span>
+
+
+            
             </td>
 
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Object to check filter on</td>
         </tr>
 
     
@@ -1279,7 +1507,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line538">line 538</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line583">line 583</a>
     </li></ul></dd>
     
 
@@ -1385,7 +1613,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line76">line 76</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -1473,7 +1701,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line380">line 380</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line403">line 403</a>
     </li></ul></dd>
     
 
@@ -1561,7 +1789,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line207">line 207</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line225">line 225</a>
     </li></ul></dd>
     
 
@@ -1734,7 +1962,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line440">line 440</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line480">line 480</a>
     </li></ul></dd>
     
 
@@ -1830,7 +2058,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line240">line 240</a>
+        <a href="components_RealEstates.js.html">components/RealEstates.js</a>, <a href="components_RealEstates.js.html#line258">line 258</a>
     </li></ul></dd>
     
 
@@ -1872,13 +2100,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setCustomProperties">setCustomProperties</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="InfoModal.html">InfoModal</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setResizeProperties">setResizeProperties</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Nov 24 2022 23:48:13 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Nov 27 2022 22:40:39 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

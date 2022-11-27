@@ -29,6 +29,7 @@
             <pre class="prettyprint source linenums"><code>import { gql, GraphQLClient } from 'graphql-request';
 import SETTINGS from '../settings.js';
 import * as Tools from '../tools.js';
+import InfoModal from './InfoModal.js';
 
 /**
  * Form submission via mutate.
@@ -36,16 +37,19 @@ import * as Tools from '../tools.js';
 class FormSubmit {
     /**
      * Construct.
+     *
      * @param el {HTMLFormElement} Form element
      */
     constructor(el) {
-        this._client = new GraphQLClient(SETTINGS.gqlURL);
+        this._client = new GraphQLClient(SETTINGS.gqlURL, {
+            errorPolicy: 'all',
+        });
         this._form = el;
 
         this._loadFormData();
 
         this._form.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', Tools.debounce((e) => this._inputListener(e), 1200));
+            input.addEventListener('input', Tools.debounce((e) => this._inputListener(e), 2000));
             input.addEventListener('blur', Tools.debounce((e) => this._inputListener(e), 1200));
         });
 
@@ -55,7 +59,6 @@ class FormSubmit {
         );
 
         this._form.addEventListener('submit', (e) => {
-            console.log('submit');
             e.preventDefault();
 
             let isValid = this.validate();
@@ -66,14 +69,77 @@ class FormSubmit {
                 let mutation = this._mutate(obj);
 
                 mutation.then((response) => {
-                    console.log(response);
+                    this._form.classList.add('submitted');
+
+                    let summaryArray = this._getSubmissionSummary(response.createMessage);
+
+                    summaryArray.unshift({
+                        title: 'Objekt',
+                        content: response.createMessage.estate.title,
+                    });
+
+                    let summary = document.createElement('div');
+                    summary.classList.add('table');
+
+                    let rows = summaryArray.reduce(
+                        (prev, current) => prev + `&lt;tr>&lt;td>${current.title}&lt;/td>&lt;td>${current.content}&lt;/td>&lt;/tr>`,
+                        ''
+                    );
+
+                    summary.innerHTML = `&lt;table>&lt;tbody>${rows}&lt;/tbody>&lt;/table>`;
+
+                    new InfoModal({
+                        title: 'Ihre Daten wurden versendet',
+                        message: 'Ihre Angaben:',
+                        custom: summary,
+                    }, {
+                        appendTo: this._form.parentNode,
+                        variant: 'success',
+                    });
+
+                    window.localStorage.removeItem('formData');
+                    this._resetForm();
+                }).catch(error => {
+                    this._saveFormData();
+
+                    let mailBody = Object.keys(obj)
+                        .reduce((prev, key) => `${prev}\n${key}: ${obj[key]}`, '');
+
+                    mailBody += `\n\n Fehler:\n${error}`;
+
+                    let title = document.querySelector('.modal__title strong').textContent.trim();
+                    let mailSubject = `Interesse am Objekt ${title}`;
+
+                    // eslint-disable-next-line
+                    // Todo: Rethinking what errors should be shown.
+                    new InfoModal({
+                        title: 'Ein Fehler ist aufgetreten',
+                        /* eslint-disable max-len */
+                        message: `
+                            &lt;pre class="error">${error}&lt;/pre>
+
+                            &lt;p>Die Formulardaten wurden lokal in Ihrem Broswer gespeichert.&lt;br>
+
+                            Sie können es später erneut versuchen oder die  Daten per Mail übermitteln.&lt;/p>
+
+                            &lt;a href="mailto:info@homehouse.ch?body=${encodeURIComponent(mailBody)}&amp;subject=${encodeURIComponent(mailSubject)}"
+                                class="button button--block">Daten per Mail übermitteln&lt;/a>
+                            `,
+                        /* eslint-enable max-len */
+                    }, {
+                        appendTo: this._form.parentNode,
+                        variant: 'alert',
+                    });
+
+                    console.error(error);
                 });
             }
         });
     }
 
     /**
-     * Mutate
+     * Mutate. Send form data.
+     *
      * @returns {Promise&lt;void>}
      * @private
      */
@@ -105,22 +171,22 @@ class FormSubmit {
                     information: $information
                     visit: $visit
                 ) {
+                    firstname
+                    lastname
                     address
+                    postalcode
                     city
-                    content
-                    created_at
+                    phonenumber
                     email
+                    content
+                    information
+                    visit
                     estate {
                         title,
                     }
-                    firstname
                     id
-                    information
-                    lastname
-                    phonenumber
-                    postalcode
+                    created_at
                     updated_at
-                    visit
                 }
             }
         `;
@@ -141,6 +207,89 @@ class FormSubmit {
         let messageData = Object.assign(requiredFields, data);
 
         return await this._client.request(createMessage, messageData);
+    }
+
+    /**
+     * Reset form.
+     *
+     * @private
+     */
+    _resetForm() {
+        this._form.reset();
+
+        this._form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-valid'));
+        this._form.querySelectorAll('.is-valid').forEach(el => el.classList.remove('is-invalid'));
+    }
+
+    /**
+     * Get summary from submission.
+     *
+     * @param data {Object} Object from submission
+     * @returns {Object[]} Array of objects with title and content
+     * @private
+     */
+    _getSubmissionSummary(data) {
+        let contentArray = [];
+
+        for (let key of Object.keys(data)) {
+            let field = this._getFieldByName(key);
+
+            // Check if field is visible in form
+            if (!field || field.disabled) {
+                continue;
+            }
+
+            let content;
+
+            switch (field.type) {
+                case 'checkbox':
+                    content = data[key] ? 'ja' : 'nein';
+                    break;
+                default:
+                    content = data[key];
+            }
+
+            let label = this._getLabelByName(key);
+
+            if (label &amp;&amp; content) {
+                contentArray.push({
+                    title: label,
+                    content,
+                });
+            }
+        }
+
+        return contentArray;
+    }
+
+    /**
+     * Get single label content by name of input field.
+     *
+     * @param name {String}
+     * @returns {String}
+     * @private
+     */
+    _getLabelByName(name) {
+        let label = this._form.querySelector(`label[for="${name}"]`);
+        let content;
+        if (label) {
+            content = label.textContent;
+        } else {
+            content = this._getFieldByName(name).closest('label').textContent;
+        }
+
+        return content.replace('\n', '').trim();
+    }
+
+    /**
+     * Get input element by name.
+     *
+     * @param name {String}
+     * @returns {HTMLElement} Field element
+     * @private
+     */
+    _getFieldByName(name) {
+        return this._form.querySelector(`[name="${name}"]`);
     }
 
     /**
@@ -290,13 +439,13 @@ export default FormSubmit;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setCustomProperties">setCustomProperties</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="InfoModal.html">InfoModal</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setResizeProperties">setResizeProperties</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Nov 24 2022 23:48:13 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Nov 27 2022 22:40:39 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

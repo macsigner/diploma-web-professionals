@@ -28,6 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>import Template from './Template.js';
 import * as Tools from '../tools.js';
+import { debounce } from '../tools.js';
 
 /**
  * Slider.
@@ -35,8 +36,9 @@ import * as Tools from '../tools.js';
 class Slider {
     /**
      * Construct.
-     * @param el
-     * @param options
+     *
+     * @param {HTMLElement} el Wrapper of slider elements
+     * @param {Object} options Slider configuration
      */
     constructor(el, options = {}) {
         this.el = el;
@@ -65,6 +67,19 @@ class Slider {
         this.el.parentNode.insertBefore(this._sliderWrapper, this.el);
         this._sliderInner.appendChild(this.el);
 
+        this._sliderInner.addEventListener('mousemove', debounce((e) => {
+            let bound = this._sliderInner.getBoundingClientRect();
+            let x = e.pageX - bound.left;
+            let y = e.pageY - bound.top - window.scrollY;
+            let percentageX = Math.max(Math.min(x / bound.width, 1), 0);
+            let percentageY = Math.max(Math.min(y / bound.height, 1), 0);
+
+            window.requestAnimationFrame(() => {
+                this.el.style.setProperty('--mouse-x', percentageX);
+                this.el.style.setProperty('--mouse-y', percentageY);
+            });
+        }, 10));
+
         this.slides.forEach((el) => {
             el.classList.add('slider__item');
         });
@@ -87,7 +102,8 @@ class Slider {
 
     /**
      * Go to specified slide.
-     * @param index
+     *
+     * @param {Number} index Index of next slide
      */
     goToSlide(index) {
         this.index = index;
@@ -116,6 +132,7 @@ class Slider {
 
     /**
      * Append arrows to current slider.
+     *
      * @private
      */
     _appendArrows() {
@@ -137,6 +154,7 @@ class Slider {
 
     /**
      * Update arrows visibility.
+     *
      * @private
      */
     _updateArrows() {
@@ -157,6 +175,7 @@ class Slider {
 
     /**
      * Append and create preview images to current slider.
+     *
      * @private
      */
     _appendPreviews() {
@@ -167,7 +186,8 @@ class Slider {
 
         let htmlTemplate = document.createElement('template');
         htmlTemplate.dataset.templateName = 'preview';
-        htmlTemplate.innerHTML = '&lt;li class="slider__preview-item" data-index>&lt;img data-template="image">&lt;/li>';
+        htmlTemplate.innerHTML
+            = '&lt;li class="slider__preview-item" loading="lazy" data-index>&lt;img data-template="image">&lt;/li>';
         let template = new Template(htmlTemplate);
 
         this.slides.forEach((el, i) => {
@@ -191,6 +211,7 @@ class Slider {
 
     /**
      * Update preview image classes.
+     *
      * @private
      */
     _updatePreviews() {
@@ -205,7 +226,8 @@ class Slider {
 
     /**
      * Handle clicks on preview items.
-     * @param e
+     *
+     * @param {Event} e Click event
      * @private
      */
     _previewClickListener(e) {
@@ -226,13 +248,13 @@ export default Slider;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setCustomProperties">setCustomProperties</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="InfoModal.html">InfoModal</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setResizeProperties">setResizeProperties</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Nov 24 2022 23:48:13 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Nov 27 2022 22:40:39 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

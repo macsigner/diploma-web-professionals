@@ -39,7 +39,9 @@ import RealEstateBase from './RealEstateBase.js';
 class RealEstates extends RealEstateBase {
     /**
      * Construct.
-     * @param el
+     *
+     * @param el {HTMLElement} Real estates wrapper element
+     * @param {Object} options for current real estate instance
      */
     constructor(el, options = {}) {
         super();
@@ -58,14 +60,14 @@ class RealEstates extends RealEstateBase {
 
         this._init();
 
-        window.addEventListener('resize', Tools.debounce(() => this._init()));
+        window.addEventListener('widthResize', Tools.debounce(() => this._init()));
 
         this._attachFilter();
 
         this._setTemplates();
 
         if (this.templates.detail) {
-            this.detail = new RealEstateDetail({
+            this.detail = new RealEstateDetail(this.el, {
                 template: this.templates.detail,
             });
 
@@ -99,6 +101,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Get template nodes.
+     *
      * @private
      */
     _setTemplates() {
@@ -114,6 +117,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Attach filter form to current instance.
+     *
      * @private
      */
     _attachFilter() {
@@ -127,6 +131,7 @@ class RealEstates extends RealEstateBase {
                 this.filter = this.filterForm.getFilter();
 
                 filter.addEventListener('filter', e => this._filterListener(e));
+                filter.addEventListener('filterChange', e => this._filterChangeListener(e));
             } catch (error) {
                 console.warn('Filter not found!');
                 console.log(error);
@@ -136,6 +141,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Apply click listener to current instance.
+     *
      * @private
      */
     _applyClickListener() {
@@ -178,22 +184,12 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Listen for filter events from filter form.
-     * @param e
+     *
+     * @param {Event} e Filter event.
      * @private
      */
     _filterListener(e) {
         this.filter = e.detail.Filter.filters;
-
-        if (e.detail.Filter.filters.template) {
-            this._settings.template = e.detail.Filter.filters.template.layout;
-            let templateClass = `template-${Tools.camelToKebabCase(e.detail.Filter.filters.template.layout)}`;
-
-            this.el.classList.remove(...this._templateClasses);
-
-            this.el.classList.add(templateClass);
-
-            this._templateClasses.add(templateClass);
-        }
 
         let callback;
 
@@ -229,7 +225,29 @@ class RealEstates extends RealEstateBase {
     }
 
     /**
+     * Listen for change event on filter form.
+     *
+     * @param e {Event} filterChange event
+     * @private
+     */
+    _filterChangeListener(e) {
+        if (e.detail.Filter.filters.template &amp;&amp; this._settings.template !== e.detail.Filter.filters.template.layout) {
+            this._settings.template = e.detail.Filter.filters.template.layout;
+            let templateClass = `template-${Tools.camelToKebabCase(e.detail.Filter.filters.template.layout)}`;
+
+            this.el.classList.remove(...this._templateClasses);
+
+            this.el.classList.add(templateClass);
+
+            this._templateClasses.add(templateClass);
+
+            this.render();
+        }
+    }
+
+    /**
      * Load data from GraphQL API.
+     *
      * @returns {Promise&lt;void>}
      */
     async loadData() {
@@ -281,6 +299,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Apply pagination.
+     *
      * @private
      */
     _applyPagination() {
@@ -302,6 +321,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Create pagination element.
+     *
      * @private
      */
     _createPagination() {
@@ -328,7 +348,7 @@ class RealEstates extends RealEstateBase {
                     this._pagination.current = Math.min(this._pagination.current + 1, this._pagination.total);
                     break;
                 case 'prev':
-                    this._pagination.current = Math.max(this._pagination.current - 1, 0);
+                    this._pagination.current = Math.max(this._pagination.current - 1, 1);
                     break;
                 default:
                     this._pagination.current = Math.min(
@@ -354,6 +374,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Apply more button.
+     *
      * @private
      */
     _applyMoreButton() {
@@ -375,6 +396,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Create more button.
+     *
      * @private
      */
     _createMoreButton() {
@@ -403,6 +425,7 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Update pagination button content.
+     *
      * @private
      */
     _updatePaginationButtons() {
@@ -412,11 +435,27 @@ class RealEstates extends RealEstateBase {
             this._paginationElement.classList.remove('hide');
             this._paginationElement.querySelector('.pagination__total').innerHTML = this._pagination.total;
             this._paginationElement.querySelector('.pagination__current').innerHTML = this._pagination.current;
+
+            let prev = this._paginationElement.querySelector('.pagination__button--prev');
+            if (this._pagination.current === 1) {
+                prev.disabled = true;
+            } else {
+                prev.removeAttribute('disabled');
+            }
+
+            let next = this._paginationElement.querySelector('.pagination__button--next');
+            if (this._pagination.current === this._pagination.total) {
+                next.disabled = true;
+            } else {
+                next.removeAttribute('disabled');
+            }
         }
     }
 
     /**
      * Create select options from collected estates.
+     *
+     * @param {Object} obj Object to create new filter options from
      * @private
      */
     _createOptionsEstates(obj) {
@@ -446,8 +485,9 @@ class RealEstates extends RealEstateBase {
 
     /**
      * Get formatted select option object from single item.
+     *
      * @param item
-     * @returns {{attributes: {value: *}, inner}}
+     * @returns {{attributes: {value: *}, inner}} Select options object
      * @private
      */
     _getSelectOptionObjectFromItem(item) {
@@ -555,11 +595,16 @@ class RealEstates extends RealEstateBase {
         } else {
             items.forEach(item => this.el.appendChild(item));
         }
+
+        this.el.querySelectorAll('[data-id]').forEach((item, i) => {
+            item.style.setProperty('--item-index', i);
+        });
     }
 
     /**
      * Check if current item matches filter.
-     * @param obj
+     *
+     * @param {Object} obj Object to check filter on
      * @returns {boolean}
      * @private
      */
@@ -590,13 +635,13 @@ export default RealEstates;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setCustomProperties">setCustomProperties</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Tools.html">Tools</a></li></ul><h3>Classes</h3><ul><li><a href="Base.html">Base</a></li><li><a href="CustomSelect.html">CustomSelect</a></li><li><a href="Filter.html">Filter</a></li><li><a href="FormSubmit.html">FormSubmit</a></li><li><a href="GoogleMap.html">GoogleMap</a></li><li><a href="InfoModal.html">InfoModal</a></li><li><a href="MainNavigation.html">MainNavigation</a></li><li><a href="Modal.html">Modal</a></li><li><a href="RealEstateBase.html">RealEstateBase</a></li><li><a href="RealEstateDetail.html">RealEstateDetail</a></li><li><a href="RealEstateDetailPage.html">RealEstateDetailPage</a></li><li><a href="RealEstates.html">RealEstates</a></li><li><a href="Slider.html">Slider</a></li><li><a href="SmoothScroll.html">SmoothScroll</a></li><li><a href="Template.html">Template</a></li></ul><h3>Events</h3><ul><li><a href="RealEstates.html#event:realEstateDataLoaded">realEstateDataLoaded</a></li></ul><h3>Global</h3><ul><li><a href="global.html#setResizeProperties">setResizeProperties</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Nov 24 2022 23:48:13 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Nov 27 2022 22:40:39 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

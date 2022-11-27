@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/RealEstateDetailPage.js</title>
+    <title>JSDoc: Source: components/InfoModal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/RealEstateDetailPage.js</h1>
+    <h1 class="page-title">Source: components/InfoModal.js</h1>
 
     
 
@@ -26,68 +26,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import RealEstateDetail from './RealEstateDetail.js';
-import Template from './Template.js';
+            <pre class="prettyprint source linenums"><code>import Modal from './Modal.js';
 
 /**
- * Real estate detail page class.
+ * Alert message
  */
-class RealEstateDetailPage {
+class InfoModal extends Modal {
     /**
-     * Construct
+     * Construct.
      *
-     * @param {Number} id Id of the estate.
-     * @param {Object} options Pass template via options object
+     * @param {Object} content Preset content options
+     * @param {Object} options {@link Modal}
      */
-    constructor(el, options = {}) {
-        this.el = el;
-        let elTemplate = el.querySelector('template');
+    constructor(content, options = {
+        appendTo: document.body,
+    }) {
+        let infoModalElement = document.createElement('div');
+        infoModalElement.innerHTML = `
+            &lt;h1 class="info-modal__title">${content.title}&lt;/h1>
+            &lt;div class="info-modal__message">${content.message}&lt;/div>`;
 
-        this._settings = options;
-        this._settings.template = new Template(elTemplate);
-
-        this._detail = new RealEstateDetail(this.el, {
-            template: this._settings.template,
-        });
-
-        let promise = this._detail.open(this._settings.id);
-
-        promise.then(() => {
-            let data = this._detail.getData();
-
-            this._applyMetaData({
-                description: data.description,
-                title: `Home House - ${data.title}`,
-            });
-        });
-    }
-
-    /**
-     * Apply meta data on current page.
-     *
-     * @param {Object} obj Object with title and description property for current page.
-     * @private
-     */
-    _applyMetaData(obj) {
-        if (obj.description) {
-            let description = document.head.querySelector('meta[name="description"]') || document.createElement('meta');
-
-            description.content = obj.description;
-
-            document.head.appendChild(description);
+        if (content.custom) {
+            infoModalElement.appendChild(content.custom);
         }
 
-        if (obj.title) {
-            let title = document.head.querySelector('title') || document.createElement('title');
+        let modalObject = super(infoModalElement, Object.assign({
+            namespace: 'info-modal',
+            lockScroll: false,
+        }, options));
 
-            title.innerHTML = obj.title;
+        options.appendTo.classList.add(this.getNamespace('-wrapper'));
 
-            document.head.appendChild(title);
-        }
+        modalObject.modal.addEventListener('animationend', () => {
+            if (!this.modal.matches('.open')) {
+                options.appendTo.classList.remove(this.getNamespace('-wrapper'));
+            }
+        });
     }
 }
 
-export default RealEstateDetailPage;
+export default InfoModal;
 </code></pre>
         </article>
     </section>
