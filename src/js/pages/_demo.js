@@ -12,7 +12,7 @@ document.querySelector('#modal-button-generated').addEventListener('click', () =
 
 import '../inits/sliderInit.js';
 
-import '../inits/initMap.js';
+import '../inits/mapInit.js';
 
 import '../inits/filterInit.js';
 
